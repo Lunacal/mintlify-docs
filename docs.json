@@ -13,9 +13,11 @@
       {
         "group": "Event Types",
         "pages": [
-          "index",
-          "quickstart",
-          "development",
+          "event-types/introduction",
+          "event-types/event-setup",
+          "event-types/availability",
+          "event-types/limits",
+          "event-types/booking-questions",
           "test"
         ]
       },
