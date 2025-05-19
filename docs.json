@@ -19,6 +19,7 @@
           "event-types/limits",
           "event-types/booking-questions",
           "PaypalSetup",
+          "Integrations",
           "test"
         ]
       },
