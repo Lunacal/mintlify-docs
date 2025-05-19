@@ -18,6 +18,7 @@
           "event-types/availability",
           "event-types/limits",
           "event-types/booking-questions",
+          "PaypalSetup",
           "test"
         ]
       },
