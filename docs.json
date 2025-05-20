@@ -10,41 +10,73 @@
   "favicon": "/favicon.svg",
   "navigation": {
     "groups": [
-      {
-        "group": "Event Types",
-        "pages": [
-          "event-types/introduction",
-          "event-types/event-setup",
-          "event-types/availability",
-          "event-types/limits",
-          "event-types/booking-questions",
-          "PaypalSetup",
-          "Integrations",
-          "manageBookings",
-          "DynamicLinks",
-          "embedEventWebsite",
-          "importcalendly",
-          "limitsAndbuffer",
-          "outofoffice",
-          "workflows",
-          "edit-booking-page",
-          "Teams-part1",
-          "embed-in-mails",
-          "availability-configuration",
-          "test"
-        ]
-      },
-      {
-        "group": "Essentials",
-        "pages": [
-          "essentials/markdown",
-          "essentials/code",
-          "essentials/images",
-          "essentials/settings",
-          "essentials/navigation",
-          "essentials/reusable-snippets"
-        ]
-      }
+       {
+      "group": "Event Types",
+      "pages": [
+        "event-types/event-setup",
+        "event-types/availability",
+        "event-types/limits",
+        "event-types/booking-questions",
+        "limitsAndbuffer"
+      ]
+    },
+    {
+      "group": "Availability",
+      "pages": [
+        "availability-configuration"
+      ]
+    },
+    {
+      "group": "Teams",
+      "pages": [
+        "Teams-part1"
+      ]
+    },
+    {
+      "group": "Bookings",
+      "pages": [
+        "manageBookings"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "PaypalSetup",
+        "Integrations"
+      ]
+    },
+    {
+      "group": "Workflows",
+      "pages": [
+        "workflows"
+      ]
+    },
+    {
+      "group": "Dynamic Bookings",
+      "pages": [
+        "DynamicLinks"
+      ]
+    },
+    {
+      "group": "Bookings Page",
+      "pages": [
+        "edit-booking-page"
+      ]
+    },
+    {
+      "group": "Embed",
+      "pages": [
+        "embedEventWebsite",
+        "embed-in-mails"
+      ]
+    },
+    {
+      "group": "Others",
+      "pages": [
+        "importcalendly",
+        "outofoffice"
+      ]
+    }
     ]
   },
   "logo": {
