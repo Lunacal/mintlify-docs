@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Lunacal.ai",
   "colors": {
     "primary": "#d87fd8",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "groups": [
        {
@@ -15,9 +15,8 @@
       "pages": [
         "event-types/event-setup",
         "event-types/availability",
-        "event-types/limits",
-        "event-types/booking-questions",
-        "limitsAndbuffer"
+        "event-types/limitsAndbuffer",
+        "event-types/booking-questions"
       ]
     },
     {
