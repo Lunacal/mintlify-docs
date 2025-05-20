@@ -21,6 +21,7 @@
           "PaypalSetup",
           "Integrations",
           "manageBookings",
+          "DynamicLinks",
           "test"
         ]
       },
