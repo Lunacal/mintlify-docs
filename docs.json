@@ -15,7 +15,7 @@
       "pages": [
         "event-types/event-setup",
         "event-types/availability",
-        "event-types/limitsAndbuffer",
+        "event-types/limits",
         "event-types/booking-questions"
       ]
     },
