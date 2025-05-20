@@ -24,6 +24,10 @@
           "DynamicLinks",
           "embedEventWebsite",
           "importcalendly",
+          "limitsAndbuffer",
+          "outofoffice",
+          "availability",
+          "workflows",
           "test"
         ]
       },
