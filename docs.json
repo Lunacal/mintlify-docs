@@ -4,8 +4,8 @@
   "name": "Lunacal.ai",
   "colors": {
     "primary": "#d87fd8",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "light": "#d87fd8",
+    "dark": "#d87fd8"
   },
   "favicon": "/favicon.ico",
   "navigation": {
