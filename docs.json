@@ -20,6 +20,7 @@
           "event-types/booking-questions",
           "PaypalSetup",
           "Integrations",
+          "manageBookings",
           "test"
         ]
       },
