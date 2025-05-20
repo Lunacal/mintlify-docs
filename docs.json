@@ -23,6 +23,7 @@
           "manageBookings",
           "DynamicLinks",
           "embedEventWebsite",
+          "importcalendly",
           "test"
         ]
       },
