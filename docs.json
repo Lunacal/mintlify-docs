@@ -14,7 +14,6 @@
       "group": "Event Types",
       "pages": [
         "event-types/event-setup",
-        "event-types/availability",
         "event-types/limits",
         "event-types/booking-questions"
       ]
