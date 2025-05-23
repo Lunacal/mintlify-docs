@@ -15,8 +15,7 @@
       "pages": [
         "event-types/event-setup",
         "event-types/limits",
-        "event-types/booking-questions",
-        "event-types/adding-calendars"
+        "event-types/booking-questions"
       ]
     },
     {
@@ -41,7 +40,8 @@
       "group": "Integrations",
       "pages": [
         "PaypalSetup",
-        "Integrations"
+        "Integrations",
+        "adding-calendars"
       ]
     },
     {
