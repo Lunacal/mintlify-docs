@@ -17,7 +17,7 @@
         "event-types/limits",
         "event-types/booking-questions",
         "event-types/edit-booking-page",
-        "event-types/addingcalendartolunacal"
+        "event-types/adding-calendar-to-lunacal"
       ]
     },
     {
