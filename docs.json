@@ -10,72 +10,50 @@
   "favicon": "/favicon.ico",
   "navigation": {
     "groups": [
-       {
-      "group": "Event Types",
-      "pages": [
-        "event-types/event-setup",
-        "event-types/limits",
-        "event-types/booking-questions"
-      ]
-    },
-    {
-      "group": "Availability",
-      "pages": [
-        "availability-configuration"
-      ]
-    },
-    {
-      "group": "Teams",
-      "pages": [
-        "teams-setup"
-      ]
-    },
-    {
-      "group": "Bookings",
-      "pages": [
-        "manage-bookings"
-      ]
-    },
-    {
-      "group": "Integrations",
-      "pages": [
-        "paypal-setup",
-        "Integrations",
-        "adding-calendars"
-      ]
-    },
-    {
-      "group": "Workflows",
-      "pages": [
-        "workflows"
-      ]
-    },
-    {
-      "group": "Dynamic Bookings",
-      "pages": [
-        "dynamic-links"
-      ]
-    },
-    {
-      "group": "Bookings Page",
-      "pages": [
-        "edit-booking-page"
-      ]
-    },
-    {
-      "group": "Embed",
-      "pages": [
-        "embed-in-web",
-        "embed-in-mails"
-      ]
-    },
-    {
-      "group": "Others",
-      "pages": [
-        "importcalendly",
-        "out-of-office"
-      ]
-    }
+      {
+        "group": "Event Types",
+        "pages": [
+          "event-types/event-setup",
+          "event-types/limits",
+          "event-types/booking-questions"
+        ]
+      },
+      {
+        "group": "Availability",
+        "pages": ["availability-configuration"]
+      },
+      {
+        "group": "Teams",
+        "pages": ["teams-setup"]
+      },
+      {
+        "group": "Bookings",
+        "pages": ["manage-bookings"]
+      },
+      {
+        "group": "Integrations",
+        "pages": ["paypal-setup", "integrations", "adding-calendars"]
+      },
+      {
+        "group": "Workflows",
+        "pages": ["workflows"]
+      },
+      {
+        "group": "Dynamic Bookings",
+        "pages": ["dynamic-links"]
+      },
+      {
+        "group": "Bookings Page",
+        "pages": ["edit-booking-page"]
+      },
+      {
+        "group": "Embed",
+        "pages": ["embed-in-web", "embed-in-mails"]
+      },
+      {
+        "group": "Others",
+        "pages": ["importcalendly", "out-of-office"]
+      }
     ]
   },
   "logo": {
