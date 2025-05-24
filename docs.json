@@ -27,19 +27,19 @@
     {
       "group": "Teams",
       "pages": [
-        "Teams-part1"
+        "teams-setup"
       ]
     },
     {
       "group": "Bookings",
       "pages": [
-        "manageBookings"
+        "manage-bookings"
       ]
     },
     {
       "group": "Integrations",
       "pages": [
-        "PaypalSetup",
+        "paypal-setup",
         "Integrations",
         "adding-calendars"
       ]
@@ -53,7 +53,7 @@
     {
       "group": "Dynamic Bookings",
       "pages": [
-        "DynamicLinks"
+        "dynamic-links"
       ]
     },
     {
@@ -65,7 +65,7 @@
     {
       "group": "Embed",
       "pages": [
-        "embedEventWebsite",
+        "embed-in-web",
         "embed-in-mails"
       ]
     },
@@ -73,7 +73,7 @@
       "group": "Others",
       "pages": [
         "importcalendly",
-        "outofoffice"
+        "out-of-office"
       ]
     }
     ]
