@@ -7,7 +7,7 @@
     "light": "#d87fd8",
     "dark": "#d87fd8"
   },
-  "favicon": "favicon.ico",
+  "favicon": "/logo/favicon.ico",
   "navigation": {
     "groups": [
       {
@@ -32,7 +32,7 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integrations", "adding-calendars"]
+        "pages": ["paypal-setup", "integration", "adding-calendars"]
       },
       {
         "group": "Workflows",
