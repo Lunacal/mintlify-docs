@@ -1,0 +1,106 @@
+---
+title: "Webhooks"
+description: "Webhooks can let your integrations take an action in response to events that occur on Lunacal.ai. This document will guide you through adding webhooks."
+---
+
+## **Step 1**
+
+Start by opening the event type you want to configure.
+
+![1 Web](/images/event_setup/1.webp)
+
+## **Step 2**
+
+Proceed by clicking on the “Webhooks” option and click on button to add “New Webhook”.
+
+![Screenshot2025 06 27154316 Pn](/images/Screenshot2025-06-27154316.png)
+
+## **Step 3**
+
+You can create webhooks to subscribe to specific events on Lunacal. The **Subscriber URL** should point to your API endpoint that will receive HTTP requests from our platform. Currently, there are three event triggers available:
+
+1. **Booking Canceled** **: ** Triggered when a booking is canceled
+2. **Booking Created** **:**  Triggered when a new booking is created by any user.
+3. **Booking Rescheduled :**  Triggered when an existing booking is rescheduled for future.
+
+![Screenshot2025 06 27154743 Pn](/images/Screenshot2025-06-27154743.png)
+
+## **Step 4**
+
+You can test your webhook using the **Ping Test** button. This will send sample data to your webhook endpoint to verify that it’s functioning properly. If everything is set up correctly, you will receive a `200 OK` response with the following payload:
+
+```
+{ "ok": true, "status": 200, "message": "Webhook received" }
+```
+
+![Screenshot2025 06 27172831 Pn](/images/Screenshot2025-06-27172831.png)
+
+## Example
+
+Here is a simple example of a server that receives HTTP webhook requests.
+
+<CodeGroup>
+
+```go golang
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+)
+
+func webhookHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		fmt.Println("Received GET request")
+		for k, v := range r.URL.Query() {
+			fmt.Printf("%s = %s\n", k, v)
+		}
+	case http.MethodPost:
+		body, _ := io.ReadAll(r.Body)
+		defer r.Body.Close()
+		fmt.Println("Received POST request")
+		fmt.Println("Body:", string(body))
+	default:
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
+func main() {
+	http.HandleFunc("/", webhookHandler)
+	fmt.Println("Listening on :8080")
+	http.ListenAndServe(":8080", nil)
+}
+```
+
+
+```javascript javascript
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  console.log('Received GET request');
+  console.log(req.query);
+  res.status(200).send({ ok: true, status: 200, message: 'Webhook received' });
+});
+
+app.post('/', (req, res) => {
+  console.log('Received POST request');
+  console.log(req.body);
+  res.status(200).send({ ok: true, status: 200, message: 'Webhook received' });
+});
+
+app.listen(8080, () => {
+  console.log('Listening on http://localhost:8080');
+});
+```
+
+</CodeGroup>
+
+> please use a service like [ngrok](https://ngrok.com/) if you are testing locally

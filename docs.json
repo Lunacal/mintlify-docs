@@ -53,6 +53,10 @@
       {
         "group": "Others",
         "pages": ["importcalendly", "out-of-office"]
+      },
+      {
+        "group": "Webhooks",
+        "pages": ["webhooks"]
       }
     ]
   },
