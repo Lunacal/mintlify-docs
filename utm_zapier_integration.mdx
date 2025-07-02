@@ -1,0 +1,128 @@
+---
+title: "Zapier Integration for UTM Tracking"
+description: "Learn how to automatically send UTM parameters and booking data from Lunacal.ai to Google Sheets using Zapier."
+---
+
+## Overview
+
+With Lunacal.ai’s Zapier integration, you can automate workflows that respond to booking events. This guide walks you through setting up a Zap that captures UTM data from your booking form and writes it directly into a Google Sheet — helping you keep track of marketing sources effortlessly.
+
+## ✅ Prerequisites
+
+Before you start:
+
+- A [Zapier](https://zapier.com) account
+- A [Lunacal.ai](https://lunacal.ai) account
+- A Google account with access to Google Sheets
+- A sheet already created with columns like: `Name`, `UTM Source`, `Email`
+
+## 🔌 Step 1: Connect Zapier in Lunacal.ai
+
+1. Log in to your Lunacal dashboard.
+2. In the left sidebar, click on **Integrations**.
+3. Select **Automation** from the integration categories.
+4. Click the **Connect** button on the **Zapier** card to initiate the connection.
+
+![Screenshot2025 07 02155300 Pn](/images/Screenshot2025-07-02155300.png)
+
+---
+
+## 🔑 Step 2: Generate and Save Your API Key
+
+After clicking **Connect**:
+
+1. Lunacal.ai will generate a unique **API Key**.
+2. Copy the API key — **you won’t be able to view it again**.
+3. Paste and save it in a secure place (we will be needing it in next step).
+4. Click **Done** to complete the setup on Lunacal.
+
+![Screenshot2025 07 02155601 Pn](/images/Screenshot2025-07-02155601.png)
+
+## 🧠 Step 3: Link Lunacal.ai to Zapier
+
+1. Open [Zapier](https://zapier.com) and go to **My Apps**.
+2. Click **\+ Add Connection**.
+3. Search for **Lunacal.ai** and click on it.
+4. When prompted, paste the **API key** you saved earlier.
+5. Zapier will verify and establish the connection to Lunacal.
+
+   ![Screenshot2025 07 02155815 Pn](/images/Screenshot2025-07-02155815.png)
+
+---
+
+## ⚙️ Step 4: Build Your Zap Workflow
+
+### 4.1 Set up the Trigger
+
+1. Click **\+ Create Zap** in Zapier.
+2. In the **Trigger** step, search and select `Lunacal.ai`.
+3. Under **Event**, choose `Booking Created`.
+4. Choose the Lunacal account you just connected.
+5. Click **Test Trigger** to ensure data is received correctly.
+   - This helps Zapier fetch a sample payload for configuration.
+   - Make sure you have at least one booking in Lunacal to test with
+
+![Screenshot2025 07 02161314 Pn](/images/Screenshot2025-07-02161314.png)
+
+### 4.2 Set up the Action with Google Sheets
+
+Now we’ll write this booking data to a Google Sheet.
+
+1. In the **Action** step, search for and select `Google Sheets`.
+2. Choose the action event: **Create Spreadsheet Row**.
+3. Connect your Google account if you haven’t already.
+4. Select the spreadsheet and worksheet where the data should go.
+5. Ensure the sheet has the following columns created beforehand:
+   - `Name`
+   - `UTM Source`
+   - `Email`
+
+> **Note:** You can add more fields like `UTM Campaign`, `UTM Medium`, etc. These must exist in the sheet before proceeding.
+
+![Screenshot2025 07 02140456 Pn](/images/Screenshot2025-07-02140456.png)
+
+### 4.3 Configure Data Mapping
+
+You’ll now map Lunacal.ai booking fields to the Google Sheet columns:
+
+| Google Sheet Column | Lunacal.ai Field Example                       |
+| ------------------- | ---------------------------------------------- |
+| Name                | `1. Responses Name Value`                      |
+| UTM Source          | `1. Responses Utm Source Value`                |
+| Email               | `1. Responses Email Value`                     |
+| UTM Campaign        | `1. Responses Utm Campaign Value` _(optional)_ |
+| UTM Medium          | `1. Responses Utm Medium Value` _(optional)_   |
+| UTM Term            | `1. Responses Utm Term Value` _(optional)_     |
+| Company             | `1. Responses Company Value` _(optional)_      |
+
+![Screenshot2025 07 02141610 Pn](/images/Screenshot2025-07-02141610.png)
+
+## 🧪 Step 5: Test and Publish
+
+1. Click **Test Action** in Zapier to send a test row to your sheet.
+2. Confirm that the data appears in the correct cells.
+3. Once validated, click **Publish** to activate your Zap.
+4. You’re done — future bookings will now be pushed to Google Sheets automatically\!
+
+## 📌 Supported UTM & Custom Fields
+
+These are the UTM fields supported by Lunacal.ai in Zapier:
+
+- `utm_source`
+- `utm_medium`
+- `utm_campaign`
+- `utm_term`
+- `utm_extra`
+- `utm_referral`
+
+> UTM Fields **not listed above** will not be sent to Zapier. Make sure any custom questions or UTM fields on your booking form align with these names.
+
+---
+
+## ✅ Outro
+
+You’ve now connected Lunacal.ai and Zapier to:
+
+- Trigger workflows when bookings are created
+- Automatically capture and store UTM data
+- Push data to Google Sheets without manual work

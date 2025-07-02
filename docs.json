@@ -60,7 +60,7 @@
       },
        {
         "group": "UTM Setup",
-        "pages": ["utm_setup"]
+        "pages": ["utm_setup" , "utm_zapier_integration"]
       }
     ]
   },
