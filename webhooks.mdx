@@ -11,9 +11,9 @@ Start by opening the event type you want to configure.
 
 ## **Step 2**
 
-Proceed by clicking on the “Webhooks” option and click on button to add “New Webhook”.
+Proceed by clicking on the “Advaced” tab and click on button to add “New Webhook”.
 
-![Screenshot2025 06 27154316 Pn](/images/Screenshot2025-06-27154316.png)
+![Screenshot2025 07 02123422 Pn](/images/Screenshot2025-07-02123422.png)
 
 ## **Step 3**
 
@@ -34,6 +34,310 @@ You can test your webhook using the **Ping Test** button. This will send sample 
 ```
 
 ![Screenshot2025 06 27172831 Pn](/images/Screenshot2025-06-27172831.png)
+
+## Response Format and Fields
+
+<ResponseExample>
+
+```json BOOKING_CREATED
+{
+  "triggerEvent": "BOOKING_CREATED",
+  "createdAt": "2025-07-02T07:14:48.795Z",
+  "payload": {
+    "bookerUrl": "https://lunacal.ai",
+    "type": "quint",
+    "title": "quick chat between Ayush Gupta and Anupam.",
+    "description": "",
+    "additionalNotes": "",
+    "customInputs": {},
+    "startTime": "2025-07-16T23:30:00Z",
+    "endTime": "2025-07-17T00:00:00Z",
+    "organizer": {
+      "id": 584,
+      "name": "Ayush Gupta",
+      "email": "ayush4002gupta@gmail.com",
+      "username": "ayush-gupta-57m",
+      "timeZone": "Asia/Srednekolymsk",
+      "language": {
+        "locale": "en"
+      },
+      "timeFormat": "h:mma",
+      "utcOffset": 660
+    },
+    "responses": {
+      "name": {
+        "label": "your_name",
+        "value": "Anupam",
+        "isHidden": false
+      },
+      "email": {
+        "label": "email_address",
+        "value": "anupam@lunacal.onmicrosoft.com",
+        "isHidden": false
+      },
+      "location": {
+        "label": "location",
+        "isHidden": false
+      },
+      "Please-share-anything-that-will-help-prepare-for-our-meeting-": {
+        "label": "Please share anything that will help prepare for our meeting.",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "Add Guests",
+        "value": [],
+        "isHidden": false
+      }
+    },
+    "userFieldsResponses": {
+      "Please-share-anything-that-will-help-prepare-for-our-meeting-": {
+        "label": "Please share anything that will help prepare for our meeting.",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "Add Guests",
+        "value": [],
+        "isHidden": false
+      }
+    },
+    "attendees": [
+      {
+        "email": "anupam@lunacal.onmicrosoft.com",
+        "name": "Anupam",
+        "firstName": "",
+        "lastName": "",
+        "timeZone": "Asia/Tashkent",
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 300
+      }
+    ],
+    "location": "",
+    "destinationCalendar": null,
+    "hideCalendarNotes": false,
+    "requiresConfirmation": false,
+    "eventTypeId": 975,
+    "seatsShowAttendees": true,
+    "seatsPerTimeSlot": null,
+    "seatsShowAvailabilityCount": true,
+    "schedulingType": null,
+    "iCalUID": "r543Dk3BeyfTafREgkSU8v@Lunacal.ai",
+    "iCalSequence": 0,
+    "uid": "r543Dk3BeyfTafREgkSU8v",
+    "eventTitle": "quick chat",
+    "eventDescription": "",
+    "price": 0,
+    "currency": "usd",
+    "length": 30,
+    "bookingId": 3899,
+    "metadata": {},
+    "status": "ACCEPTED"
+  }
+}
+```
+
+
+```json BOOKING_CANCELLED
+{
+  "triggerEvent": "BOOKING_CANCELLED",
+  "createdAt": "2025-07-02T07:19:25.308Z",
+  "payload": {
+    "title": "quick chat between Ayush Gupta and Anupam.",
+    "type": "quick chat",
+    "customInputs": {}, 
+    "eventTypeId": 975,
+    "userFieldsResponses": {
+      "Please-share-anything-that-will-help-prepare-for-our-meeting-": {
+        "label": "Please share anything that will help prepare for our meeting.",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "Add Guests",
+        "value": [],
+        "isHidden": false
+      }
+    },
+    "responses": {
+      "name": {
+        "label": "your_name",
+        "value": "Anupam",
+        "isHidden": false
+      },
+      "email": {
+        "label": "email_address",
+        "value": "anupam@lunacal.onmicrosoft.com",
+        "isHidden": false
+      },
+      "location": {
+        "label": "location",
+        "isHidden": false
+      },
+      "Please-share-anything-that-will-help-prepare-for-our-meeting-": {
+        "label": "Please share anything that will help prepare for our meeting.",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "Add Guests",
+        "value": [],
+        "isHidden": false
+      }
+    },
+    "startTime": "2025-07-18T00:00:00+00:00",
+    "endTime": "2025-07-18T00:30:00+00:00",
+    "organizer": {
+      "id": 584,
+      "username": "ayush-gupta-57m",
+      "email": "ayush4002gupta@gmail.com",
+      "name": "Ayush Gupta",
+      "timeZone": "Asia/Srednekolymsk",
+      "timeFormat": "h:mma",
+      "language": {
+        "locale": "en"
+      },
+      "utcOffset": 660
+    },
+    "attendees": [
+      {
+        "name": "Anupam",
+        "email": "anupam@lunacal.onmicrosoft.com",
+        "timeZone": "Asia/Tashkent",
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 300
+      }
+    ],
+    "uid": "tzaCPKTHa9TMpGvpbFc4Rm",
+    "bookingId": 3901,
+    "location": "",
+    "destinationCalendar": [],
+    "cancellationReason": "some urgent work needs to be taken care of",
+    "team": {
+      "name": "Nameless",
+      "members": []
+    },
+    "seatsPerTimeSlot": null,
+    "seatsShowAttendees": false,
+    "iCalUID": "tzaCPKTHa9TMpGvpbFc4Rm@Lunacal.ai",
+    "iCalSequence": 1,
+    "eventTitle": "quick chat",
+    "eventDescription": null,
+    "requiresConfirmation": null,
+    "price": null,
+    "currency": "usd",
+    "length": 30,
+    "status": "CANCELLED"
+  }
+}
+```
+
+
+```json BOOKING_RESCHEDULED
+{
+  "triggerEvent": "BOOKING_RESCHEDULED",
+  "createdAt": "2025-07-02T07:15:53.255Z",
+  "payload": {
+    "bookerUrl": "https://lunacal.ai",
+    "type": "quint",
+    "title": "quick chat between Ayush Gupta and Anupam.",
+    "description": "",
+    "additionalNotes": "",
+    "customInputs": {},
+    "startTime": "2025-07-25T00:00:00Z",
+    "endTime": "2025-07-25T00:30:00Z",
+    "organizer": {
+      "id": 584,
+      "name": "Ayush Gupta",
+      "email": "ayush4002gupta@gmail.com",
+      "username": "ayush-gupta-57m",
+      "timeZone": "Asia/Srednekolymsk",
+      "language": {
+        "locale": "en"
+      },
+      "timeFormat": "h:mma",
+      "utcOffset": 660
+    },
+    "responses": {
+      "name": {
+        "label": "your_name",
+        "value": "Anupam",
+        "isHidden": false
+      },
+      "email": {
+        "label": "email_address",
+        "value": "anupam@lunacal.onmicrosoft.com",
+        "isHidden": false
+      },
+      "location": {
+        "label": "location",
+        "isHidden": false
+      },
+      "Please-share-anything-that-will-help-prepare-for-our-meeting-": {
+        "label": "Please share anything that will help prepare for our meeting.",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "Add Guests",
+        "value": [],
+        "isHidden": false
+      }
+    },
+    "userFieldsResponses": {
+      "Please-share-anything-that-will-help-prepare-for-our-meeting-": {
+        "label": "Please share anything that will help prepare for our meeting.",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "Add Guests",
+        "value": [],
+        "isHidden": false
+      }
+    },
+    "attendees": [
+      {
+        "email": "anupam@lunacal.onmicrosoft.com",
+        "name": "Anupam",
+        "firstName": "",
+        "lastName": "",
+        "timeZone": "Asia/Tashkent",
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 300
+      }
+    ],
+    "location": "",
+    "destinationCalendar": null,
+    "hideCalendarNotes": false,
+    "requiresConfirmation": false,
+    "eventTypeId": 975,
+    "seatsShowAttendees": true,
+    "seatsPerTimeSlot": null,
+    "seatsShowAvailabilityCount": true,
+    "schedulingType": null,
+    "iCalSequence": 1,
+    "uid": "kqYN7oz5x9h11Jxx8bDMAM",
+    "appsStatus": [],
+    "eventTitle": "quick chat",
+    "eventDescription": "",
+    "price": 0,
+    "currency": "usd",
+    "length": 30,
+    "bookingId": 3900,
+    "rescheduleId": 3899,
+    "rescheduleUid": "r543Dk3BeyfTafREgkSU8v",
+    "rescheduleStartTime": "2025-07-16T23:30:00Z",
+    "rescheduleEndTime": "2025-07-17T00:00:00Z",
+    "metadata": {},
+    "status": "ACCEPTED"
+  }
+}
+```
+
+</ResponseExample>
+
+> you can use https://webhook.site/ to test these webhooks without having to write any code.
 
 ## Example
 
@@ -103,4 +407,4 @@ app.listen(8080, () => {
 
 </CodeGroup>
 
-> please use a service like [ngrok](https://ngrok.com/) if you are testing locally
+> please use a service like [ngrok](https://ngrok.com/) if you are testing locally.
