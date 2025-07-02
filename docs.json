@@ -57,6 +57,10 @@
       {
         "group": "Webhooks",
         "pages": ["webhooks"]
+      },
+       {
+        "group": "UTM Setup",
+        "pages": ["utm_setup"]
       }
     ]
   },
