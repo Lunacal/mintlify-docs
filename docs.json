@@ -58,6 +58,10 @@
         "group": "Webhooks",
         "pages": ["webhooks"]
       },
+      {
+        "group": "Zapier",
+        "pages": ["zapier"]
+      },
        {
         "group": "UTM Setup",
         "pages": ["utm_setup" , "utm_zapier_integration"]
