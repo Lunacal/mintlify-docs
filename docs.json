@@ -24,7 +24,7 @@
       },
       {
         "group": "Teams",
-        "pages": ["creating-team" , "collective-shedule","Round-Robin"]
+        "pages": ["creating-team" , "collective-shedule","Round-Robin","Teambooking-page"]
       },
       {
         "group": "Bookings",
