@@ -24,7 +24,7 @@
       },
       {
         "group": "Teams",
-        "pages": ["creating-team"]
+        "pages": ["creating-team" , "collective-shedule"]
       },
       {
         "group": "Bookings",
