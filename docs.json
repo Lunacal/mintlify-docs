@@ -24,7 +24,7 @@
       },
       {
         "group": "Teams",
-        "pages": ["teams-setup"]
+        "pages": ["teams-setup", "creating-team"]
       },
       {
         "group": "Bookings",
