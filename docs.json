@@ -17,7 +17,8 @@
           "event-types/limits",
           "event-types/booking-questions",
           "event-types/Meeting-duration",
-          "event-types/Group-booking"
+          "event-types/Group-booking",
+          "event-types/Zoom-Video"
         ]
       },
       {
