@@ -16,7 +16,7 @@
           "event-types/event-setup",
           "event-types/limits",
           "event-types/booking-questions",
-          "event-types/Meetinng-duration"
+          "event-types/Meeting-duration"
         ]
       },
       {
