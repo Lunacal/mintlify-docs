@@ -26,6 +26,10 @@
         "pages": ["availability-configuration","Availability-Exception"]
       },
       {
+        "group": "Advanced",
+        "pages": ["Manual-Booking","Cancellation"]
+      },
+      {
         "group": "Teams",
         "pages": ["creating-team" , "collective-shedule","Round-Robin","Teambooking-page"]
       },
