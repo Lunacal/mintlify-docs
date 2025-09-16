@@ -23,7 +23,7 @@
       },
       {
         "group": "Availability",
-        "pages": ["availability-configuration"]
+        "pages": ["availability-configuration","Availability-Exception"]
       },
       {
         "group": "Teams",
