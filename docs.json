@@ -27,7 +27,7 @@
       },
       {
         "group": "Advanced",
-        "pages": ["Manual-Booking","Cancellation"]
+        "pages": ["Manual-Booking","Cancellation-Resheduling","Redirect-url"]
       },
       {
         "group": "Teams",
