@@ -19,7 +19,7 @@
           "event-types/Meeting-duration",
           "event-types/Group-booking",
           "event-types/Zoom-Video",
-          "Meeting-Location","conflict-slot"
+          "Meeting-Location"
         ]
       },
       {
@@ -52,7 +52,7 @@
       },
       {
         "group": "Bookings Page",
-        "pages": ["edit-booking-page"]
+        "pages": ["edit-booking-page" , "conflict-slot"]
       },
       {
         "group": "Embed",
