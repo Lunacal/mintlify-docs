@@ -19,7 +19,7 @@
           "event-types/Meeting-duration",
           "event-types/Group-booking",
           "event-types/Zoom-Video",
-          "event-types/Meeting-Location"
+          "Meeting-Location"
         ]
       },
       {
