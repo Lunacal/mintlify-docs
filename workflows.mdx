@@ -73,7 +73,7 @@ Example: Add your coordinator’s email so they get alerts for last-minute chang
 
 ## Step 9
 
-There are multiple template options to set for attendee workflows, 
+There are multiple template options to set for attendee workflows,
 
 <Frame>
   ![](/templates.webp)
@@ -95,3 +95,15 @@ Click “Save” to activate the workflow.
 <Frame>
   ![](/images/setup_workflows/13.webp)
 </Frame>
+
+**Common mistakes to avoid**\
+• Picking a trigger but forgetting to set time for “Before an event starts”, which sends nothing.\
+• Selecting “host” only when you meant to notify “attendees” as well.\
+• Leaving variables blank (for example, missing LOCATION_LINK) so emails are unclear.\
+• Creating overlapping reminders (for example, two reminders at 1 Hour) and spamming recipients.
+
+**Good defaults to start with**\
+• Triggers: “When new event is booked” (instant confirmation) and “Before an event starts” at 24 Hours + 1 Hour.\
+• Recipients: “attendees” for reminders, “host” for reschedule/cancel alerts.\
+• Variables: always include ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK.\
+• Naming: include event and timing in the name (for example, “Meeting — Reminder 24h”).
