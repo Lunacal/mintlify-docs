@@ -1,0 +1,108 @@
+---
+title: "HubSpot Integration With Lunacal.ai Guide"
+description: "Lunacal's HubSpot integration connects your meetings with your CRM. It automatically adds or updates contacts and meeting activity in HubSpot."
+---
+
+## **Who can use this**
+
+- Plans: ~~Standard~~, Teams, Enterprise
+- Roles: Owners, Admins
+
+## **Overview**
+
+Connect Lunacal with HubSpot to keep contacts and meeting activity in sync. New meetings, cancellations, and reschedules in Lunacal are logged to HubSpot automatically.
+
+## **What you’ll need**
+
+- A Lunacal account with admin access
+- A [HubSpot account](https://www.hubspot.com/pricing/marketing/enterprise?term=annual) (free or paid) with admin access
+
+Note: HubSpot’s Free plan allows only 10 custom properties. Going over this limit can cause sync failures.
+
+## **What the integration does**
+
+- Creates a HubSpot contact when the invitee’s email doesn’t exist.
+- Logs/updates a meeting activity on the contact timeline.
+
+If the contact already exists, the meeting activity is added without changing contact fields or ownership. If your Lunacal email doesn’t match your HubSpot email, the contact owner is set to “unassigned.”
+
+## **What HubSpot logs on the contact**
+
+- A timeline activity with:
+- Type: Meeting
+- Meeting name
+- Owner
+- Contact
+- Duration
+- Attendee count
+
+## **When meetings change**
+
+- Canceled or rescheduled events update the existing activity, and both parties are notified
+- Canceled meetings disappeared.
+- Past meetings remain for reference
+- Editing duration in HubSpot won’t change it in Lunacal
+
+## **Connect HubSpot to Lunacal**
+
+1) Open [Integrations](https://app.lunacal.ai/apps) \> [CRM](https://app.lunacal.ai/apps?category=crm) in Lunacal
+
+2) HubSpot → Click on Connect.
+
+3) Authenticate with HubSpot and select Connect App.
+
+
+
+## **Custom questions**
+
+- Lunacal sends invitee responses to HubSpot. You’ll see them on the contact’s Activity tab.
+
+## **Mapping answers to HubSpot properties**
+
+- Use HubSpot Workflows to map specific Lunacal responses (e.g., job title, company) to HubSpot properties.
+
+## **Sync meeting outcome**
+
+- You can push the invitee’s Lunacal meeting status to HubSpot’s meeting outcome field (scheduled, completed, no-show, canceled). Enable this on the HubSpot integration page in Lunacal: “Push meeting status to HubSpot meeting outcome field.”
+
+## **Routing with HubSpot**
+
+With HubSpot forms or ownership lookup (Teams and Enterprise), route leads to the right teammate by expertise, availability, or account ownership. See: Routing from HubSpot forms and Routing with HubSpot lookup.
+
+## **Disconnect the integration**
+
+- **Step 1 — Disconnect in Lunacal**
+
+1) Go to Integrations \> CRM \> [Active Integrations](https://app.lunacal.ai/apps?tab=install&category=crm).
+
+2) Select Disconnect
+
+After this, new Lunacal meetings stop syncing to HubSpot.
+
+- **Step 2 — Uninstall in HubSpot**
+
+1) In HubSpot, Hover the Marketplace (main nav) Icon.
+
+2) Under Manage, select Connected apps
+
+3) On Lunacal, choose Actions → Uninstall
+
+4) Type uninstall and confirm
+
+Note: Uninstalling doesn’t remove existing Lunacal data from HubSpot.
+
+- **Step 3 — Optional: remove Lunacal properties in HubSpot**
+
+1) In HubSpot, go to Settings (main nav)
+
+2) Open Properties (left sidebar)
+
+3) Select Groups
+
+4) Hover “Details from Lunacal meetings,” choose View details
+
+5) Select all properties → Archive
+
+6) Return to the group and delete it
+
+Note: Deleting properties removes stored values but not the contacts.
