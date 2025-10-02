@@ -40,7 +40,7 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integration", "adding-calendars"]
+        "pages": ["paypal-setup", "integration", "adding-calendars", "HubSpot-Integration"]
       },
       {
         "group": "Workflows",
