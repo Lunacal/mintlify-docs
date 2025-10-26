@@ -44,7 +44,7 @@
       },
       {
         "group": "Workflows",
-        "pages": ["workflows"]
+        "pages": ["workflows", "sms-workflows-reminder"]
       },
       {
         "group": "Dynamic Bookings",

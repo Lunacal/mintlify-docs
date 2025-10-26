@@ -1,0 +1,46 @@
+---
+title: 'SMS Pricing and Message Length Guide'
+description: 'Understand how lunacal calculates SMS costs based on message length, country, and carrier, including segment rules and pricing details.'
+---
+
+# SMS Pricing
+
+Lunacal SMS costs are determined by the **length of the final message** and the **destination country/carrier**.
+
+## How Message Length Affects Cost
+
+The actual SMS length can vary depending on details like attendee names, organizer names, or event titles.
+
+Example messages:
+
+- Short message:  
+> "Hi Alex, your event Demo with Jordan has been scheduled for 25 Oct at 10:00 AM (IST)."  
+  This message may fit within one segment.
+
+- Long message:  
+> "Hi Alexandra Thompson, your event Quarterly Performance Review with Jonathan Williams has been scheduled for 25 Oct at 10:00 AM (IST)."  
+  This message may exceed the segment limit and require multiple segments.
+
+The longer the final message, the more segments it uses, and the higher the cost.
+
+## SMS Length and Segment Cost
+
+SMS messages are billed using a **segment-based system**. Each segment has a character limit:
+
+| Type | Characters per Segment | Example |
+|------|-----------------------|---------|
+| Standard SMS | 70 characters = 1 segment | A 70-character message = 1 segment |
+| Multi-part SMS | Based on number of segments. For example, a 134-character message = 134 ÷ 70 ≈ 1.9, rounded up to 2 segments | 134 characters → 2 segments |
+| Unicode / Multi-part | English: 1 segment = 70 characters, 2 segments = 134 characters, etc. | Longer Unicode messages may require multiple segments |
+| Unicode / Other languages | 1 segment = 70 characters, 2 segments = 134 characters, etc. | Same rules apply as English Unicode |
+
+> Messages with emojis or non-English characters may reduce the number of characters per segment, resulting in more segments.
+
+
+## Pricing
+
+Each country and carrier has its own **price per segment**. Lunacal calculates the total number of segments required for each message and applies the corresponding rate.
+
+You can view the current **price per segment** for each country/carrier in the table below:
+
+**[View SMS Pricing Sheet](#)**
