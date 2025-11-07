@@ -17,11 +17,17 @@ Proceed by clicking on the “Advaced” tab and click on button to add “New W
 
 ## **Step 3**
 
-You can create webhooks to subscribe to specific events on Lunacal. The **Subscriber URL** should point to your API endpoint that will receive HTTP requests from our platform. If you our new to webhooks you can use API from [webhook.site](http://webhook.site) to try these webhooks. Currently, there are three event triggers available:
+You can create webhooks to subscribe to specific events on Lunacal. The **Subscriber URL** should point to your API endpoint that will receive HTTP requests from our platform. If you our new to webhooks you can use API from [webhook.site](http://webhook.site) to try these webhooks. 
 
-1. **Booking Cancelled** **:** Triggered when a booking is cancelled
-2. **Booking Created** **:**  Triggered when a new booking is created by any user.
-3. **Booking Rescheduled :**  Triggered when an existing booking is rescheduled for future.
+Lunacal currently supports the following webhook events:
+
+1. **Booking Created** — Triggered when a new booking is created by any user.
+2. **Booking Cancelled** — Triggered when a booking is cancelled.
+3. **Booking Rescheduled** — Triggered when an existing booking is rescheduled.
+4. **Booking Requested** — Triggered when a booking is created but requires organizer approval before confirmation.
+5. **Booking Rejected** — Triggered when a booking request is rejected by the organizer.
+6. **Booking Payment Initiated** — Triggered when a user initiates a payment for a paid event.
+7. **Booking Paid** — Triggered after successful payment for a booking.
 
 ![Screenshot2025 06 27154743 Pn](/images/Screenshot2025-06-27154743.png)
 
@@ -335,6 +341,149 @@ You can test your webhook using the **Ping Test** button. This will send sample 
 }
 ```
 
+
+```json BOOKING_PAYMENT_INITIATED
+{
+  "triggerEvent": "BOOKING_PAYMENT_INITIATED",
+  "createdAt": "2025-11-07T04:55:49.061Z",
+  "payload": {
+    "bookerUrl": "https://lunacal.co",
+    "type": "webhooks",
+    "title": "Webhooks between Anupam Singh and webhook paid event",
+    "eventTypeTitle": "Webhooks",
+    "customCalendarInviteHeading": null,
+    "description": "",
+    "additionalNotes": "",
+    "customInputs": {},
+    "startTime": "2025-11-07T07:30:00Z",
+    "endTime": "2025-11-07T07:45:00Z",
+    "organizer": {
+      "id": 3539,
+      "name": "Anupam Singh",
+      "email": "theanupamsingh01@gmail.com",
+      "username": "the-anupam-singh",
+      "timeZone": "Asia/Calcutta",
+      "language": {
+        "locale": "en"
+      },
+      "timeFormat": "h:mma",
+      "utcOffset": 330
+    },
+    "responses": {
+      "name": {
+        "label": "your_name",
+        "value": "webhook paid event",
+        "isHidden": false
+      },
+      "email": {
+        "label": "email_address",
+        "value": "jake.tessy.blosi@gmail.com",
+        "isHidden": false
+      },
+      "location": {
+        "label": "location",
+        "value": {
+          "optionValue": "",
+          "value": "integrations:google:meet"
+        },
+        "isHidden": false
+      },
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "userFieldsResponses": {
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "attendees": [
+      {
+        "email": "jake.tessy.blosi@gmail.com",
+        "name": "webhook paid event",
+        "firstName": "",
+        "lastName": "",
+        "timeZone": "Asia/Calcutta",
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 330
+      }
+    ],
+    "location": "integrations:google:meet",
+    "destinationCalendar": [
+      {
+        "id": 5082,
+        "integration": "google_calendar",
+        "externalId": "theanupamsingh01@gmail.com",
+        "userId": 3539,
+        "eventTypeId": null,
+        "credentialId": 12673,
+        "primaryEmail": "theanupamsingh01@gmail.com"
+      }
+    ],
+    "hideCalendarNotes": false,
+    "requiresConfirmation": true,
+    "eventTypeId": 9695,
+    "seatsShowAttendees": true,
+    "seatsPerTimeSlot": null,
+    "seatsShowAvailabilityCount": true,
+    "schedulingType": null,
+    "iCalUID": "wKzN5eZ4gwmskm1gr8S5rh@Lunacal",
+    "iCalSequence": 0,
+    "disableCancelling": false,
+    "disableRescheduling": false,
+    "uid": "wKzN5eZ4gwmskm1gr8S5rh",
+    "eventTitle": "Webhooks",
+    "eventDescription": "",
+    "price": 400,
+    "currency": "inr",
+    "length": 15,
+    "bookingId": 40489,
+    "metadata": {},
+    "status": "ACCEPTED",
+    "paymentId": 625,
+    "rescheduleUrl": "https://lunacal.co/reschedule/wKzN5eZ4gwmskm1gr8S5rh",
+    "cancelUrl": "https://lunacal.co/booking/wKzN5eZ4gwmskm1gr8S5rh?cancel=true&allRemainingBookings=false"
+  }
+}
+```
 </ResponseExample>
 
 > you can use https://webhook.site/ to test these webhooks without having to write any code.
