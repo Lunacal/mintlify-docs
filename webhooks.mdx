@@ -484,6 +484,390 @@ You can test your webhook using the **Ping Test** button. This will send sample 
   }
 }
 ```
+
+
+```json BOOKING_PAID
+{
+  "triggerEvent": "BOOKING_PAID",
+  "createdAt": "2025-11-07T04:57:23.891Z",
+  "payload": {
+    "type": "webhooks",
+    "title": "Webhooks between Anupam Singh and webhook paid event",
+    "eventTypeTitle": "Webhooks",
+    "bookerUrl": "https://lunacal.ai",
+    "startTime": "2025-11-07T07:30:00.000Z",
+    "endTime": "2025-11-07T07:45:00.000Z",
+    "customInputs": {},
+    "userFieldsResponses": {
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "responses": {
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "organizer": {
+      "email": "theanupamsingh01@gmail.com",
+      "name": "Anupam Singh",
+      "timeZone": "Asia/Calcutta",
+      "timeFormat": "h:mma",
+      "language": {
+        "locale": "en"
+      },
+      "id": 3539,
+      "utcOffset": 330
+    },
+    "attendees": [
+      {
+        "name": "webhook paid event",
+        "email": "jake.tessy.blosi@gmail.com",
+        "timeZone": "Asia/Calcutta",
+        "status": true,
+        "referenceUid": null,
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 330
+      }
+    ],
+    "location": "integrations:google:meet",
+    "uid": "wKzN5eZ4gwmskm1gr8S5rh",
+    "destinationCalendar": [
+      {
+        "id": 5082,
+        "integration": "google_calendar",
+        "externalId": "theanupamsingh01@gmail.com",
+        "userId": 3539,
+        "eventTypeId": null,
+        "credentialId": 12673,
+        "primaryEmail": "theanupamsingh01@gmail.com"
+      }
+    ],
+    "recurringEvent": null,
+    "seatsShowAttendees": false,
+    "seatsPerTimeSlot": null,
+    "conferenceData": {
+      "createRequest": {
+        "requestId": "8a0ce172-f69a-51b5-8481-93feb73d58e2"
+      }
+    },
+    "iCalUID": "uv3d365gcsrn89r7m0q833nlp0@google.com",
+    "eventTitle": "Webhooks",
+    "eventDescription": "",
+    "requiresConfirmation": null,
+    "price": 400,
+    "currency": "inr",
+    "length": 15,
+    "bookingId": 40489,
+    "eventTypeId": 9695,
+    "status": "ACCEPTED",
+    "paymentId": 625,
+    "metadata": {
+      "identifier": "lunacal.ai",
+      "bookingId": 40489,
+      "eventTypeId": 9695,
+      "bookerEmail": "jake.tessy.blosi@gmail.com",
+      "eventTitle": "Webhooks",
+      "externalId": "pi_3SQhiCSpZXWWqjds0BSudOwq"
+    },
+    "rescheduleUrl": "https://lunacal.ai/reschedule/wKzN5eZ4gwmskm1gr8S5rh",
+    "cancelUrl": "https://lunacal.ai/booking/wKzN5eZ4gwmskm1gr8S5rh?cancel=true&allRemainingBookings=false"
+  }
+}
+```
+
+
+```json BOOKING_REQUESTED
+{
+  "triggerEvent": "BOOKING_REQUESTED",
+  "createdAt": "2025-11-07T05:05:18.108Z",
+  "payload": {
+    "bookerUrl": "https://lunacal.co",
+    "type": "manual-approval",
+    "title": "manual approval between Anupam Singh and jake",
+    "eventTypeTitle": "manual approval",
+    "customCalendarInviteHeading": null,
+    "description": "",
+    "additionalNotes": "",
+    "customInputs": {},
+    "startTime": "2025-11-07T07:15:00Z",
+    "endTime": "2025-11-07T07:30:00Z",
+    "organizer": {
+      "id": 3539,
+      "name": "Anupam Singh",
+      "email": "theanupamsingh01@gmail.com",
+      "username": "the-anupam-singh",
+      "timeZone": "Asia/Calcutta",
+      "language": {
+        "locale": "en"
+      },
+      "timeFormat": "h:mma",
+      "utcOffset": 330
+    },
+    "responses": {
+      "name": {
+        "label": "your_name",
+        "value": "jake",
+        "isHidden": false
+      },
+      "email": {
+        "label": "email_address",
+        "value": "jake.tessy.blosi@gmail.com",
+        "isHidden": false
+      },
+      "location": {
+        "label": "location",
+        "value": {
+          "optionValue": "",
+          "value": "integrations:google:meet"
+        },
+        "isHidden": false
+      },
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "userFieldsResponses": {
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "attendees": [
+      {
+        "email": "jake.tessy.blosi@gmail.com",
+        "name": "jake",
+        "firstName": "",
+        "lastName": "",
+        "timeZone": "Asia/Calcutta",
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 330
+      }
+    ],
+    "location": "integrations:google:meet",
+    "conferenceCredentialId": 12674,
+    "destinationCalendar": [
+      {
+        "id": 5082,
+        "integration": "google_calendar",
+        "externalId": "theanupamsingh01@gmail.com",
+        "userId": 3539,
+        "eventTypeId": null,
+        "credentialId": 12673,
+        "primaryEmail": "theanupamsingh01@gmail.com"
+      }
+    ],
+    "hideCalendarNotes": false,
+    "requiresConfirmation": true,
+    "eventTypeId": 9393,
+    "seatsShowAttendees": true,
+    "seatsPerTimeSlot": null,
+    "seatsShowAvailabilityCount": true,
+    "schedulingType": null,
+    "iCalUID": "qQzq1sFewdm6bpMTVk9QCE@Lunacal",
+    "iCalSequence": 0,
+    "disableCancelling": false,
+    "disableRescheduling": false,
+    "uid": "qQzq1sFewdm6bpMTVk9QCE",
+    "eventTitle": "manual approval",
+    "eventDescription": "",
+    "price": 0,
+    "currency": "usd",
+    "length": 15,
+    "bookingId": 40490,
+    "metadata": {},
+    "status": "PENDING",
+    "rescheduleUrl": "https://lunacal.co/reschedule/qQzq1sFewdm6bpMTVk9QCE",
+    "cancelUrl": "https://lunacal.co/booking/qQzq1sFewdm6bpMTVk9QCE?cancel=true&allRemainingBookings=false"
+  }
+}
+```
+
+
+```json BOOKING_REJECTED
+{
+  "triggerEvent": "BOOKING_REJECTED",
+  "createdAt": "2025-11-07T05:05:30.526Z",
+  "payload": {
+    "type": "manual-approval",
+    "title": "manual approval between Anupam Singh and jake",
+    "eventTypeTitle": "manual approval",
+    "bookerUrl": "https://lunacal.ai",
+    "userFieldsResponses": {
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "responses": {
+      "title": {
+        "label": "what_is_this_meeting_about",
+        "isHidden": true
+      },
+      "attendee-phone": {
+        "label": "Your Phone Number",
+        "isHidden": true
+      },
+      "guests": {
+        "label": "additional_guests",
+        "value": [],
+        "isHidden": false
+      },
+      "notes": {
+        "label": "form_comments",
+        "isHidden": false
+      },
+      "rescheduleReason": {
+        "label": "reason_for_reschedule",
+        "isHidden": true
+      }
+    },
+    "customInputs": {},
+    "startTime": "2025-11-07T07:15:00.000Z",
+    "endTime": "2025-11-07T07:30:00.000Z",
+    "organizer": {
+      "email": "theanupamsingh01@gmail.com",
+      "name": "Anupam Singh",
+      "username": "the-anupam-singh",
+      "timeZone": "Asia/Calcutta",
+      "timeFormat": "h:mma",
+      "language": {
+        "locale": "en"
+      },
+      "utcOffset": 330
+    },
+    "attendees": [
+      {
+        "name": "jake",
+        "email": "jake.tessy.blosi@gmail.com",
+        "timeZone": "Asia/Calcutta",
+        "language": {
+          "locale": "en"
+        },
+        "utcOffset": 330
+      }
+    ],
+    "location": "integrations:google:meet",
+    "uid": "qQzq1sFewdm6bpMTVk9QCE",
+    "destinationCalendar": [
+      {
+        "id": 5082,
+        "integration": "google_calendar",
+        "externalId": "theanupamsingh01@gmail.com",
+        "userId": 3539,
+        "eventTypeId": null,
+        "credentialId": 12673,
+        "primaryEmail": "theanupamsingh01@gmail.com"
+      }
+    ],
+    "requiresConfirmation": true,
+    "eventTypeId": 9393,
+    "rejectionReason": "",
+    "eventTitle": "manual approval",
+    "eventDescription": "",
+    "price": 0,
+    "currency": "usd",
+    "length": 15,
+    "bookingId": 40490,
+    "status": "REJECTED",
+    "rescheduleUrl": "https://lunacal.ai/reschedule/qQzq1sFewdm6bpMTVk9QCE",
+    "cancelUrl": "https://lunacal.ai/booking/qQzq1sFewdm6bpMTVk9QCE?cancel=true&allRemainingBookings=false"
+  }
+}
+```
+
 </ResponseExample>
 
 > you can use https://webhook.site/ to test these webhooks without having to write any code.
