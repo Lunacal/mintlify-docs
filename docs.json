@@ -73,6 +73,10 @@
        {
         "group": "UTM Setup",
         "pages": ["utm_setup" , "utm_zapier_integration"]
+      },
+      {
+        "group": "Report Vulnerability",
+        "pages": ["responsible-disclosure"]
       }
     ]
   },
