@@ -1,6 +1,6 @@
 ---
-title: 'Responsible Disclosure Program - lunacal.ai'
-description: 'At Lunacal.ai, protecting our users' data and maintaining the security of our products and services is a top priority. We are committed to collaborating with the security research community to identify and address potential vulnerabilities responsibly and promptly.'
+description: "At Lunacal.ai, protecting our users' data and maintaining the security of our products and services is a top priority. We are committed to collaborating with the security research community to identify and address potential vulnerabilities responsibly and promptly."
+title: "Responsible Disclosure Program - lunacal.ai"
 ---
 
 ## Our Commitment
@@ -12,15 +12,23 @@ We actively work to safeguard our systems against the latest security threats. D
 If you believe you have found a security issue affecting lunacal.ai products, services, or infrastructure, please contact us immediately with the relevant details. This allows us to analyze and resolve the vulnerability before any public disclosure.
 
 ## In-scope
+
 - app.lunacal.ai/*
 - lunacal.ai/*
 
 ### Reporting Process
 
-- Please send a detailed report to our dedicated security disclosure email: support@lunacal.ai.
+- Please send a detailed report to our dedicated security disclosure email: [support@lunacal.ai](mailto:support@lunacal.ai).
 - Include a clear description of the vulnerability, the affected systems or products, and step-by-step instructions to reproduce the issue.
 - We recommend avoiding attachments and including most of the information directly in your email.
 - For proof-of-concept demonstrations, recorded videos can be shared as private links from trusted platforms like YouTube or Vimeo.
+
+## Report Eligibility
+
+- Be the first to report a vulnerability.
+- Submit one vulnerability per report, unless you need to chain vulnerabilities to provide impact.
+- Multiple vulnerabilities caused by one underlying issue will be awarded one bounty. If the root cause is the same and endpoints are different within the same application , it will be treated as a duplicate. Sometimes exceptions are made upon discreteness of Flipkart security team.
+- Provide high quality reports with clear and comprehensive reproducible steps. High quality submissions allow our team to better understand the issue and relay the bug to the internal teams to fix it quickly.
 
 ### Safe Communication
 
@@ -32,8 +40,22 @@ To keep your communication secure, we encourage using encrypted email or our sec
 - Avoid testing beyond what is necessary to confirm the vulnerability to prevent disruption to our services.
 - Do not share vulnerabilities or exploit details publicly until we have resolved the issue.
 
-## Recognition and Support
+# **Out of scope vulnerabilities**
 
-We value contributions from the security community in improving lunacal.ai’s security posture. Researchers who report valid vulnerabilities will receive our recognition.
+- Username Enumeration via signup and account & recovery forms
+- Vulnerabilities regarding SPF/DMARC/DKIM records without verifiable proof of spoofing to a major mail client
+- Best practice concerns like cookie is not marked secure and http only, missing HSTS, SSL/TLS configuration, missing security headers.
+- Vulnerabilities reported by automated tools and scanners without additional proof of concept
+- Vulnerabilities that only affect outdated app versions or browsers - we consider vulnerabilities only in the versions of our applications that are currently in the app store and exploits only in the latest browser versions
+- Denial of Service(DoS) and Distributed Denial of Service(DDoS) attacks
+- Exploits that need MITM or physical access to the victim’s device
+- Clickjacking on pages with no sensitive actions.
+- Unauthenticated/logout/login CSRF
+- Previously known vulnerable libraries without a working Proof of Concept
+- Content spoofing and text injection issues without showing an attack vector/without being able to modify HTML/CSS
+- Open redirect vulnerabilities are out-of-scope by default, If you chain it with a different vulnerability and make it impactful we would be interested.
+- Stack traces, directory listings or path disclosures
+- Self XSS
+- Social engineering attacks, both against users, employees
 
-For additional support or questions, please contact us via email or through our website.
+## Hall of Fame
