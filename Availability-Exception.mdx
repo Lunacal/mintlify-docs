@@ -4,6 +4,15 @@ description: "Learn how to set availability exceptions for specific dates and ti
 mode: "wide"
 ---
 
+**Availability exceptions** override your base weekly availability for specific dates, such as one-off days off, vacations, or custom hours on a single day. They ensure your booking page blocks those times accurately, even if your calendar or weekly schedule shows open slots.
+
+**Examples**
+| Scenario            | Steps                                           | Result                                      |
+| ------------------- | ----------------------------------------------- | ------------------------------------------- |
+| Off Dec 24-25       | Add exception: Dec 24-25, Mark Unavailable      | Booking page hides all slots those days.    |
+| Short day Dec 20    | Add exception: Dec 20, Custom Hours 9 AM-4 PM   | Only shows up to 4 PM; later slots blocked. |
+| Friday shift change | Add exception: This Friday, Custom Hours 2-4 PM | Overrides weekly 9-5 to just 2-4 PM.        |
+
 Step 1\
 Go to "[Event Types](https://app.lunacal.ai/event-types)" in your dashboard.
 
