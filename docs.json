@@ -15,24 +15,24 @@
         "pages": [
           "event-types/event-setup",
           "event-types/limits",
-          "event-types/booking-questions",
-          "event-types/Meeting-duration",
-          "event-types/Group-booking",
-          "event-types/Zoom-Video",
-          "Meeting-Location"
+          "event-types/setup-booking-questions",
+          "event-types/meeting-duration",
+          "event-types/group-bookings",
+          "event-types/setup-zoom-video",
+          "meeting-location"
         ]
       },
       {
         "group": "Availability",
-        "pages": ["availability-configuration","Availability-Exception"]
+        "pages": ["availability-configuration","availability-exception"]
       },
       {
         "group": "Advanced",
-        "pages": ["Manual-Booking","Cancellation-Resheduling","Redirect-url","seo-web"]
+        "pages": ["manual-approval-booking","disable-cancel-reschedule","redirect-url","seo-web"]
       },
       {
         "group": "Teams",
-        "pages": ["creating-team" , "collective-shedule","Round-Robin","Teambooking-page","seo-web","company-setup","add-or-remove-team-members","Indi-Team"]
+        "pages": ["creating-team" , "collective-schedule","round-robin-scheduling","team-booking-page","seo-web","company-setup","add-or-remove-team-members","Indi-Team"]
       },
       {
         "group": "Bookings",
@@ -40,7 +40,7 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integration", "adding-calendars", "HubSpot-Integration"]
+        "pages": ["paypal-setup", "integration", "adding-calendars", "hubSpot-integration"]
       },
       {
         "group": "Workflows",
@@ -60,7 +60,7 @@
       },
       {
         "group": "Others",
-        "pages": ["importcalendly", "out-of-office"]
+        "pages": ["import-calendly", "out-of-office"]
       },
       {
         "group": "Webhooks",
