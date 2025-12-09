@@ -32,7 +32,7 @@
       },
       {
         "group": "Teams",
-        "pages": ["creating-team" , "collective-shedule","Round-Robin","Teambooking-page","seo-web","company-setup","Adding-Removing","Indi-Team"]
+        "pages": ["creating-team" , "collective-shedule","Round-Robin","Teambooking-page","seo-web","company-setup","add-or-remove-team-members","Indi-Team"]
       },
       {
         "group": "Bookings",
