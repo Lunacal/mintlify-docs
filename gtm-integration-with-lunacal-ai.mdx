@@ -69,3 +69,21 @@ Click **SAVE**
 That's it — GTM is now active for this event type.
 
 You can repeat these same steps for your team events.
+
+## 3.  Datalayer Events Triggered by Lunacal
+
+When GTM is enabled for an event type, Lunacal automatically fires three datalayer events on booking interactions:
+
+1. `booking_created`
+
+- Triggered when a booking is successfully created.
+
+2. `booking_cancelled`
+
+- Triggered when a booking is cancelled by the user or team.
+
+3. `booking_rescheduled`
+
+- Triggered when a booking is rescheduled to a new time.
+
+These events are sent to your GTM container and can be used to trigger tags, pixels, and analytics tracking.
