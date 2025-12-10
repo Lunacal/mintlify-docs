@@ -1,0 +1,22 @@
+---
+title: "Google Tag Manager (GTM) Integration with lunacal.ai"
+description: "Lunacal allows you to track user interactions and bookings using Google Tag Manager (GTM)."
+mode: "wide"
+---
+
+## **1. Understanding GTM Container ID in Lunacal**
+
+A GTM Container ID looks like:`GTM-XXXXXXXX`
+
+lunacal requires this ID to load your GTM container and trigger your tags.\
+You can set this ID at multiple levels depending on your tracking needs:
+
+### **(A) Account-level (User Profile)**
+
+- This is the **default container** for your personal events.
+- It loads on all booking pages unless overridden by a specific container set for your Event Types.
+
+### **(B) Team-level**
+
+- Each team can have its **own GTM Container ID**.
+- When added here, It loads on all team events, it didn't **overrides the account-level ID**.
