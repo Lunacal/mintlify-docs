@@ -6,52 +6,102 @@ mode: "wide"
 
 When a attendee completes a booking, lunacal allows you to automatically redirect them to any URL you choose — for example, a custom “Thank You” page, or a confirmation screen on your own website.
 
-## Step 1  
-Go to [Event Type](https://app.lunacal.ai/event-types) in your dashboard.  
+## Step 1
 
-<Frame><img src="/images/Redirect-url/URL1.webp" /></Frame>
+Go to [Event Type](https://app.lunacal.ai/event-types) in your dashboard.
 
----
-
-## Step 2  
-Select the event for which you want to set up a redirect after booking and click on the Settings (⚙️) icon on that event card.  
-<Frame><img src="/images/Redirect-url/URL2.webp" /></Frame>
+<Frame>
+  ![](/images/Redirect-url/URL1.webp)
+</Frame>
 
 ---
 
-## Step 3  
-Choose "**Edit**" from the dropdown.  
+## Step 2
 
-<Frame><img src="/images/Redirect-url/URL3.webp" /></Frame>
+Select the event for which you want to set up a redirect after booking and click on the Settings (⚙️) icon on that event card.
 
----
-
-## Step 4  
-In the "**Event Types**" section, scroll down to find "**Advanced.**"  
-
-<Frame><img src="/images/Redirect-url/URL4.webp" /></Frame>
+<Frame>
+  ![](/images/Redirect-url/URL2.webp)
+</Frame>
 
 ---
 
-## Step 5  
-Toggle ON "**Send to a URL after booking.**"  
-<Frame><img src="/images/Redirect-url/URL6.webp" /></Frame>
+## Step 3
+
+Choose "**Edit**" from the dropdown.
+
+<Frame>
+  ![](/images/Redirect-url/URL3.webp)
+</Frame>
 
 ---
 
-## Step 6  
-**Enter** or **Paste** the link you want attendees to be redirected to after booking is confirmed.  
+## Step 4
+
+In the "**Event Types**" section, scroll down to find "**Advanced.**"
+
+<Frame>
+  ![](/images/Redirect-url/URL4.webp)
+</Frame>
+
+---
+
+## Step 5
+
+Toggle ON "**Send to a URL after booking.**"
+
+<Frame>
+  ![](/images/Redirect-url/URL6.webp)
+</Frame>
+
+---
+
+## Step 6
+
+**Enter** or **Paste** the link you want attendees to be redirected to after booking is confirmed.
 
 ## Examples
+
 - https://yourwebsite.com/thank-you
 - https://yourwebsite.com/instructions?utm_source=lunacal
 - https://payment-page.com/checkout
 
-<Frame><img src="/images/Redirect-url/URL6.webp" /></Frame>
+When entering the redirect URL, you will see an option\
+☑️ Forward parameters such as ?email=...&name=... and more
 
----
+If you enable this checkbox, Lunacal will automatically append the attendee’s booking details to your redirect URL as query parameters.
 
-## Step 7  
-Click "**Save**" to apply the changes.  
+This means the page you redirect to will receive booking information such as: `
+email
+name
+timezone
+eventName
+startTime
+endTime`
 
-<Frame><img src="/images/Redirect-url/URL7.webp" /></Frame>
+<Frame>
+  ![](/images/Redirect-url/URL6.webp)
+</Frame>
+
+### When to Use This Option
+
+**Enable this when:**
+
+- You want to pre-fill a form on your website
+- You want to track user details in analytics
+- You want to pass booking information to your CRM
+- You want personalized “Thank You” pages
+
+**Keep it disabled if:**
+
+- You don’t need attendee details
+- Your redirect page does not accept parameters
+- You want a clean URL
+
+## Step 7
+
+Click "**Save**" to apply the changes.
+
+<Frame>
+  ![](/images/Redirect-url/URL7.webp)
+</Frame>
