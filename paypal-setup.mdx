@@ -4,6 +4,12 @@ description: "Use this guide to connect PayPal so you can accept payments for sp
 mode: "wide"
 ---
 
+Use PayPal integration if you want to collect payments before a booking is confirmed.
+You can enable payments for specific events or across an entire team.
+
+> **Before you start:** Make sure you have a PayPal Business account.
+> You’ll need access to the Client ID and Secret Key from your PayPal dashboard.
+
 ## Step 1
 
 Go to [Integrations](https://app.lunacal.ai/apps) → “[Payment](https://app.lunacal.ai/apps?category=payment)”, then click “connect” to start PayPal setup.
@@ -22,6 +28,8 @@ Example: You run free intro calls but paid workshops. Install PayPal only on the
 </Frame>
 
 ## Step 3
+
+> **Security note:** Never share your Secret Key publicly or store it in unsecured documents.
 
 Enter your “**Client ID**” and “**Secret Key**”, then click “**Save**”.\
 Example: If your developer manages credentials, ask them for the “**Client ID**” and “**Secret Key**” from PayPal. Keep the “**Secret Key**” private **Note**: To Get Your PayPal Client ID and Secret Key refer to these [Docs](https://developer.paypal.com/api/rest/) OR [Tutorial](https://youtu.be/povhVRdCExc)
@@ -64,6 +72,9 @@ Click "**Save**" to confirm your settings.
 Your setup is complete. You’ll see a price tag on that event type.\
 Example: A client books the “Workshop” and sees the price on the scheduling page—no surprises, fewer drop-offs
 
+> During booking, attendees must complete payment via PayPal before the meeting is confirmed.
+If payment fails or is cancelled, the booking is not created.
+
 <Frame>
   ![](/images/paypal_setup/8.webp)
 </Frame>
@@ -79,5 +90,5 @@ Example: A client books the “Workshop” and sees the price on the scheduling 
 
 - Install PayPal on one paid event first (keep trial/intro events free).
 - Use a single common currency for your main audience.
-- Start with a round price (for example, \$25) to simplify checkout and reporting.
+- Start with a round price (for example, $25) to simplify checkout and reporting.
 - Test one real booking end-to-end before promoting the link.
