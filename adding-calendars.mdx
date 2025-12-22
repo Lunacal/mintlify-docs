@@ -3,9 +3,15 @@ title: "Adding Calendars to Lunacal"
 description: "Connect your calendar to sync availability and automatically add bookings. This prevents double-booking and lets you choose which calendar receives new events."
 ---
 
+Adding your calendar lets Lunacal check your real availability and prevent double-booking by syncing your existing events.
+Connected calendars also ensure that new bookings are automatically added to the correct calendar so you can see them alongside your personal or work events.
+
+> If you disconnect a calendar, previously added bookings remain in that calendar, but new bookings won’t sync until a calendar is reconnected.
+
+
 ## Step 1
 
-Go to "settings" → "Calendar" → "Connect calendar apps".
+Go to "settings" → "[Calendar](http://app.lunacal.ai/apps?tab=install&category=calendar)" → "**Connect calendar apps**".
 
 <Frame>
   ![](/images/adding-calendars/1.webp)
@@ -13,8 +19,10 @@ Go to "settings" → "Calendar" → "Connect calendar apps".
 
 ## Step 2
 
-Choose the calendar you want and click "connect" (e.g., Google Calendar).\
-Example: You primarily use Google Calendar for work—pick Google and continue
+Choose the calendar you want and click "**connect**" (e.g., Google Calendar).\
+**Example**: You primarily use Google Calendar for work—pick Google and continue
+
+> lunacal supports Google Calendar, Outlook Calendar, and Apple Calendar apps. You can connect one or multiple calendars to ensure availability is synced from all of them.
 
 <Frame>
   ![](/images/adding-calendars/2.webp)
@@ -23,7 +31,11 @@ Example: You primarily use Google Calendar for work—pick Google and continue
 ## Step 3
 
 Select your Google account.\
-Example: If you have personal and work Google accounts, choose the work one to avoid mixing events.
+**Example**: If you have personal and work Google accounts, choose the work one to avoid mixing events.
+
+> **Note:** When connecting your calendar, grant all calendar permissions (read/write) so lunacal can both check availability and add new events.
+> This setting determines which of your connected calendars new bookings will be saved to. For example, you can keep your “Personal” calendar separate but save all new bookings to your “Work” calendar so they are easier to manage.
+
 
 <Frame>
   ![](/images/adding-calendars/3.webp)
@@ -34,6 +46,8 @@ Example: If you have personal and work Google accounts, choose the work one to a
 Your calendar is now connected. If you have multiple calendars, pick where new events should be added. For example, switch the target to your “Calendar 2.0” if that’s your main booking calendar.\
 Example: Keep personal events on “Personal” but set bookings to land on “Team Bookings” so your team sees them.
 
+> Events allow you to choose which connected calendar to add bookings to on a per-event basis. You can change that setting in the event’s "Advanced" -> Calendar Selection DropDown.
+
 <Frame>
   ![](/images/adding-calendars/4.webp)
 </Frame>
@@ -43,20 +57,28 @@ Example: Keep personal events on “Personal” but set bookings to land on “T
 Add more calendars if needed. You can connect another Google Calendar or install new calendar apps like Apple Calendar or Outlook Calendar.\
 Example: Connect Outlook Calendar from your employer and Google Calendar from your freelance work to prevent double-booking across both..
 
+> Lunacal checks all connected calendars for conflicts. If a timeslot is busy in any connected calendar, it will be blocked for new bookings to prevent double-booking.
+
 <Frame>
   ![](/images/adding-calendars/5.webp)
 </Frame>
 
-**Common mistakes to avoid**
+## Common mistakes to avoid
 
 - Connecting a personal account instead of your work account, leading to missing availability or wrong event destinations.
 - Forgetting to change the destination calendar after connecting, so bookings land in the default calendar you don’t check.
 - Denying requested permissions during connect, which can block availability sync or event creation.
 - Assuming two-way sync without connecting every calendar you actively use (e.g., Google + Outlook).
 
-**Good defaults to start with**
+## Good defaults to start with
 
 - Connect only your main work account first; confirm availability sync before adding more.
 - Set a single destination calendar (e.g., “Calendar 2.0”) for all new bookings.
 - Keep one calendar app connected per ecosystem (Google or Outlook) to reduce conflicts.
 - Recheck destination settings after adding a new calendar to ensure events still go to the right place.
+
+## Troubleshooting
+
+- If Lunacal isn’t blocking a booked time slot, confirm all relevant calendars are connected.
+- If bookings aren’t being added to the calendar you expect, check which calendar is selected as the destination.
+- If your calendar provider prompts for additional permissions, allow all requested permissions so sync works fully.
