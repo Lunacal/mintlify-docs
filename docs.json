@@ -40,7 +40,7 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integration", "adding-calendars", "hubSpot-integration", "gtm-integration-with-lunacal-ai"]
+        "pages": ["paypal-setup", "integration", "adding-calendars", "hubspot-integration-with-lunacal-ai", "gtm-integration-with-lunacal-ai"]
       },
       {
         "group": "Workflows",
