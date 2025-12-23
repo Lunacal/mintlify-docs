@@ -54,8 +54,8 @@ Keep in mind that SMS messages are billed based on message length and destinatio
 
 ## Step 6
 
-If using a “**Before an event starts**” trigger, you have to set the time (e.g., 2 Hours).\
-Example: For first-time “Meeting” calls, set 24 Hours so people prep earlier.
+If using a “**Before an event starts**” trigger, you have to set the time (e.g., 2 Hours).
+- Example: For first-time “Meeting” calls, set 24 Hours so people prep earlier.
 
 <Frame>
   ![](/images/setup_workflows/6.webp)
@@ -71,8 +71,8 @@ Specify the recipients of the workflow trigger.
 
 ## Step 8
 
-Select “**attendees**”, “**host**”, or add a specific email.\
-Example: Add your coordinator’s email so they get alerts for last-minute changes.
+Select “**attendees**”, “**host**”, or add a specific email.
+- Example: Add your coordinator’s email so they get alerts for last-minute changes.
 
 <Frame>
   ![](/images/setup_workflows/10.webp)
@@ -88,8 +88,8 @@ There are multiple template options to set for attendee workflows,
 
 ## Step 10
 
-Insert variables as needed (e.g., ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK).\
-Example: Include LOCATION_LINK so Zoom/Meet joins are one click
+Insert variables as needed (e.g., ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK).
+- Example: Include LOCATION_LINK so Zoom/Meet joins are one click
 
 <Frame>
   ![](/images/setup_workflows/12.webp)
@@ -105,7 +105,7 @@ Click “**Save**” to activate the workflow.
 
 **Tips for SMS workflows**
 
-- Keep SMS messages concise to reduce cost (short messages are typically 1 segment, long messages may cost more). :contentReference[oaicite:3]index=3
+- Keep SMS messages concise to reduce cost (short messages are typically 1 segment, long messages may cost more).
 - Include key details like date, time, and event name in your SMS.
 - Test SMS workflows with a real booking to verify delivery before rolling them out broadly.
 
@@ -115,14 +115,14 @@ Click “**Save**” to activate the workflow.
 - Send a confirmation SMS immediately after booking is completed.
 - Deliver a follow-up SMS after the meeting ends.
 
-**Common mistakes to avoid**\
-• Picking a trigger but forgetting to set time for “Before an event starts”, which sends nothing.\
-• Selecting “host” only when you meant to notify “attendees” as well.\
-• Leaving variables blank (for example, missing LOCATION_LINK) so emails are unclear.\
-• Creating overlapping reminders (for example, two reminders at 1 Hour) and spamming recipients.
+**Common mistakes to avoid**
+- Picking a trigger but forgetting to set time for “Before an event starts”, which sends nothing.
+- Selecting “host” only when you meant to notify “attendees” as well.
+- Leaving variables blank (for example, missing LOCATION_LINK) so emails are unclear.
+- Creating overlapping reminders (for example, two reminders at 1 Hour) and spamming recipients.
 
-**Good defaults to start with**\
-• Triggers: “When new event is booked” (instant confirmation) and “Before an event starts” at 24 Hours + 1 Hour.\
-• Recipients: “attendees” for reminders, “host” for reschedule/cancel alerts.\
-• Variables: always include ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK.\
-• Naming: include event and timing in the name (for example, “Meeting — Reminder 24h”).
+**Good defaults to start with**
+- Triggers: “When new event is booked” (instant confirmation) and “Before an event starts” at 24 Hours + 1 Hour.
+- Recipients: “attendees” for reminders, “host” for reschedule/cancel alerts.
+- Variables: always include ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK.
+- Naming: include event and timing in the name (for example, “Meeting — Reminder 24h”).
