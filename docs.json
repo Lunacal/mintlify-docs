@@ -18,6 +18,7 @@
           "event-types/setup-booking-questions",
           "event-types/meeting-duration",
           "event-types/group-bookings",
+          "event-types/package-booking",
           "event-types/setup-zoom-video",
           "meeting-location"
         ]
