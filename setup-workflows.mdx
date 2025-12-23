@@ -8,7 +8,7 @@ lunacal supports both **email and SMS workflows** so you can automate reminders,
 
 ## Step 1
 
-Go to the Workflows tab and click Create New Workflow
+Go to the [Workflows](https://app.lunacal.ai/new-settings?tabName=workflows) tab and click Create New Workflow
 
 > Note: You can't create more than 10 Workflows
 
@@ -55,6 +55,7 @@ Keep in mind that SMS messages are billed based on message length and destinatio
 ## Step 6
 
 If using a “**Before an event starts**” trigger, you have to set the time (e.g., 2 Hours).
+
 - Example: For first-time “Meeting” calls, set 24 Hours so people prep earlier.
 
 <Frame>
@@ -72,6 +73,7 @@ Specify the recipients of the workflow trigger.
 ## Step 8
 
 Select “**attendees**”, “**host**”, or add a specific email.
+
 - Example: Add your coordinator’s email so they get alerts for last-minute changes.
 
 <Frame>
@@ -89,6 +91,7 @@ There are multiple template options to set for attendee workflows,
 ## Step 10
 
 Insert variables as needed (e.g., ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK).
+
 - Example: Include LOCATION_LINK so Zoom/Meet joins are one click
 
 <Frame>
@@ -116,12 +119,14 @@ Click “**Save**” to activate the workflow.
 - Deliver a follow-up SMS after the meeting ends.
 
 **Common mistakes to avoid**
+
 - Picking a trigger but forgetting to set time for “Before an event starts”, which sends nothing.
 - Selecting “host” only when you meant to notify “attendees” as well.
 - Leaving variables blank (for example, missing LOCATION_LINK) so emails are unclear.
 - Creating overlapping reminders (for example, two reminders at 1 Hour) and spamming recipients.
 
 **Good defaults to start with**
+
 - Triggers: “When new event is booked” (instant confirmation) and “Before an event starts” at 24 Hours + 1 Hour.
 - Recipients: “attendees” for reminders, “host” for reschedule/cancel alerts.
 - Variables: always include ATTENDEE_NAME, EVENT_TIME, LOCATION_LINK.
