@@ -4,10 +4,12 @@ description: "Use “Workflows” to automate notifications for your events—se
 mode: "wide"
 ---
 
+lunacal supports both **email and SMS workflows** so you can automate reminders, confirmations, and follow-ups via text message in addition to email. SMS workflows are especially helpful for reducing no-shows by delivering reminders directly to attendees’ phones.
+
 ## Step 1
 
-Go to the “Workflows” tab and click “Create New Workflow”.
-Note: You can't create more than 10 Workflows
+Go to the “**Workflows**” tab and click “**Create New Workflow**”.
+**Note**: You can't create more than **10 Workflows**.
 
 <Frame>
   ![](/images/setup_workflows/1.webp)
@@ -23,7 +25,7 @@ Provide a unique name for your workflow in the designated field.
 
 ## Step 3
 
-Determine the event type to which the workflow will apply. For instance i'm selecting "Meeting", You can also select multiple events.
+Determine the event type to which the workflow will apply. For instance i'm selecting "**Meeting**", You can also select multiple events.
 
 <Frame>
   ![](/images/setup_workflows/3.webp)
@@ -39,8 +41,12 @@ Choose when the workflow should be triggered
 
 ## Step 5
 
-Pick a trigger: “Before an event starts”, “When event is canceled”, “When new event is booked”, “After event ends”, or “When event is rescheduled”.\
+Pick a trigger: “**Before an event starts**”, “**When event is canceled**”, “**When new event is booked**”, “**After event ends**”, or “**When event is rescheduled**”.\
 Example: Send a reminder “Before an event starts” so attendees don’t miss the call.
+
+Workflows can send either email or SMS messages. When you select an action like “Send message”, you’ll be able to choose whether the notification is sent via email, SMS, or both.  
+Keep in mind that SMS messages are billed based on message length and destination country — longer messages or certain carriers may use more than one SMS segment. :contentReference[oaicite:1]{index=1} [SMS Pricing](https://help.lunacal.ai/sms-workflows-reminder)
+
 
 <Frame>
   ![](/images/setup_workflows/5.webp)
@@ -48,7 +54,7 @@ Example: Send a reminder “Before an event starts” so attendees don’t miss 
 
 ## Step 6
 
-If using a “Before an event starts” trigger, you have to set the time (e.g., 2 Hours).\
+If using a “**Before an event starts**” trigger, you have to set the time (e.g., 2 Hours).\
 Example: For first-time “Meeting” calls, set 24 Hours so people prep earlier.
 
 <Frame>
@@ -65,7 +71,7 @@ Specify the recipients of the workflow trigger.
 
 ## Step 8
 
-Select “attendees”, “host”, or add a specific email.\
+Select “**attendees**”, “**host**”, or add a specific email.\
 Example: Add your coordinator’s email so they get alerts for last-minute changes.
 
 <Frame>
@@ -91,11 +97,16 @@ Example: Include LOCATION_LINK so Zoom/Meet joins are one click
 
 ## Step 11
 
-Click “Save” to activate the workflow.
+Click “**Save**” to activate the workflow.
 
 <Frame>
   ![](/images/setup_workflows/13.webp)
 </Frame>
+
+**Tips for SMS workflows**
+- Keep SMS messages concise to reduce cost (short messages are typically 1 segment, long messages may cost more). :contentReference[oaicite:3]{index=3}
+- Include key details like date, time, and event name in your SMS.
+- Test SMS workflows with a real booking to verify delivery before rolling them out broadly.
 
 **Common mistakes to avoid**\
 • Picking a trigger but forgetting to set time for “Before an event starts”, which sends nothing.\
