@@ -82,18 +82,24 @@ You can repeat these same steps for your team events.
 
 ## 3.  Datalayer Events Triggered by Lunacal
 
-When GTM is enabled for an event type, lunacal automatically fires three datalayer events on booking interactions:
+When GTM is enabled for an event type, lunacal automatically fires these datalayer events on booking interactions:
 
-1. `booking_created`
+| **Event Name**        | **Fires When…**                               | **Suggested GTM Trigger Category** |
+| :-------------------- | :-------------------------------------------- | :--------------------------------- |
+| `navigatedToCalendar` | User lands on the calendar view               | Custom Event                       |
+| `navigatedToTeam`     | User views team booking options               | Custom Event                       |
+| `navigatedToUser`     | User views a specific user/host profile       | Custom Event                       |
+| `eventSelected`       | User clicks to select a specific event type   | Custom Event                       |
+| `memberSelected`      | In a team booking, user selects a team member | Custom Event                       |
 
-- Triggered when a booking is successfully created.
-
-2. `booking_cancelled`
-
-- Triggered when a booking is cancelled by the user or team.
-
-3. `booking_rescheduled`
-
-- Triggered when a booking is rescheduled to a new time.
-
-These events are sent to your GTM container and can be used to trigger tags, pixels, and analytics tracking.
+| **Event Name**                   | **Fires When…**                                          | **Example GTM Use Case**      |
+| :------------------------------- | :------------------------------------------------------- | :---------------------------- |
+| `timeSlotSelected`               | User clicks an available time slot                       | Funnel step in GA4            |
+| `bookingRequested`               | User submits booking request (before final confirmation) | Track partial conversions     |
+| `bookingFailed`                  | Booking fails due to conflict/validation                 | Conversion abort tracking     |
+| `paymentSuccessfull`             | User completes payment (if booking is paid)              | Purchase conversion           |
+| `couponApplied`                  | Coupon/discount code successfully applied                | Promo effectiveness analytics |
+| `bookingSuccessfull`             | Booking fully completed (alternate or older naming)      | Conversion tracking           |
+| `bookingSuccessfullV2`           | Updated booking success event (improved schema)          | Use for enriched payload      |
+| `rescheduleBookingSuccessfull`   | Booking was rescheduled successfully                     | Conversion path analysis      |
+| `rescheduleBookingSuccessfullV2` | New version of reschedule success event                  | New schema tracking           |
