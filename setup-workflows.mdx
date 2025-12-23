@@ -43,14 +43,24 @@ Choose when the workflow should be triggered
 ## Step 5
 
 Pick a trigger: “**Before an event starts**”, “**When event is canceled**”, “**When new event is booked**”, “**After event ends**”, or “**When event is rescheduled**”.\
-Example: Send a reminder “Before an event starts” so attendees don’t miss the call.
+**Example**: Send a reminder “Before an event starts” so attendees don’t miss the call.
 
-Workflows can send either email or SMS messages. When you select an action like “Send message”, you’ll be able to choose whether the notification is sent via email, SMS, or both.\
-Keep in mind that SMS messages are billed based on message length and destination country — longer messages or certain carriers may use more than one SMS segment. [SMS Pricing](https://help.lunacal.ai/sms-workflows-reminder)
+Workflows can send either email or SMS messages. When you select an action like “Send message”, you’ll be able to choose whether the notification is sent via email, SMS, or both.
+- Keep in mind that SMS messages are billed based on message length and destination country — longer messages or certain carriers may use more than one SMS segment. [SMS Pricing](https://help.lunacal.ai/sms-workflows-reminder)
+
+> **Triggers** are events in lunacal that start an automated workflow (for example, when a new booking occurs, when an event is canceled, when an event is rescheduled, or a set time before an event starts).
+
+> **Actions** are what your workflow does after it’s triggered — like sending an email or SMS reminder.
 
 <Frame>
   ![](/images/setup_workflows/5.webp)
 </Frame>
+
+**Common workflow examples**
+- Send an SMS + email reminder 24 hours before a meeting
+- Notify the host via email when a booking is canceled
+- Send an SMS follow-up after a meeting ends
+---
 
 ## Step 6
 
@@ -105,6 +115,9 @@ Click “**Save**” to activate the workflow.
 <Frame>
   ![](/images/setup_workflows/13.webp)
 </Frame>
+
+**Testing your workflow**
+After saving, perform a real or test booking that matches the trigger conditions (for example, book a meeting or cancel one). Check that the email or SMS messages are sent as expected to all recipients. Adjust timing, variables, or recipients if needed.
 
 **Tips for SMS workflows**
 
