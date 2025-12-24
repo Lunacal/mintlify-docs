@@ -58,6 +58,14 @@ You’ll need to fill in the following details:
 - Attendees can apply the coupon code during checkout
 - The discount is applied instantly to the final price
 - If the coupon is expired or usage limit is exceeded, it won’t be accepted
+- A coupon will be rejected if:
+- It has expired.
+- It has reached its usage limit.
+- It’s entered in the wrong event’s checkout (coupons are event-specific).
+- When a coupon is applied:
+- The discounted price is shown before checkout.
+- The final amount charged reflects the discount.
+- The coupon label appear in confirmation emails of attendees.
 
 ## Things to Keep in Mind
 
