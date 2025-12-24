@@ -4,56 +4,45 @@ description: "Coupons allow you to offer discounts on paid event types, making i
 mode: "wide"
 ---
 
+- **Prerequisite**: Connect **Paypal** OR **Stripe** from [Integrations](https://app.lunacal.ai/apps?category=payment) \> [payment](https://app.lunacal.ai/apps?category=payment)
+
 ## Where to find Coupons
 
 Coupons are configured at the **Event Type** level.
 
-1. Go to **Event Types**
-2. Open the event type you want to configure
-3. Navigate to **Payments**
-4. Inside Payments, you’ll find the **Coupons**
+## Step 1.
+
+Navigate to [Event Types](https://app.lunacal.ai/event-types) & Open the event type you want to configure by clicking on (⚙️) icon.
+
+<Frame>
+  ![](/images/event_setup/1.webp)
+</Frame>
+
+## Step 2.
+
+Navigate to **Payments** & toggle ON "Charge for this event"
+
+> If the **Payment App** toggle is turned **off**, you will not be able to **create coupons**.
+
+![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/couponcreate.webp)
+
+## Step 3.
+
+Inside Payments, you’ll find the **Coupons**, Click **Create Coupon** to open the coupon creation modal.
 
 > **Important:** Coupons are available only for paid events.
 
-## Prerequisite: Enable Payments
-
-If the **Payment App** toggle is turned **off**, you will not be able to **create coupons**.
-
-To **enable coupon** creation:
-
-1. Go to **Event Type → Payments**
-2. Turn **ON** the toggle
-3. Once enabled, the **Create Coupon** button becomes **active**.
+![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/step3coupon.webp)
 
 ## Creating a Coupon
 
-Click **Create Coupon** to open the coupon creation modal.
-
 You’ll need to fill in the following details:
 
-### 1. Coupon Code
+| **Coupon Code**                                                       | **Discount Type & Value**                                               | **Expiration Date**                                 | **Usage Limit**                         |
+| :-------------------------------------------------------------------- | :---------------------------------------------------------------------- | :-------------------------------------------------- | :-------------------------------------- |
+| Unique promo code entered by attendees at checkout (e.g. `WELCOME80`) | Percentage-based discount (**e.g. 80%**). **100% discount not allowed** | Date after which the coupon becomes invalid/expired | Number of times the coupon can be used. |
 
-- A unique promo code that attendees will enter during checkout
-- Example: `FIRSTMEET20`
-
-### 2. Discount Type
-
-- Select **Percentage**
-- Enter the discount value (for example, 40%)
-
-> **Note:** Coupons with a **100% discount are not allowed**.
-
-### 3. Expiration Date
-
-- Set an optional expiry date for the coupon
-- After this date, the coupon will no longer be valid
-
-### 4. Usage Limit
-
-- Define how many times the coupon can be used
-- Once the limit is reached, the coupon automatically becomes inactive
-
-After entering all the details, click **Create** to save the coupon.
+![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/coouponcreate2.webp)
 
 ## How Coupons Work for Attendees
 
