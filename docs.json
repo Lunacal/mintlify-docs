@@ -15,7 +15,7 @@
         "pages": [
           "event-types/event-setup",
           "event-types/limits",
-          "event-types/setup-booking-questions",
+          "event-types/booking-questions",
           "event-types/meeting-duration",
           "event-types/group-bookings",
           "event-types/package-booking",
