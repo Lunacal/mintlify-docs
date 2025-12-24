@@ -20,7 +20,7 @@
           "event-types/group-bookings",
           "event-types/package-booking",
           "event-types/setup-zoom-video",
-          "event-types/coupons-in-lunacal-ai",
+          "event-types/coupons",
           "meeting-location"
         ]
       },
