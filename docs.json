@@ -59,7 +59,7 @@
       },
       {
         "group": "Embed",
-        "pages": ["embed-in-web", "embed-in-mails"]
+        "pages": ["website-embed", "email-embed"]
       },
       {
         "group": "Others",
