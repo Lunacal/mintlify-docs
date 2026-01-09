@@ -43,7 +43,7 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integration", "adding-calendars", "hubspot-integration-with-lunacal-ai", "google-tag-manager-integration"]
+        "pages": ["paypal-setup", "integration", "adding-calendars", "hubspot-integration", "google-tag-manager-integration"]
       },
       {
         "group": "Workflows",
