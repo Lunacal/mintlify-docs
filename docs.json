@@ -43,7 +43,7 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integration", "adding-calendars", "hubspot-integration-with-lunacal-ai", "gtm-integration-with-lunacal-ai"]
+        "pages": ["paypal-setup", "integration", "adding-calendars", "hubspot-integration-with-lunacal-ai", "google-tag-manager-integration"]
       },
       {
         "group": "Workflows",
@@ -75,7 +75,7 @@
       },
        {
         "group": "UTM Setup",
-        "pages": ["utm_setup" , "utm_zapier_integration"]
+        "pages": ["utm-setup" , "utm-zapier-integration"]
       },
       {
         "group": "Report Vulnerability",
