@@ -21,6 +21,7 @@
           "event-types/package-booking",
           "event-types/setup-zoom-video",
           "event-types/coupons",
+          "event-types/create-special-coupons-for-packages",
           "event-types/one-time-link",
           "meeting-location"
         ]
