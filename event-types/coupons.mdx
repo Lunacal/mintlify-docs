@@ -36,9 +36,9 @@ Inside Payments, you’ll find the **Coupons**, Click **Create Coupon** to open 
 
 You’ll need to fill in the following details:
 
-| **Coupon Code**                                                       | **Discount Type & Value**                                               | **Expiration Date**                                 | **Usage Limit**                         |
-| :-------------------------------------------------------------------- | :---------------------------------------------------------------------- | :-------------------------------------------------- | :-------------------------------------- |
-| Unique promo code entered by attendees at checkout (e.g. `WELCOME80`) | Percentage-based discount (**e.g. 80%**). **100% discount not allowed** | Date after which the coupon becomes invalid/expired | Number of times the coupon can be used. |
+| **Coupon Code**                                                       | **Discount Type & Value**                                               | **Expiration Date**                                 | **Usage Limit**                         | [**Minimum Booking Price (Optional)**](https://help.lunacal.ai/event-types/create-special-coupons-for-packages) |
+| :-------------------------------------------------------------------- | :---------------------------------------------------------------------- | :-------------------------------------------------- | :-------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Unique promo code entered by attendees at checkout (e.g. `WELCOME80`) | Percentage-based discount (**e.g. 80%**). **100% discount not allowed** | Date after which the coupon becomes invalid/expired | Number of times the coupon can be used. | Minimum total price required for the coupon to apply. ( Best suited for package-based or multi-slot bookings.)  |
 
 ![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/coouponcreate2.webp)
 
@@ -48,6 +48,22 @@ You’ll need to fill in the following details:
 - **Fixed amount discount** – Deducts a fixed amount from the event price (e.g., \$10 off).
 
 > Note: You cannot combine percentage and amount discounts in a single coupon.
+
+## Minimum Booking Price (Special Coupons)
+
+The **Minimum Booking Price** lets you control when a coupon becomes valid. This is useful when your event supports **multi-slot or package bookings**.
+
+### Example 
+
+> COUPON50 Set to 50% discount.
+
+- Price per slot: **\$20**
+- Attendee selects **2 slots** → Total = **\$40**
+- Coupon minimum booking price = **\$50** → ❌ Coupon will **not** apply
+- Attendee selects **3 slots** → Total = **\$60**
+- Coupon minimum booking price = **\$50** → ✅ Coupon **applies successfully **and the final price will be **30\$**
+
+This ensures discounts are applied **only when the total booking value meets your criteria**, helping you avoid very small discounted bookings.
 
 ## How Coupons Work for Attendees
 
