@@ -28,15 +28,31 @@
       },
       {
         "group": "Availability",
-        "pages": ["availability-configuration","availability-exception"]
+        "pages": [
+          "availability-configuration",
+          "availability-exception"
+        ]
       },
       {
         "group": "Advanced",
-        "pages": ["manual-approval-booking","disable-cancel-reschedule","redirect-url","seo-web"]
+        "pages": [
+          "manual-approval-booking",
+          "disable-cancel-reschedule",
+          "redirect-url","seo-web"
+        ]
       },
       {
         "group": "Teams",
-        "pages": ["creating-team" , "collective-schedule","round-robin-scheduling","team-booking-page","company-setup","add-or-remove-team-members","individual-events-vs-team-events","accept-your-invitation"]
+        "pages": [
+          "creating-team",
+          "collective-schedule",
+          "round-robin-scheduling",
+          "team-booking-page",
+          "company-setup",
+          "add-or-remove-team-members",
+          "individual-events-vs-team-events",
+          "accept-your-invitation"
+        ]
       },
       {
         "group": "Bookings",
@@ -44,11 +60,19 @@
       },
       {
         "group": "Integrations",
-        "pages": ["paypal-setup", "integration", "adding-calendars", "hubspot-integration", "google-tag-manager-integration"]
+        "pages": [
+          "paypal-setup",
+          "integration", 
+          "adding-calendars", 
+          "hubspot-integration", 
+          "google-tag-manager-integration"]
       },
       {
         "group": "Workflows",
-        "pages": ["sms-and-email-workflows", "sms-pricing"]
+        "pages": [
+          "sms-and-email-workflows", 
+          "sms-pricing"
+        ]
       },
       {
         "group": "Dynamic Bookings",
@@ -56,15 +80,24 @@
       },
       {
         "group": "Bookings Page",
-        "pages": ["edit-booking-page" , "conflict-slot"]
+        "pages": [
+          "edit-booking-page",
+          "conflict-slot"
+        ]
       },
       {
         "group": "Embed",
-        "pages": ["website-embed", "email-embed"]
+        "pages": [
+          "website-embed",
+          "email-embed"
+        ]
       },
       {
         "group": "Others",
-        "pages": ["import-calendly", "out-of-office"]
+        "pages": [
+          "import-calendly", 
+          "out-of-office"
+        ]
       },
       {
         "group": "Webhooks",
@@ -76,7 +109,10 @@
       },
        {
         "group": "UTM Setup",
-        "pages": ["utm-setup" , "utm-zapier-integration"]
+        "pages": [
+          "utm-setup" , 
+          "utm-zapier-integration"
+        ]
       },
       {
         "group": "Report Vulnerability",
