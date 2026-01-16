@@ -62,6 +62,7 @@
         "group": "Integrations",
         "pages": [
           "paypal-integration",
+          "stripe-integration",
           "integration", 
           "adding-calendars", 
           "hubspot-integration", 
