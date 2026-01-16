@@ -23,7 +23,8 @@
           "event-types/coupons",
           "event-types/create-special-coupons-for-packages",
           "event-types/one-time-link",
-          "meeting-location"
+          "meeting-location",
+          "accept-your-invitation"
         ]
       },
       {
@@ -50,8 +51,7 @@
           "team-booking-page",
           "company-setup",
           "add-or-remove-team-members",
-          "individual-events-vs-team-events",
-          "accept-your-invitation"
+          "individual-events-vs-team-events"
         ]
       },
       {
