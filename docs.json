@@ -61,7 +61,7 @@
       {
         "group": "Integrations",
         "pages": [
-          "paypal-setup",
+          "paypal-integration",
           "integration", 
           "adding-calendars", 
           "hubspot-integration", 
