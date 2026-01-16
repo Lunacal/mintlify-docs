@@ -65,7 +65,8 @@
           "integration", 
           "adding-calendars", 
           "hubspot-integration", 
-          "google-tag-manager-integration"]
+          "google-tag-manager-integration"
+        ]
       },
       {
         "group": "Workflows",
