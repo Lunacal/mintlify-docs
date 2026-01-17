@@ -100,7 +100,8 @@
         "group": "Others",
         "pages": [
           "import-calendly", 
-          "out-of-office"
+          "out-of-office",
+          "data-control-retention-gdpr"
         ]
       },
       {
