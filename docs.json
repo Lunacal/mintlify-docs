@@ -38,7 +38,9 @@
         "pages": [
           "manual-approval-booking",
           "disable-cancel-reschedule",
-          "redirect-url","seo-web"
+          "redirect-url",
+          "seo-web",
+          "language-settings"
         ]
       },
       {
