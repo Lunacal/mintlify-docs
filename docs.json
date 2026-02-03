@@ -36,6 +36,7 @@
       {
         "group": "Advanced",
         "pages": [
+          "untitled-page",
           "manual-approval-booking",
           "disable-cancel-reschedule",
           "redirect-url",
@@ -58,29 +59,33 @@
       },
       {
         "group": "Bookings",
-        "pages": ["manage-bookings"]
+        "pages": [
+          "manage-bookings"
+        ]
       },
       {
         "group": "Integrations",
         "pages": [
           "paypal-integration",
           "stripe-integration",
-          "integration", 
-          "adding-calendars", 
-          "hubspot-integration", 
+          "integration",
+          "adding-calendars",
+          "hubspot-integration",
           "google-tag-manager-integration"
         ]
       },
       {
         "group": "Workflows",
         "pages": [
-          "sms-and-email-workflows", 
+          "sms-and-email-workflows",
           "sms-pricing"
         ]
       },
       {
         "group": "Dynamic Bookings",
-        "pages": ["dynamic-links"]
+        "pages": [
+          "dynamic-links"
+        ]
       },
       {
         "group": "Bookings Page",
@@ -99,29 +104,35 @@
       {
         "group": "Others",
         "pages": [
-          "import-calendly", 
+          "import-calendly",
           "out-of-office",
           "data-control-retention-gdpr"
         ]
       },
       {
         "group": "Webhooks",
-        "pages": ["webhooks"]
+        "pages": [
+          "webhooks"
+        ]
       },
       {
         "group": "Zapier",
-        "pages": ["zapier"]
+        "pages": [
+          "zapier"
+        ]
       },
-       {
+      {
         "group": "UTM Setup",
         "pages": [
-          "utm-setup" , 
+          "utm-setup",
           "utm-zapier-integration"
         ]
       },
       {
         "group": "Report Vulnerability",
-        "pages": ["responsible-disclosure"]
+        "pages": [
+          "responsible-disclosure"
+        ]
       }
     ]
   },
