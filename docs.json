@@ -41,6 +41,7 @@
           "disable-cancel-reschedule",
           "redirect-url",
           "seo-web",
+          "routing-forms",
           "language-settings"
         ]
       },
