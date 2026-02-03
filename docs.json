@@ -36,7 +36,6 @@
       {
         "group": "Advanced",
         "pages": [
-          "untitled-page",
           "manual-approval-booking",
           "disable-cancel-reschedule",
           "redirect-url",
