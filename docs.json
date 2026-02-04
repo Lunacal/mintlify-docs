@@ -23,6 +23,7 @@
           "event-types/coupons",
           "event-types/create-special-coupons-for-packages",
           "event-types/one-time-link",
+          "event-types/managed-event",
           "meeting-location"
         ]
       },
