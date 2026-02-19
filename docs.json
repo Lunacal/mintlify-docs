@@ -126,7 +126,8 @@
         "group": "UTM Setup",
         "pages": [
           "utm-setup",
-          "utm-zapier-integration"
+          "utm-zapier-integration",
+          "pre-filling-booking-form"
         ]
       },
       {
