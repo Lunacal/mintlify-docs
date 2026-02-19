@@ -15,7 +15,7 @@ When a website visitor fills out your custom form, you can:
 
 ## How It Works
 
-lunacal supports prefilling booking fields by passing values either: 
+lunacal supports prefilling booking fields by passing values either:
 
 1. via **URL query** **parameters** \
    OR
@@ -27,74 +27,47 @@ lunacal supports prefilling booking fields by passing values either:
 
 ## 1. Prefill via URL Parameters (Scheduling Page & Embeded Page)
 
-If your form submits to a landing page or redirects after submission, build the lunacal booking URL with query parameters.
+You can pre-fill all the booking questions on the booking form by using their corresponding internal label that you can see in booking question tab.
 
-🔗 Example Redirect URL
+e.g. for the following question (shown in screenshot below), the question would show up as ”What’s the main goal of this meeting?” and its internal label is ”main-goal”. So, we would use “main-goal” as query param name to prefill the field.
 
-> https://lunacal.ai/your-username/your-event?name=John%20Doe&email=john%40example.com&attendee-phone=%2B919876543210
+![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/prefill-image.webp)
 
-## **You have to use booking questions identifier (Internal label ) as query params**
+🔗 Example URL
 
-![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/prefill-1.webp)
-
-### **Supported Prefill Fields**
-
-**Example :**
-
-| **Field**       | **Query Parameter ( Identifier )** |
-| :-------------- | :--------------------------------- |
-| Attendee name   | name                               |
-| Attendee email  | email                              |
-| Phone number    | attendee-phone                     |
-| Comments        | notes                              |
-| Custom question | yourCustomQuestionFieldIdentifier  |
+> https://lunacal.ai/your-username/your-event?main-goal=Consultation
 
 {yourFieldIdentifier}
 
 > Spaces must be URL-encoded (%20), and + in phone numbers must be URL-encoded as %2B.
 
-## **2. Prefill in an Embedded lunacal Scheduler**
+<Frame>
+  ![Image](/images/image-1.png)
+</Frame>
 
-If you embed lunacal on your own page — inline or via a popup — you can pass prefill values directly in the embed configuration.
+## **2. Prefill in an Embedded lunacal Calendar**
 
-You don’t need to use URL parameters in this approach.
+You can use the same query parameter method in the embed by enabling automatic query parameter forwarding.
+
+Alternatively, if you prefer not to use query parameters, you can configure the values directly in the embed settings.
 
 ## **You have to use booking questions identifier (Internal label ) as key**
 
 ### Inline Embed Example (JavaScript)
 
 ```
-<script src="https://lunacal.ai/embed.js"></script>
-<div id="lunacal-scheduler"></div>
-<script>
-  lunacal.init({
-    target: "#lunacal-scheduler",
-    config: {
-      attendee-name: "John Doe",
-      email: "[email protected]",
-      phone: "+919876543210",
-      notes: "Filled from website form",
-
-      // Any custom metadata or questions
-      "metadata[campaign]": "summer-camp"
-    }
-  });
-</script>
-```
-
-### Floating Button Popup Embed
-
-```
-<script src="https://lunacal.ai/embed.js"></script>
-<script>
-  lunacal.init({
-    mode: "floatingButton",
-    config: {
-      name: "Mary Smith",
-      email: "[email protected]",
-      phone: "+919999999999",
-      notes: "From homepage lead form"
-    }
-  });
-</script>
+  Lunacal.ns["your-event-slug"]("inline", {
+        elementOrSelector: "#your-event-slug",
+        config: {
+          layout: "",
+          // Add your booking questions here.
+		  // Use the question’s internal label as the key,
+	      // and set the value to the prefill text you want to pass.
+          name: "pre-fill-name",
+          email: "pre-fill-email",
+          "custom-question": "pre-fill-custom-question",
+          check: "pre-fill-check",
+        },
+        calLink: "your-event-slug",
+      });
 ```
