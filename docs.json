@@ -92,6 +92,7 @@
         "group": "Bookings Page",
         "pages": [
           "edit-booking-page",
+          "event-specific-widgets",
           "conflict-slot"
         ]
       },
