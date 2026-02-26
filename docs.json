@@ -61,8 +61,8 @@
       {
         "group": "Teams & Service Business",
         "pages": [
-          "Workspace/manage-event-types",
-          "Workspace/teams-service-business"
+          "Workspace/teams-service-business",
+          "Workspace/manage-event-types"
         ]
       },
       {
