@@ -1,0 +1,318 @@
+---
+title: "Managing Event Types"
+description: "Event Types are the core of team scheduling inside your lunacal Workspace. create for your team members to make your team scheduling smooth, scalable, and professional."
+mode: "wide"
+---
+
+Creating an event is easy. But configuring it properly? That’s what makes your team scheduling smooth, scalable, and professional.
+
+Inside your **Workspace → Event Types**, you can create and fully configure team events. This guide explains every tab inside the **Team Event Type settings** and what each section controls.
+
+---
+
+Perfect. This feedback is important. 👍
+
+You’re right — the previous doc explains _features_, but it doesn’t guide a **real Lunacal user** who is trying to configure:
+
+- A **Managed Event**
+- A **Round Robin Event**
+- A **Collective Event**
+
+It reads like a feature list, not like a practical setup guide.
+
+Let’s fix that.
+
+Below is a **user-first, practical help doc** — written from the perspective of someone inside a Workspace trying to configure a team event properly.
+
+---
+
+# How to Configure Team Event Types in Lunacal (Managed, Round Robin & Collective)
+
+Inside your **Workspace → Event Types**, you can create different types of team events.
+
+But configuring them correctly depends on the type of event you choose.
+
+This guide explains exactly what to configure for:
+
+- Managed Events
+- Round Robin Events
+- Collective Events
+
+---
+
+# Step 1: Understand Your Event Type First
+
+Before touching settings, ask:
+
+👉 _How should bookings be assigned?_
+
+### 1️⃣ Managed Event
+
+A single assigned team member handles the event.\
+This works like a standard event but inside a team.
+
+Use this when:
+
+- One specific person owns the meeting
+- Example: CEO Call, Founder Strategy Session
+
+---
+
+### 2️⃣ Round Robin Event
+
+Bookings are automatically distributed among assigned members.
+
+Use this when:
+
+- You want equal distribution
+- Example: Sales Demo Calls
+- Multiple reps available, system assigns automatically
+
+---
+
+### 3️⃣ Collective Event
+
+All assigned members must attend the same meeting.
+
+Use this when:
+
+- You need multiple people present
+- Example: Technical + Sales joint call
+- Panel interviews
+
+---
+
+# Step 2: Configure Each Tab Properly
+
+Now let’s go tab by tab — but from a practical setup perspective.
+
+---
+
+# 🟢 Event Setup (Start Here)
+
+This tab defines what the event is.
+
+Configure:
+
+- Event Name
+- Duration
+- Description
+- Meeting Location
+- Group or Package (if needed)
+
+⚠ Important:
+
+For Round Robin or Collective events, do NOT worry about distribution here.\
+Distribution is controlled inside **Assigned Members**.
+
+This tab is only about how the event looks and behaves publicly.
+
+---
+
+# 🟢 Availability (Very Important for Team Events)
+
+Here’s where most confusion happens.
+
+Availability depends on event type:
+
+### For Managed Events
+
+Availability is based on that assigned member.
+
+You can:
+
+- Use team default availability
+- Override it specifically for this event
+
+---
+
+### For Round Robin
+
+System checks availability of all assigned members.
+
+If at least one member is available → slot shows.
+
+---
+
+### For Collective
+
+System checks overlap availability.
+
+Only time slots where **all assigned members are free** will appear.
+
+If you don’t see slots:
+
+- Check each member’s availability inside Team Members
+- Check time zone conflicts
+
+This is the most common issue users face.
+
+---
+
+# 🟢 Assigned Members (Controls Distribution)
+
+This tab defines who handles the event.
+
+Now it behaves differently per event type:
+
+---
+
+### Managed Event
+
+Assign only ONE primary member.
+
+If you assign multiple by mistake, behavior may not match expectation.
+
+---
+
+### Round Robin
+
+Assign multiple members.
+
+The system will:
+
+- Distribute bookings evenly
+- Skip unavailable members
+- Rotate automatically
+
+If bookings are not distributing:
+
+- Check member availability
+- Check booking limits
+- Ensure members are active
+
+---
+
+### Collective
+
+Assign all required participants.
+
+The system will:
+
+- Only show slots where everyone is free
+- Book the same meeting on all assigned calendars
+
+If no slots show:
+
+- Check overlapping availability
+- Check calendar conflicts
+
+---
+
+# 🟢 Booking Limits (Prevents Chaos)
+
+This tab protects your team.
+
+Set:
+
+- Buffer time
+- Advance notice
+- Daily booking limits
+- Future booking window
+- Required booking questions
+
+For Round Robin especially:\
+If one member is overloaded, check:
+
+- Max bookings per day
+- Individual availability
+- Event limits
+
+---
+
+# 🟢 Payments (If Applicable)
+
+Enable this only if:
+
+- You charge per session
+- You sell consulting
+- You offer paid discovery calls
+
+For internal team meetings → leave this disabled.
+
+---
+
+# 🟢 Workflows (Automation Layer)
+
+This controls:
+
+- Reminder emails
+- Internal notifications
+- Follow-up sequences
+
+Example:
+
+- Send Slack notification when new Round Robin booking is made
+- Send reminder 24 hours before meeting
+
+If notifications aren’t working:\
+Check workflow trigger conditions.
+
+---
+
+# 🟢 Integrations
+
+Important for:
+
+- CRM auto-updates
+- Lead tracking
+- Marketing attribution
+
+Especially useful for Round Robin sales teams.
+
+---
+
+# 🟢 Advanced Settings (Power Controls)
+
+Only adjust these if needed.
+
+Common useful settings:
+
+- Disable rescheduling
+- Require manual approval (good for Collective)
+- Redirect after booking
+- Custom slot intervals
+
+If event behavior feels “wrong,” check here.
+
+---
+
+# Common Problems & Why They Happen
+
+### ❌ No slots showing
+
+- Collective event with no overlapping availability
+- Team member availability misconfigured
+- Booking window too restricted
+
+---
+
+### ❌ Round Robin not distributing equally
+
+- One member unavailable
+- One member hit max bookings limit
+- Member not properly assigned
+
+---
+
+### ❌ Only one member getting all bookings
+
+- Others have limited availability
+- Others have calendar conflicts
+- Booking limits misconfigured
+
+---
+
+# Final Advice for Team Events
+
+When configuring:
+
+1. Choose correct event type first
+2. Assign members correctly
+3. Double-check availability
+4. Then configure booking limits
+5. Test with a real booking link
+
+Team events are powerful — but small configuration mistakes cause most confusion.
+
+---
