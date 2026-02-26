@@ -4,11 +4,11 @@ description: "Use this guide to connect PayPal so you can accept payments for sp
 mode: "wide"
 ---
 
-Use PayPal integration if you want to collect payments before a booking is confirmed.
-You can enable payments for specific events or across an entire team.
+Use PayPal integration if you want to collect payments before a booking is confirmed. You can enable payments for specific events or across an entire team.
 
-> **Before you start:** Make sure you have a PayPal Business account.
-> You’ll need access to the Client ID and Secret Key from your PayPal dashboard.
+> **Before you start:** Make sure you have a PayPal Business account. You’ll need access to the Client ID and Secret Key from your PayPal dashboard.
+>
+> Use a separate Client ID and Secret Key for each lunacal account or teams.
 
 ## Step 1
 
@@ -72,8 +72,7 @@ Click "**Save**" to confirm your settings.
 Your setup is complete. You’ll see a price tag on that event type.\
 Example: A client books the “Workshop” and sees the price on the scheduling page—no surprises, fewer drop-offs
 
-> During booking, attendees must complete payment via PayPal before the meeting is confirmed.
-If payment fails or is cancelled, the booking is not created.
+> During booking, attendees must complete payment via PayPal before the meeting is confirmed. If payment fails or is cancelled, the booking is not created.
 
 <Frame>
   ![](/images/paypal_setup/8.webp)
@@ -81,6 +80,7 @@ If payment fails or is cancelled, the booking is not created.
 
 **Common mistakes to avoid**
 
+- Using same Client ID and Secret Key for each lunacal account or teams.
 - Entering the wrong “Client ID”“Secret Key” (typos break checkout).
 - Forgetting to enable the “paypal” toggle under “integrations” for the event.
 - Setting price but not saving; the event remains free.
@@ -91,5 +91,5 @@ If payment fails or is cancelled, the booking is not created.
 
 - Install PayPal on one paid event first (keep trial/intro events free).
 - Use a single common currency for your main audience.
-- Start with a round price (for example, $25) to simplify checkout and reporting.
+- Start with a round price (for example, \$25) to simplify checkout and reporting.
 - Test one real booking end-to-end before promoting the link.
