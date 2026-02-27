@@ -64,7 +64,8 @@
           "Workspace/teams-service-business",
           "Workspace/manage-event-types",
           "Workspace/manage-team-bookings",
-          "Workspace/manage-team-members"
+          "Workspace/manage-team-members",
+          "Workspace/manage-booking-pages"
         ]
       },
       {
