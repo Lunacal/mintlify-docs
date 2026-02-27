@@ -60,7 +60,7 @@
         ]
       },
       {
-        "group": "Teams & Service Business",
+        "group": "Teams & Workspaces",
         "pages": [
           "workspace/teams-service-business",
           "workspace/manage-event-types",
