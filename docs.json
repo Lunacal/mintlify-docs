@@ -62,13 +62,13 @@
       {
         "group": "Teams & Service Business",
         "pages": [
-          "Workspace/teams-service-business",
-          "Workspace/manage-event-types",
-          "Workspace/manage-team-bookings",
-          "Workspace/manage-team-members",
-          "Workspace/manage-booking-pages",
-          "Workspace/team-integrations",
-          "Workspace/creating-routing-forms"
+          "workspace/teams-service-business",
+          "workspace/manage-event-types",
+          "workspace/manage-team-bookings",
+          "workspace/manage-team-members",
+          "workspace/manage-booking-pages",
+          "workspace/team-integrations",
+          "workspace/creating-routing-forms"
         ]
       },
       {
