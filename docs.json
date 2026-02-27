@@ -24,6 +24,7 @@
           "event-types/create-special-coupons-for-packages",
           "event-types/one-time-link",
           "event-types/managed-event",
+          "event-types/team-integrations",
           "meeting-location"
         ]
       },
