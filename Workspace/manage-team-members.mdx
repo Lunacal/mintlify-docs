@@ -1,4 +1,214 @@
 ---
-title: 'Manage Team Members'
+title: "Manage Team Members"
+description: "The Team Members section allows you to manage everyone inside your workspace."
+mode: "wide"
 ---
 
+---
+
+# Team Members (Workspace)
+
+The **Team Members** section allows you to manage everyone inside your workspace.
+
+From here, you can:
+
+- Add new team members
+- Manage roles
+- Control booking visibility
+- Enable or disable scheduling
+- Assign event types
+- Configure individual availability
+
+This section is available inside a **Team Workspace** only.
+
+
+## Accessing Team Members
+
+1. Switch to your **Team Workspace**
+2. Click **Team Members** from the left sidebar
+
+You’ll see a list of all members with:
+
+- Name & email
+- Role (Owner / Admin / Member)
+- Status (Active)
+- Assigned Events count
+
+
+## Adding a New Team Member
+
+To invite someone:
+
+1. Click **\+ New Team Member**
+2. Enter their email address
+3. Select their role
+4. Send invitation
+
+Once they accept, they will appear in the Team Members list.
+
+> Only Owners and Admins can invite members.
+
+
+## Managing Team Members (Three-Dot Menu)
+
+Next to each member, click the **⋯ (three dots)** menu to access management options.
+
+## 1. Edit Role
+
+Change the member’s role:
+
+- **Owner** – Full control (can disband team)
+- **Admin** – Can manage events and members
+- **Member** – Can manage assigned events only
+
+Use this when promoting or restricting access.
+
+
+## 2. Hide from Booking Page
+
+This removes the member from the **public team booking page**.
+
+Use this when:
+
+- A member should not appear publicly
+- Internal team members shouldn’t be bookable directly
+
+Hidden members can still:
+
+- Be assigned to events
+- Receive bookings (if assigned)
+
+They just won’t appear publicly.
+
+## 3. Disable Scheduling
+
+This temporarily prevents the member from receiving new bookings.
+
+Use this when:
+
+- A member is on leave
+- Temporarily unavailable
+- Transitioning out of the team
+
+Important:
+
+- Existing bookings remain unchanged
+- They simply won’t receive new ones
+
+
+## 4. Remove Member
+
+This permanently removes the user from the workspace.
+
+What happens:
+
+- They lose access to the team workspace
+- They are unassigned from team events
+- Future bookings may require reassignment
+
+Past bookings remain in history.
+
+
+## Clicking on a Team Member (Member Profile Page)
+
+When you click a member’s name, you open their detailed profile.
+
+You’ll see three tabs:
+
+- Profile
+- Availability
+- Assigned Event Types
+
+
+## 1. Profile Tab
+
+Here you can modify:
+
+- Full name
+- Profile photo
+- Contact information
+- Public booking page details
+- Bio or description (if applicable)
+
+Changes here affect how the member appears on booking pages.
+
+
+## 2. Availability Tab
+
+This controls when the member is available for team events.
+
+You can:
+
+- Create new availability schedules
+- Modify working hours
+- Set different time blocks per day
+- Delete old schedules
+
+Important Logic:
+
+Team event availability depends on:
+
+- Event-level availability
+- Member availability
+- Connected calendar availability
+
+If a member is unavailable here, they will not receive bookings — even if the event is active.
+
+
+## 3. Assigned Event Types Tab
+
+Here you control which team events this member participates in.
+
+You can:
+
+- Assign event types
+- Unassign event types
+
+This determines:
+
+- Whether they appear in Round Robin events
+- Whether they are included in Collective events
+- Whether they can host specific event types
+
+If a member is not assigned to an event:
+
+- They will not receive bookings for that event
+
+
+## How Team Member Settings Affect Booking Behavior
+
+Understanding this logic prevents confusion:
+
+| Setting                  | Effect                                 |
+| :----------------------- | :------------------------------------- |
+| Hidden from booking page | Not publicly visible                   |
+| Disabled scheduling      | No new bookings assigned               |
+| Not assigned to event    | Cannot receive bookings for that event |
+| No availability set      | No time slots shown                    |
+| Calendar not connected   | Conflicts may not block                |
+
+
+## Best Practices
+
+- Use **Disable Scheduling** instead of removing members temporarily.
+- Always configure **availability before assigning events**.
+- Review assigned events when promoting or changing roles.
+- Hide internal-only members from the booking page.
+
+
+## Common Mistakes
+
+❌ Assigning an event but not setting availability\
+❌ Leaving a member visible publicly but not assigning events\
+❌ Removing a member without checking future bookings\
+❌ Forgetting to disable scheduling when someone goes on leave
+
+
+If you want, next we can:
+
+- Add a “Role Permissions Table” specific to this page
+- Add a booking flow diagram (how assignment resolves)
+- Or tighten this into a more minimal, product-style version
+
+Tell me which direction your senior prefers:\
+**More detailed** or **more concise but sharp.**
