@@ -68,6 +68,7 @@
           "workspace/manage-team-members",
           "workspace/manage-booking-pages",
           "workspace/team-integrations",
+          "workspace/team-settings",
           "workspace/creating-routing-forms"
         ]
       },
