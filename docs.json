@@ -62,7 +62,8 @@
         "group": "Teams & Service Business",
         "pages": [
           "Workspace/teams-service-business",
-          "Workspace/manage-event-types"
+          "Workspace/manage-event-types",
+          "Workspace/manage-team-bookings"
         ]
       },
       {
