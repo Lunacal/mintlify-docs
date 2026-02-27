@@ -1,24 +1,43 @@
 ---
 title: "Teams & Service Business"
-description: "The Workspace feature in helps you manage teams, shared events, bookings, and settings from one centralized place. Each workspace represents a team, department, or organization, making collaboration and scheduling easier at scale."
+description: "The Workspace feature allows you to manage team scheduling from a centralised environment."
 mode: "wide"
 ---
 
----
+Each workspace represents a team, department, or organization. Inside a workspace, you can manage:
+
+- Shared event types
+- Team bookings
+- Member availability
+- Integrations
+- Branding & domain
+- Permissions
+
+Workspaces are ideal for service businesses, agencies, sales teams, coaching teams, and any organization with multiple schedulers.
 
 ## **What is a Workspace?**
 
 A **Workspace** is a shared environment where a team operates together.\
 Once you switch to a team workspace, your entire dashboard updates to reflect that team’s data — including events, bookings, members, and settings.
 
----
+## Creating a Workspace
 
-## **How to create Workspaces**
+To create a new workspace:
 
-1. Navigate to top-left Dropdown.
-2. Click on Create Team.
+1. Click the workspace dropdown (top-left corner).
+2. Select **Create Team**.
+3. Enter:
+   - Team name
+   - Team URL (slug)
+   - Select timezone
+4. Confirm creation.
 
----
+**After creation** :
+
+- You automatically become the **Owner**
+- You can invite members & admins
+- You can create team event types
+- All settings inside this workspace apply to the team only
 
 ## **Switching Between Workspaces**
 
@@ -27,13 +46,54 @@ You can switch workspaces using the **dropdown in the top-left corner** of your 
 - Select your personal workspace or any team workspace you’re part of
 - When you switch to a team workspace, all sections (events, bookings, settings, etc.) will show **team-level data**
 
----
+| Feature      | Personal Workspace | Team Workspace          |
+| :----------- | :----------------- | :---------------------- |
+| Members      | 1                  | Multiple                |
+| Event Types  | Personal only      | Team events             |
+| Bookings     | Personal bookings  | Team bookings           |
+| Availability | Your own           | Team availability       |
+| Integrations | Personal           | Can apply at team level |
+| Branding     | Personal page      | Team booking page       |
+
+## Team Members & Roles
+
+You can invite members via email.
+
+### Available Roles & Permissions
+
+| Owner              | Admin                     | Member                      |
+| :----------------- | :------------------------ | :-------------------------- |
+| Full control       | Can manage events         | Can manage assigned events  |
+| Can disband team   | Can manage bookings       | Can manage own availability |
+| Can manage billing | Can invite/remove members | Cannot manage team settings |
+| Can assign roles   | Cannot disband team       | Cannot disband team         |
+
+## Team Event Types
+
+Team event types differ from personal events.
+
+They allow multiple members to participate.
+
+When creating a team event, you can configure:
+
+## Event Types
+
+**Round Robin**
+
+- Bookings rotate between assigned members.
+
+**Collective**
+
+- All selected members must be available.
+- The meeting includes everyone.
+
+**One to One Event**
+
+- Booking is routed to a specific member.
 
 ## **Workspace Dashboard Sections**
 
 When you’re inside a team workspace, you’ll see the following tabs on the left sidebar:
-
----
 
 ### **Event Types**
 
@@ -47,8 +107,6 @@ From here, you can:
 
 Learn more: https://help.lunacal.ai/event-types/event-setup
 
----
-
 ### **Bookings**
 
 The **Bookings** section shows all bookings made for team events.
@@ -61,40 +119,17 @@ You can:
 
 Learn more: https://help.lunacal.ai/manage-bookings
 
----
+## Team Members
 
-### **Team Members**
+Manage everyone who belongs to your team workspace. 
 
-Manage everyone who belongs to your team workspace.
-
-From the **Team Members** section, you can:
+From the**T eam Members** section, you can:
 
 - View all team members
 - Invite new members via email
-- Change member roles 
-  - Team Roles
-
-    - Owner
-
-    - Admin
-
-    - Member
+- Change member roles
 - Remove members from the team
 - View each member’s booking page
-
-#### **Managing Individual Team Members**
-
-Clicking on a team member opens detailed controls with multiple tabs:
-
-1. **Profile**
-   - Manage the member’s profile information
-2. **Availability**
-   - Set or update the member’s availability for team events
-3. **Assigned Event Types**
-   - Assign specific event types to that team member
-   - Control which events they are available for
-
----
 
 ### **Booking Page**
 
@@ -105,8 +140,6 @@ You can:
 - View and edit the **team booking page**
 - View and edit **individual team member booking pages**
 - Control branding and page visibility
-
----
 
 ### **Integrations**
 
@@ -119,8 +152,6 @@ You can:
 - Configure other supported integrations for team scheduling
 
 Learn more: https://help.lunacal.ai/integration
-
----
 
 ### **Settings**
 
@@ -158,8 +189,6 @@ From here, you can manage:
 #### **Danger Zone**
 
 - **Disband Team** (permanently deletes the team — this action cannot be undone)
-
----
 
 ## **When Should You Use a Workspace?**
 
