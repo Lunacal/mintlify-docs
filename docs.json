@@ -48,6 +48,7 @@
       {
         "group": "Teams & Workspaces",
         "pages": [
+          "team-booking-page",
           "workspace/teams-service-business",
           "workspace/manage-event-types",
           "workspace/manage-team-bookings",
