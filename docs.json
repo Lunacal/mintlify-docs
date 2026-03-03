@@ -86,6 +86,7 @@
           "integration",
           "adding-calendars",
           "hubspot-integration",
+          "pipedrive-integration",
           "google-tag-manager-integration"
         ]
       },

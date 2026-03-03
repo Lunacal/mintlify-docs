@@ -1,0 +1,119 @@
+---
+title: "Lunacal + Pipedrive Integration"
+description: "Connect Lunacal with Pipedrive and verify contacts and activities."
+---
+
+## How to Connect
+
+1. Go to **Integrations \> CRM \> Pipedrive**
+1. Click **Connect**
+
+   <Frame>
+     ![Screenshot 2026 03 03 At 3 57 16 PM](/images/Screenshot2026-03-03at3.57.16PM.webp)
+   </Frame>
+2. Click on **Personal** **Account** (e,g. Payal Singh )
+
+   <Frame>
+     ![Screenshot 2026 03 03 At 3 57 23 PM](/images/Screenshot2026-03-03at3.57.23PM.webp)
+   </Frame>
+3. Enter **Client id** & **Secret key**
+4. before clicking **SAVE** Copy Callback URL shown in attached image.
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 57 50 PM](/images/Screenshot2026-03-03at3.57.50PM.webp)
+</Frame>
+
+**Paste Callback URL Here ( while you creating app inside pipedrive):**
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 58 03 PM](/images/Screenshot2026-03-03at3.58.03PM.webp)
+</Frame>
+
+**Make sure these scopes are enabled in Pipedrive:**
+
+- Access to information
+- Contacts → Full access
+- Activities → Full access
+- Click **SAVE**
+- Setup **Completed.**
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 58 22 PM](/images/Screenshot2026-03-03at3.58.22PM.webp)
+</Frame>
+
+---
+
+# How to Enable Pipedrive Inside Your Events
+
+- Go to **Event Types**
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 55 49 PM](/images/Screenshot2026-03-03at3.55.49PM-1.webp)
+</Frame>
+
+- Click on your event
+- go to **integrations**
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 55 56 PM](/images/Screenshot2026-03-03at3.55.56PM.webp)
+</Frame>
+
+- Enable **Pipedrive**
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 59 30 PM](/images/Screenshot2026-03-03at3.59.30PM.webp)
+</Frame>
+
+## Make a Booking with Custom Question
+
+1. Open **Booking questions** inside your event.
+2. Click **Add / Edit booking question**.
+
+<Frame>
+  ![Screenshot 2026 03 03 At 3 59 57 PM](/images/Screenshot2026-03-03at3.59.57PM.webp)
+</Frame>
+
+3. Select **Pipedrive Custom Field**.
+3. Enter **API Key** & **Setup your booking question**
+
+<Frame>
+  ![Screenshot 2026 03 03 At 4 00 04 PM](/images/Screenshot2026-03-03at4.00.04PM.webp)
+</Frame>
+
+4. **Save** the question.
+5. Open your booking link.
+
+   <Frame>
+     ![Screenshot 2026 03 03 At 4 01 33 PM](/images/Screenshot2026-03-03at4.01.33PM.png)
+   </Frame>
+6. Fill in the form and submit.
+
+---
+
+## New Contact Created
+
+If the email does not exist in Pipedrive:
+
+- A new **Person** record is automatically created.
+- Name, email, phone, and mapped custom fields are populated.
+
+<Frame>
+  ![Screenshot](/images/Screenshot-1.webp)
+</Frame>
+
+## Existing Contact Updated
+
+If the email already exists:
+
+- The existing **Person** record is updated.
+
+---
+
+## Pipedrive Activity Section
+
+1. Go to **Activities** in Pipedrive.
+2. A new meeting activity is created automatically.
+
+   <Frame>
+     ![Screenshot (1)](/images/Screenshot\(1\).webp)
+   </Frame>
