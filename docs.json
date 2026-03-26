@@ -24,6 +24,7 @@
           "event-types/create-special-coupons-for-packages",
           "event-types/one-time-link",
           "event-types/managed-event",
+          "why-cant-i-edit-this-setting",
           "meeting-location"
         ]
       },
