@@ -94,6 +94,7 @@
       {
         "group": "Workflows",
         "pages": [
+          "ai-call-workflows",
           "sms-and-email-workflows",
           "sms-pricing"
         ]
