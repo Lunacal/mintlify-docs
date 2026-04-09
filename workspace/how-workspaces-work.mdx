@@ -4,169 +4,159 @@ description: "A workspace in Lunacal is the foundation of how your scheduling sy
 mode: "wide"
 ---
 
-## What is a Workspace?
+# **How Workspaces Work in Lunacal**
 
-A workspace is like your **main environment or container** inside Lunacal.
+A **workspace** is your main place for scheduling in Lunacal.
 
-Everything you create belongs to a workspace:
+Think of it like a container for:
 
-- Your booking pages
-- Your event types
-- Your team members
-- Your integrations
+- your booking links
+- your event types
+- your booking pages
+- your routing forms
 
-Think of it like this:
-
-> **Workspace = One company / one setup / one scheduling system**
+You can use a workspace as **one person** or as a **team**.
 
 ---
 
-## When should you use multiple workspaces?
+## **The simple idea**
 
-You should create separate workspaces if:
+A workspace helps Lunacal decide **where bookings should go**.
 
-- You manage **multiple companies**
-- You want **separate branding or booking links**
-- You need **different teams for different businesses**
+- If you work alone, it can behave like your personal scheduling home.
+- If you work with others, it can also run shared team booking flows.
+- The same workspace screen can show both personal and team options.
 
-Each workspace:
-
-- Has its **own booking links**
-- Has its **own team and settings**
-- Works independently from others
+So yes, workspaces are for teams **and** individuals.
 
 ---
 
-## What links are created in a Workspace?
+## **Personal bookings vs team bookings**
 
-Every workspace generates different types of links:
+## **Personal bookings**
 
-### 1. Individual Booking Links
+- Booking is for one person.
+- Your attendee books directly with you.
+- Link usually points to your personal page/event.
 
-- Used for personal scheduling
-- Example: a team member’s own calendar
+## **Team bookings**
 
-### 2. Team Booking Links
-
-- Shared across team members
-- Used for round-robin or collective scheduling
-
-Important: When you first set things up, you may see a **team link**, but each setup can also have its **own direct (individual) link** depending on how events are created.
-
----
-
-## How Teams Work Inside a Workspace
-
-Inside a workspace, you can:
-
-- Add team members
-- Assign events to them
-- Control what they can edit
-
-### Managed Events
-
-- Created by an admin
-- Assigned to team members
-- Some settings may be **locked**
-
-This ensures:
-
-- Consistency across the team
-- No accidental changes
+- Booking starts from a team page or team event.
+- Lunacal can involve multiple people depending on the event setup.
+- Team events can be:
+  - one selected team member
+  - any available team member
+  - multiple team members together (for group/team-style meetings)
 
 ---
 
-## What Happens When Someone Books a Meeting?
+## **How event types, booking pages, and routing forms connect**
 
-When an attendee books:
+## **Event types**
 
-1. They visit a booking link (individual or team)
-2. They select a time slot
-3. They confirm the booking
+These are the meeting options you create (example: Intro Call, Demo, Support Session).
 
-Depending on setup:
+## **Booking pages**
 
-- It may go to a **specific person**
-- Or be distributed across a **team**
+These are the public pages attendees open to pick a time.
 
----
+- Personal booking pages show your personal events.
+- Team booking pages can show team events and/or team members.
 
-## What Attendees See
+## **Routing forms**
 
-From the attendee’s perspective, they do **not see your workspace**.
+These ask questions first, then send people to the right booking option.
 
-They only see:
-
-- A booking page
-- Available time slots
-- Event details
-
-Important: Even if you are using teams or complex setups internally, the attendee experience is **simple and clean**.
+- A routing form can send someone to:
+  - an event booking page, or
+  - another link/page/message
+- This helps direct the right person to the right calendar without manual triage.
 
 ---
 
-## How Everything Connects
+## **What happens when someone books**
 
-Here’s how it all fits together:
+1. Attendee opens a booking link (or finishes a routing form).
+2. Lunacal shows available times.
+3. When they confirm, Lunacal creates the booking and sends confirmations.
+4. The booking is assigned based on your event setup:
+   - personal event: goes to that person
+   - team event: uses team assignment rules
+   - managed one-to-one setup: goes to one assigned member (including “any available” behavior)
 
-- Workspace\
-  → contains teams and events
-- Events\
-  → define what can be booked
-- Booking pages\
-  → show availability to attendees
-- Attendees\
-  → book meetings through links
-
----
-
-## Common Confusions
-
-### “Why do I see a team link first?”
-
-You may see a team link during setup, but:
-
-- You can still create individual links
-- Each event or setup can have its own link
+For “any available” in managed one-to-one flows, Lunacal selects from assigned members automatically.
 
 ---
 
-### “Why can’t I edit some settings?”
+## **What your attendees see**
 
-If you’re part of a team:
+Your attendees see a **clean booking experience**:
 
-- The event may be **managed by an admin**
-- Some settings are locked intentionally
+- they see a booking page
+- they choose a time
+- they get confirmation
 
----
+They do **not** see workspace complexity (internal team/workspace setup screens, assignment settings, or management structure).
 
-### “Do attendees see my workspace?”
-
-No.\
-Attendees only see booking pages — not your internal setup.
+Even if your backend setup is complex, attendee experience stays simple.
 
 ---
 
-## Key Takeaway
+## **Why you see team links even when you work alone**
 
-A workspace helps you:
+This is expected.
 
-- Organize your scheduling system
-- Manage teams and events
-- Keep everything structured and scalable
+Lunacal uses one workspace system that supports both solo and team use.\
+So the interface can still show team-style areas (like team booking pages/links), even if you are the only person using it right now.
 
-But for your attendees:
-
-> Everything looks simple — just a booking page.
+It does not mean you must run a team.
 
 ---
 
-## Best Practice
+## **Why some settings are locked (managed events)**
 
-- Use **one workspace per company**
-- Use **teams for collaboration**
-- Use **separate workspaces for different businesses**
+If an event is a **managed** team event, some settings can be locked for assigned members.
+
+That means:
+
+- an admin/owner controls core settings at the main managed event level
+- assigned members can only change fields that were allowed
+
+This keeps team booking behavior consistent.
 
 ---
 
-If you're still unsure how to structure your workspace, start simple with one setup and expand as needed.
+## **Real examples**
+
+## **Example 1: Solo consultant**
+
+You use one workspace for your own meetings.
+
+- Create personal event types (like “30-min Consultation”).
+- Share your booking link.
+- Optional: use a routing form to qualify leads before sending them to your event.
+
+You may still see team/workspace UI options, but your attendee just sees your booking page.
+
+## **Example 2: Sales \+ Support team**
+
+Your workspace has shared team scheduling.
+
+- Sales team has events for demos.
+- Support team has events for onboarding/help calls.
+- A routing form asks “What do you need?” and routes to the correct booking flow.
+- For managed one-to-one events, attendees can choose a specific member or “any available,” and Lunacal assigns accordingly.
+
+Attendees only see the booking flow, not the internal setup rules.
+
+---
+
+## **Quick takeaway**
+
+A workspace is not “team-only.”\
+It is the scheduling home that powers both:
+
+- **personal booking flows**, and
+- **team booking flows**
+
+The UI can show team capabilities even for individual users, but attendees always get a simple booking experience.
