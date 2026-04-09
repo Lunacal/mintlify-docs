@@ -57,20 +57,8 @@
           "workspace/manage-booking-pages",
           "workspace/team-integrations",
           "workspace/team-settings",
-          "workspace/creating-routing-forms"
-        ]
-      },
-      {
-        "group": "Teams",
-        "pages": [
-          "creating-team",
-          "collective-schedule",
-          "round-robin-scheduling",
-          "team-booking-page",
-          "company-setup",
-          "add-or-remove-team-members",
-          "team-members-onboarding",
-          "individual-events-vs-team-events"
+          "workspace/creating-routing-forms",
+          "team-members-onboarding"
         ]
       },
       {
