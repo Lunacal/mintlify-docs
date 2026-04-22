@@ -1,6 +1,6 @@
 ---
 title: "How Workspaces Work"
-description: "A workspace is where you manage all your bookings in lunacal — your own bookings as well as your team’s (if you have one)."
+description: "A workspace is where you manage all your bookings in lunacal — your own bookings as well as your team's (if you have one)."
 mode: "wide"
 ---
 
@@ -8,128 +8,84 @@ mode: "wide"
 
 A workspace is simply **your home base in lunacal**. It's where all your scheduling lives — your event types, your bookings, your settings.
 
-Every Lunacal account starts with a **Personal Workspace**. This is yours. You don't need a team to use it. You don't need to invite anyone. If you're a solo consultant, freelancer, or individual professional, your Personal Workspace is all you need.
+Every Lunacal account starts with a **Personal Workspace**. This is yours. You don't need a team to use it. If you're a solo consultant, freelancer, or individual professional, your Personal Workspace is all you need.
 
-If you work with others — a sales team, a support team, a group practice — you can also create a **Team Workspace**. A team workspace lets multiple people share event types, booking pages, and scheduling rules.
-
-**The short version:** Workspace = where your scheduling stuff lives. Personal workspace for you. Team workspace for groups.
+If you work with others, you can create a **Team Workspace**. It lets multiple people share event types, booking pages, and scheduling rules.
 
 **How do I share my license with someone?**
 
-The simplest way to extend your paid license to another person is by inviting them to your Team Workspace. Once you invite someone, they gain access to a paid license under your account — no separate purchase required on their end.
+Invite them to your Team Workspace. Once they accept, they get a paid license under your plan — no separate purchase required. They also get their own Personal Workspace for independent scheduling.
 
-**What happens when you invite someone to your Team Workspace?**
-
-When you send a team invitation and the person accepts:
-
-- They are granted a paid license, covered under your plan.
-- They are added as a member of your Team Workspace, with access to shared event types and team settings.
-- They also get a Personal Workspace of their own — a private space where they can manage their own event types, bookings, and scheduling independently, separate from the team.
-
-**Personal Bookings vs. Team Bookings**
+## Personal Bookings vs. Team Bookings
 
 **Personal Bookings**
 
-When you create an event type in your Personal Workspace, it belongs to you alone.
-
-- **Your link:** lunacal.ai/yourname/event-name
-- **Who gets booked:** You. Only you.
-- **Your calendar:** Only your availability matters.
-- **You control everything:** Duration, location, price, custom questions — it's all yours to set.
-
-This is the simplest setup. One person, one calendar, one link.
+One person, one calendar, one link — `lunacal.ai/yourname/event-name`. You control everything: duration, location, price, custom questions.
 
 **Team Bookings**
 
-When you create an event type inside a Team Workspace, it can involve multiple people. There are three ways team bookings work:
+Three ways team bookings work:
 
-- **Round Robin** — Meetings are distributed one-by-one across your team members. Lunacal picks whoever was booked least recently, so the load stays balanced. If you want, you can let the person booking choose a specific team member from a dropdown.
-- **Collective** — The meeting only gets booked when _everyone_ on the team is free at the same time. Useful for group interviews, panel calls, or any meeting where the whole team needs to be present.
-- **One to One Event** **( Managed Events )** — An admin/owner creates one event type and pushes it out to selected team members. Each member gets their own personal version of that event with the same settings. This is how you keep things consistent across a team without making each person set up their own event from scratch. _(More on this below.)_
+- **Round Robin** — Meetings are distributed one-by-one across team members. Lunacal picks whoever was booked least recently. Optionally, let the person booking choose a specific team member.
+- **Collective** — The meeting only books when _everyone_ on the team is free. Useful for group interviews, panel calls, or any meeting where the whole team must be present.
+- **Managed Events** — An admin creates one event type and pushes it to selected team members. Each member gets their own personal version with consistent settings. Members can't edit locked fields.
 
-**How Event Types, Booking Pages, and Routing Forms Fit Together**
+## How Event Types, Booking Pages, and Routing Forms Fit Together
 
-Think of it like this:
+- **Event types** are the meetings you offer (e.g., "30-min Consultation").
+- **Booking pages** are where people pick a time and book with you.
+- **Routing forms** are optional intake forms that ask questions first, then send the person to the right event type.
 
-- **Event types** are the meetings you offer (e.g., "30-min Consultation," "Product Demo").
-- **Booking pages** are where people go to pick a time and book with you.
-- **Routing forms** are optional intake forms that ask questions first, then send the person to the right event type based on their answers.
+**Routing Form** (optional) → asks questions → **Booking Page** → person picks a time → **Booking confirmed**
 
-They connect like a funnel:
+## What Happens When Someone Books
 
-**Routing Form** (optional) → asks questions → sends to the right **Booking Page** → person picks a time → **Booking confirmed**
+1. They visit your booking link (or a routing form sends them there).
+2. They pick a time slot from your available calendar.
+3. They fill in their details and any custom questions.
+4. For paid events, they enter payment and apply a coupon code if available.
+5. They see a confirmation page and receive a confirmation email with everything they need — including links to reschedule or cancel.
 
-You don't need routing forms for simple setups. But if you offer multiple services or need to qualify leads before they book, routing forms save everyone time.
+For round-robin events, Lunacal automatically assigns a team member. For collective events, all team members are added.
 
-**What Happens When Someone Books**
+## What Your Attendees See For Personal Booking Page
 
-Here's what the process looks like, start to finish:
+When someone clicks your username link e.g. [https://lunacal.ai/mario-rossi](https://lunacal.ai/mario-rossi) they see:
 
-1. The person visits your booking link (or fills out a routing form that sends them there).
-2. They see a calendar with your available dates and times.
-3. They pick a time slot.
-4. They fill in their details — name, email, and any custom questions you've added.
-5. For paid events, they enter payment and can apply a coupon code if you've set one up.
-6. They click **Confirm** (or **Pay and Book** for paid events).
-7. They immediately see a confirmation page with the meeting details, location, and options to add it to their calendar.
-8. They get a confirmation email with everything they need — time, location, a calendar file to import, and links to reschedule or cancel if needed.
-
-For round-robin team events, Lunacal automatically assigns the team member behind the scenes. For collective events, all team members are added to the meeting.
-
-**What Your Attendees See For Personal Booking Page**
-
-When someone clicks your username link e,g. [https://lunacal.ai/mario-rossi](https://lunacal.ai/mario-rossi) they see:
-
-- Your name designation and photo
+- Your name, designation and photo
 - All your events you created
 
 <Frame>
-  ![Screenshot (1)](/images/Screenshot-\(1\).webp)
+  ![Screenshot (1)](/images/Screenshot-(1).webp)
 </Frame>
 
-When someone clicks your events bookings link e,g. [https://lunacal.ai/mario-rossi/45-min-session](https://lunacal.ai/mario-rossi/45-min-session), they see:
+When someone clicks your event booking link e.g. [https://lunacal.ai/mario-rossi/45-min-session](https://lunacal.ai/mario-rossi/45-min-session), they see:
 
 - Your name, designation and photo
 - The event title and description
 - Meeting duration
 - Available time slots on a clean calendar
-- widgets on your booking page ( Testimonials, About Us, FAQs, Social Media Posts etc.)
+- Widgets on your booking page (Testimonials, About Us, FAQs, Social Media Posts etc.)
 
 <Frame>
-  ![Screenshot (2)](/images/Screenshot-\(2\).webp)
+  ![Screenshot (2)](/images/Screenshot-(2).webp)
 </Frame>
 
-**What Your Attendees See For Teams Booking Page**
+## What Your Attendees See For Teams Booking Page
 
 - Team name and photo
 - All your team members
 - All team events you created
-- The event title and description
-- Meeting duration
-- widgets on your team booking page ( Testimonials, About Us, FAQs, Social Media Posts etc.)
+- Widgets on your team booking page (Testimonials, About Us, FAQs, Social Media Posts etc.)
 
 <Frame>
   ![Screenshot](/images/Screenshot-3.webp)
 </Frame>
 
-That's it. They don't see:
-
-- Which workspace you're in
-- Whether this is a personal or team event
-- Your admin settings or internal team structure
-- How the event was created (managed, round robin, or otherwise)
-
-If you've embeded your events on an external website, For round-robin events, they may see a dropdown to pick a specific team member (if you've enabled that option) — labeled with names, photos, and titles. Otherwise, it just says something like "Any Professional" and lunacal handles the assignment automatically.
-
-**Bottom line:** Your attendees get a clean, simple booking experience. All the workspace and team logic happens behind the scenes.
-
-**Why You See Team Features (Even If You're Solo)**
-
-This is one of the most common sources of confusion. Here's what's going on:
+## Why You See Team Features (Even If You're Solo)
 
 **"Why does the workspace dropdown show 'Your Teams'?"**
-
-Your workspace selector always shows two sections: **Personal Workspace** at the top, and **Your Teams** below it. If you haven't created or joined any teams, the team section just shows an option to create one. Your Personal Workspace is always there and always works independently.
+Your workspace selector always shows Personal Workspace at the top and Your Teams below. If you haven't created a team, it just shows an option to create one. Your Personal Workspace always works independently.
 
 <img
   src="/images/Screenshot-(3).webp"
@@ -138,79 +94,34 @@ Your workspace selector always shows two sections: **Personal Workspace** at the
   className="mx-auto"
 />
 
-**"Why are some of my event settings locked or grayed out?"**
-
-If a team admin/owner created a **managed event** and assigned it to you, some settings are controlled by the admin/owner — not you. This is by design. It keeps things consistent across the team. You'll see "Locked by the team admin" on those events.
-
-You can still use the event and get booked, but the admin controls things like duration, title, and custom fields. If you need something changed, ask your team admin.
+**"Why are some event settings locked or grayed out?"**
+A team admin created a **managed event** and assigned it to you. They control settings like duration and title to keep things consistent. You'll see "Locked by the team admin" on those fields. Ask your admin if you need a change.
 
 <Frame>
-  ![Screenshot (4)](/images/Screenshot-\(4\).webp)
+  ![Screenshot (4)](/images/Screenshot-(4).webp)
 </Frame>
 
 **"Why does it feel like everything is built for teams?"**
+lunacal uses the same workspace structure for individuals and teams. Your Personal Workspace uses the same tools — team features are additions on top, not replacements. They don't affect your personal scheduling unless you actively set up a team.
 
-lunacal uses the same workspace structure for individuals and teams. Your Personal Workspace uses the same tools and interface — it's not a limited version. The team features are additions on top, not replacements. The interface may show team-related options, but they don't affect your **personal scheduling** unless you actively set up a team.
+## Managed Events: What They Are and Why Settings Are Locked
 
-**Managed Events: What They Are and Why Settings Are Locked**
+1. A team admin creates a managed event (e.g., "Initial Consultation — 30 min").
+2. The admin assigns it to specific members — or the entire team, including future members.
+3. Each member gets their own copy at `lunacal.ai/membername/event-name`.
+4. The admin controls the settings. Members can't change locked fields.
 
-Managed events solve a real problem: when a team admin needs 10 people to offer the same meeting type with the same settings.
+Any changes the admin makes automatically apply to everyone's copy.
 
-Here's how they work:
+## Routing Forms: Sending People to the Right Place
 
-1. A team admin/owner creates a managed event type (e.g., "Initial Consultation — 30 min").
-2. The admin assigns it to specific team members — or to the entire team automatically, including future members.
-3. Each assigned member gets their own copy of that event on their personal booking page.
-4. The link for each member looks like: lunacal.ai/membername/event-name
-5. The admin/owner controls the settings. **Members can't change the title, duration, or other locked fields.**
+1. The person fills out a simple form with your questions.
+2. Based on their answers, Lunacal sends them to the right booking page — or shows a custom message or external redirect.
+3. Their answers can pre-fill the booking form so they don't repeat themselves.
 
-**If you're a team member with a managed event:** You'll see it in your event types list with a note that it's managed. You can get booked through it normally. You just can't edit the settings the admin has locked down.
+Routing forms can belong to your Personal Workspace or a Team Workspace.
 
-**If you're an admin/owner:** You create it once, assign it, and any changes you make automatically apply to everyone's copy.
-
-**Routing Forms: Sending People to the Right Place**
-
-Routing forms are useful when you need to ask a few questions before someone books.
-
-Here's what the person sees:
-
-1. A simple form with your questions (text fields, dropdowns, radio buttons, etc.).
-2. They fill it in and hit submit.
-3. Based on their answers, Lunacal automatically sends them to the right booking page — or shows them a custom message, or redirects them to an external link.
-
-Their form answers can pre-fill the booking form, so they don't have to type the same info twice.
-
-Routing forms can belong to your Personal Workspace or to a Team Workspace.
-
-**Real-World Examples**
-
-**Example 1: Sarah, a Solo Career Coach**
-
-Sarah uses Lunacal on her own. She has:
-
-- A Personal Workspace with her name and branding
-- Two event types: "Discovery Call (15 min)" and "Full Coaching Session (60 min)"
-- A booking page at lunacal.ai/sarah-coach
-
-Her clients visit her link, pick an event, choose a time, and book. Sarah gets notified, the meeting goes on her calendar. Done.
-
-She sees "Teams" in her sidebar but ignores it — it doesn't affect anything.
-
-**Example 2: Greenline Sales Team**
-
-Greenline has a 5-person sales team. Their team admin, Jake, sets things up:
-
-- He creates a **Team Workspace** called "Greenline Sales"
-- He creates a **managed event** called "Product Demo (30 min)" and assigns it to all 5 reps
-- Each rep gets their own bookable link: lunacal.ai/jake/product-demo, lunacal.ai/maria/product-demo, etc.
-- He also creates a **round-robin event** called "Talk to Sales" on the team booking page — leads who don't have a specific rep get automatically assigned to whoever was booked least recently
-- He sets up a **routing form** on the website that asks "Are you a new or existing customer?" — new customers go to the round-robin "Talk to Sales" event, existing customers go to their assigned rep's link
-
-The reps see the managed event in their list but can't change the settings Jake configured. Their personal event types (like "1:1 Check-in") remain fully under their control in their own Personal Workspaces.
-
-Customers visiting the booking page see a clean, simple experience. They have no idea about workspaces, managed events, or round-robin logic. They just pick a time and book.
-
-**Quick Reference**
+## Quick Reference
 
 | **Concept** | **What It Means** |
 | :-- | :-- |
