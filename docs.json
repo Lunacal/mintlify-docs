@@ -43,7 +43,8 @@
           "redirect-url",
           "seo-web",
           "routing-forms",
-          "language-settings"
+          "language-settings",
+          "custom-smtp"
         ]
       },
       {
