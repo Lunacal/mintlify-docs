@@ -23,7 +23,6 @@
           "event-types/coupons",
           "event-types/create-special-coupons-for-packages",
           "event-types/one-time-link",
-          "event-types/managed-event",
           "why-cant-i-edit-this-setting",
           "meeting-location"
         ]
@@ -54,6 +53,7 @@
           "workspace/edit-team-booking-page",
           "workspace/teams-service-business",
           "workspace/manage-event-types",
+          "workspace/managed-event",
           "workspace/manage-team-bookings",
           "workspace/manage-team-members",
           "workspace/manage-booking-pages",
