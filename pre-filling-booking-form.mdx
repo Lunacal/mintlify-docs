@@ -25,17 +25,33 @@ e.g. for the following question (shown in screenshot below), the question would 
 
 🔗 Example URL
 
-> https://lunacal.ai/your-username/your-event?main-goal=Consultation
+> [https://lunacal.ai/your-username/your-event?main-goal=Consultation](https://lunacal.ai/your-username/your-event?main-goal=Consultation)
 
 {yourFieldIdentifier}
 
-> Spaces must be URL-encoded (%20), and + in phone numbers must be URL-encoded as %2B.
+> Spaces must be URL-encoded (%20), and \+ in phone numbers must be URL-encoded as %2B.
 
 <Frame>
   ![Image](/images/image-1.png)
 </Frame>
 
-## **2. Prefill in an Embedded lunacal Calendar**
+### Pre-filling Phone Number Fields
+
+Phone numbers can be pre-filled in two different ways, depending on how the phone field is set up:
+
+**1. Phone as a booking question**
+
+If you've added a **Phone Number** booking question, use the `attendee-phone` parameter:
+
+> `attendee-phone=7037435295`
+
+**2. Phone as the meeting location (Guest Phone Number)**
+
+If your event uses **Guest Phone Number** as the location, pass a `location` object instead. The country code's `+` must be URL-encoded as `%2B`:
+
+> `location={"value":"phone","optionValue":"%2B919999999999"}`
+
+## **2. Pre-fill in an Embedded lunacal Calendar**
 
 You can use the same query parameter method in the embed as well.
 
