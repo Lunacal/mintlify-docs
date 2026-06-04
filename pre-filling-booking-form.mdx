@@ -1,27 +1,25 @@
 ---
-title: "Prefilling lunacal Booking Form"
-description: "If you collect attendee details ( like name, email, phone, etc. ) on your own website form and then redirect users to a lunacal.ai booking embed, you can pre-populate the lunacal booking form with those values so attendees don't have to re-enter them. This makes scheduling smoother and increases conversions."
+title: "Prefilling Lunacal Booking Form"
+description: "If you collect attendee details (like name, email, phone, etc.) on your own website form and then redirect users to a lunacal.ai booking embed, you can pre-populate the lunacal booking form with those values so attendees don't have to re-enter them. This makes scheduling smoother and increases conversions."
 mode: "wide"
 ---
 
 ## How It Works
 
-lunacal supports prefilling booking fields by passing values either:
+Lunacal supports prefilling booking fields by passing values either:
 
-1. via **URL query** **parameters**
+1. via **URL query parameters**
 2. via **embed configuration** (if you embed lunacal directly on your site)
 
-### - - A sample booking form with various fields prefilled. - -
+### A sample booking form with various fields prefilled
 
-![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/pre-fill-2.webp)
+![Sample prefilled booking form](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/pre-fill-2.webp)
 
 ## Step 1 — Find the Internal Label of a Field
 
 Every booking question has an **internal label** (also called an identifier). This is the key you'll use in query parameters or embed config.
 
 **For custom questions you've added:** Go to **Event Settings → Booking Questions**, open any question, and copy its **Internal Label**.
-
-Show Image
 
 **For built-in system fields**, the internal labels are fixed:
 
@@ -41,13 +39,13 @@ Show Image
 
 Append fields as query parameters to your booking URL:
 
-[https://lunacal.ai/your-username/your-event?key=value&key2=value2](https://lunacal.ai/your-username/your-event?key=value&key2=value2)
+`https://lunacal.ai/your-username/your-event?key=value&key2=value2`
 
 ### A. Name
 
-**Full name (single field):** ?name=Jane%20Smith
+**Full name (single field):** `?name=Jane%20Smith`
 
-**First name \+ Last name (if your event uses split name fields):** ?firstName=Jane&lastName=Smith
+**First name \+ Last name (if your event uses split name fields):** `?firstName=Jane&lastName=Smith`
 
 > If both `firstName` and `lastName` are present, they are combined into a single full name automatically.
 
@@ -55,7 +53,7 @@ Append fields as query parameters to your booking URL:
 
 ### B. Email
 
-?email=[jane@example.com](mailto:jane@example.com)
+`?email=jane@example.com`
 
 ---
 
@@ -67,7 +65,7 @@ There are **two separate cases** for phone, depending on how your event is set u
 
 If you added a **Phone Number** question under Booking Questions, use `attendee-phone`:
 
-?attendee-phone=%2B919999999999
+`?attendee-phone=%2B919999999999`
 
 The `+` in a country code must be URL-encoded as `%2B`.
 
@@ -75,7 +73,7 @@ The `+` in a country code must be URL-encoded as `%2B`.
 
 If your event uses **Guest Phone Number** as the location type, pass a `location` JSON object:
 
-?location={"value":"phone","optionValue":"%2B919999999999"}
+`?location={"value":"phone","optionValue":"%2B919999999999"}`
 
 > In this case, `%2B` replaces `+` in the phone number inside the JSON value.
 
@@ -85,9 +83,9 @@ If your event uses **Guest Phone Number** as the location type, pass a `location
 
 Use the question's internal label directly:
 
-?your-internal-label=Your%20answer%20here
+`?your-internal-label=Your%20answer%20here`
 
-Example — if the internal label is `company-name`: ?company-name=Acme%20Corp
+Example — if the internal label is `company-name`: `?company-name=Acme%20Corp`
 
 ---
 
@@ -95,7 +93,7 @@ Example — if the internal label is `company-name`: ?company-name=Acme%20Corp
 
 Same as short text — use the internal label:
 
-?your-internal-label=This%20is%20a%20longer%20answer%20spanning%20multiple%20sentences.
+`?your-internal-label=This%20is%20a%20longer%20answer%20spanning%20multiple%20sentences.`
 
 ---
 
@@ -103,9 +101,9 @@ Same as short text — use the internal label:
 
 Pass the **exact option value** (case-sensitive) that matches one of the dropdown choices:
 
-?your-internal-label=Option%20One
+`?your-internal-label=Option%20One`
 
-Example — if the internal label is `meeting-type` and the option is `"Product Demo"`: ?meeting-type=Product%20Demo
+Example — if the internal label is `meeting-type` and the option is `"Product Demo"`: `?meeting-type=Product%20Demo`
 
 ---
 
@@ -113,7 +111,7 @@ Example — if the internal label is `meeting-type` and the option is `"Product 
 
 Same format as dropdown. Pass the exact label of the option you want pre-selected:
 
-?your-internal-label=Option%20Label
+`?your-internal-label=Option%20Label`
 
 ---
 
@@ -121,9 +119,9 @@ Same format as dropdown. Pass the exact label of the option you want pre-selecte
 
 Pass multiple values for the same key to pre-check multiple options:
 
-?your-internal-label=Option%20One&your-internal-label=Option%20Two
+`?your-internal-label=Option%20One&your-internal-label=Option%20Two`
 
-Example — if the internal label is `topics`: ?topics=Design&topics=Engineering&topics=Marketing
+Example — if the internal label is `topics`: `?topics=Design&topics=Engineering&topics=Marketing`
 
 ---
 
@@ -131,7 +129,7 @@ Example — if the internal label is `topics`: ?topics=Design&topics=Engineering
 
 Pass `true` or `false`:
 
-?your-internal-label=true
+`?your-internal-label=true`
 
 ---
 
@@ -139,13 +137,15 @@ Pass `true` or `false`:
 
 Pass multiple emails using `guests` (or the legacy alias `guest`):
 
-?guests=[alice@example.com](mailto:alice@example.com)&guests=[bob@example.com](mailto:bob@example.com)
+`?guests=alice@example.com&guests=bob@example.com`
 
 ---
 
 ### K. Notes / Meeting Title
 
-?notes=Please%20bring%20the%20Q2%20report ?title=Strategy%20sync%20-%20Q3
+`?notes=Please%20bring%20the%20Q2%20report`
+
+`?title=Strategy%20sync%20-%20Q3`
 
 ---
 
@@ -167,8 +167,6 @@ When embedding Lunacal with the JavaScript snippet, you can pass prefill values 
 Use the question's **internal label** as the key, and the prefill value as the value.
 
 ### Inline Embed Example
-
-javascript
 
 ```javascript
 Lunacal.ns["your-event-slug"]("inline", {
@@ -197,8 +195,6 @@ Lunacal.ns["your-event-slug"]("inline", {
 ```
 
 ### Popup / Float Embed Example
-
-javascript
 
 ```javascript
 Lunacal.ns["your-event-slug"]("floatingButton", {
@@ -244,27 +240,27 @@ Lunacal.ns["your-event-slug"]("floatingButton", {
 
 ---
 
-## 1. Prefill via URL Parameters (Scheduling Page & Embeded Page)
+## 4. Prefill via URL Parameters (Scheduling Page & Embedded Page)
 
-You can pre-fill all the booking questions on the booking form by using their corresponding internal label that you can see in booking question tab.
+You can pre-fill all the booking questions on the booking form by using their corresponding internal label that you can see in the booking question tab.
 
-e.g. for the following question (shown in screenshot below), the question would show up as ”What’s the main goal of this meeting?” and its internal label is ”main-goal”. So, we would use “main-goal” as query param name to prefill the field.
+For example, for the question shown in the screenshot below, the question would show up as "What's the main goal of this meeting?" and its internal label is `main-goal`. So we would use `main-goal` as the query param name to prefill the field.
 
-![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/prefill-image.webp)
+![Booking question internal label](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/prefill-image.webp)
 
 🔗 Example URL
 
-> [https://lunacal.ai/your-username/your-event?main-goal=Consultation](https://lunacal.ai/your-username/your-event?main-goal=Consultation)
+> `https://lunacal.ai/your-username/your-event?main-goal=Consultation`
 
-{yourFieldIdentifier}
+`{yourFieldIdentifier}`
 
-> Spaces must be URL-encoded (%20), and \+ in phone numbers must be URL-encoded as %2B.
+> Spaces must be URL-encoded (`%20`), and `+` in phone numbers must be URL-encoded as `%2B`.
 
 <Frame>
   ![Image](/images/image-1.png)
 </Frame>
 
-## 2. Pre-filling Phone Number Fields
+## 5. Pre-filling Phone Number Fields
 
 Phone numbers can be pre-filled in two different ways, depending on how the phone field is set up:
 
@@ -288,29 +284,29 @@ If your event uses **Guest Phone Number** as the location, pass a `location` obj
   ![Pre1](/images/pre1.webp)
 </Frame>
 
-## **3. Pre-fill in an Embedded lunacal Calendar**
+## 6. Pre-fill in an Embedded Lunacal Calendar
 
 You can use the same query parameter method in the embed as well.
 
 Alternatively, if you prefer not to use query parameters, you can configure the values directly in the embed settings.
 
-## **You have to use booking questions identifier (Internal label ) as key**
+**You have to use the booking question identifier (internal label) as the key.**
 
 ### Inline Embed Example (JavaScript)
 
-```html
-  Lunacal.ai["your-event-slug"]("inline", {
-        elementOrSelector: "#your-event-slug",
-        config: {
-          layout: "",
-          // Add your booking questions here.
-		  // Use the question’s internal label as the key,
-	      // and set the value to the prefill text you want to pass.
-          name: "pre-fill-name",
-          email: "pre-fill-email",
-          "custom-question": "pre-fill-custom-question",
-          check: "pre-fill-check",
-        },
-        calLink: "your-event-slug",
-      }); 
+```javascript
+Lunacal.ai["your-event-slug"]("inline", {
+  elementOrSelector: "#your-event-slug",
+  config: {
+    layout: "",
+    // Add your booking questions here.
+    // Use the question's internal label as the key,
+    // and set the value to the prefill text you want to pass.
+    name: "pre-fill-name",
+    email: "pre-fill-email",
+    "custom-question": "pre-fill-custom-question",
+    check: "pre-fill-check",
+  },
+  calLink: "your-event-slug",
+});
 ```
