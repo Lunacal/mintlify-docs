@@ -43,7 +43,8 @@
           "seo-web",
           "routing-forms",
           "language-settings",
-          "custom-smtp"
+          "custom-smtp",
+          "client-portal"
         ]
       },
       {
