@@ -1,0 +1,277 @@
+---
+title: "Email Theme"
+description: "Email Theme lets Lunacal hosts customize the look and feel of attendee- and booker-facing booking emails — confirmations, reschedules, cancellations, and related updates. You can pick a visual style, adjust brand colors, and control some content visibility so emails feel professional and on-brand."
+---
+
+This guide has two parts:
+
+- **Part 1** — for **hosts** (Lunacal customers) who configure Email Theme
+- **Part 2** — for **recipients** (clients and bookers) who receive those emails
+
+---
+
+# **Part 1 — For Hosts**
+
+## **What is Email Theme?**
+
+Email Theme controls the **visual design** of booking emails sent to people who book with you — your clients, customers, and guests. It does **not** change the underlying booking information (date, time, links, etc.); it changes how that information is presented.
+
+### **Emails it affects (attendee/booker-facing)**
+
+When a theme is active, these **attendee/booker** emails use your chosen design:
+
+| **Email type** | **When it’s sent** |
+| :-- | :-- |
+| **Booking confirmation** | After a booking is confirmed |
+| **Booking rescheduled** | When a booking time changes |
+| **Booking cancelled** | When a booking is cancelled |
+| **Seat cancelled** | When a seat is removed from a group/seated event |
+| **Booking requested** | When a booking needs host approval |
+| **Booking declined** | When a host declines a booking request |
+| **Awaiting payment** | When payment is required to confirm |
+| **Reschedule requested** | When you ask an attendee to pick a new time |
+| **Location updated** | When the meeting location changes |
+
+---
+
+## **Prerequisites**
+
+Before you can use Email Theme, make sure:
+
+1. **Feature availability** — Email Theme is controlled by feature flags in Lunacal:
+   - **Personal accounts:** the `email_templates` feature must be enabled for your workspace.
+   - **Team workspaces:** the `email_templates_teams` feature must be enabled, in addition to the personal flag where applicable. If you don’t see an **Email Theme** tab in Settings, the feature may not be enabled for your account yet. Contact Lunacal support if you believe you should have access.
+2. **Permissions (team workspaces)** — Only **team Owners and Admins** can view and edit team Email Theme settings. Regular team members do not see the Email Theme tab.
+3. **Plan requirements** — Email Theme is not tied to a specific billing plan in the product UI. Access is primarily determined by the feature flags above.
+
+---
+
+## **How to access Email Theme settings**
+
+### **Personal account**
+
+1. Open **Settings** (from the main navigation).
+2. Select the **Email Theme** tab.
+
+Direct link format: `/new-settings?tabName=email-theme`
+
+### **Team workspace**
+
+1. Go to **Manage Teams** and open the team you want to configure.
+2. Open **Team Settings**.
+3. Select the **Email Theme** tab.
+
+Direct link format: `/manage-teams/{teamId}/settings?tabName=email-theme`
+
+> **Note:** The Email Theme tab appears only for **Owners and Admins**. Other team members won’t see it.
+
+---
+
+## **How to choose a theme**
+
+On the Email Theme page, you’ll see four theme options as preview cards:
+
+| **Theme** | **Description** |
+| :-- | :-- |
+| **Default** | Standard Lunacal booking emails (no custom theme saved) |
+| **Minimal** | Clean layout with serif headings and a colored accent bar |
+| **Modern** | Bright, contemporary card-style layout |
+| **Bold** | Dark background with high-contrast accent colors |
+
+**To select a theme:**
+
+1. Click the preview card for the theme you want.
+2. Click **Save**.
+
+The selected card is highlighted with a border when active.
+
+---
+
+## **How to customize a theme**
+
+After selecting **Minimal**, **Modern**, or **Bold** (not Default), click **Customize Email** to open the visual editor.
+
+### **Colors**
+
+In the **Color Styles** panel on the left, you can adjust:
+
+| **Setting** | **What it controls** |
+| :-- | :-- |
+| **Background Color** | Main email background / canvas |
+| **Secondary Background Color** | Accent areas such as the footer bar and action-button backgrounds |
+| **Text Color** | Body and label text |
+| **Highlighted Text Color** | Large heading text and emphasized elements |
+
+Changes preview live in the editor. Click **Save** in the editor (or on the main Email Theme page) to apply them.
+
+### **Content visibility**
+
+Under the **Content** section of the Color Styles panel:
+
+| **Setting** | **Available in UI?** | **What it does** |
+| :-- | :-- | :-- |
+| **Show Booking Questions** | ✅ Yes | When enabled, booking question responses appear in the email. When disabled, they are hidden. |
+| **Show Description** | ❌ Not currently exposed | Supported in the backend, but the toggle is not shown in the Customize Email UI at this time. Event descriptions follow your event-type settings instead. |
+
+> **Note:** A “hide attendees” option exists in the system but is **not** exposed in the Customize Email UI. Attendee visibility for seated events is handled by event-type settings (e.g., “show attendees on booking page”).
+
+### **Reset options**
+
+You have two ways to reset:
+
+1. **Reset within Customize Email** — Click **Reset** in the Color Styles panel header. This restores the selected theme’s **default colors and content toggles** without changing which theme is selected.
+2. **Revert to Lunacal default emails** — Select the **Default** theme card on the main Email Theme page and click **Save**. This removes your saved custom theme and returns attendee emails to standard Lunacal formatting.
+
+When you revert to Default, you’ll see a confirmation toast: _“Reset to default emails.”_
+
+---
+
+## **How to save changes**
+
+1. Make your selections on the Email Theme page and/or in **Customize Email**.
+2. Click **Save** on the Email Theme page.
+
+The **Save** button is enabled only when you have unsaved changes. If you customize inside the editor, saving there also persists your settings.
+
+---
+
+## **How theme priority works**
+
+When a booking email is sent, Lunacal resolves the theme in this order:
+
+1. **Team theme** — If the event belongs to a team that has saved an Email Theme, the **team theme is used**.
+2. **Organizer personal theme** — If there is no team theme (or the booking is on a personal event type), the **organizer’s personal Email Theme** is used.
+3. **Lunacal default** — If neither a team nor a personal theme is saved, attendees receive **standard Lunacal booking emails** (the Default option).
+
+**Examples:**
+
+- You have a personal Minimal theme, but your team has a Bold theme → team bookings use **Bold**.
+- Your team has no theme, but you have a personal Modern theme → your solo bookings use **Modern**.
+- Neither you nor your team has a saved theme → attendees get **Default** Lunacal emails.
+
+---
+
+## **Which emails are themed vs. not themed**
+
+### **✅ Themed (attendee/booker booking emails)**
+
+- Booking confirmation
+- Booking rescheduled
+- Booking cancelled
+- Seat cancelled
+- Booking requested (pending approval)
+- Booking declined
+- Awaiting payment
+- Reschedule requested
+- Location updated
+
+### **❌ Not themed**
+
+| **Category** | **Examples** |
+| :-- | :-- |
+| **Organizer/host emails** | Confirmation, reschedule, cancellation, and request notifications sent **to you** (and team members) |
+| **Workflow emails** | Reminders and custom workflow messages |
+| **OTP & verification** | Package dashboard OTP, account verification, password reset |
+| **Account & admin** | Team invites, organization emails, billing notices, monthly digest |
+| **Other attendee emails** | Video recording/transcript download links, no-show fee charged |
+| **Phone-only bookings** | Attendees on phone-only bookings receive **SMS** instead of email |
+
+---
+
+## **Tips for brand consistency**
+
+1. **Match your Client Portal** — Use the same primary and background colors as your **Client Portal** customization (Settings → Client Portal) so the booking experience feels consistent from email to portal.
+2. **Test with a real booking** — Create a test event, book it with your own email address, and review the confirmation on desktop and mobile.
+3. **Check contrast and accessibility** — Especially with the **Bold** theme, verify that text remains readable against your background colors. Avoid very light text on light backgrounds or dark text on dark backgrounds.
+4. **Use Secondary Background Color for CTAs** — Reschedule, cancel, and “Pay now” buttons use your secondary/primary accent color. Pick a color that stands out clearly.
+5. **Team vs. personal branding** — If you work in a team, set the team theme once so all team event bookings look consistent, regardless of which member is assigned.
+
+---
+
+# **Part 2 — For Recipients (Clients & Bookers)**
+
+## **What you’ll see**
+
+When a Lunacal host or team has Email Theme enabled, the booking emails you receive will look **branded** — custom colors, styled headings, and a polished layout — instead of the plain default Lunacal format.
+
+The email still comes from the host’s booking system and contains the same essential information.
+
+## **What information appears in themed emails**
+
+Depending on the booking and the host’s settings, you may see:
+
+- **Event name** and a clear status heading (e.g., “Booking Confirmed.”, “Booking Rescheduled.”)
+- **Date and time** in your timezone
+- **Location** or meeting link (Zoom, Google Meet, in-person address, etc.)
+- **Organizer name** and other attendees/guests (when applicable)
+- **Booking question responses** (if the host has chosen to show them)
+- **Reschedule** and **Cancel** links (when allowed for that event)
+- **Payment details** and a **Pay now** button (for paid events awaiting payment)
+- **Client Portal** link — to view and manage your bookings with that host
+- **Package links** — if the booking is part of a session package
+
+## **You don’t need to enable anything**
+
+Email Theme is applied **automatically** by the host or team. You don’t sign up for it, install anything, or change any settings. If the host uses a custom theme, your emails simply arrive styled that way.
+
+## **If something doesn’t look right**
+
+### **Email looks broken or unstyled**
+
+- Some email clients (especially older ones) may render colors or layouts differently. Try opening the email in a different client (Gmail, Outlook, Apple Mail).
+- If images or layout appear broken, forward the email to the host and let them know which email app you’re using.
+
+### **Email landed in spam**
+
+- Add the sender to your contacts or mark the email as “Not spam.”
+- Themed emails are still standard transactional messages; spam filters sometimes flag unfamiliar senders regardless of styling.
+
+### **Email doesn’t match what you expected**
+
+- The host controls the theme, colors, and what information is shown. Contact the host directly if details are missing or incorrect.
+- Reschedule and cancel links only appear when the host has allowed those actions for the event.
+
+### **Can you opt out of styled emails?**
+
+**No.** There is no separate setting for recipients to disable Email Theme or receive plain-text-only versions. Styled emails are part of how the host sends booking notifications. Standard email rules apply — you receive transactional booking emails as part of making a booking; unsubscribe options, if any, follow Lunacal’s and the host’s normal email policies, not a separate “theme off” toggle.
+
+---
+
+# **FAQ & Troubleshooting**
+
+### **I don’t see the Email Theme tab. Why?**
+
+- The feature may not be enabled for your account (feature flag).
+- For teams: you must be an **Owner** or **Admin**. Regular members won’t see the tab.
+- For teams: the `email_templates_teams` flag must be enabled.
+
+### **I saved a theme but my test email looks like the old default.**
+
+- Confirm you clicked **Save** after selecting a theme.
+- For team events, check whether a **team theme** is set (it overrides your personal theme).
+- Allow a minute and try a **new** test booking — already-queued emails won’t update retroactively.
+
+### **My personal theme isn’t applying to team bookings.**
+
+This is expected. **Team theme takes priority** over your personal theme when the event belongs to a team.
+
+### **Do workflow reminder emails use my theme?**
+
+**No.** Workflow emails (reminders, follow-ups, etc.) use the standard workflow email format, not Email Theme.
+
+### **Do emails sent to me as the host use my theme?**
+
+**No.** Email Theme applies to **attendee/booker** emails only. Notifications sent to you and your team use the standard organizer email format.
+
+### **What’s the difference between “Reset” in the editor and selecting “Default”?**
+
+- **Reset** (in Customize Email) restores the current theme’s default colors and toggles.
+- **Default** (on the main page) removes your saved theme entirely and reverts all attendee emails to standard Lunacal formatting.
+
+### **Can I show or hide the event description in emails?**
+
+The system supports a “Show Description” setting, but it is **not currently available** in the Customize Email UI. Description visibility is primarily controlled by your **event type** settings.
+
+### **Will changing my theme affect past bookings?**
+
+No. Theme changes apply to **new emails sent after you save**. Previously sent emails are not resent or restyled.

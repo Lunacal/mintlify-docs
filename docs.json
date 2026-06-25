@@ -44,7 +44,8 @@
           "routing-forms",
           "language-settings",
           "custom-smtp",
-          "client-portal"
+          "client-portal",
+          "email-theme"
         ]
       },
       {
