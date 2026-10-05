@@ -1,7 +1,7 @@
 ---
 title: "Get availability"
 description: "Fetch available time slots for an event type over a date range."
-api: "POST https://app.lunacal.com/api/mcp/get-availability"
+api: "POST https://app.lunacal.ai/api/mcp/get-availability"
 authMethod: "bearer"
 ---
 
@@ -97,7 +97,7 @@ Identify the event type in one of two ways:
 <RequestExample>
 
 ```bash By event type ID
-curl -X POST https://app.lunacal.com/api/mcp/get-availability \
+curl -X POST https://app.lunacal.ai/api/mcp/get-availability \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -109,7 +109,7 @@ curl -X POST https://app.lunacal.com/api/mcp/get-availability \
 ```
 
 ```bash By username and slug
-curl -X POST https://app.lunacal.com/api/mcp/get-availability \
+curl -X POST https://app.lunacal.ai/api/mcp/get-availability \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{

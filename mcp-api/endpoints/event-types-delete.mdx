@@ -1,7 +1,7 @@
 ---
 title: "Delete event type"
 description: "Delete an event type while keeping its booking history."
-api: "POST https://app.lunacal.com/api/mcp/event-types/delete"
+api: "POST https://app.lunacal.ai/api/mcp/event-types/delete"
 authMethod: "bearer"
 ---
 
@@ -22,7 +22,7 @@ Deletes an event type. It is removed from listings and can no longer be booked. 
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.com/api/mcp/event-types/delete \
+curl -X POST https://app.lunacal.ai/api/mcp/event-types/delete \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{ "id": 42 }'

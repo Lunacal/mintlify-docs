@@ -1,7 +1,7 @@
 ---
 title: "List bookings"
 description: "Retrieve a paginated list of the user's bookings."
-api: "POST https://app.lunacal.com/api/mcp/bookings/list"
+api: "POST https://app.lunacal.ai/api/mcp/bookings/list"
 authMethod: "bearer"
 ---
 
@@ -158,7 +158,7 @@ Returns bookings where the authenticated user is the host, an attendee, a team a
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.com/api/mcp/bookings/list \
+curl -X POST https://app.lunacal.ai/api/mcp/bookings/list \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
