@@ -1,0 +1,137 @@
+---
+title: "Create booking"
+description: "Book a time slot, or reschedule an existing booking."
+api: "POST https://app.lunacal.com/api/mcp/bookings/create"
+authMethod: "bearer"
+---
+
+Creates a booking for an event type. Bookings go through the same flow as the public Lunacal booking page, so every event type variant — including packages and subscriptions — is handled correctly.
+
+<Tip>
+  Call [Get availability](/mcp-api/endpoints/get-availability) first and pick a returned slot for `start` and `end`.
+</Tip>
+
+## Body
+
+<ParamField body="eventTypeId" type="integer" required>
+  ID of the event type to book.
+</ParamField>
+
+<ParamField body="start" type="string" required>
+  Slot start time in ISO 8601.
+</ParamField>
+
+<ParamField body="end" type="string" required>
+  Slot end time in ISO 8601.
+</ParamField>
+
+<ParamField body="timeZone" type="string" required>
+  Attendee's IANA time zone, e.g. `America/New_York`.
+</ParamField>
+
+<ParamField body="responses" type="object" required>
+  Answers to the event type's booking form. Field names depend on the event type's booking fields.
+
+  <Expandable title="common fields">
+    <ParamField body="name" type="string" required>
+      Attendee's name.
+    </ParamField>
+
+    <ParamField body="email" type="string" required>
+      Attendee's email.
+    </ParamField>
+
+    <ParamField body="location" type="object">
+      Selected location, e.g. `{ "value": "integrations:zoom", "optionValue": "" }`.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="language" type="string">
+  Language for notifications, e.g. `en`.
+</ParamField>
+
+<ParamField body="metadata" type="object">
+  Custom key-value data stored with the booking.
+</ParamField>
+
+<ParamField body="hasHashedBookingLink" default="false" type="boolean">
+  Whether the booking is made through a private (hashed) link.
+</ParamField>
+
+<ParamField body="hashedLink" type="string | null">
+  The private link hash, if `hasHashedBookingLink` is `true`.
+</ParamField>
+
+<ParamField body="rescheduleUid" type="string">
+  UID of an existing booking to reschedule. When set, that booking is moved to the new slot instead of a new booking being created.
+</ParamField>
+
+<ParamField body="rescheduleReason" type="string">
+  Reason for rescheduling. Use with `rescheduleUid`.
+</ParamField>
+
+## Response
+
+Returns the created or rescheduled booking. It has the same shape as items in [List bookings](/mcp-api/endpoints/bookings-list), plus full attendee, reference, and conferencing details.
+
+## Rescheduling
+
+To move an existing booking, send `rescheduleUid` and `rescheduleReason` with the new `start` and `end`. The original booking is cancelled and a new one is created at the new time.
+
+<RequestExample>
+
+```bash Create
+curl -X POST https://app.lunacal.com/api/mcp/bookings/create \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventTypeId": 42,
+    "start": "2026-10-10T09:00:00.000Z",
+    "end": "2026-10-10T09:30:00.000Z",
+    "timeZone": "America/New_York",
+    "responses": {
+      "name": "Alice Smith",
+      "email": "alice@example.com",
+      "location": { "value": "integrations:zoom", "optionValue": "" }
+    },
+    "language": "en"
+  }'
+```
+
+```bash Reschedule
+curl -X POST https://app.lunacal.com/api/mcp/bookings/create \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventTypeId": 42,
+    "start": "2026-10-11T10:00:00.000Z",
+    "end": "2026-10-11T10:30:00.000Z",
+    "timeZone": "America/New_York",
+    "responses": { "name": "Alice Smith", "email": "alice@example.com" },
+    "rescheduleUid": "8f2b1c3e-4d5a-4b6c-9e7f-0a1b2c3d4e5f",
+    "rescheduleReason": "Schedule conflict"
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "uid": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+  "title": "30 min call with Alice",
+  "startTime": "2026-10-10T09:00:00.000Z",
+  "endTime": "2026-10-10T09:30:00.000Z",
+  "status": "ACCEPTED",
+  "location": "integrations:zoom",
+  "attendees": [
+    { "name": "Alice Smith", "email": "alice@example.com", "timeZone": "America/New_York" }
+  ],
+  "references": [],
+  "eventType": { "id": 42, "title": "30 min call", "slug": "30min" }
+}
+```
+
+</ResponseExample>

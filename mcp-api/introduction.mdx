@@ -1,0 +1,69 @@
+---
+title: "Introduction"
+description: "Connect AI assistants and MCP clients to Lunacal to manage availability, bookings, and event types."
+---
+
+The Lunacal MCP API lets Model Context Protocol (MCP) clients — AI assistants, agents, and integrations — act on behalf of a Lunacal user. With a single consent, your client can check availability, create and cancel bookings, and manage event types.
+
+## Base URL
+
+```bash
+https://app.lunacal.com
+```
+
+All endpoints live under `/api/mcp/`.
+
+## Conventions
+
+| Convention | Value |
+| --- | --- |
+| HTTP method | `POST` for every endpoint |
+| Request format | JSON — `Content-Type: application/json` |
+| Authentication | OAuth 2.0 — `Authorization: Bearer <accessToken>` |
+| Timestamps | ISO 8601 in UTC, e.g. `2026-10-10T09:00:00.000Z` |
+| Access token lifetime | 1 hour |
+| Refresh token lifetime | 365 days |
+
+<Note>
+  Every endpoint accepts `POST` only. Any other method returns `405 Method Not Allowed`, including read operations such as listing bookings.
+</Note>
+
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/mcp-api/authentication">
+    Set up the OAuth 2.0 authorization code flow and keep tokens fresh.
+  </Card>
+
+  <Card title="Availability" icon="calendar-clock" href="/mcp-api/endpoints/get-availability">
+    Fetch open time slots for any event type over a date range.
+  </Card>
+
+  <Card title="Bookings" icon="calendar-check" href="/mcp-api/endpoints/bookings-list">
+    List, create, reschedule, and cancel bookings.
+  </Card>
+
+  <Card title="Event types" icon="layer-group" href="/mcp-api/endpoints/event-types-list">
+    Create, configure, publish, and delete event types.
+  </Card>
+</CardGroup>
+
+## Quickstart
+
+<Steps>
+  <Step title="Get user consent">
+    Send the user to the Lunacal consent page and receive an authorization code at your `redirect_uri`. See [Authentication](/mcp-api/authentication).
+  </Step>
+  <Step title="Exchange the code for tokens">
+    Call [`POST /api/mcp/token`](/mcp-api/endpoints/token) to get an access token and a refresh token.
+  </Step>
+  <Step title="Make your first request">
+    Confirm everything works by fetching the user's profile:
+
+    ```bash
+    curl -X POST https://app.lunacal.com/api/mcp/me \
+      -H "Authorization: Bearer $ACCESS_TOKEN" \
+      -H "Content-Type: application/json"
+    ```
+  </Step>
+</Steps>

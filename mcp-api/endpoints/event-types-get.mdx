@@ -1,0 +1,70 @@
+---
+title: "Get event type"
+description: "Retrieve a single event type with its full configuration."
+api: "POST https://app.lunacal.com/api/mcp/event-types/get"
+authMethod: "bearer"
+---
+
+Returns one event type by ID, including booking fields, workflows, hosts, and schedule.
+
+## Body
+
+<ParamField body="id" type="integer" required>
+  ID of the event type.
+</ParamField>
+
+## Response
+
+Returns the full event type object. Key fields include:
+
+| Field | Description |
+| --- | --- |
+| `id`, `title`, `slug`, `description` | Basic details |
+| `length` | Duration in minutes |
+| `hidden`, `isPublished` | Visibility |
+| `price`, `currency` | Pricing, in the smallest currency unit |
+| `locations` | Meeting locations |
+| `schedulingType`, `eventTypeType` | Scheduling mode and Lunacal event variant |
+| `bookingFields` | Questions on the booking form |
+| `workflows`, `webhooks` | Attached automations |
+| `hosts`, `schedule` | Assigned hosts and availability schedule |
+| `seatsPerTimeSlot` | Seats per slot, for seated events |
+| `minSlotsPerPackage`, `maxSlotsPerPackage` | Package settings |
+| `subscriptionEnabled` | Subscription settings |
+| `seoMeta`, `metadata` | SEO and custom metadata |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/event-types/get \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{ "id": 42 }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": 42,
+  "title": "30 min call",
+  "slug": "30min",
+  "length": 30,
+  "hidden": false,
+  "isPublished": true,
+  "description": "A quick call",
+  "price": 0,
+  "currency": "usd",
+  "locations": [{ "type": "integrations:zoom" }],
+  "schedulingType": null,
+  "eventTypeType": "ONE_ON_ONE",
+  "bookingFields": [],
+  "seatsPerTimeSlot": null,
+  "subscriptionEnabled": false,
+  "metadata": {}
+}
+```
+
+</ResponseExample>

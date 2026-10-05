@@ -1,0 +1,139 @@
+---
+title: "Get availability"
+description: "Fetch available time slots for an event type over a date range."
+api: "POST https://app.lunacal.com/api/mcp/get-availability"
+authMethod: "bearer"
+---
+
+Returns open time slots, grouped by date, for an event type between `startTime` and `endTime`.
+
+Identify the event type in one of two ways:
+
+- **By ID** — pass `eventTypeId`. This is the most common option.
+- **By username and slug** — pass `usernameList` and `eventTypeSlug` together. Use this for dynamic or multi-host events.
+
+<Warning>
+  You must send either `eventTypeId`, or both `usernameList` and `eventTypeSlug`. Sending neither returns `400`.
+</Warning>
+
+## Body
+
+<ParamField body="startTime" type="string" required>
+  Start of the date range, in ISO 8601.
+</ParamField>
+
+<ParamField body="endTime" type="string" required>
+  End of the date range, in ISO 8601.
+</ParamField>
+
+<ParamField body="eventTypeId" type="integer">
+  ID of the event type. Required unless you send `usernameList` and `eventTypeSlug`.
+</ParamField>
+
+<ParamField body="usernameList" type="string[]">
+  Usernames of the hosts. Use with `eventTypeSlug`.
+</ParamField>
+
+<ParamField body="eventTypeSlug" type="string">
+  Slug of the event type. Use with `usernameList`.
+</ParamField>
+
+<ParamField body="timeZone" type="string">
+  IANA time zone used to group slots by date, e.g. `America/New_York`.
+</ParamField>
+
+<ParamField body="duration" type="string">
+  Duration in minutes, as a string. For event types that offer multiple durations.
+</ParamField>
+
+<ParamField body="rescheduleUid" type="string">
+  UID of a booking being rescheduled. Its current slot is not treated as busy.
+</ParamField>
+
+<ParamField body="isTeamEvent" type="boolean">
+  Set to `true` for team event types.
+</ParamField>
+
+<ParamField body="orgSlug" type="string">
+  Organization slug, for organization event types.
+</ParamField>
+
+<ParamField body="bookerEmail" type="string">
+  Email of the person booking.
+</ParamField>
+
+<ParamField body="selectedRoundRobinHost" type="string">
+  Limit round-robin availability to this host's username.
+</ParamField>
+
+<ParamField body="startFromFirstAvailable" type="boolean">
+  Start results from the first available day.
+</ParamField>
+
+<ParamField body="debug" type="boolean">
+  Include debugging information in the response.
+</ParamField>
+
+## Response
+
+<ResponseField name="slots" type="object">
+  Available slots keyed by date (`YYYY-MM-DD`).
+
+  <Expandable title="slot properties">
+    <ResponseField name="time" type="string">
+      Slot start time in ISO 8601.
+    </ResponseField>
+
+    <ResponseField name="userIds" type="integer[]">
+      IDs of the hosts available for this slot.
+    </ResponseField>
+
+    <ResponseField name="users" type="string[]">
+      Usernames of the hosts available for this slot.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash By event type ID
+curl -X POST https://app.lunacal.com/api/mcp/get-availability \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventTypeId": 42,
+    "startTime": "2026-10-10T00:00:00.000Z",
+    "endTime": "2026-10-17T00:00:00.000Z",
+    "timeZone": "America/New_York"
+  }'
+```
+
+```bash By username and slug
+curl -X POST https://app.lunacal.com/api/mcp/get-availability \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usernameList": ["alice", "bob"],
+    "eventTypeSlug": "30min-call",
+    "startTime": "2026-10-10T00:00:00.000Z",
+    "endTime": "2026-10-17T00:00:00.000Z"
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "slots": {
+    "2026-10-10": [
+      { "time": "2026-10-10T09:00:00.000Z", "userIds": [1], "users": ["alice"] },
+      { "time": "2026-10-10T09:30:00.000Z", "userIds": [1], "users": ["alice"] }
+    ],
+    "2026-10-11": []
+  }
+}
+```
+
+</ResponseExample>

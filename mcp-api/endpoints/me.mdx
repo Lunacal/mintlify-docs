@@ -1,0 +1,121 @@
+---
+title: "Get current user"
+description: "Retrieve the profile of the authenticated Lunacal user."
+api: "POST https://app.lunacal.com/api/mcp/me"
+authMethod: "bearer"
+---
+
+Returns the profile of the user who authorized your client. Useful for confirming the connection and reading the user's time zone and locale before scheduling.
+
+## Body
+
+The request body is optional. Both fields default to `false`.
+
+<ParamField body="includePasswordAdded" default="false" type="boolean">
+  Include whether the user has set a password.
+</ParamField>
+
+<ParamField body="includeSubscription" default="false" type="boolean">
+  Include the user's subscription details.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="integer">
+  Unique user ID.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Full name.
+</ResponseField>
+
+<ResponseField name="email" type="string">
+  Email address.
+</ResponseField>
+
+<ResponseField name="username" type="string">
+  Username used in booking links.
+</ResponseField>
+
+<ResponseField name="timeZone" type="string">
+  IANA time zone, e.g. `Asia/Kolkata`.
+</ResponseField>
+
+<ResponseField name="locale" type="string">
+  Preferred language, e.g. `en`.
+</ResponseField>
+
+<ResponseField name="weekStart" type="string">
+  First day of the week, e.g. `Sunday`.
+</ResponseField>
+
+<ResponseField name="timeFormat" type="integer">
+  `12` or `24`.
+</ResponseField>
+
+<ResponseField name="avatarUrl" type="string">
+  Profile image URL.
+</ResponseField>
+
+<ResponseField name="bio" type="string">
+  Profile bio.
+</ResponseField>
+
+<ResponseField name="away" type="boolean">
+  Whether the user is marked as away.
+</ResponseField>
+
+<ResponseField name="role" type="string">
+  Account role, e.g. `USER`.
+</ResponseField>
+
+<ResponseField name="brandColor" type="string">
+  Brand color for light mode (hex).
+</ResponseField>
+
+<ResponseField name="darkBrandColor" type="string">
+  Brand color for dark mode (hex).
+</ResponseField>
+
+<ResponseField name="twoFactorEnabled" type="boolean">
+  Whether two-factor authentication is on.
+</ResponseField>
+
+<Note>
+  The response includes additional profile fields beyond those listed here.
+</Note>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/me \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{ "includeSubscription": true }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "username": "jane",
+  "timeZone": "Asia/Kolkata",
+  "locale": "en",
+  "weekStart": "Sunday",
+  "timeFormat": 12,
+  "avatarUrl": "https://...",
+  "bio": "Coach and consultant",
+  "away": false,
+  "role": "USER",
+  "brandColor": "#292929",
+  "darkBrandColor": "#fafafa",
+  "twoFactorEnabled": false
+}
+```
+
+</ResponseExample>

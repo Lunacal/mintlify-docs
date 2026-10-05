@@ -1,0 +1,89 @@
+---
+title: "Exchange code for tokens"
+sidebarTitle: "Get tokens"
+description: "Exchange a one-time authorization code for an access token and refresh token."
+api: "POST https://app.lunacal.com/api/mcp/token"
+---
+
+Exchanges the authorization code from the [consent flow](/mcp-api/authentication) for an access token and refresh token. The code is single-use and expires 10 minutes after it is issued.
+
+<Note>
+  The authorization code goes in the `Authorization` header — not the access token. Your client secret goes in the request body.
+</Note>
+
+## Headers
+
+<ParamField header="Authorization" type="string" required>
+  `Bearer <AUTH_CODE>` — the `code` returned to your `redirect_uri`.
+</ParamField>
+
+## Body
+
+<ParamField body="clientSecret" type="string" required>
+  Your MCP OAuth client secret.
+</ParamField>
+
+## Response
+
+<ResponseField name="accessToken" type="string">
+  Token for authenticating API requests. Valid for 1 hour.
+</ResponseField>
+
+<ResponseField name="expiresAt" type="string">
+  ISO 8601 timestamp when the access token expires.
+</ResponseField>
+
+<ResponseField name="refreshToken" type="string">
+  Token for getting a new token pair. Valid for 365 days.
+</ResponseField>
+
+<ResponseField name="refreshTokenExpiresAt" type="string">
+  ISO 8601 timestamp when the refresh token expires.
+</ResponseField>
+
+## Errors
+
+| Status | Reason |
+| --- | --- |
+| `400` | `code` or `clientSecret` is missing |
+| `400` | The client secret is invalid |
+| `400` | The code was already used |
+| `400` | The code expired (older than 10 minutes) |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/token \
+  -H "Authorization: Bearer $AUTH_CODE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientSecret": "YOUR_CLIENT_SECRET"
+  }'
+```
+
+```javascript JavaScript
+const res = await fetch("https://app.lunacal.com/api/mcp/token", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${authCode}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ clientSecret: process.env.LUNACAL_CLIENT_SECRET }),
+});
+const tokens = await res.json();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "accessToken": "k3J9xQ...base64url",
+  "expiresAt": "2026-10-05T14:00:00.000Z",
+  "refreshToken": "p8Lm2R...base64url",
+  "refreshTokenExpiresAt": "2027-10-05T13:00:00.000Z"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,217 @@
+---
+title: "List bookings"
+description: "Retrieve a paginated list of the user's bookings."
+api: "POST https://app.lunacal.com/api/mcp/bookings/list"
+authMethod: "bearer"
+---
+
+Returns bookings where the authenticated user is the host, an attendee, a team admin, or a seat holder. Results are paginated with a cursor.
+
+## Body
+
+<ParamField body="filters" type="object" required>
+  Filters to apply.
+
+  <Expandable title="properties">
+    <ParamField body="status" type="string" required>
+      Booking status to return. One of `upcoming`, `recurring`, `past`, `cancelled`, `unconfirmed`.
+    </ParamField>
+
+    <ParamField body="teamIds" type="integer[]">
+      Only return bookings for these teams.
+    </ParamField>
+
+    <ParamField body="userIds" type="integer[]">
+      Only return bookings hosted by these users.
+    </ParamField>
+
+    <ParamField body="eventTypeIds" type="integer[]">
+      Only return bookings for these event types.
+    </ParamField>
+
+    <ParamField body="search" type="string">
+      Free-text search across booking title and attendee name.
+    </ParamField>
+
+    <ParamField body="startDate" type="string">
+      Only return bookings starting on or after this ISO 8601 time.
+    </ParamField>
+
+    <ParamField body="endDate" type="string">
+      Only return bookings starting on or before this ISO 8601 time.
+    </ParamField>
+
+    <ParamField body="attendeeEmail" type="string">
+      Only return bookings with this attendee email.
+    </ParamField>
+
+    <ParamField body="includeTeamMembersPersonalBookings" type="boolean">
+      Include personal bookings of team members.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="limit" default="10" type="integer">
+  Number of bookings to return, from `1` to `100`.
+</ParamField>
+
+<ParamField body="cursor" default="0" type="integer">
+  Pagination cursor. Pass the `nextCursor` value from the previous response.
+</ParamField>
+
+## Response
+
+<ResponseField name="bookings" type="object[]">
+  List of bookings.
+
+  <Expandable title="booking properties">
+    <ResponseField name="uid" type="string">
+      Unique booking ID. Use it to cancel or reschedule.
+    </ResponseField>
+
+    <ResponseField name="title" type="string">
+      Booking title.
+    </ResponseField>
+
+    <ResponseField name="startTime" type="string">
+      Start time in ISO 8601.
+    </ResponseField>
+
+    <ResponseField name="endTime" type="string">
+      End time in ISO 8601.
+    </ResponseField>
+
+    <ResponseField name="status" type="string">
+      One of `ACCEPTED`, `CANCELLED`, `REJECTED`, `PENDING`, `AWAITING_HOST`.
+    </ResponseField>
+
+    <ResponseField name="location" type="string">
+      Meeting location, e.g. `Zoom`.
+    </ResponseField>
+
+    <ResponseField name="paid" type="boolean">
+      Whether the booking has been paid.
+    </ResponseField>
+
+    <ResponseField name="rescheduled" type="boolean">
+      Whether the booking was rescheduled.
+    </ResponseField>
+
+    <ResponseField name="isHost" type="boolean">
+      Whether the authenticated user is the host.
+    </ResponseField>
+
+    <ResponseField name="canManage" type="boolean">
+      Whether the authenticated user can manage the booking.
+    </ResponseField>
+
+    <ResponseField name="isEventDeleted" type="boolean">
+      Whether the event type has been deleted.
+    </ResponseField>
+
+    <ResponseField name="recurringEventId" type="string | null">
+      ID of the recurring series, if any.
+    </ResponseField>
+
+    <ResponseField name="cancellationReason" type="string | null">
+      Reason given for cancellation.
+    </ResponseField>
+
+    <ResponseField name="rejectionReason" type="string | null">
+      Reason given for rejection.
+    </ResponseField>
+
+    <ResponseField name="responses" type="object">
+      Answers to the booking form, keyed by field name.
+    </ResponseField>
+
+    <ResponseField name="references" type="object[]">
+      External references such as calendar and video links.
+    </ResponseField>
+
+    <ResponseField name="attendees" type="object[]">
+      Attendees, each with `name`, `email`, and `timeZone`.
+    </ResponseField>
+
+    <ResponseField name="payment" type="object[]">
+      Payment records.
+    </ResponseField>
+
+    <ResponseField name="eventType" type="object">
+      Summary of the event type: `id`, `title`, `slug`, `price`, `currency`, `schedulingType`.
+    </ResponseField>
+
+    <ResponseField name="user" type="object">
+      The host: `id`, `name`, `email`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="recurringInfo" type="object[]">
+  Metadata for recurring bookings.
+</ResponseField>
+
+<ResponseField name="nextCursor" type="integer | null">
+  Cursor for the next page, or `null` when there are no more results.
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/bookings/list \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filters": {
+      "status": "upcoming",
+      "attendeeEmail": "alice@example.com"
+    },
+    "limit": 10
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "bookings": [
+    {
+      "uid": "8f2b1c3e-4d5a-4b6c-9e7f-0a1b2c3d4e5f",
+      "title": "30 min call with Alice",
+      "startTime": "2026-10-10T09:00:00.000Z",
+      "endTime": "2026-10-10T09:30:00.000Z",
+      "status": "ACCEPTED",
+      "location": "Zoom",
+      "paid": false,
+      "rescheduled": false,
+      "isHost": true,
+      "canManage": true,
+      "isEventDeleted": false,
+      "recurringEventId": null,
+      "cancellationReason": null,
+      "rejectionReason": null,
+      "responses": { "name": "Alice", "email": "alice@example.com" },
+      "references": [],
+      "attendees": [
+        { "name": "Alice Smith", "email": "alice@example.com", "timeZone": "UTC" }
+      ],
+      "payment": [],
+      "eventType": {
+        "id": 42,
+        "title": "30 min call",
+        "slug": "30min",
+        "price": 0,
+        "currency": "usd",
+        "schedulingType": null
+      },
+      "user": { "id": 1, "name": "Jane Doe", "email": "jane@example.com" }
+    }
+  ],
+  "recurringInfo": [],
+  "nextCursor": 10
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,41 @@
+---
+title: "Delete event type"
+description: "Delete an event type while keeping its booking history."
+api: "POST https://app.lunacal.com/api/mcp/event-types/delete"
+authMethod: "bearer"
+---
+
+Deletes an event type. It is removed from listings and can no longer be booked. Existing booking history is preserved.
+
+## Body
+
+<ParamField body="id" type="integer" required>
+  ID of the event type to delete.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="integer">
+  ID of the deleted event type.
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/event-types/delete \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{ "id": 42 }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": 42
+}
+```
+
+</ResponseExample>

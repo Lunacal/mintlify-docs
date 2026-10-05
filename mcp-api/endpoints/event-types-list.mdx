@@ -1,0 +1,124 @@
+---
+title: "List event types"
+description: "Retrieve all event types visible to the user, grouped by profile."
+api: "POST https://app.lunacal.com/api/mcp/event-types/list"
+authMethod: "bearer"
+---
+
+Returns every event type the authenticated user can see, grouped by profile: the user's personal profile plus each team they belong to.
+
+## Body
+
+This endpoint takes no body parameters. Send an empty JSON object (`{}`).
+
+## Response
+
+<ResponseField name="eventTypeGroups" type="object[]">
+  One group per profile.
+
+  <Expandable title="group properties">
+    <ResponseField name="profile" type="object">
+      The profile that owns the event types: `slug`, `name`, `image`.
+    </ResponseField>
+
+    <ResponseField name="eventTypes" type="object[]">
+      Event types in this group.
+
+      <Expandable title="event type properties">
+        <ResponseField name="id" type="integer">
+          Event type ID.
+        </ResponseField>
+
+        <ResponseField name="title" type="string">
+          Display name.
+        </ResponseField>
+
+        <ResponseField name="slug" type="string">
+          URL slug.
+        </ResponseField>
+
+        <ResponseField name="length" type="integer">
+          Duration in minutes.
+        </ResponseField>
+
+        <ResponseField name="hidden" type="boolean">
+          Whether it is hidden from the profile page.
+        </ResponseField>
+
+        <ResponseField name="isPublished" type="boolean">
+          Whether it is published.
+        </ResponseField>
+
+        <ResponseField name="schedulingType" type="string | null">
+          `ROUND_ROBIN`, `COLLECTIVE`, `MANAGED`, or `null` for personal event types.
+        </ResponseField>
+
+        <ResponseField name="eventTypeType" type="string">
+          `ONE_ON_ONE`, `GROUP`, `PACKAGE`, `SUBSCRIPTION`, or `DIGITAL_PRODUCT`.
+        </ResponseField>
+
+        <ResponseField name="description" type="string">
+          Description shown on the booking page.
+        </ResponseField>
+
+        <ResponseField name="price" type="integer">
+          Price in the smallest currency unit.
+        </ResponseField>
+
+        <ResponseField name="currency" type="string">
+          Three-letter currency code, e.g. `usd`.
+        </ResponseField>
+
+        <ResponseField name="locations" type="object[]">
+          Meeting locations, e.g. `[{ "type": "integrations:zoom" }]`.
+        </ResponseField>
+
+        <ResponseField name="metadata" type="object">
+          Custom metadata.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/event-types/list \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "eventTypeGroups": [
+    {
+      "profile": { "slug": "jane", "name": "Jane Doe", "image": "https://..." },
+      "eventTypes": [
+        {
+          "id": 42,
+          "title": "30 min call",
+          "slug": "30min",
+          "length": 30,
+          "hidden": false,
+          "isPublished": true,
+          "schedulingType": null,
+          "eventTypeType": "ONE_ON_ONE",
+          "description": "A quick call",
+          "price": 0,
+          "currency": "usd",
+          "locations": [{ "type": "integrations:zoom" }],
+          "metadata": {}
+        }
+      ]
+    }
+  ]
+}
+```
+
+</ResponseExample>

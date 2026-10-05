@@ -147,6 +147,51 @@
         "pages": [
           "responsible-disclosure"
         ]
+      },
+      {
+        "group": "Untitled Group",
+        "pages": []
+      },
+      {
+        "group": "MCP API",
+        "pages": [
+          "mcp-api/introduction",
+          "mcp-api/authentication",
+          "mcp-api/errors",
+          {
+            "group": "Auth endpoints",
+            "pages": [
+              "mcp-api/endpoints/token",
+              "mcp-api/endpoints/refresh"
+            ]
+          },
+          {
+            "group": "Users & availability",
+            "pages": [
+              "mcp-api/endpoints/me",
+              "mcp-api/endpoints/get-availability"
+            ]
+          },
+          {
+            "group": "Booking endpoints",
+            "pages": [
+              "mcp-api/endpoints/bookings-list",
+              "mcp-api/endpoints/bookings-create",
+              "mcp-api/endpoints/bookings-cancel"
+            ]
+          },
+          {
+            "group": "Event type endpoints",
+            "pages": [
+              "mcp-api/endpoints/event-types-list",
+              "mcp-api/endpoints/event-types-get",
+              "mcp-api/endpoints/event-types-create",
+              "mcp-api/endpoints/event-types-update",
+              "mcp-api/endpoints/event-types-delete",
+              "mcp-api/endpoints/event-types-switch-published"
+            ]
+          }
+        ]
       }
     ]
   },

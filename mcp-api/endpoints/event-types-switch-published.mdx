@@ -1,0 +1,61 @@
+---
+title: "Publish or unpublish event type"
+sidebarTitle: "Switch published"
+description: "Toggle whether an event type appears on the public booking page."
+api: "POST https://app.lunacal.com/api/mcp/event-types/switch-published"
+authMethod: "bearer"
+---
+
+Publishes or unpublishes an event type. An unpublished event type is hidden from the public booking page but can still be booked through its direct link.
+
+<Note>
+  This endpoint identifies the event type with `eventId`, not `id`.
+</Note>
+
+## Body
+
+<ParamField body="eventId" type="integer" required>
+  ID of the event type.
+</ParamField>
+
+<ParamField body="isPublished" type="boolean" required>
+  `true` to publish, `false` to unpublish.
+</ParamField>
+
+<ParamField body="teamId" type="integer">
+  Team ID. Required for team event types.
+</ParamField>
+
+<ParamField body="schedulingType" type="string">
+  `ROUND_ROBIN`, `COLLECTIVE`, or `MANAGED`. For team event types.
+</ParamField>
+
+## Response
+
+Returns the updated event type with its new `isPublished` value.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/event-types/switch-published \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventId": 42,
+    "isPublished": false
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": 42,
+  "title": "30 min call",
+  "isPublished": false
+}
+```
+
+</ResponseExample>

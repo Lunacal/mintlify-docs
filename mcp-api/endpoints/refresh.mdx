@@ -1,0 +1,73 @@
+---
+title: "Refresh tokens"
+description: "Rotate an expired access token using a refresh token."
+api: "POST https://app.lunacal.com/api/mcp/refresh"
+---
+
+Issues a new access token and refresh token. Call this when the access token's 1-hour lifetime has passed.
+
+<Warning>
+  Both tokens rotate on every call. The refresh token you submit is invalidated immediately — always store the new `refreshToken` from the response.
+</Warning>
+
+## Body
+
+<ParamField body="clientSecret" type="string" required>
+  Your MCP OAuth client secret.
+</ParamField>
+
+<ParamField body="refreshToken" type="string" required>
+  The current, unused refresh token.
+</ParamField>
+
+## Response
+
+<ResponseField name="accessToken" type="string">
+  New access token. Valid for 1 hour.
+</ResponseField>
+
+<ResponseField name="expiresAt" type="string">
+  ISO 8601 timestamp when the new access token expires.
+</ResponseField>
+
+<ResponseField name="refreshToken" type="string">
+  New refresh token. Valid for 365 days. Replaces the one you sent.
+</ResponseField>
+
+<ResponseField name="refreshTokenExpiresAt" type="string">
+  ISO 8601 timestamp when the new refresh token expires.
+</ResponseField>
+
+## Errors
+
+| Status | Reason |
+| --- | --- |
+| `400` | `clientSecret` or `refreshToken` is missing |
+| `400` | The client is invalid |
+| `400` | The refresh token is invalid, expired, or already used |
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/refresh \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientSecret": "YOUR_CLIENT_SECRET",
+    "refreshToken": "YOUR_REFRESH_TOKEN"
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "accessToken": "new-access-token",
+  "expiresAt": "2026-10-05T15:00:00.000Z",
+  "refreshToken": "new-refresh-token",
+  "refreshTokenExpiresAt": "2027-10-05T14:00:00.000Z"
+}
+```
+
+</ResponseExample>

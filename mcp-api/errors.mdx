@@ -1,0 +1,35 @@
+---
+title: "Errors"
+description: "HTTP status codes returned by the Lunacal MCP API and how to handle them."
+---
+
+The Lunacal MCP API uses standard HTTP status codes. Codes in the `2xx` range mean success, `4xx` codes mean a problem with the request, and `5xx` codes mean a problem on Lunacal's side.
+
+| Status | Meaning | Common causes |
+| --- | --- | --- |
+| `400` | Bad Request | A required field is missing, validation failed, an unknown key was sent to a strict endpoint, or an authorization code or refresh token is invalid, expired, or already used. |
+| `401` | Unauthorized | The `Authorization` header is missing, or the access token is invalid or expired. |
+| `403` | Forbidden | The user doesn't have permission to access or change the resource. |
+| `404` | Not Found | The resource doesn't exist, or the user can't access it. |
+| `405` | Method Not Allowed | The request used a method other than `POST`. |
+| `500` | Server Error | Something went wrong on Lunacal's side. Retry with exponential backoff. |
+
+## Handling errors
+
+<AccordionGroup>
+  <Accordion title="401 — Access token expired">
+    Call [`/api/mcp/refresh`](/mcp-api/endpoints/refresh) to get a new token pair, then retry the original request once.
+  </Accordion>
+
+  <Accordion title="400 — Refresh token invalid">
+    The refresh token has expired, was already used, or was revoked. Send the user through the [authorization flow](/mcp-api/authentication) again.
+  </Accordion>
+
+  <Accordion title="400 — Unknown key on update">
+    [`event-types/update`](/mcp-api/endpoints/event-types-update) uses a strict schema. Remove any fields not listed in its reference.
+  </Accordion>
+
+  <Accordion title="405 — Method not allowed">
+    Every MCP endpoint accepts `POST` only, including read operations.
+  </Accordion>
+</AccordionGroup>

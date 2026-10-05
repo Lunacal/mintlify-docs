@@ -1,0 +1,141 @@
+---
+title: "Create event type"
+description: "Create a personal or team event type."
+api: "POST https://app.lunacal.com/api/mcp/event-types/create"
+authMethod: "bearer"
+---
+
+Creates an event type for the authenticated user. To create a team event type, send `teamId` together with `schedulingType`.
+
+## Body
+
+<ParamField body="title" type="string" required>
+  Display name, e.g. `30 Minute Coaching Call`.
+</ParamField>
+
+<ParamField body="slug" type="string" required>
+  URL-safe slug. Must be unique within the user's or team's profile.
+</ParamField>
+
+<ParamField body="length" type="integer" required>
+  Duration in minutes.
+</ParamField>
+
+<ParamField body="description" type="string">
+  Description shown on the booking page.
+</ParamField>
+
+<ParamField body="hidden" default="false" type="boolean">
+  Hide the event type from the profile page.
+</ParamField>
+
+<ParamField body="isPublished" type="boolean">
+  Whether the event type is published.
+</ParamField>
+
+<ParamField body="locations" type="object[]">
+  Meeting locations, e.g. `[{ "type": "integrations:zoom" }]`.
+</ParamField>
+
+<ParamField body="slotInterval" type="integer">
+  Interval between displayed slots, in minutes.
+</ParamField>
+
+<ParamField body="minimumBookingNotice" type="integer">
+  Minimum notice required before a booking, in minutes.
+</ParamField>
+
+<ParamField body="beforeEventBuffer" type="integer">
+  Buffer time before the event, in minutes.
+</ParamField>
+
+<ParamField body="afterEventBuffer" type="integer">
+  Buffer time after the event, in minutes.
+</ParamField>
+
+<ParamField body="disableGuests" default="false" type="boolean">
+  Prevent attendees from adding guests.
+</ParamField>
+
+<ParamField body="metadata" type="object">
+  Custom metadata.
+</ParamField>
+
+<ParamField body="eventTypeType" default="ONE_ON_ONE" type="string">
+  Lunacal event variant: `ONE_ON_ONE`, `GROUP`, `PACKAGE`, `SUBSCRIPTION`, or `DIGITAL_PRODUCT`.
+</ParamField>
+
+<ParamField body="isDigitalProduct" default="false" type="boolean">
+  Mark the event type as a digital product.
+</ParamField>
+
+### Team event types
+
+<ParamField body="teamId" type="integer">
+  ID of the team that owns the event type. Requires `schedulingType`.
+</ParamField>
+
+<ParamField body="schedulingType" type="string">
+  `ROUND_ROBIN`, `COLLECTIVE`, or `MANAGED`. Required when `teamId` is set.
+</ParamField>
+
+<ParamField body="assignAllTeamMembers" type="boolean">
+  Assign every team member as a host.
+</ParamField>
+
+<ParamField body="assignedTeamMemberIds" type="integer[]">
+  User IDs of the team members to assign as hosts.
+</ParamField>
+
+## Response
+
+Returns the created event type, including its new `id`.
+
+<RequestExample>
+
+```bash Personal
+curl -X POST https://app.lunacal.com/api/mcp/event-types/create \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "30 Minute Coaching Call",
+    "slug": "30min-coaching",
+    "length": 30,
+    "description": "A strategy session",
+    "locations": [{ "type": "integrations:zoom" }],
+    "minimumBookingNotice": 60
+  }'
+```
+
+```bash Team
+curl -X POST https://app.lunacal.com/api/mcp/event-types/create \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Sales Demo",
+    "slug": "sales-demo",
+    "length": 45,
+    "teamId": 7,
+    "schedulingType": "ROUND_ROBIN",
+    "assignedTeamMemberIds": [10, 11]
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": 57,
+  "title": "30 Minute Coaching Call",
+  "slug": "30min-coaching",
+  "length": 30,
+  "description": "A strategy session",
+  "hidden": false,
+  "eventTypeType": "ONE_ON_ONE",
+  "locations": [{ "type": "integrations:zoom" }]
+}
+```
+
+</ResponseExample>

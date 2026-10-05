@@ -1,0 +1,229 @@
+---
+title: "Update event type"
+description: "Change the settings of an existing event type."
+api: "POST https://app.lunacal.com/api/mcp/event-types/update"
+authMethod: "bearer"
+---
+
+Updates an event type. Only `id` is required — send just the fields you want to change.
+
+<Warning>
+  This endpoint uses a strict schema. Any field not listed on this page returns `400`.
+</Warning>
+
+## Body
+
+<ParamField body="id" type="integer" required>
+  ID of the event type to update.
+</ParamField>
+
+### Basic settings
+
+<ParamField body="title" type="string">
+  Display name.
+</ParamField>
+
+<ParamField body="slug" type="string">
+  URL-safe slug.
+</ParamField>
+
+<ParamField body="length" type="integer">
+  Duration in minutes.
+</ParamField>
+
+<ParamField body="description" type="string">
+  Description shown on the booking page.
+</ParamField>
+
+<ParamField body="hidden" type="boolean">
+  Hide from the profile page.
+</ParamField>
+
+<ParamField body="isPublished" type="boolean">
+  Whether the event type is published.
+</ParamField>
+
+<ParamField body="locations" type="object[]">
+  Meeting locations, e.g. `[{ "type": "integrations:zoom" }]`.
+</ParamField>
+
+<ParamField body="bookingFields" type="object[]">
+  Questions on the booking form.
+</ParamField>
+
+<ParamField body="metadata" type="object">
+  Custom metadata.
+</ParamField>
+
+### Scheduling and limits
+
+<ParamField body="slotInterval" type="integer">
+  Interval between displayed slots, in minutes.
+</ParamField>
+
+<ParamField body="minimumBookingNotice" type="integer">
+  Minimum notice before booking, in minutes.
+</ParamField>
+
+<ParamField body="beforeEventBuffer" type="integer">
+  Buffer before the event, in minutes.
+</ParamField>
+
+<ParamField body="afterEventBuffer" type="integer">
+  Buffer after the event, in minutes.
+</ParamField>
+
+<ParamField body="schedule" type="integer | null">
+  Availability schedule ID. `null` uses the default schedule.
+</ParamField>
+
+<ParamField body="seatsPerTimeSlot" type="integer | null">
+  Seats per slot. `null` disables seats.
+</ParamField>
+
+### Guest, reschedule, and cancellation rules
+
+<ParamField body="disableGuests" type="boolean">
+  Prevent attendees from adding guests.
+</ParamField>
+
+<ParamField body="disableReschedule" type="boolean">
+  Prevent attendees from rescheduling.
+</ParamField>
+
+<ParamField body="disableCancelling" type="boolean">
+  Prevent attendees from cancelling.
+</ParamField>
+
+<ParamField body="minimumCancellationNoticeSeconds" type="integer">
+  Minimum notice for cancellation, in seconds.
+</ParamField>
+
+<ParamField body="minimumRescheduleNotice" type="integer">
+  Minimum notice for rescheduling, in seconds.
+</ParamField>
+
+### Pricing
+
+<ParamField body="price" type="integer">
+  Price in the smallest currency unit — for example, `5000` is \$50.00 USD.
+</ParamField>
+
+<ParamField body="currency" type="string">
+  Three-letter currency code, e.g. `usd`.
+</ParamField>
+
+### Team hosts
+
+<ParamField body="assignAllTeamMembers" type="boolean">
+  Assign every team member as a host.
+</ParamField>
+
+<ParamField body="hosts" type="object[]">
+  Hosts for team event types.
+
+  <Expandable title="host properties">
+    <ParamField body="userId" type="integer" required>
+      User ID of the host.
+    </ParamField>
+
+    <ParamField body="isFixed" type="boolean">
+      Whether the host must attend every booking.
+    </ParamField>
+
+    <ParamField body="priority" type="integer">
+      Round-robin priority.
+    </ParamField>
+
+    <ParamField body="isPrimary" type="boolean">
+      Whether this is the primary host.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+### Packages
+
+<ParamField body="minSlotsPerPackage" type="integer">
+  Minimum number of sessions per package.
+</ParamField>
+
+<ParamField body="maxSlotsPerPackage" type="integer">
+  Maximum number of sessions per package.
+</ParamField>
+
+### Subscriptions
+
+<ParamField body="subscriptionEnabled" type="boolean">
+  Turn subscriptions on or off.
+</ParamField>
+
+<ParamField body="subscriptionCadenceType" type="string">
+  `DAILY`, `WEEKLY`, `MONTHLY`, or `YEARLY`.
+</ParamField>
+
+<ParamField body="subscriptionIntervalCount" type="integer">
+  Number of cadence units between renewals, e.g. `1` for every month.
+</ParamField>
+
+<ParamField body="subscriptionDayOfMonth" type="integer">
+  Day of the month for monthly renewals, `1`–`31`.
+</ParamField>
+
+<ParamField body="subscriptionWeekday" type="integer">
+  Weekday for weekly renewals, from `0` (Sunday) to `6` (Saturday).
+</ParamField>
+
+### SEO
+
+<ParamField body="seoMeta" type="object">
+  <Expandable title="properties">
+    <ParamField body="title" type="string">
+      Page title for search engines.
+    </ParamField>
+
+    <ParamField body="description" type="string">
+      Meta description.
+    </ParamField>
+
+    <ParamField body="ogImage" type="string | null">
+      Open Graph image URL.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+## Response
+
+Returns the updated event type.
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.com/api/mcp/event-types/update \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": 42,
+    "length": 60,
+    "price": 5000,
+    "currency": "usd",
+    "minimumBookingNotice": 120
+  }'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "id": 42,
+  "title": "30 min call",
+  "slug": "30min",
+  "length": 60,
+  "price": 5000,
+  "currency": "usd",
+  "minimumBookingNotice": 120
+}
+```
+
+</ResponseExample>
