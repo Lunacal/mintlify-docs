@@ -1,0 +1,258 @@
+---
+title: "Lunacal MCP Server"
+sidebarTitle: "MCP Server"
+description: "Connect Claude, ChatGPT, Gemini, Cursor and other AI agents to Lunacal to check availability, manage bookings and edit event types from chat."
+icon: "plug"
+---
+
+The Lunacal MCP server lets AI assistants and agents work with your Lunacal account through the [Model Context Protocol](https://modelcontextprotocol.io). Once connected, you can ask your assistant things like _"Am I free Thursday afternoon?"_, _"Book a 30-minute call with [priya@acme.com](mailto:priya@acme.com) tomorrow at 3pm"_ or _"Create a 45-minute Strategy Session event type"_ — and it will do it in Lunacal for you.
+
+## Server URL
+
+```bash
+https://mcp.lunacal.ai/mcp
+```
+
+| Detail | Value |
+| --- | --- |
+| Transport | Streamable HTTP |
+| Authentication | OAuth 2.1 with PKCE (sign in with your Lunacal account) |
+| Client registration | Dynamic — no client ID or secret needed |
+
+<Note>
+  You don't need an API key. The first time you connect, your AI client opens a Lunacal sign-in and consent screen. Approve it and the client receives a token that acts on your behalf. You can disconnect at any time from your AI client's connector settings.
+</Note>
+
+## Available tools
+
+The MCP server exposes the following tools. Your AI assistant picks the right one automatically based on what you ask.
+
+### Account & availability
+
+| Tool | What it does | Example prompt |
+| --- | --- | --- |
+| **Get current user** | Returns the connected Lunacal user's profile, timezone and booking page details. | "Which Lunacal account am I connected to?" |
+| **Get availability** | Returns open time slots for an event type within a date range. | "What slots do I have open next Tuesday for my 30-min call?" |
+
+### Bookings
+
+| Tool | What it does | Example prompt |
+| --- | --- | --- |
+| **List bookings** | Lists upcoming, past or cancelled bookings, with attendee details. | "Show my meetings for this week." |
+| **Create booking** | Books a meeting on one of your event types for an attendee. | "Book my Intro Call with [sam@example.com](mailto:sam@example.com) on Friday at 11am." |
+| **Cancel booking** | Cancels an existing booking, optionally with a reason. | "Cancel my 4pm meeting tomorrow — I'm out sick." |
+
+### Event types
+
+| Tool | What it does | Example prompt |
+| --- | --- | --- |
+| **List event types** | Lists all your event types with their duration, slug and status. | "What event types do I have?" |
+| **Get event type** | Returns the full settings of a single event type. | "Show me the settings of my Discovery Call." |
+| **Create event type** | Creates a new event type (title, duration, slug, location and more). | "Create a 60-minute Consultation event with a Zoom link." |
+| **Update event type** | Changes an existing event type's settings. | "Change my Discovery Call to 45 minutes." |
+| **Delete event type** | Permanently deletes an event type. | "Delete my old Webinar event type." |
+| **Switch published** | Publishes or hides (unpublishes) an event type from your booking page. | "Hide my Holiday Special event from my page." |
+
+<Tip>
+  For full request and response details of each operation, see the [API Documentation](/mcp-api/introduction).
+</Tip>
+
+<Warning>
+  Tools such as **Create booking**, **Cancel booking**, **Update event type** and **Delete event type** make real changes to your account and may notify your attendees. Most AI clients ask you to confirm before running them — review the details before approving.
+</Warning>
+
+## Connect your AI agent
+
+<Tabs>
+  <Tab title="Claude">
+    Works on Claude.ai (web), Claude Desktop and the Claude mobile apps.
+
+    <Steps>
+      <Step title="Open Connectors">
+        Go to **Settings → Connectors** in Claude.
+      </Step>
+      <Step title="Add a custom connector">
+        Click **Add custom connector**, enter `Lunacal` as the name and paste the server URL:
+
+        ```bash
+        https://mcp.lunacal.ai/mcp
+        ```
+      </Step>
+      <Step title="Sign in to Lunacal">
+        Click **Connect**. Sign in to Lunacal and approve access on the consent screen.
+      </Step>
+      <Step title="Use it in a chat">
+        In a new chat, open the **\+ / tools** menu, make sure **Lunacal** is enabled, and ask away.
+      </Step>
+    </Steps>
+
+    <Note>
+      On Team and Enterprise plans, an organization Owner may need to add the connector first under **Organization settings → Connectors**.
+    </Note>
+  </Tab>
+  <Tab title="Claude Code">
+    Run this in your terminal:
+
+    ```bash
+    claude mcp add --transport http lunacal https://mcp.lunacal.ai/mcp
+    ```
+
+    Then start Claude Code, type `/mcp`, select **lunacal** and choose **Authenticate** to sign in to Lunacal in your browser.
+  </Tab>
+  <Tab title="ChatGPT">
+    Custom MCP connectors are available on ChatGPT paid plans (Plus, Pro, Business, Enterprise and Edu) on the web.
+
+    <Steps>
+      <Step title="Enable Developer mode">
+        Go to **Settings → Apps & Connectors → Advanced settings** and turn on **Developer mode**.
+      </Step>
+      <Step title="Create the connector">
+        Back in **Apps & Connectors**, click **Create**. Fill in:
+
+        - **Name:** `Lunacal`
+        - **Description:** `Manage Lunacal availability, bookings and event types`
+        - **MCP Server URL:** `https://mcp.lunacal.ai/mcp`
+        - **Authentication:** `OAuth`
+
+        Tick **I trust this application** and click **Create**.
+      </Step>
+      <Step title="Sign in to Lunacal">
+        Sign in to Lunacal and approve access when prompted.
+      </Step>
+      <Step title="Use it in a chat">
+        In a new chat, click **\+ → More → Developer mode** and enable **Lunacal**. Then ask ChatGPT to check your availability or book a meeting.
+      </Step>
+    </Steps>
+
+    <Note>
+      On Business and Enterprise workspaces, an admin may need to allow Developer mode or custom connectors first.
+    </Note>
+  </Tab>
+  <Tab title="Gemini CLI">
+    Add Lunacal to your Gemini CLI settings file (`~/.gemini/settings.json`):
+
+    ```json
+    {
+      "mcpServers": {
+        "lunacal": {
+          "httpUrl": "https://mcp.lunacal.ai/mcp"
+        }
+      }
+    }
+    ```
+
+    Start Gemini CLI and run:
+
+    ```bash
+    /mcp auth lunacal
+    ```
+
+    Your browser opens the Lunacal sign-in page. Once approved, run `/mcp` to confirm the Lunacal tools are listed.
+
+    <Note>
+      The Gemini web and mobile apps don't currently support custom MCP servers. Use Gemini CLI (or Gemini Code Assist in agent mode, which uses the same `settings.json`).
+    </Note>
+  </Tab>
+  <Tab title="Cursor">
+    Open **Cursor Settings → MCP → Add new MCP server**, or edit `~/.cursor/mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "lunacal": {
+          "url": "https://mcp.lunacal.ai/mcp"
+        }
+      }
+    }
+    ```
+
+    Cursor shows a **Needs login** prompt next to the server — click it to sign in to Lunacal.
+  </Tab>
+  <Tab title="VS Code">
+    Requires GitHub Copilot in agent mode. Add this to `.vscode/mcp.json` in your project (or run **MCP: Add Server** from the Command Palette):
+
+    ```json
+    {
+      "servers": {
+        "lunacal": {
+          "type": "http",
+          "url": "https://mcp.lunacal.ai/mcp"
+        }
+      }
+    }
+    ```
+
+    Click **Start** above the server entry and sign in to Lunacal when prompted.
+  </Tab>
+  <Tab title="Windsurf">
+    Open **Windsurf Settings → Cascade → MCP Servers → View raw config** and add:
+
+    ```json
+    {
+      "mcpServers": {
+        "lunacal": {
+          "serverUrl": "https://mcp.lunacal.ai/mcp"
+        }
+      }
+    }
+    ```
+
+    Refresh the MCP list and sign in to Lunacal when prompted.
+  </Tab>
+  <Tab title="Other clients">
+    Any MCP client that supports remote **Streamable HTTP** servers with OAuth can connect directly using:
+
+    ```bash
+    https://mcp.lunacal.ai/mcp
+    ```
+
+    If your client only supports local (stdio) servers, use the [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) bridge:
+
+    ```json
+    {
+      "mcpServers": {
+        "lunacal": {
+          "command": "npx",
+          "args": ["-y", "mcp-remote", "https://mcp.lunacal.ai/mcp"]
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Example prompts
+
+Try these once you're connected:
+
+- "What does my availability look like for the rest of this week?"
+- "Book a Discovery Call with [alex@company.com](mailto:alex@company.com) next Monday at 10am IST."
+- "List all my bookings for tomorrow and cancel the one with John."
+- "Create a 20-minute Quick Chat event type and publish it."
+- "Unpublish my Summer Workshop event."
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="I get an 'invalid_token' or 'unauthorized' error">
+    Your session has expired or was revoked. Disconnect and reconnect the Lunacal connector in your AI client to sign in again.
+  </Accordion>
+
+  <Accordion title="The Lunacal tools don't show up">
+    Make sure the connector is enabled for the current chat (in Claude and ChatGPT, check the tools / Developer mode menu). In CLI and IDE clients, restart the client after editing the config file.
+  </Accordion>
+
+  <Accordion title="The sign-in window doesn't open">
+    Check that pop-ups aren't blocked for your AI client, and that you're using the exact URL `https://mcp.lunacal.ai/mcp`.
+  </Accordion>
+
+  <Accordion title="Bookings show the wrong time">
+    Times are stored in UTC. Mention your timezone in your prompt (for example, "3pm IST") or make sure your Lunacal profile timezone is correct.
+  </Accordion>
+</AccordionGroup>
+
+## Security & privacy
+
+- The AI client only gets access after you approve it on Lunacal's consent screen.
+- Access tokens are short-lived and are sent only to `mcp.lunacal.ai`.
+- Revoke access anytime by removing the Lunacal connector from your AI client.
