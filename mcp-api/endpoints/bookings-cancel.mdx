@@ -1,7 +1,7 @@
 ---
 title: "Cancel booking"
 description: "Cancel a booking, or all remaining bookings in a recurring series."
-api: "POST https://app.lunacal.ai/api/mcp/bookings/cancel"
+api: "POST https://app.lunacal.ai/api/bookings/cancel"
 authMethod: "bearer"
 ---
 
@@ -28,7 +28,7 @@ Returns the updated booking with `status` set to `CANCELLED`.
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.ai/api/mcp/bookings/cancel \
+curl -X POST https://app.lunacal.ai/api/bookings/cancel \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{

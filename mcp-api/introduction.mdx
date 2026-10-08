@@ -11,7 +11,7 @@ The Lunacal MCP API lets Model Context Protocol (MCP) clients — AI assistants,
 https://app.lunacal.ai
 ```
 
-All endpoints live under `/api/mcp/`.
+All endpoints live under `/api/`.
 
 ## Conventions
 
@@ -55,13 +55,13 @@ All endpoints live under `/api/mcp/`.
     Send the user to the Lunacal consent page and receive an authorization code at your `redirect_uri`. See [Authentication](/mcp-api/authentication).
   </Step>
   <Step title="Exchange the code for tokens">
-    Call [`POST /api/mcp/token`](/mcp-api/endpoints/token) to get an access token and a refresh token.
+    Call [`POST /api/token`](/mcp-api/endpoints/token) to get an access token and a refresh token.
   </Step>
   <Step title="Make your first request">
     Confirm everything works by fetching the user's profile:
 
     ```bash
-    curl -X POST https://app.lunacal.ai/api/mcp/me \
+    curl -X POST https://app.lunacal.ai/api/me \
       -H "Authorization: Bearer $ACCESS_TOKEN" \
       -H "Content-Type: application/json"
     ```

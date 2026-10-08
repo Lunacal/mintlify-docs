@@ -1,7 +1,7 @@
 ---
 title: "List event types"
 description: "Retrieve all event types visible to the user, grouped by profile."
-api: "POST https://app.lunacal.ai/api/mcp/event-types/list"
+api: "POST https://app.lunacal.ai/api/event-types/list"
 authMethod: "bearer"
 ---
 
@@ -84,7 +84,7 @@ This endpoint takes no body parameters. Send an empty JSON object (`{}`).
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.ai/api/mcp/event-types/list \
+curl -X POST https://app.lunacal.ai/api/event-types/list \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{}'

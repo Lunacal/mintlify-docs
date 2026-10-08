@@ -1,7 +1,7 @@
 ---
 title: "Create booking"
 description: "Book a time slot, or reschedule an existing booking."
-api: "POST https://app.lunacal.ai/api/mcp/bookings/create"
+api: "POST https://app.lunacal.ai/api/bookings/create"
 authMethod: "bearer"
 ---
 
@@ -82,7 +82,7 @@ To move an existing booking, send `rescheduleUid` and `rescheduleReason` with th
 <RequestExample>
 
 ```bash Create
-curl -X POST https://app.lunacal.ai/api/mcp/bookings/create \
+curl -X POST https://app.lunacal.ai/api/bookings/create \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -100,7 +100,7 @@ curl -X POST https://app.lunacal.ai/api/mcp/bookings/create \
 ```
 
 ```bash Reschedule
-curl -X POST https://app.lunacal.ai/api/mcp/bookings/create \
+curl -X POST https://app.lunacal.ai/api/bookings/create \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{

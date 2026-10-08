@@ -2,7 +2,7 @@
 title: "Publish or unpublish event type"
 sidebarTitle: "Switch published"
 description: "Toggle whether an event type appears on the public booking page."
-api: "POST https://app.lunacal.ai/api/mcp/event-types/switch-published"
+api: "POST https://app.lunacal.ai/api/event-types/switch-published"
 authMethod: "bearer"
 ---
 
@@ -37,7 +37,7 @@ Returns the updated event type with its new `isPublished` value.
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.ai/api/mcp/event-types/switch-published \
+curl -X POST https://app.lunacal.ai/api/event-types/switch-published \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{

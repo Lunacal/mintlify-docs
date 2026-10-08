@@ -9,9 +9,9 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
 
 | Token | Lifetime | Used for |
 | --- | --- | --- |
-| Authorization code | 10 minutes, single use | Exchanging for tokens via `/api/mcp/token` |
+| Authorization code | 10 minutes, single use | Exchanging for tokens via `/api/token` |
 | Access token | 1 hour | Authenticating every data request |
-| Refresh token | 365 days | Getting a new token pair via `/api/mcp/refresh` |
+| Refresh token | 365 days | Getting a new token pair via `/api/refresh` |
 
 ## Authorization flow
 
@@ -36,7 +36,7 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     Verify that `state` matches the value you sent.
   </Step>
   <Step title="Exchange the code for tokens">
-    Send the code to [`POST /api/mcp/token`](/mcp-api/endpoints/token) within 10 minutes. You receive an `accessToken` and a `refreshToken`.
+    Send the code to [`POST /api/token`](/mcp-api/endpoints/token) within 10 minutes. You receive an `accessToken` and a `refreshToken`.
   </Step>
   <Step title="Call the API">
     Include the access token on every request:
@@ -46,16 +46,16 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     ```
   </Step>
   <Step title="Refresh before expiry">
-    When the access token expires (after 1 hour), call [`POST /api/mcp/refresh`](/mcp-api/endpoints/refresh) to get a new token pair.
+    When the access token expires (after 1 hour), call [`POST /api/refresh`](/mcp-api/endpoints/refresh) to get a new token pair.
   </Step>
 </Steps>
 
 ## Token rotation
 
-Every call to `/api/mcp/refresh` rotates **both** tokens. The refresh token you submit is invalidated immediately.
+Every call to `/api/refresh` rotates **both** tokens. The refresh token you submit is invalidated immediately.
 
 <Warning>
-  Always store the new refresh token returned by `/api/mcp/refresh`. Reusing an old refresh token returns `400`, and the user will need to grant consent again.
+  Always store the new refresh token returned by `/api/refresh`. Reusing an old refresh token returns `400`, and the user will need to grant consent again.
 </Warning>
 
 ## Security best practices

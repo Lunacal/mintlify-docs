@@ -1,7 +1,7 @@
 ---
 title: "Get current user"
 description: "Retrieve the profile of the authenticated Lunacal user."
-api: "POST https://app.lunacal.ai/api/mcp/me"
+api: "POST https://app.lunacal.ai/api/me"
 authMethod: "bearer"
 ---
 
@@ -88,7 +88,7 @@ The request body is optional. Both fields default to `false`.
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.ai/api/mcp/me \
+curl -X POST https://app.lunacal.ai/api/me \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{ "includeSubscription": true }'

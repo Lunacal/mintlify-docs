@@ -1,7 +1,7 @@
 ---
 title: "Update event type"
 description: "Change the settings of an existing event type."
-api: "POST https://app.lunacal.ai/api/mcp/event-types/update"
+api: "POST https://app.lunacal.ai/api/event-types/update"
 authMethod: "bearer"
 ---
 
@@ -198,7 +198,7 @@ Returns the updated event type.
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.ai/api/mcp/event-types/update \
+curl -X POST https://app.lunacal.ai/api/event-types/update \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{

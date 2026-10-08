@@ -1,7 +1,7 @@
 ---
 title: "Get event type"
 description: "Retrieve a single event type with its full configuration."
-api: "POST https://app.lunacal.ai/api/mcp/event-types/get"
+api: "POST https://app.lunacal.ai/api/event-types/get"
 authMethod: "bearer"
 ---
 
@@ -36,7 +36,7 @@ Returns the full event type object. Key fields include:
 <RequestExample>
 
 ```bash cURL
-curl -X POST https://app.lunacal.ai/api/mcp/event-types/get \
+curl -X POST https://app.lunacal.ai/api/event-types/get \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{ "id": 42 }'

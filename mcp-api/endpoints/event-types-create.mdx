@@ -1,7 +1,7 @@
 ---
 title: "Create event type"
 description: "Create a personal or team event type."
-api: "POST https://app.lunacal.ai/api/mcp/event-types/create"
+api: "POST https://app.lunacal.ai/api/event-types/create"
 authMethod: "bearer"
 ---
 
@@ -94,7 +94,7 @@ Returns the created event type, including its new `id`.
 <RequestExample>
 
 ```bash Personal
-curl -X POST https://app.lunacal.ai/api/mcp/event-types/create \
+curl -X POST https://app.lunacal.ai/api/event-types/create \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -108,7 +108,7 @@ curl -X POST https://app.lunacal.ai/api/mcp/event-types/create \
 ```
 
 ```bash Team
-curl -X POST https://app.lunacal.ai/api/mcp/event-types/create \
+curl -X POST https://app.lunacal.ai/api/event-types/create \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
