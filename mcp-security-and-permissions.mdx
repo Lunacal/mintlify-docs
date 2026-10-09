@@ -48,7 +48,7 @@ Behind the scenes, the MCP server is a single pre-registered, server-side OAuth 
 </Steps>
 
 <Note>
-  The client secret, registered redirect URIs and the `/api/mcp/token` and `/api/mcp/refresh` endpoints in the [API documentation](/mcp-api/authentication) belong to layer 2. If you are connecting an AI assistant, you don't need any of them.
+  The client secret, registered redirect URIs and the `/api/mcp/token` and `/api/mcp/refresh` endpoints in the [API documentation](/api/authentication) belong to layer 2. If you are connecting an AI assistant, you don't need any of them.
 </Note>
 
 ## Access levels
@@ -80,7 +80,7 @@ All tools act only on the Lunacal account that approved the connection.
 
 ## Expected responses
 
-Each tool returns JSON in the MCP result `content`. Fields match the corresponding endpoint in the [API documentation](/mcp-api/introduction). Timestamps are ISO 8601 in UTC, so clients should convert them to the user's timezone (returned by **Get current user**) before displaying them.
+Each tool returns JSON in the MCP result `content`. Fields match the corresponding endpoint in the [API documentation](/api/introduction). Timestamps are ISO 8601 in UTC, so clients should convert them to the user's timezone (returned by **Get current user**) before displaying them.
 
 ## Failure handling
 

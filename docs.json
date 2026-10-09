@@ -155,40 +155,33 @@
       {
         "group": "API Documentation",
         "pages": [
-          "mcp-api/introduction",
-          "mcp-api/authentication",
-          "mcp-api/errors",
-          {
-            "group": "Auth endpoints",
-            "pages": [
-              "mcp-api/endpoints/token",
-              "mcp-api/endpoints/refresh"
-            ]
-          },
+          "api/introduction",
+          "api/authentication",
+          "api/errors",
           {
             "group": "Users & availability",
             "pages": [
-              "mcp-api/endpoints/me",
-              "mcp-api/endpoints/get-availability"
+              "api/endpoints/me",
+              "api/endpoints/get-availability"
             ]
           },
           {
             "group": "Booking endpoints",
             "pages": [
-              "mcp-api/endpoints/bookings-list",
-              "mcp-api/endpoints/bookings-create",
-              "mcp-api/endpoints/bookings-cancel"
+              "api/endpoints/bookings-list",
+              "api/endpoints/bookings-create",
+              "api/endpoints/bookings-cancel"
             ]
           },
           {
             "group": "Event type endpoints",
             "pages": [
-              "mcp-api/endpoints/event-types-list",
-              "mcp-api/endpoints/event-types-get",
-              "mcp-api/endpoints/event-types-create",
-              "mcp-api/endpoints/event-types-update",
-              "mcp-api/endpoints/event-types-delete",
-              "mcp-api/endpoints/event-types-switch-published"
+              "api/endpoints/event-types-list",
+              "api/endpoints/event-types-get",
+              "api/endpoints/event-types-create",
+              "api/endpoints/event-types-update",
+              "api/endpoints/event-types-delete",
+              "api/endpoints/event-types-switch-published"
             ]
           }
         ]

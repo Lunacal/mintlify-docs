@@ -3,11 +3,7 @@ title: "Authentication"
 description: "Authorize server-side integrations with the OAuth 2.0 authorization code flow."
 ---
 
-The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user grants consent once in the Lunacal web app. Your client then receives a short-lived access token and a long-lived refresh token, so the user does not have to consent again while the refresh token is valid.
-
-<Info>
-  This page covers the **REST API flow** for server-side integrations: a pre-registered client with a client secret and registered redirect URIs. **AI assistants connecting to the [Lunacal MCP Server](/mcp-server) don't use this flow directly** — they authenticate with OAuth 2.1 (PKCE, dynamic client registration, no client secret). See [MCP security & permissions](/mcp-security-and-permissions).
-</Info>
+The Lunacal API uses the **OAuth 2.0 authorization code flow**. The user grants consent once in the Lunacal web app. Your client then receives a short-lived access token and a long-lived refresh token, so the user does not have to consent again while the refresh token is valid.
 
 ## Tokens
 
@@ -43,7 +39,16 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     Verify that `state` matches the value you sent.
   </Step>
   <Step title="Exchange the code for tokens">
-    Send the code to [`POST /api/mcp/token`](/mcp-api/endpoints/token) within 10 minutes. You receive an `accessToken` and a `refreshToken`.
+    Within 10 minutes, send the code to `POST https://app.lunacal.ai/api/mcp/token`. The code goes in the `Authorization` header and your client credentials go in the body:
+
+    ```bash
+    curl -X POST https://app.lunacal.ai/api/mcp/token \
+      -H "Authorization: Bearer $AUTH_CODE" \
+      -H "Content-Type: application/json" \
+      -d '{ "client_id": "YOUR_CLIENT_ID", "clientSecret": "YOUR_CLIENT_SECRET" }'
+    ```
+
+    The response contains `accessToken`, `expiresAt`, `refreshToken` and `refreshTokenExpiresAt`. The code is single-use; a missing, invalid, used or expired code or secret returns `400`.
   </Step>
   <Step title="Call the API">
     Include the access token on every request:
@@ -53,7 +58,15 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     ```
   </Step>
   <Step title="Refresh before expiry">
-    When the access token expires (after 1 hour), call [`POST /api/mcp/refresh`](/mcp-api/endpoints/refresh) to get a new token pair.
+    When the access token expires (after 1 hour), call `POST https://app.lunacal.ai/api/mcp/refresh` to get a new token pair:
+
+    ```bash
+    curl -X POST https://app.lunacal.ai/api/mcp/refresh \
+      -H "Content-Type: application/json" \
+      -d '{ "clientSecret": "YOUR_CLIENT_SECRET", "refreshToken": "YOUR_REFRESH_TOKEN" }'
+    ```
+
+    The response has the same fields as the token exchange.
   </Step>
 </Steps>
 

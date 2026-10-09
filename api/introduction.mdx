@@ -1,13 +1,9 @@
 ---
 title: "Introduction"
-description: "Connect AI assistants and MCP clients to Lunacal to manage availability, bookings, and event types."
+description: "Integrate with Lunacal to manage availability, bookings, and event types."
 ---
 
-The Lunacal MCP API lets Model Context Protocol (MCP) clients — AI assistants, agents, and integrations — act on behalf of a Lunacal user. With a single consent, your client can check availability, create and cancel bookings, and manage event types.
-
-<Info>
-  **Connecting Claude, ChatGPT, Muse or another AI assistant?** You don't need this API or a client secret. Add the [Lunacal MCP Server](/mcp-server) (`https://mcp.lunacal.ai/mcp`) as a connector instead — it uses OAuth 2.1 with PKCE and dynamic client registration. See [MCP security & permissions](/mcp-security-and-permissions) for how the two flows relate.
-</Info>
+The Lunacal API lets your application act on behalf of a Lunacal user. With a single consent, your client can check availability, create and cancel bookings, and manage event types.
 
 ## Base URL
 
@@ -35,19 +31,19 @@ All endpoints live under `/api/`.
 ## What you can do
 
 <CardGroup cols={2}>
-  <Card title="Authentication" icon="key" href="/mcp-api/authentication">
+  <Card title="Authentication" icon="key" href="/api/authentication">
     Set up the OAuth 2.0 authorization code flow and keep tokens fresh.
   </Card>
 
-  <Card title="Availability" icon="calendar-clock" href="/mcp-api/endpoints/get-availability">
+  <Card title="Availability" icon="calendar-clock" href="/api/endpoints/get-availability">
     Fetch open time slots for any event type over a date range.
   </Card>
 
-  <Card title="Bookings" icon="calendar-check" href="/mcp-api/endpoints/bookings-list">
+  <Card title="Bookings" icon="calendar-check" href="/api/endpoints/bookings-list">
     List, create, reschedule, and cancel bookings.
   </Card>
 
-  <Card title="Event types" icon="layer-group" href="/mcp-api/endpoints/event-types-list">
+  <Card title="Event types" icon="layer-group" href="/api/endpoints/event-types-list">
     Create, configure, publish, and delete event types.
   </Card>
 </CardGroup>
@@ -56,10 +52,10 @@ All endpoints live under `/api/`.
 
 <Steps>
   <Step title="Get user consent">
-    Send the user to the Lunacal consent page and receive an authorization code at your `redirect_uri`. See [Authentication](/mcp-api/authentication).
+    Send the user to the Lunacal consent page and receive an authorization code at your `redirect_uri`. See [Authentication](/api/authentication).
   </Step>
   <Step title="Exchange the code for tokens">
-    Call [`POST /api/token`](/mcp-api/endpoints/token) to get an access token and a refresh token.
+    Call `POST /api/mcp/token` to get an access token and a refresh token. See [Authentication](/api/authentication).
   </Step>
   <Step title="Make your first request">
     Confirm everything works by fetching the user's profile:

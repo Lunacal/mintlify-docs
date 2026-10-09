@@ -8,7 +8,7 @@ authMethod: "bearer"
 Creates a booking for an event type. Bookings go through the same flow as the public Lunacal booking page, so every event type variant — including packages and subscriptions — is handled correctly.
 
 <Tip>
-  Call [Get availability](/mcp-api/endpoints/get-availability) first and pick a returned slot for `start` and `end`.
+  Call [Get availability](/api/endpoints/get-availability) first and pick a returned slot for `start` and `end`.
 </Tip>
 
 ## Body
@@ -73,7 +73,7 @@ Creates a booking for an event type. Bookings go through the same flow as the pu
 
 ## Response
 
-Returns the created or rescheduled booking. It has the same shape as items in [List bookings](/mcp-api/endpoints/bookings-list), plus full attendee, reference, and conferencing details.
+Returns the created or rescheduled booking. It has the same shape as items in [List bookings](/api/endpoints/bookings-list), plus full attendee, reference, and conferencing details.
 
 ## Rescheduling
 
