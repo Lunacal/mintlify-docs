@@ -1,0 +1,98 @@
+---
+title: "MCP security & permissions"
+description: "How AI assistants authenticate with the Lunacal MCP server, what each tool can read or change, and how errors are reported."
+---
+
+This page is for admins, reviewers and security teams evaluating the Lunacal MCP server (`https://mcp.lunacal.ai/mcp`) for use with Claude, Muse, ChatGPT and other MCP clients.
+
+## How authentication works
+
+Authentication has **two layers**. AI assistants only ever deal with the first one.
+
+### 1. AI assistant → `mcp.lunacal.ai` (OAuth 2.1, public client)
+
+MCP clients connect using the standard MCP authorization flow:
+
+- They discover the server through `/.well-known/oauth-protected-resource` and `/.well-known/oauth-authorization-server`.
+- They register themselves dynamically (`/register`, RFC 7591). No client ID or client secret is issued to them.
+- They use the authorization code grant with **PKCE (S256)**.
+- They send the resulting token as `Authorization: Bearer` to `https://mcp.lunacal.ai/mcp`.
+
+| Setting | Value |
+| --- | --- |
+| MCP endpoint | `https://mcp.lunacal.ai/mcp` (Streamable HTTP) |
+| Authorization endpoint | `https://mcp.lunacal.ai/authorize` |
+| Token endpoint | `https://mcp.lunacal.ai/token` |
+| Registration endpoint | `https://mcp.lunacal.ai/register` |
+| Grant type | `authorization_code` |
+| PKCE | `S256` |
+| Client authentication | `none` (public client) |
+
+### 2. `mcp.lunacal.ai` → Lunacal (OAuth 2.0, confidential client)
+
+Behind the scenes, the MCP server is a single pre-registered, server-side OAuth client of the Lunacal platform. Its client secret never leaves Lunacal's servers.
+
+<Steps>
+  <Step title="Consent">
+    The user is sent to the Lunacal consent screen, which lists the read and write permissions being granted. If they aren't signed in, they log in first.
+  </Step>
+  <Step title="Approval">
+    When the user clicks **Allow**, Lunacal verifies a CSRF token (HttpOnly, `SameSite=Strict` cookie, 10-minute expiry) and checks `redirect_uri` against the registered list. It then issues a one-time authorization code.
+  </Step>
+  <Step title="Token exchange">
+    The MCP server exchanges the code and its client secret for tokens. The code is single-use and expires after 10 minutes.
+  </Step>
+  <Step title="Rotation">
+    Access tokens last **1 hour** and refresh tokens **365 days**. Every refresh rotates both tokens, and a used refresh token is rejected.
+  </Step>
+</Steps>
+
+<Note>
+  The client secret, registered redirect URIs and the `/api/mcp/token` and `/api/mcp/refresh` endpoints in the [API documentation](/mcp-api/authentication) belong to layer 2. If you are connecting an AI assistant, you don't need any of them.
+</Note>
+
+## Access levels
+
+<Warning>
+  Lunacal currently grants a single access level that includes both read and write tools. To limit an assistant to read-only use, turn off the write tools in your AI client's connector settings (where supported), or keep tool-call confirmation turned on. A read-only access option is on our roadmap.
+</Warning>
+
+## Tools, permissions and side effects
+
+All tools act only on the Lunacal account that approved the connection.
+
+| Tool | Type | Data accessed | Side effects |
+| --- | --- | --- | --- |
+| Get current user | Read | Name, email, timezone, booking page details | None |
+| Get availability | Read | Open time slots for an event type | None |
+| List bookings | Read | Booking times and status, **attendee names and emails** | None |
+| List event types | Read | Title, duration, slug, published status | None |
+| Get event type | Read | Full settings of one event type | None |
+| Create booking | **Write** | Event type, attendee details | Creates a booking on your calendar and may notify the attendee |
+| Cancel booking | **Write — destructive** | An existing booking | Cancels the booking and may notify the attendee. Can't be undone |
+| Create event type | **Write** | Event type settings | Adds a new event type to your account |
+| Update event type | **Write** | Event type settings | Changes apply immediately to future bookings |
+| Switch published | **Write** | An event type | Shows or hides the event type on your public booking page |
+
+<Tip>
+  Most AI clients ask you to confirm before running a write tool. Review the details — especially attendee, date and time — before approving.
+</Tip>
+
+## Expected responses
+
+Each tool returns JSON in the MCP result `content`. Fields match the corresponding endpoint in the [API documentation](/mcp-api/introduction). Timestamps are ISO 8601 in UTC, so clients should convert them to the user's timezone (returned by **Get current user**) before displaying them.
+
+## Failure handling
+
+| Situation | What the client sees | What to do |
+| --- | --- | --- |
+| Missing or expired access token | HTTP `401` | The client re-runs the sign-in flow |
+| Invalid input (bad date, unknown event type) | A tool error with a message | Fix the input and retry |
+| Slot no longer available | A tool error | Fetch availability again and choose another slot |
+| Resource not found or not yours | A tool error | Check the ID |
+| Lunacal server error | `5xx` | Retry with exponential backoff. Before retrying a write, check whether the first attempt succeeded |
+
+## Revoking access
+
+- Remove the Lunacal connector in your AI client to revoke its access.
+- Access tokens are short-lived and are only ever sent to `mcp.lunacal.ai`.

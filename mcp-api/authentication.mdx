@@ -1,17 +1,21 @@
 ---
 title: "Authentication"
-description: "Authorize MCP clients with the OAuth 2.0 authorization code flow."
+description: "Authorize server-side integrations with the OAuth 2.0 authorization code flow."
 ---
 
 The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user grants consent once in the Lunacal web app. Your client then receives a short-lived access token and a long-lived refresh token, so the user does not have to consent again while the refresh token is valid.
+
+<Info>
+  This page covers the **REST API flow** for server-side integrations: a pre-registered client with a client secret and registered redirect URIs. **AI assistants connecting to the [Lunacal MCP Server](/mcp-server) don't use this flow directly** — they authenticate with OAuth 2.1 (PKCE, dynamic client registration, no client secret). See [MCP security & permissions](/mcp-security-and-permissions).
+</Info>
 
 ## Tokens
 
 | Token | Lifetime | Used for |
 | --- | --- | --- |
-| Authorization code | 10 minutes, single use | Exchanging for tokens via `/api/token` |
+| Authorization code | 10 minutes, single use | Exchanging for tokens via `/api/mcp/token` |
 | Access token | 1 hour | Authenticating every data request |
-| Refresh token | 365 days | Getting a new token pair via `/api/refresh` |
+| Refresh token | 365 days | Getting a new token pair via `/api/mcp/refresh` |
 
 ## Authorization flow
 
@@ -20,11 +24,14 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     Open the user's browser at the Lunacal authorization page:
 
     ```bash
-    GET https://app.lunacal.ai/auth/platform/authorize?redirect_uri=<REDIRECT_URI>&state=<STATE>
+    GET https://app.lunacal.ai/auth/platform/authorize?redirect_uri=<REDIRECT_URI>&state=<STATE>&client_id=<CLIENT_ID>
     ```
 
     - `redirect_uri` — **required.** Must be registered for your client.
     - `state` — recommended. An opaque random string; it is returned unchanged so you can guard against CSRF.
+    - `client_id` — optional. Your OAuth client ID.
+
+    The consent screen lists the read and write permissions your client is requesting.
   </Step>
   <Step title="The user approves access">
     The user signs in (if needed) and clicks **Allow**. Lunacal redirects the browser to your `redirect_uri`:
@@ -36,7 +43,7 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     Verify that `state` matches the value you sent.
   </Step>
   <Step title="Exchange the code for tokens">
-    Send the code to [`POST /api/token`](/mcp-api/endpoints/token) within 10 minutes. You receive an `accessToken` and a `refreshToken`.
+    Send the code to [`POST /api/mcp/token`](/mcp-api/endpoints/token) within 10 minutes. You receive an `accessToken` and a `refreshToken`.
   </Step>
   <Step title="Call the API">
     Include the access token on every request:
@@ -46,16 +53,16 @@ The Lunacal MCP API uses the **OAuth 2.0 authorization code flow**. The user gra
     ```
   </Step>
   <Step title="Refresh before expiry">
-    When the access token expires (after 1 hour), call [`POST /api/refresh`](/mcp-api/endpoints/refresh) to get a new token pair.
+    When the access token expires (after 1 hour), call [`POST /api/mcp/refresh`](/mcp-api/endpoints/refresh) to get a new token pair.
   </Step>
 </Steps>
 
 ## Token rotation
 
-Every call to `/api/refresh` rotates **both** tokens. The refresh token you submit is invalidated immediately.
+Every call to `/api/mcp/refresh` rotates **both** tokens. The refresh token you submit is invalidated immediately.
 
 <Warning>
-  Always store the new refresh token returned by `/api/refresh`. Reusing an old refresh token returns `400`, and the user will need to grant consent again.
+  Always store the new refresh token returned by `/api/mcp/refresh`. Reusing an old refresh token returns `400`, and the user will need to grant consent again.
 </Warning>
 
 ## Security best practices

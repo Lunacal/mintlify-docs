@@ -5,6 +5,10 @@ description: "Connect AI assistants and MCP clients to Lunacal to manage availab
 
 The Lunacal MCP API lets Model Context Protocol (MCP) clients — AI assistants, agents, and integrations — act on behalf of a Lunacal user. With a single consent, your client can check availability, create and cancel bookings, and manage event types.
 
+<Info>
+  **Connecting Claude, ChatGPT, Muse or another AI assistant?** You don't need this API or a client secret. Add the [Lunacal MCP Server](/mcp-server) (`https://mcp.lunacal.ai/mcp`) as a connector instead — it uses OAuth 2.1 with PKCE and dynamic client registration. See [MCP security & permissions](/mcp-security-and-permissions) for how the two flows relate.
+</Info>
+
 ## Base URL
 
 ```bash
