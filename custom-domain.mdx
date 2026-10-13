@@ -1,0 +1,403 @@
+---
+title: "Custom Domain "
+description: "This guide explains how hosts set up and manage Custom Domains in Lunacal, what attendees see, and how different businesses typically use the feature. "
+mode: "wide"
+---
+
+If something goes wrong, customers can email [**hi@lunacal.live**](mailto:hi@lunacal.live).
+
+## What Custom Domain does
+
+Custom Domain lets you use **your own branded URL** for scheduling pages instead of only the default Lunacal link. **Example** <br />`book.mydomain.com/jeff` instead of a Lunacal-hosted link like `lunacal.ai/jeff`. Your existing Lunacal booking links continue to work. A custom domain is an **additional** branded way for people to reach the same scheduling experience.
+
+## Who can use it
+
+| Plan situation | Can buy Custom Domain? | Notes |
+| --- | --- | --- |
+| **Pro** or **Enterprise** (including trial Pro) | Yes | One-time purchase; limited by your domain quota |
+| **AppSumo Tier 2 and above** | Yes | Purchase is available; Tier 1 cannot buy |
+| **AppSumo Tier 1** | No | Buy button shows: “Available from Tier 2” |
+| **Other / unpaid plans** | No | Buy button shows: “Only available on paid plans” |
+
+---
+
+## Pricing and purchase rules
+
+Where to buy: **Settings → Custom Domain** (`Buy Domain`).
+
+### Current purchase terms (as shown in the purchase dialog)
+
+- **Price:** **\$200** per domain (lifetime / one-time payment)
+- **Buy now, activate anytime in future**
+- **One-time payment, no renewals**
+- **Domains cannot be reassigned**
+- **This purchase is non-refundable** You can choose how many domains to buy in one checkout (up to the number of slots still available under your limit). Checkout is completed through Stripe. After a successful purchase, the app instructs you to click **Activate a domain** in the domains list to begin setup.
+
+### Domain quota (limits)
+
+Your account has:
+
+- **Bought** — how many custom domain slots you have purchased
+- **Limit** — the maximum you are allowed to purchase<br />The list header shows unused slots in this form: **“X of Y domains unused.”** **Quota rules (shown under Rules in Settings):**
+
+1. Only domains **you own** count toward your quota. If someone else owns a domain and invites you to their team, that does **not** use your quota.
+2. When you assign a domain to a team, every member gets their own booking page on that domain (e.g. `book.yourdomain.com/person`) **in addition to** their `lunacal.ai/person` link.
+3. Adding more team members does **not** use extra domain slots. Ten people on the same domain still count as **1** toward the owner’s limit.
+4. Domain purchases are **non-refundable**. **Default Lunacal domain:** Your account always includes the Lunacal-hosted domain (shown as owned by Lunacal). That is separate from purchased custom domains. **Pro / Enterprise:** Purchases are capped by the subscription domain limit (product default maximum is **5** for Pro-tier scheduling). **AppSumo (by tier configuration):**
+
+| Tier | Can buy? | Included / limit context |
+| --- | --- | --- |
+| Tier 1 | No | No custom domain purchase |
+| Tier 2 | Yes | Higher purchase ceiling than Tier 1 |
+| Tier 3 | Yes | Higher ceiling than Tier 2 |
+| Tier 4 | Yes | Highest AppSumo ceiling |
+
+Exact remaining count is always shown in the purchase dialog (“X domain(s) left”).
+
+---
+
+## Where hosts manage Custom Domain
+
+**Path:** Settings → **Custom Domain** tab<br />URL pattern: `/new-settings?tabName=custom-domain` On first visit, an onboarding slideshow may appear covering:
+
+1. Setting up a branded booking URL in the app (no form required)
+2. Copying DNS records to your domain provider
+3. Automatic HTTPS (SSL) and global CDN
+4. Activating when ready, with setup continuing in the background There is also a short note that a **403 or similar error can be normal** while the domain propagates globally (allow up to **24 hours**), and to email [**hi@lunacal.live**](mailto:hi@lunacal.live) if it persists.
+
+---
+
+## Domain list: what hosts see
+
+The **List of Domains** table shows:
+
+| Column / UI | Meaning |
+| --- | --- |
+| **Domain** | The hostname (or Lunacal default link with your username) |
+| **Ownership** | “Owned by Lunacal”, “Owned by me”, or “Part of team” |
+| **Status** | Live / Active / setup progress / failed (see below) |
+| **★ Primary** | Your main booking link shown in the dashboard header |
+| **Actions** | Continue Setup, View Records, Make Primary, Set Redirect, Delete Domain |
+| Live custom domains appear above domains that are still in setup. Incomplete setups are grouped under a **“Setup in progress”** section. |  |
+
+---
+
+## Host setup: Activate a domain (3 steps)
+
+Prerequisite: at least one **unused purchased** domain slot.
+
+Click **Activate a domain**. The wizard is titled **“Add your custom domain”** (Beta).
+
+### Step 1 — Enter Domain
+
+Hosts choose:
+
+1. **Subdomain** — selected from an allowed list (unless Lunacal has specially enabled free-form entry for that account)
+2. **Root Domain** — their own domain, e.g. `yourcompany.com`
+
+**Preview shown:** `https://{subdomain}.{rootdomain}`
+
+Hosts need access to DNS at their registrar (examples mentioned in product: GoDaddy, Namecheap, Cloudflare).
+
+**Allowed subdomain prefixes (standard list):**
+
+`agenda`, `appointments`, `avtale`, `beacon`, `book`, `booking`, `bookings`, `bookme`, `booknow`, `cal`, `calendar`, `calendario`, `calender`, `chat`, `chet`, `chiamata`, `coffee`, `connect`, `consult`, `contact`, `demo`, `go`, `kalender`, `letstalk`, `luna`, `me`, `meet`, `meeting`, `meetings`, `procalendar`, `rdv`, `reserver`, `reservas`, `schedule`, `support`, `termin`, `termine`, `tutoring`, `tutors`, `ventas`, `www`
+
+If the desired subdomain is not listed, the product tells hosts to email [**hi@lunacal.live**](mailto:hi@lunacal.live).
+
+**Format rules enforced at setup:**
+
+- Subdomain: lowercase letters, numbers, hyphens (valid hostname label)
+- Root domain: valid domain format (e.g. `example.com`)
+- Full address must not already be in use by another Lunacal account
+
+After Continue, the app provisions routing and generates DNS records. Progress messages include registering the domain, provisioning CDN, configuring routing, and finalizing. Hosts are asked **not to close the window** during that step.
+
+Once past Step 1, the domain **cannot be changed** in that setup flow.
+
+### Step 2 — Configure DNS
+
+Hosts must add **two DNS records** at their domain provider:
+
+#### 1) CNAME
+
+| Field | What to use |
+| :-- | :-- |
+| Type | **CNAME** |
+| Host / Name | The subdomain (e.g. `book`) |
+| Value / Target | The value Lunacal shows (points the subdomain to Lunacal’s servers) |
+| Purpose | Points your subdomain to Lunacal |
+
+#### 2) TXT (ownership verification)
+
+| Field | What to use |
+| :-- | :-- |
+| Type | **TXT** |
+| Host / Name | `_dnsauth.{subdomain}` (e.g. `_dnsauth.book`) |
+| Value / Target | The validation token Lunacal shows |
+| Purpose | Verifies domain ownership |
+
+Both Host and Value can be copied from the setup UI.
+
+**Cloudflare tip (shown in product):** Keep the proxy **disabled** (grey cloud / DNS only).
+
+**Timing:** CDN propagation can take up to **40 minutes to 1 hour**. Hosts can close the window and return later.
+
+**Verify DNS** checks whether records are correct. Status may still be pending; the product may say verification can take up to **1 hour**.
+
+If validation **times out**, hosts can **Regen**erate the TXT token and update DNS with the new value.
+
+If setup was left incomplete for a long time, continuing setup may refresh DNS values. Hosts must replace old CNAME/TXT values with the new ones shown.
+
+After DNS and CDN are approved, hosts continue to Step 3.
+
+### Step 3 — Activate
+
+When ready, the UI shows:
+
+- Preview of `https://{subdomain}.{domain}`
+- **DNS verified**
+- **CDN configured**
+
+Host clicks **Activate Domain**.
+
+**After activation (product messaging):**
+
+- Global propagation can take **45 minutes – 2 hours**
+- A **403** or Azure-related error during that window can be normal
+- If issues persist after **24 hours**, email [**hi@lunacal.live**](mailto:hi@lunacal.live)
+
+HTTPS certificates and global CDN are set up automatically (hosts do not upload certificates).
+
+---
+
+## Host settings after the domain is Live
+
+### 1) Make Primary
+
+Available for:
+
+- The default Lunacal domain (when it is not already primary), or  
+- An **active** custom domain
+
+**Primary** means: this is the main booking link shown in the **dashboard header**.
+
+If you activate a custom domain and you did not already have a primary custom default set, that new domain can become your default automatically.
+
+### 2) Favicon (browser tab icon)
+
+On domains **you own**, click the favicon area next to the domain name to upload or change a favicon.
+
+- Image files only  
+- Max size **1 MB**  
+- Cropped square in the image editor
+
+Domains that are only “Part of team” show the favicon but do not allow you to change it.
+
+Attendees visiting pages on that custom domain see this favicon in the browser tab (when a favicon is set for that domain).
+
+### 3) Set Redirect (root of the custom domain)
+
+For an **active, user-owned** custom domain, **Set Redirect** chooses where visitors go when they open the **domain root** (e.g. visiting `https://book.yourcompany.com` with no path).
+
+**Options:**
+
+| Option | What happens for the visitor |
+| :-- | :-- |
+| **No Redirect** | Default domain page behavior (falls back to the owner’s username page when no redirect path is set) |
+| **Team Pages** (team owners) | Redirect to a team page, e.g. `/team/{team-slug}` |
+| **Team Events** (team owners) | Redirect to a specific team event, e.g. `/team/{team-slug}/{event-slug}` |
+| **Member / your pages** | Redirect to a person’s page `/{username}` or a specific event `/{username}/{event-slug}` |
+
+Team owners see all relevant members and team events. Non-owners typically see their own pages under “Your Pages.”
+
+The dialog shows the current target as `{hostname}{path}` (or “No redirect set…”).
+
+### 4) View Records
+
+For live custom domains, hosts can reopen the CNAME and TXT values that were used for setup (useful for DNS audits or recreating records).
+
+### 5) Assign domain to a team
+
+In **Team Settings**, owners can assign a custom domain (or the Lunacal default) to the team from a dropdown of domains they own.
+
+**Effect:** Team members get booking pages on that domain, for example:
+
+- Team: `{custom-domain}/team/{team-slug}`
+- Person: `{custom-domain}/{username}`<br />while `lunacal.ai/...` links still work.
+
+### 6) Delete Domain
+
+Owners can delete a domain they own from the domain list menu.
+
+**Before deleting, hosts must:**
+
+1. Remove the **CNAME** and **TXT** records from their DNS provider
+2. Confirm the checkbox: “I have deleted the CNAME and TXT records from my DNS”
+
+**After delete:**
+
+- The domain is removed from Lunacal  
+- The purchased slot becomes available to activate a different (or later the same) domain again  
+- Global cleanup can take time — wait before reusing the **same** domain name  
+- If that domain was Primary, primary falls back (default subdomain cleared)
+
+Failed setups use a similar “Remove Failed Domain” flow to free the slot.
+
+The Rules dialog also mentions emailing [**hi@lunacal.live**](mailto:hi@lunacal.live) with subject **“Remove my custom domain.”** In-app delete is available for owned domains; email remains a support path if needed.
+
+---
+
+## What attendees (guests) see
+
+Attendees do **not** see the Custom Domain settings screen. They only experience the branded URLs and pages.
+
+### URLs attendees may use
+
+| Link type | Example shape | Attendee experience |
+| :-- | :-- | :-- |
+| Personal booking page | `https://book.yourcompany.com/alex` | Same scheduling profile/theme as Lunacal, on your domain |
+| Specific event | `https://book.yourcompany.com/alex/30min` | Event booking page on your domain |
+| Team page | `https://book.yourcompany.com/team/sales` | Team booking page on your domain |
+| Team event | `https://book.yourcompany.com/team/sales/demo` | Team event on your domain |
+| Domain root | `https://book.yourcompany.com` | Redirects based on host’s **Set Redirect** (or default to owner’s username page if none set) |
+| Original Lunacal link | `lunacal.ai/alex` (or equivalent Lunacal host) | Still works; not replaced |
+
+### Branding attendees notice
+
+- Browser address bar shows **your domain** (HTTPS)
+- Browser tab can show **your favicon** (if the host uploaded one for that domain)
+- Content is the host’s Lunacal booking / scheduling pages (profile, events, availability, booking flow)
+
+### During propagation (important for support)
+
+Shortly after activation, attendees might briefly see errors (including **403**). Product guidance: this can be normal for up to **24 hours** while the domain finishes propagating worldwide.
+
+If a custom domain is **not active**, those branded URLs are not served as live booking pages.
+
+---
+
+## Host dashboard: sharing links
+
+In the app header, the host’s primary booking link uses the **Primary** domain:
+
+- Personal: `{primary-hostname}/{username}`
+- Team context: `{team-domain}/team/{team-slug}`
+
+Hosts can open a domains dialog listing active domains (including Lunacal default and custom domains) and copy links. All of those active domain links point to the **same** booking experience for that user.
+
+---
+
+## Common support fixes
+
+| Customer question | Guidance |
+| :-- | :-- |
+| “I bought a domain but nothing is live” | Purchase only adds a **slot**. They must click **Activate a domain** and finish DNS + Activate. |
+| “Activate is greyed out” | No unused slots, or activation temporarily unavailable (contact [**hi@lunacal.ai**](mailto:hi@lunacal.ai) if the tooltip says so). |
+| “My subdomain isn’t in the list” | Email [**hi@lunacal.live**](mailto:hi@lunacal.live) — standard accounts choose from the allowed list only. |
+| “DNS isn’t verifying” | Confirm CNAME + TXT exact values; Cloudflare must be **DNS only** (proxy off); wait up to ~1 hour; try Verify again; Regen TXT if timed out. |
+| “I see 403 after Activate” | Normal during global propagation (45 min–2 hours; up to 24 hours). Contact [**hi@lunacal.live**](mailto:hi@lunacal.live) if still broken after 24 hours. |
+| “Can I put this on my bare domain (example.com) without a subdomain?” | Setup is **subdomain + root domain** (e.g. `book.example.com`). `www` is an allowed subdomain prefix. |
+| “Does buying remove lunacal.ai?” | No. Lunacal links remain. Custom domain is additional. |
+| “Do team members each need to buy a domain?” | No. Owner assigns one domain to the team; members get pages on it without using their own quota. |
+| “Can I transfer my purchased domain slot to another account?” | Product states domains **cannot be reassigned**; purchases are **non-refundable**. |
+| “How do I change where book.mydomain.com goes?” | Use **Set Redirect** on that live domain. |
+| “How do I change the browser icon?” | Upload favicon on an owned domain in the domain list. |
+| “I want to remove a domain” | Prefer in-app **Delete Domain** (remove DNS first). Or email [**hi@lunacal.live**](mailto:hi@lunacal.live) with subject “Remove my custom domain.” |
+
+---
+
+## Industry & persona use cases
+
+These use cases map **existing** Custom Domain capabilities (branded subdomain URL, primary link, favicon, root redirect, team assignment, multi-domain slots) to how different customers typically apply them. They do not add product features beyond what is listed above.
+
+### Founder / startup operator
+
+- Use `book.yourstartup.com` or `demo.yourstartup.com` as the Primary link in the dashboard and in decks / LinkedIn.
+- Set root redirect to a flagship event (e.g. “Founder intro” or “Product demo”).
+- Keep `lunacal.ai` as backup while pitching; share the branded link externally.
+
+### Sales team
+
+- Assign one purchased domain to the sales **team** so every rep has `meet.company.com/{rep}` plus team pages like `meet.company.com/team/sales`.
+- Redirect the domain root to the team page or a shared “Book a demo” team event.
+- Use one domain slot for the whole team (extra seats do not consume extra domain slots).
+
+### Professional services (consultants, lawyers, accountants, agencies of record)
+
+- Brand discovery calls as `consult.firmname.com` or `appointments.firmname.com`.
+- Upload a firm favicon so the tab matches the website.
+- Redirect the root to the principal’s page or a “New client consult” event.
+- Optionally buy a second domain slot for a practice area (e.g. `support.firmname.com`) if quota allows.
+
+### Healthcare / wellness practitioners
+
+- Share `appointments.clinicname.com/{provider}` for a more clinical, trustworthy URL.
+- Team assignment for multi-provider practices so each clinician has a path on the same domain.
+- Root redirect to a general “New patient” or front-desk team event.
+- Favicon aligned with clinic branding for patient confidence in the browser tab.
+
+### Coach / tutor / educator
+
+- Use friendly prefixes from the allowed list: `book`, `booking`, `tutoring`, `tutors`, `coffee`, `letstalk`, `meet`.
+- Primary link for social bios and course platforms.
+- Redirect root to the most common session type (e.g. discovery call).
+
+### Agency (marketing, creative, recruiting)
+
+- One agency-owned domain assigned to client-facing teams: `book.agency.com/team/{pod}`.
+- Separate purchased domains (within limit) for major brands or regions if needed.
+- Root redirect to a routing / intake team page; individual strategists still get `book.agency.com/{name}`.
+
+### Spa and salon
+
+- Use `book.spname.com` or `appointments.spname.com` on Google Business, Instagram, and booking cards.
+- Team domain so each stylist/therapist has a personal path without separate purchases.
+- Redirect root to a “Choose a service” team page or featured treatment event.
+- Favicon matching the salon site for a consistent guest journey from website → book.
+
+### Real estate
+
+- Agents: `meet.brokerage.com/{agent}` for listing consultations and buyer calls.
+- Brokerage owner assigns one domain to the team; agents keep Lunacal links as fallback.
+- Redirect root to a general “Speak with an agent” team event or office page.
+- Useful prefixes: `meet`, `meeting`, `book`, `contact`, `schedule`.
+
+### Small businesses (local services, freelancers, studios)
+
+- Replace generic links in email signatures and invoices with `schedule.yourbusiness.com` (or `book` / `booking`).
+- Single domain is usually enough; set Primary and one redirect to the main offer.
+- Keep Lunacal default domain as Primary only until custom domain is Live, then switch Primary.
+
+### Cross-cutting patterns that work for almost any industry
+
+1. **One brand domain for the public; Lunacal domain as always-on backup**
+2. **Team assignment when multiple people book under one brand**
+3. **Root redirect as the “front door”** (team page or flagship event)
+4. **Favicon** for polish when the domain is customer-facing
+5. **Extra purchased slots** only when you truly need separate brand hostnames (within plan limit)
+
+---
+
+## Quick reference: host checklist
+
+1. Be on **Pro / Enterprise** or **AppSumo Tier 2+**
+2. **Buy Domain** (\$200 lifetime per slot; non-refundable)
+3. Click **Activate a domain**
+4. Pick allowed **subdomain** + enter **root domain**
+5. Add **CNAME** and **TXT** at DNS (Cloudflare: DNS only)
+6. **Verify DNS** → wait if pending → continue when approved
+7. **Activate Domain**
+8. Wait for propagation (up to 24 hours if errors appear)
+9. Optionally: **Make Primary**, upload **favicon**, **Set Redirect**, assign to **team**
+10. Share `{your-domain}/{username}` (and team paths) with attendees
+
+---
+
+## Support contacts (as shown in product)
+
+| Topic | Contact |
+| :-- | :-- |
+| Beta issues / setup stuck / subdomain not listed / post-activation errors after 24h | [**hi@lunacal.live**](mailto:hi@lunacal.live) |
+| Activation temporarily unavailable | [**hi@lunacal.ai**](mailto:hi@lunacal.ai) |
+| Email removal request (Rules dialog) | [**hi@lunacal.live**](mailto:hi@lunacal.live) — subject: `Remove my custom domain` |

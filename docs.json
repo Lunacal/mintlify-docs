@@ -46,7 +46,8 @@
           "language-settings",
           "custom-smtp",
           "client-portal",
-          "email-theme"
+          "email-theme",
+          "custom-domain"
         ]
       },
       {
