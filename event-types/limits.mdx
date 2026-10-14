@@ -1,97 +1,157 @@
 ---
-title: "Limits and Buffer"
-description: "Set booking limits and buffer times to control how often people can book you and to give yourself prep/transition time. You’ll find these controls under “Event Types” → “Booking Limits” inside “Booking Limits”."
+title: "Booking Limits and Meeting Buffer Time"
+description: "Adjust preparation and follow-up time, cap bookings per person, and control when new appointments can be scheduled in LunaCal."
 mode: "wide"
+sidebarTitle: "Limits and Buffer"
 ---
+
+## What are buffers and booking limits?
+
+**Meeting buffer time** is time reserved before or after an appointment for preparation, notes, or a break.
+
+**Booking limits** are rules that restrict when or how often appointments can be scheduled. They can set a minimum notice period, cap repeat bookings, or limit how far ahead someone can book.
+
+In LunaCal’s appointment booking software, configure these controls under **Event Types → select an event → Booking Limits**.
+
+## Which booking setting should I use?
+
+| What you want to control | Setting |
+| --- | --- |
+| Meeting buffer time before or after appointments | Buffer Before / Buffer After |
+| Minimum booking notice to prevent last-minute bookings | Advance Notice |
+| Booking frequency per person | Max Bookings per Event |
+| How far ahead attendees can book | Advance Booking Limit |
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LqVo6BDyhl0?si=fV-Uha0FC_UMiSfQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Not all fields under Limits & Buffer are mandatory. you can configure only the options needed for  event type. Fields such as Advance Notice, Buffer Time, and Advance Booking Limit are optional, and leaving them at the default value will not prevent the event type from functioning.\
-**Relation to Other Configurations:**\
-**Note** : Limits & Buffer work alongside other parts of event configuration such as availability schedules, calendar sync, and meeting duration. review these areas after setting limits and buffers.
+Configure only the options you need. Buffer time, advance notice, and the advance booking limit are optional; leaving them at their default values does not prevent the event from working. These controls work alongside your availability schedule, connected calendars, and meeting duration.
 
-## Step 1
+## How to set buffers and booking limits in LunaCal
 
-On “[Event Types](https://app.lunacal.ai/event-types)”, select the event type you want to edit. You can click anywhere on the square box or use the gear button.
+### Select the event type
 
-<Frame>
-  ![](/images/limits_and_buffer/1.webp)
-</Frame>
-
-## Step 2
-
-Click “**Booking Limits**”.
+Open [Event Types](https://app.lunacal.ai/event-types) and select the event you want to edit. Click the event card or use its gear icon.
 
 <Frame>
-  ![](/images/limits_and_buffer/2.webp)
+  ![Select the event type to configure in LunaCal](/images/limits_and_buffer/1.webp)
 </Frame>
 
-## Step 3
+### Open Booking Limits
 
-In “**Booking Limits**”, set a buffer before event and buffer after event meetings. You can choose up to 120 minutes for both before and after buffers.\
-Recommended default value : Buffer Before: **10 minutes**\
-**Example**: Add a 10-minute buffer before a demo to review notes and open your deck. 🕒
+Click **Booking Limits** to configure the event’s booking rules.
 
 <Frame>
-  ![](/images/limits_and_buffer/3.webp)
+  ![Open Booking Limits for the selected event](/images/limits_and_buffer/2.webp)
 </Frame>
 
-## Step 4
+### Add a buffer before meetings
 
-Set a buffer after event to avoid back-to-back calls.\
-Recommended default value : Buffer After: **15 minutes**\
-**Example**: Add 15–20 minutes after a sales call to write follow-up points and reset.
+In **Booking Limits**, set **Buffer Before** to leave preparation time before a meeting. Before- and after-meeting buffers each support up to **120 minutes**.
+
+**Recommended starting value:** 10 minutes before the meeting.
+
+**Example:** Before a demo, add a 10-minute buffer to review notes and open your presentation.
 
 <Frame>
-  ![](/images/limits_and_buffer/4.webp)
+  ![Configure the buffer before a meeting](/images/limits_and_buffer/3.webp)
 </Frame>
 
-## Step 5
+### Add a buffer after meetings
 
-In the **Advance Notice** section, define the minimum notice lead time before someone can book you. This prevents last-minute bookings (for example, within the next hour). You can set the notice in minutes, hours, or days. \
-Recommended default value : Advance Notice: **2 hours**\
-**Example**: Require at least 2 hours’ notice so you’re not surprised by immediate bookings.
+Set **Buffer After** to leave time after the meeting and avoid back-to-back calls.
+
+**Recommended starting value:** 15 minutes after the meeting.
+
+**Example:** After a sales call, allow 15–20 minutes to write follow-up points and prepare for your next appointment.
 
 <Frame>
-  ![](/images/limits_and_buffer/5.webp)
+  ![Configure the buffer after a meeting](/images/limits_and_buffer/4.webp)
 </Frame>
 
-## Step 6
+### Set minimum booking notice
 
-Limit booking frequency on "**Max Bookings per Event**" to control how many times someone can book you within a period. You can restrict to one booking per day, week, month, or year, and you can add multiple limits (up to 4) for an event.\
-Recommended default value : Advance Booking Limit: **30 days**\
-**Example**: Cap coaching to 2 sessions per week per person to manage workload.
+Under **Advance Notice**, set the minimum booking notice: the lead time required between making a booking and the appointment starting. Choose minutes, hours, or days to prevent last-minute bookings.
+
+**Recommended starting value:** 2 hours.
+
+**Example:** Require at least 2 hours’ notice so attendees cannot book a meeting that starts immediately.
 
 <Frame>
-  ![](/images/limits_and_buffer/6.webp)
+  ![Set the minimum advance notice for bookings](/images/limits_and_buffer/5.webp)
 </Frame>
 
-## Step 7
+### Limit bookings per person
 
-Set the “**Advance Booking Limit**” to control how far into the future people can see and book. You can allow booking within 30 days or specify the exact days you want open.\
-**Note** : When limits such as Advance Booking Limit or Advance Notice are updated, the changes apply only to new bookings. Existing bookings remain unaffected.\
-**Example**: Show only the next 30 days so your calendar doesn’t get locked months ahead.
+Use **Max Bookings per Event** to control how often the same person can book this event within a day, week, month, or year. You can add up to **four** limit rules for an event.
+
+**Example:** For coaching, limit each person to two sessions per week to manage booking frequency.
 
 <Frame>
-  ![](/images/limits_and_buffer/7.webp)
+  ![Set booking frequency limits per person](/images/limits_and_buffer/6.webp)
 </Frame>
 
-## Step 8
+### Set how far ahead people can book
 
-Once all settings are in place, click the "**Save**" button to apply your limits and buffer settings.
+Use **Advance Booking Limit** to control how far into the future attendees can see and book appointments. Allow bookings within a window or specify the exact days you want open.
+
+**Recommended starting value:** 30 days.
+
+**Example:** Show only the next 30 days so attendees cannot book months ahead.
+
+Changes to **Advance Booking Limit** and **Advance Notice** apply to new bookings. Existing bookings remain unchanged.
 
 <Frame>
-  ![](/images/limits_and_buffer/8.webp)
+  ![Set the advance booking window](/images/limits_and_buffer/7.webp)
 </Frame>
 
-**Common mistakes to avoid :**\
-• Forgetting to click “Save”, which leaves old settings active.\
-• Setting buffers but leaving the advance notice at “0”, allowing last-minute bookings anyway.\
-• Adding overlapping frequency limits (e.g., 1 per day and 1 per 24 hours) that confuse availability.\
-• Setting a very short “Advance Booking Limit” (e.g., 3 days) and then wondering why next week looks unavailable.
+### Save your settings
 
-**Good defaults to start with :**\
-• Buffers: 10 minutes before, 15 minutes after.\
-• Advance notice: 2 hours (same-day safety net).\
-• Booking frequency: 1 per day per person for longer sessions; none for quick 15-minute chats.\
-• “Advance Booking Limit”: 30 days (opens rolling availability without overcommitting).
+Click **Save** to apply your booking limits and buffers.
+
+<Frame>
+  ![Save the booking limits and buffer settings](/images/limits_and_buffer/8.webp)
+</Frame>
+
+## Common mistakes to avoid
+
+- Forgetting to save, which leaves the previous settings active.
+- Setting buffers but leaving advance notice at zero, which still permits last-minute bookings.
+- Adding overlapping frequency limits, such as one booking per day and one per 24 hours, that complicate availability.
+- Setting a short advance booking window and expecting later dates to remain available.
+
+## Suggested settings to start with
+
+- **Buffers:** 10 minutes before and 15 minutes after meetings.
+- **Advance notice:** 2 hours.
+- **Booking frequency:** One booking per day per person for longer sessions; no frequency limit for quick 15-minute chats.
+- **Advance booking window:** 30 days.
+
+## Why use LunaCal for booking limits and buffers?
+
+LunaCal’s scheduling tool lets you tailor these controls to the needs of each event:
+
+- **Allow different preparation and follow-up times.** Set before- and after-meeting buffers independently when reviewing materials takes longer than writing notes, or the other way around.
+- **Control repeat bookings by each attendee.** Per-person limits let you set a booking frequency for individual clients, useful for coaching sessions or other appointments that need a repeat-booking cap.
+- **Change future booking rules without moving existing appointments.** Updates to advance notice and the booking window affect new bookings while leaving confirmed appointments unchanged.
+
+## Frequently asked questions
+
+### How do I add a break between meetings?
+
+In LunaCal, use **Buffer Before** or **Buffer After** to reserve time around an appointment. Set the two buffers independently to allow different amounts of time for preparation and follow-up; each supports up to 120 minutes.
+
+### How much buffer time should I leave between appointments?
+
+A suggested starting point is 10 minutes before a meeting and 15 minutes after it. Adjust these values to the time you need for preparation, notes, or a break. These are suggested settings, not mandatory values.
+
+### How do I stop last-minute bookings?
+
+Set **Advance Notice** in LunaCal to require a minimum amount of time between making a booking and the appointment starting. Choose the required notice in minutes, hours, or days. This setting applies to new bookings and leaves existing appointments unchanged.
+
+### How do I limit how often a client can book?
+
+Use **Max Bookings per Event** in LunaCal to cap how often each person can book an event per day, week, month, or year. You can add up to four limit rules for an event.
+
+### How do I control how far in advance people can book?
+
+Set **Advance Booking Limit** in LunaCal to choose the future booking window or the exact days available for booking. Changing this setting affects new bookings; existing appointments remain unchanged.
