@@ -1,95 +1,122 @@
 ---
-title: "Meeting Duration"
-description: "Learn how to update or customize the duration of your meetings, including flexible options."
+title: "Set Meeting Duration and Offer Multiple Meeting Lengths"
+description: "Let invitees choose a meeting length, set a default option, and understand when different prices require separate event types in LunaCal."
 mode: "wide"
+sidebarTitle: "Meeting Duration"
 ---
 
-## Step 1
+## What is meeting duration?
 
-Go to "[Event Types](https://app.lunacal.ai/event-types)" in your dashboard.
+**Meeting duration** is the length of an appointment. A fixed duration gives every booking of an event the same length. **Flexible Duration** lets invitees choose from the meeting lengths you offer when they book.
+
+In LunaCal’s appointment scheduling software, manage meeting length under **Event Types → select an event → Edit → Event Setup**.
+
+## Which duration option should I use?
+
+| What you need | How to configure it |
+| --- | --- |
+| The same length for every appointment | Set a fixed **Duration**. |
+| A choice of meeting lengths on one event | Turn on **Flexible Duration** and add the available lengths. |
+| One length selected when the booking page opens | Choose a **Default Value** from the duration options. |
+| Different prices for different meeting lengths | Create separate event types. Flexible Duration keeps the same price for every length. |
+
+## How to set meeting duration in LunaCal
+
+### Open Event Types
+
+Go to [Event Types](https://app.lunacal.ai/event-types) in your dashboard.
 
 <Frame>
-  ![](/images/Meeting-duration/MD1.webp)
+  ![Open Event Types in the LunaCal dashboard](/images/Meeting-duration/MD1.webp)
 </Frame>
 
----
+### Select the event
 
-## Step 2
-
-Select the event for which you want to change the duration and click the settings ⚙️ icon on that event card.
+Find the event whose duration you want to change and click the settings icon on its event card.
 
 <Frame>
-  ![](/images/Meeting-duration/MD2.webp)
+  ![Open settings for the event whose duration you want to change](/images/Meeting-duration/MD2.webp)
 </Frame>
 
----
-
-## Step 3
+### Edit the event
 
 Choose **Edit** from the dropdown menu.
 
 <Frame>
-  ![](/images/Meeting-duration/MD3.webp)
+  ![Choose Edit from the event settings menu](/images/Meeting-duration/MD3.webp)
 </Frame>
 
----
+### Set the appointment length
 
-## Step 4
+In **Event Setup**, find **Duration** and enter the meeting length you want to offer.
 
-In the "**Event Setup**" section, you'll see **Duration** \
-**Note**: Pricing doesn’t change with duration
-
-Currently, duration selection doesn’t affect pricing: even if invitees choose a longer meeting duration under Flexible Duration, the price remains the same. if you need different pricing for different durations, you must create separate event types (or wait for future feature updates).\\
-
-- To update the "**Duration**" field with the desired time.
+**Pricing stays the same across durations.** Selecting a longer meeting under Flexible Duration does not change the price. If different lengths need different prices, create separate event types.
 
 <Frame>
-  ![](/images/Meeting-duration/MD4.webp)
+  ![Set the meeting duration in Event Setup](/images/Meeting-duration/MD4.webp)
 </Frame>
 
----
+### Turn on Flexible Duration
 
-## Step 5
-
-### Flexible Duration
-
-Toggle **ON** → Instead of a fixed duration, invitees can choose the meeting length.
+Turn **Flexible Duration** on to let invitees choose the meeting length instead of booking a fixed duration.
 
 <Frame>
-  ![](/images/Meeting-duration/MD5.webp)
+  ![Turn on Flexible Duration for an event](/images/Meeting-duration/MD5.webp)
 </Frame>
 
----
+### Add the available meeting lengths
 
-## Step 6
+Add multiple time options. Invitees can select their preferred duration from this list when booking.
 
-You can add **multiple time** options. Invitees can then select their preferred duration from the list when booking.
+**Example:** Offer 15-, 30-, and 60-minute consultations on one event so clients can choose the time they need. All three lengths use the same price.
 
 <Frame>
-  ![](/images/Meeting-duration/MD6.webp)
+  ![Add meeting length options for invitees to choose from](/images/Meeting-duration/MD6.webp)
 </Frame>
 
----
+### Choose the default duration
 
-## Step 7
+Use **Default Value** below the list of durations to choose the meeting length pre-selected when someone opens your booking page.
 
-The **Default Value** under the list of durations is the pre-selected meeting length when someone opens your booking page.
+**Example:** If most consultations need half an hour, select 30 minutes as the default while keeping the shorter and longer options available.
 
 <Frame>
-  ![](/images/Meeting-duration/MD7.webp)
+  ![Select the default meeting duration](/images/Meeting-duration/MD7.webp)
 </Frame>
 
----
+### Save your changes
 
-## Step 8
-
-Click "**Save**" to apply the changes.
+Click **Save** to apply the duration settings.
 
 <Frame>
-  ![](/images/Meeting-duration/MD8.webp)
+  ![Save the meeting duration settings](/images/Meeting-duration/MD8.webp)
 </Frame>
 
-Tip :
+## Check your booking page
 
-1. Double-check buffer and limit settings (from [Limits & Buffer](https://help.lunacal.ai/event-types/limits) page) for compatibility.
-2. Save changes and preview booking page to confirm duration dropdown behaves as expected.
+- Review your [booking limits and buffer times](/event-types/limits) for compatibility with the meeting lengths you offer.
+- After saving, preview the booking page to confirm that the duration dropdown behaves as expected.
+
+## Why use LunaCal for flexible appointment lengths?
+
+LunaCal’s scheduling tool lets you offer a choice of meeting lengths within one event. Invitees can select the time they need without choosing between separate event types for each length.
+
+A **Default Value** pre-selects a starting option while leaving the other lengths available. Use Flexible Duration when the lengths share a price; use separate event types when each length needs its own price.
+
+## Frequently asked questions
+
+### How do I let clients choose their appointment length?
+
+In LunaCal, turn on **Flexible Duration** in the event’s **Event Setup** section and add the lengths you want to offer. Clients can then choose a duration from the list when booking. Save your changes and preview the booking page to check the options.
+
+### How do I set the default meeting length?
+
+Use **Default Value** below the duration list in LunaCal to choose the length pre-selected when the booking page opens. With Flexible Duration enabled, invitees can still choose another length from the options you provide.
+
+### Can I charge different prices for different appointment lengths?
+
+Different prices require separate event types in LunaCal. Flexible Duration lets invitees choose a meeting length, but the price remains the same even when they select a longer appointment.
+
+### How do I add a break between appointments?
+
+Set **Buffer Before** or **Buffer After** under the event’s **Booking Limits** settings in LunaCal. Buffer time reserves time around the appointment for preparation or follow-up. See [booking limits and buffer times](/event-types/limits) for the setup instructions.

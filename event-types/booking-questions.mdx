@@ -1,91 +1,138 @@
 ---
-title: "Booking Questions"
-description: "Use Booking Questions to collect the key details you need before a meeting. You’ll find this under the “Event Types” you want to configure."
+title: "Customize Booking Questions and Appointment Forms"
+description: "Collect client details, files, and consent before appointments. Choose question types, require essential answers, and use responses in workflows."
 mode: "wide"
+sidebarTitle: "Booking Questions"
 ---
 
-> Note: You can reset Booking Questions to default
+## What are booking questions?
+
+**Booking questions** are the fields attendees complete when scheduling an appointment. They collect the information you need before the meeting, such as contact details, the reason for the appointment, or supporting files.
+
+In LunaCal’s appointment booking software, configure these fields under **Event Types → select an event → Booking Questions**.
+
+## What can I collect on a booking form?
+
+- **Contact and meeting details:** Names, email addresses, phone numbers, and short or detailed written answers.
+- **Structured responses:** A single choice, multiple selections, or consent to an agreement.
+- **Files and connected data:** Attachments and answers linked to a custom field in your connected Pipedrive account.
+
+> You can reset Booking Questions to their defaults.
 
 <Frame>
-  ![B1](/images/b1.webp "B1")
+  ![Reset Booking Questions to their defaults in LunaCal](/images/b1.webp "B1")
 </Frame>
 
-**Step 1**
+## How to customize booking questions in LunaCal
 
-On “[**Event Types**](https://app.lunacal.ai/event-types)”, select the event type you want to edit. You can click anywhere on the square box or use the **gear button**.
+### Select the event type
+
+Open [Event Types](https://app.lunacal.ai/event-types) and select the event you want to edit. Click the event card or use its gear icon.
 
 <Frame>
-  ![](/images/booking_questions/1.webp)
+  ![Select the event type whose booking questions you want to configure](/images/booking_questions/1.webp)
 </Frame>
 
-**Step 2**
+### Open Booking Questions
 
 Navigate to the **Booking Questions** tab.
 
 <Frame>
-  ![](/images/booking_questions/2.webp)
+  ![Open the Booking Questions tab](/images/booking_questions/2.webp)
 </Frame>
 
-**Step 3**
+### Add a question and choose its type
 
-**Add/Edit your booking question** **:** \
-Note:  You can’t delete or change the question type of **default questions**.\
-\
-To create a new question, click **Add/Edit Booking Question**, then choose the question type from the dropdown.\
-Here are the available question types and their use cases:
+Click **Add/Edit Booking Question**, then choose a question type from the dropdown.
 
-| **Question Type** | **Description / Use Case** |
-| :-- | :-- |
-| **Email** | Collects a single email address from the attendee. |
-| **Phone** | Collects a phone number with country code. |
-| **Short Text** | Accepts short, one-line answers (e.g., name, company, comments). |
-| **Long Text** | For longer responses or open-ended questions (e.g., “Tell us more about your project”). |
-| **Dropdown** | Displays a list of predefined options — users can select one. |
-| **Multiple Emails** | It allows attendee to input more than one email address (useful for group invites & every email will get confirmation email). |
-| **Check Box (Multi Select)** | Lets users select multiple options from a list. |
-| **Multi Choice (Single Select)** | Lets users choose only one option from multiple choices (radio-button style). |
-| **Pipedrive Custom Field** | Links a question directly to a custom field in your connected Pipedrive account. |
-| **Consent Checkbox** | Used for consent or agreement confirmations (e.g., “I agree to the terms and conditions”). |
-| **Attachment** | Lets users upload file eg.(Images, Docs, sheets etc.) |
+**Default questions:** You cannot delete default questions or change their question type. If you do not need one, turn it off instead of editing it.
 
-**When adding a new question:**
+| Question type | What it collects |
+| --- | --- |
+| **Email** | A single email address from the attendee. |
+| **Phone** | A phone number with country code. |
+| **Short Text** | A short, one-line answer. **Example:** A company name. |
+| **Long Text** | A detailed or open-ended response. **Example:** “Tell us more about your project.” |
+| **Dropdown** | One selection from a predefined list. |
+| **Multiple Emails** | More than one email address. Each address receives a confirmation email, which is useful for group invites. |
+| **Check Box (Multi Select)** | Multiple selections from a list of options. |
+| **Multi Choice (Single Select)** | One selection from multiple choices, displayed as radio buttons. |
+| **Pipedrive Custom Field** | An answer linked to a custom field in your connected Pipedrive account. |
+| **Consent Checkbox** | Confirmation of consent or an agreement. **Example:** “I agree to the terms and conditions.” |
+| **Attachment** | An uploaded file, such as an image, document, or spreadsheet. |
+
+### Configure the question fields
+
+When adding a question, configure the fields below.
 
 <Frame>
-  ![](/images/booking_questions/editingq.webp)
+  ![Configure a booking question and its fields](/images/booking_questions/editingq.webp)
 </Frame>
 
-| **Field** | **Description** |
-| :-- | :-- |
-| **Mandatory** | When enabled, attendees must answer this question before completing their booking. |
-| **Internal Label** | A private tag for question (not shown to the booker). Whatever you enter here can also be used in workflows — for example, if the internal label is **Phone\_Number**, you can reference it as  to display the attendee’s phone number in your workflow. |
-| **Answer Suggestion** | Optional preset text or examples shown inside the input field to attendees on what to enter. |
+| Field | How it works |
+| --- | --- |
+| **Mandatory** | Requires attendees to answer the question before completing their booking. |
+| **Internal Label** | A private tag that is not shown to the booker. Use it to reference the answer in workflows. **Example:** An internal label of **Phone_Number** can be used to display the attendee’s phone number in a workflow. |
+| **Answer Suggestion** | Optional preset text or an example inside the input field that guides attendees on what to enter. |
 
-When editing the **Name** question, you can use the **Split** option to ask the booker to enter their first and last name separately.
+When editing the **Name** question, use the **Split** option to ask for first and last names separately.
 
 <Frame>
-  ![](/images/booking_questions/split.webp)
+  ![Split the Name question into first and last name fields](/images/booking_questions/split.webp)
 </Frame>
 
-> **<u>Please don't edit the default booking questions that you see. It might lead to unexpected behaviour. You can turn them off if you don't want to use it.</u>**
+> Avoid other edits to default booking questions, which can cause unexpected behavior. Turn off a default question if you do not want to use it.
 
-**Step 4**
+### Hide or show a question
 
-Use the toggle to “**Hide/Unhide**” any question, hidden questions aren't going to show on your public booking page to attendee.
+Use the **Hide/Unhide** toggle to control which questions appear on your public booking page. Hidden questions are not shown to attendees.
 
 <Frame>
-  ![](/images/booking_questions/4.webp)
+  ![Hide or show questions on the booking page](/images/booking_questions/4.webp)
 </Frame>
 
-**Common mistakes to avoid**
+Click **Save** so your changes appear on the booking page.
 
-- Editing **default booking** questions instead of turning them off, which can cause unexpected behavior.
-- Forgetting to click “**Save**”, so new fields don’t appear on the booking page.
-- Using the wrong question type (e.g., Short text for multi-choice answers), leading to messy data.
-- Hiding required info by mistake with “**Hide/Unhide**”, causing gaps in submissions.
+## Common mistakes to avoid
 
-**Good defaults to start with**
+- Editing default booking questions instead of turning them off, which can cause unexpected behavior.
+- Forgetting to click **Save**, so new fields do not appear on the booking page.
+- Choosing a text field when you need a predefined selection, which makes answers harder to compare.
+- Hiding a question that collects information you need.
 
-- Keep “**Name**” (with “split”), “**Email**”, and one qualifier (e.g., “Short text” for goal).
-- Use “**Mandatory**” only for must-have fields; keep the form short.
-- Prefer “**Dropdown**” or “**Multi Choice**” for standardized answers; use “Long text” sparingly.
-- Add a “**Consent Checkbox**”, It's used for consent or agreement confirmations (e.g., “I agree to the terms and conditions”).
+## Suggested settings to start with
+
+- Keep **Name**, using **Split** for first and last names, and **Email**. Add one question that helps you prepare, such as a **Short Text** field for the attendee’s goal.
+- Use **Mandatory** only for information you must have before the appointment.
+- Prefer **Dropdown** or **Multi Choice** for standardized answers. Use **Long Text** sparingly to keep the form short.
+- Add a **Consent Checkbox** when you need attendees to confirm consent or an agreement.
+
+## Why use LunaCal for appointment booking forms?
+
+LunaCal’s scheduling tool combines the booking form with the information you need to prepare for an appointment:
+
+- **Collect more than written answers.** Attachment and Consent Checkbox fields let attendees supply files and confirm an agreement during booking.
+- **Use answers after the form is submitted.** Internal labels let you reference responses in workflows; Pipedrive Custom Field questions link answers to fields in your connected Pipedrive account.
+- **Ask for the right amount of information.** Required fields, optional answer suggestions, and visibility toggles let you decide what attendees must provide and which questions they see.
+
+## Frequently asked questions
+
+### How do I add questions to my appointment booking form?
+
+In LunaCal, open the event’s **Booking Questions** tab and click **Add/Edit Booking Question**. Choose the question type, configure its fields, and click **Save**. Use the **Mandatory** setting only when the attendee must answer before booking.
+
+### Can clients upload files when booking an appointment?
+
+Yes. Add an **Attachment** question to the LunaCal booking form so attendees can upload a file, such as an image, document, or spreadsheet, when they book.
+
+### How do I make a booking question required?
+
+Enable **Mandatory** for the question in LunaCal. Attendees must answer that question before they can complete the booking.
+
+### Can I remove the default questions from my booking form?
+
+You cannot delete default booking questions or change their question type in LunaCal. Use **Hide/Unhide** to turn off questions you do not want attendees to see. Avoid editing default questions, apart from using the documented **Split** option for first and last names.
+
+### How do I use booking form answers in a workflow?
+
+Give the question an **Internal Label** in LunaCal and use that label to reference the answer in a workflow. The internal label is private and is not shown to the person booking the appointment.
