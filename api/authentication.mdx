@@ -1,0 +1,54 @@
+---
+title: "API key authentication"
+description: "Create and use LunaCal API keys to authenticate requests to supported endpoints."
+---
+
+## API key authentication
+
+LunaCal API keys let you call supported APIs from your own applications, scripts, and external services on behalf of your LunaCal account. Just send a valid API key in the `Authorization` header; LunaCal handles authentication and uses the same API behavior and response data as requests made through the platform.
+
+## Create an API key
+
+<Steps>
+  <Step title="Open Developer settings">
+    Sign in to [LunaCal](https://app.lunacal.ai) and go to **Settings → Developer**. If you cannot see the Developer tab, contact [support@lunacal.ai](mailto:support@lunacal.ai).
+  </Step>
+  <Step title="Create your key">
+    Click **Create API key**, enter a recognizable name (for example, "Production integration"), and choose an expiration period or enable **Never expires**.
+  </Step>
+  <Step title="Copy the key">
+    Save the new API key somewhere secure immediately. **The full key is displayed only once** and cannot be retrieved later.
+  </Step>
+  <Step title="Call an API">
+    Add your key to the HTTP request header as `Authorization: Bearer <YOUR_API_KEY>`.
+  </Step>
+</Steps>
+
+## Make your first request
+
+The example below calls the current-user endpoint. Replace `$LUNACAL_API_KEY` with your own key stored in an environment variable.
+
+```bash
+curl -X POST https://app.lunacal.ai/api/user/me \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -d '{}'
+```
+
+The endpoint returns the same user data it ordinarily returns in LunaCal. You do not need to provide a separate login session when using a valid API key.
+
+## Manage keys
+
+Return to **Settings → Developer** to view your keys, their status, last usage, and expiration dates. Choose an appropriate expiration when creating keys, and revoke keys you no longer need.
+
+<Warning>
+  Treat API keys as passwords. Do not share them publicly, commit them to source control, or embed them in browser-side code. If a key is exposed, revoke it and generate a replacement.
+</Warning>
+
+## Common issues
+
+- **Developer tab not visible:** Email [support@lunacal.ai](mailto:support@lunacal.ai).
+- **Authentication fails:** Check that the header uses `Bearer`, the API key is valid and active, and it has not expired.
+- **Cannot view the key again:** Its full value is only shown once. Create a new key if you did not save it.
+
+See the [API introduction](/api/introduction) and the endpoint reference for available operations.
