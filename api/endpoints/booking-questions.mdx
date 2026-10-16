@@ -1,0 +1,21 @@
+---
+title: "Booking questions"
+description: "Retrieve mandatory questions required for a booking."
+---
+
+Returns the mandatory booking questions for a booking. Use this endpoint to determine which questions must be answered before submitting booking information.
+
+<Note>Requires a valid API key from **Settings → Developer**. Requests must use **POST**, with a Bearer authorization header.</Note>
+
+## Request
+
+```bash
+curl -X POST https://app.lunacal.ai/api/booking-questions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -d '{}'
+```
+
+<Warning>The route and purpose are confirmed, but the specific request-body parameters and response schema have not yet been provided. Replace `{}` with the request body required by your LunaCal integration. Do not assume it will return questions without context.</Warning>
+
+See [Create booking](/api/endpoints/bookings-create) and [API key authentication](/api/authentication).
