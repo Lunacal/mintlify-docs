@@ -1,0 +1,33 @@
+---
+title: "Create event type"
+description: "Create a new event type."
+---
+
+<Note>
+  Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
+</Note>
+
+Creates an event type for the account that owns the API key. Use [Switch published](/api/endpoints/event-types-switch-published) to publish or unpublish it afterwards.
+
+## Request
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.ai/api/event-types/create \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+</RequestExample>
+
+<Warning>
+  The route and purpose are confirmed, but the request-body parameters and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
+</Warning>
+
+## Related
+
+- [List event types](/api/endpoints/event-types-list)
+- [Update event type](/api/endpoints/event-types-update)
+- [Switch published](/api/endpoints/event-types-switch-published)

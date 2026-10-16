@@ -1,0 +1,56 @@
+---
+title: "API introduction"
+description: "Call LunaCal from your own apps and scripts using an API key."
+---
+
+LunaCal API keys let you call supported LunaCal APIs from anywhere on behalf of your account. Create a key, add it to the request header, and LunaCal handles the rest. Responses match what the same API returns inside the LunaCal platform.
+
+## How it works
+
+1. Go to **Settings → Developer** and create an API key. If you do not see the Developer tab, contact [support@lunacal.ai](mailto:support@lunacal.ai).
+2. Give the key a name, set an expiry, and copy it. The key is shown only once.
+3. Send the key in the `Authorization` header as a Bearer token with each request.
+
+See [API key authentication](/api/authentication) for the full walkthrough.
+
+## Quick example
+
+```bash
+curl -X POST https://app.lunacal.ai/api/user/me \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -d '{}'
+```
+
+This returns the same data the platform returns for the signed-in user. You only need to provide a valid API key.
+
+## Request conventions
+
+- **Base URL:** `https://app.lunacal.ai`
+- **Auth:** `Authorization: Bearer lunacal_<your-key>`
+- **Method:** POST only. Any other method returns `405`.
+- **Body:** JSON, with `Content-Type: application/json`.
+
+## Supported APIs
+
+These are the web-app routes that accept an API key from **Settings → Developer**.
+
+| Route | What it does |
+| --- | --- |
+| [`/api/user/me`](/api/endpoints/me) | Current user |
+| [`/api/event-types/list`](/api/endpoints/event-types-list) | List event types |
+| [`/api/event-types/get`](/api/endpoints/event-types-get) | Get one event type |
+| [`/api/event-types/create`](/api/endpoints/event-types-create) | Create an event type |
+| [`/api/event-types/update`](/api/endpoints/event-types-update) | Update an event type |
+| [`/api/event-types/delete`](/api/endpoints/event-types-delete) | Delete an event type |
+| [`/api/event-types/switch-published`](/api/endpoints/event-types-switch-published) | Publish or unpublish |
+| [`/api/availability`](/api/endpoints/get-availability) | Availability and slots |
+| [`/api/bookings/list`](/api/endpoints/bookings-list) | List bookings |
+| [`/api/bookings/create`](/api/endpoints/bookings-create) | Create a booking |
+| [`/api/bookings/cancel`](/api/endpoints/bookings-cancel) | Cancel a booking |
+| [`/api/booking-questions`](/api/endpoints/booking-questions) | Mandatory booking questions for a booking |
+
+## Next steps
+
+- [API key authentication](/api/authentication)
+- [Errors](/api/errors)

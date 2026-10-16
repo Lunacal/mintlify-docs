@@ -1,0 +1,32 @@
+---
+title: "List event types"
+description: "Retrieve the event types for your account."
+---
+
+<Note>
+  Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
+</Note>
+
+Returns the event types for the account that owns the API key.
+
+## Request
+
+<RequestExample>
+
+```bash cURL
+curl -X POST https://app.lunacal.ai/api/event-types/list \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+</RequestExample>
+
+<Warning>
+  The route and purpose are confirmed, but the request-body parameters and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
+</Warning>
+
+## Related
+
+- [Get event type](/api/endpoints/event-types-get)
+- [Create event type](/api/endpoints/event-types-create)

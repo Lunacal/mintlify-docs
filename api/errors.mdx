@@ -1,0 +1,27 @@
+---
+title: "Errors"
+description: "Common problems when calling LunaCal APIs with an API key."
+---
+
+## Wrong HTTP method
+
+All supported routes accept **POST only**. Any other method returns `405 Method Not Allowed`.
+
+## Authentication problems
+
+If a request is rejected, check the following:
+
+- The header is `Authorization: Bearer lunacal_<your-key>` (note the word `Bearer`).
+- The key is valid and has not been revoked.
+- The key has not passed its expiry date. Create a new key in **Settings → Developer** if it has.
+- You copied the full key. It is shown only once when created, so create a new one if you did not save it.
+
+<Warning>
+  Exact status codes and error bodies for invalid or expired keys have not yet been documented. Only the `405` response for non-POST requests is confirmed.
+</Warning>
+
+## Developer tab missing
+
+If you cannot see the Developer tab under **Settings**, contact [support@lunacal.ai](mailto:support@lunacal.ai).
+
+See also [API introduction](/api/introduction) and [API key authentication](/api/authentication).
