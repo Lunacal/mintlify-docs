@@ -1,0 +1,24 @@
+---
+title: "Get current user"
+description: "Retrieve the authenticated LunaCal user's profile."
+---
+
+Returns the profile of the account associated with your LunaCal API key.
+
+<Note>Use `Authorization: Bearer $LUNACAL_API_KEY` and `Content-Type: application/json`. This endpoint accepts `POST` only.</Note>
+
+## Request
+
+```bash
+curl -X POST https://app.lunacal.ai/api/user/me \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -d '{}'
+```
+
+## Optional fields
+
+- `includePasswordAdded` (boolean, default `false`): Include whether the user has a password.
+- `includeSubscription` (boolean, default `false`): Include account subscription details.
+
+Returns the usual user profile response, including `id`, `name`, `email`, `username`, `timeZone`, `locale` and additional profile fields.
