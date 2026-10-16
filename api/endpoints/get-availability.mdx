@@ -1,15 +1,49 @@
 ---
 title: "Get availability"
-description: "Retrieve availability and open booking slots."
+description: "Retrieve open booking slots for an event type."
 ---
 
 <Note>
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Returns availability and slots for the account that owns the API key.
+Finds open booking slots for an event type between `startTime` and `endTime`. Call this before creating or rescheduling a booking. Identify the event type with `eventTypeId`, or with `eventTypeSlug` plus `usernameList`.
 
-## Request
+## Body
+
+<ParamField body="startTime" type="string" required>
+  Start of the range. ISO 8601 date-time including a timezone offset.
+</ParamField>
+
+<ParamField body="endTime" type="string" required>
+  End of the range. ISO 8601 date-time including a timezone offset.
+</ParamField>
+
+<ParamField body="timeZone" type="string" required>
+  IANA timezone, for example `Asia/Kolkata`.
+</ParamField>
+
+<ParamField body="eventTypeId" type="integer">
+  ID of the event type.
+</ParamField>
+
+<ParamField body="eventTypeSlug" type="string">
+  Event type slug. Requires `usernameList` when used instead of `eventTypeId`.
+</ParamField>
+
+<ParamField body="usernameList" type="string[]">
+  Host username(s). Pairs with `eventTypeSlug`.
+</ParamField>
+
+<ParamField body="duration" type="integer">
+  Duration in minutes, for event types that offer more than one.
+</ParamField>
+
+<ParamField body="rescheduleUid" type="string">
+  UID of the booking being rescheduled, so it is excluded from conflicts.
+</ParamField>
+
+The response is the same one the LunaCal platform returns for this route.
 
 <RequestExample>
 
@@ -17,16 +51,17 @@ Returns availability and slots for the account that owns the API key.
 curl -X POST https://app.lunacal.ai/api/availability \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{
+  "startTime": "2026-11-02T00:00:00+05:30",
+  "endTime": "2026-11-08T23:59:59+05:30",
+  "timeZone": "Asia/Kolkata",
+  "eventTypeId": 42
+}'
 ```
 
 </RequestExample>
 
-<Warning>
-  The route and purpose are confirmed, but the request-body parameters and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
-</Warning>
-
 ## Related
 
 - [Create booking](/api/endpoints/bookings-create)
-- [Get current user](/api/endpoints/me)
+- [List event types](/api/endpoints/event-types-list)

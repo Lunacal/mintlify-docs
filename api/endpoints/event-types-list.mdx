@@ -7,9 +7,21 @@ description: "Retrieve the event types for your account."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Returns the event types for the account that owns the API key.
+Returns the user's event types, both personal and team. Use an event type `id` from this list with [Get availability](/api/endpoints/get-availability) and [Create booking](/api/endpoints/bookings-create).
 
-## Request
+## Body
+
+<ParamField body="filters" type="object">
+  Optional filters.
+
+  <Expandable title="properties">
+    <ParamField body="teamIds" type="integer[]">
+      Only return event types for these teams.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+The response is the same one the LunaCal platform returns for this route.
 
 <RequestExample>
 
@@ -17,14 +29,16 @@ Returns the event types for the account that owns the API key.
 curl -X POST https://app.lunacal.ai/api/event-types/list \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{
+  "filters": {
+    "teamIds": [
+      12
+    ]
+  }
+}'
 ```
 
 </RequestExample>
-
-<Warning>
-  The route and purpose are confirmed, but the request-body parameters and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
-</Warning>
 
 ## Related
 

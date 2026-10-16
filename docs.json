@@ -169,8 +169,7 @@
             "pages": [
               "api/endpoints/bookings-list",
               "api/endpoints/bookings-create",
-              "api/endpoints/bookings-cancel",
-              "api/endpoints/booking-questions"
+              "api/endpoints/bookings-cancel"
             ]
           },
           {

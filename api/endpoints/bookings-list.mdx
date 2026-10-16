@@ -7,9 +7,53 @@ description: "Retrieve bookings for the account that owns the API key."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Returns the bookings for the user that owns the API key, using the same logic as the LunaCal web app.
+Lists the user's bookings. Use a booking `uid` from this list to reschedule or cancel. Results are paginated: pass the `nextCursor` from a previous response as `cursor` to get the next page.
 
-## Request
+## Body
+
+<ParamField body="filters" type="object" required>
+  Filters for the list.
+
+  <Expandable title="properties">
+    <ParamField body="status" type="string" required>
+      One of `upcoming`, `recurring`, `past`, `cancelled`, `unconfirmed`.
+    </ParamField>
+
+    <ParamField body="teamIds" type="integer[]">
+      Only bookings for these teams.
+    </ParamField>
+
+    <ParamField body="eventTypeIds" type="integer[]">
+      Only bookings for these event types.
+    </ParamField>
+
+    <ParamField body="search" type="string">
+      Free-text search.
+    </ParamField>
+
+    <ParamField body="startDate" type="string">
+      Earliest booking start. ISO 8601 date-time including a timezone offset.
+    </ParamField>
+
+    <ParamField body="endDate" type="string">
+      Latest booking start. ISO 8601 date-time including a timezone offset.
+    </ParamField>
+
+    <ParamField body="attendeeEmail" type="string">
+      Only bookings with this attendee.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="limit" default="20" type="integer">
+  Page size, from 1 to 100.
+</ParamField>
+
+<ParamField body="cursor" type="integer">
+  Offset taken from a previous response's `nextCursor`.
+</ParamField>
+
+The response is the same one the LunaCal platform returns for this route.
 
 <RequestExample>
 
@@ -17,17 +61,17 @@ Returns the bookings for the user that owns the API key, using the same logic as
 curl -X POST https://app.lunacal.ai/api/bookings/list \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{
+  "filters": {
+    "status": "upcoming"
+  },
+  "limit": 20
+}'
 ```
 
 </RequestExample>
 
-<Warning>
-  The route and purpose are confirmed, but the request-body parameters (such as filters or pagination) and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
-</Warning>
-
 ## Related
 
-- [Create a booking](/api/endpoints/bookings-create)
-- [Cancel a booking](/api/endpoints/bookings-cancel)
-- [API key authentication](/api/authentication)
+- [Create booking](/api/endpoints/bookings-create)
+- [Cancel booking](/api/endpoints/bookings-cancel)

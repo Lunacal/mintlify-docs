@@ -7,9 +7,43 @@ description: "Update an existing event type."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Updates an existing event type on the account that owns the API key.
+Updates an event type. `metadata`, `locations` and `bookingFields` replace the whole value, so read the event type with [Get event type](/api/endpoints/event-types-get) first when changing only part of them. Weekly hours cannot be edited with this endpoint.
 
-## Request
+## Body
+
+<ParamField body="id" type="integer" required>
+  ID of the event type to update.
+</ParamField>
+
+<ParamField body="title" type="string">
+  Event type title.
+</ParamField>
+
+<ParamField body="description" type="string">
+  Description.
+</ParamField>
+
+<ParamField body="slug" type="string">
+  URL slug.
+</ParamField>
+
+<ParamField body="length" type="integer">
+  Duration in minutes.
+</ParamField>
+
+<ParamField body="locations" type="object[]">
+  Replaces all locations.
+</ParamField>
+
+<ParamField body="bookingFields" type="object[]">
+  Replaces all booking questions.
+</ParamField>
+
+<ParamField body="metadata" type="object">
+  Replaces all metadata.
+</ParamField>
+
+The response is the same one the LunaCal platform returns for this route.
 
 <RequestExample>
 
@@ -17,14 +51,14 @@ Updates an existing event type on the account that owns the API key.
 curl -X POST https://app.lunacal.ai/api/event-types/update \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{
+  "id": 42,
+  "title": "45 min strategy call",
+  "length": 45
+}'
 ```
 
 </RequestExample>
-
-<Warning>
-  The route and purpose are confirmed, but the request-body parameters and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
-</Warning>
 
 ## Related
 

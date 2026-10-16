@@ -1,15 +1,85 @@
 ---
 title: "Create booking"
-description: "Create a booking through the API."
+description: "Create or reschedule a booking."
 ---
 
 <Note>
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Creates a booking for the account that owns the API key. Call [Booking questions](/api/endpoints/booking-questions) first to find out which questions must be answered.
+Books a slot on an event type. Call [Get availability](/api/endpoints/get-availability) first and pass one of the returned start times; this endpoint does not check availability itself. If the event type has required `bookingFields` (see [Get event type](/api/endpoints/event-types-get)), include the answers in `responses`, keyed by each field's name.
 
-## Request
+To reschedule an existing booking, send the same request with its `rescheduleUid` and the new start time.
+
+## Body
+
+<ParamField body="eventTypeId" type="integer" required>
+  ID of the event type to book.
+</ParamField>
+
+<ParamField body="start" type="string" required>
+  Start time. ISO 8601 date-time including a timezone offset.
+</ParamField>
+
+<ParamField body="end" type="string">
+  End time. ISO 8601 date-time including a timezone offset.
+</ParamField>
+
+<ParamField body="timeZone" type="string" required>
+  IANA timezone of the attendee.
+</ParamField>
+
+<ParamField body="responses" type="object" required>
+  Attendee details and booking answers.
+
+  <Expandable title="properties">
+    <ParamField body="name" type="string" required>
+      Attendee name.
+    </ParamField>
+
+    <ParamField body="email" type="string" required>
+      Attendee email.
+    </ParamField>
+
+    <ParamField body="guests" type="string[]">
+      Additional guest emails.
+    </ParamField>
+
+    <ParamField body="notes" type="string">
+      Notes for the host.
+    </ParamField>
+
+    <ParamField body="location" type="string">
+      Selected location value, for example `integrations:daily` or an address.
+    </ParamField>
+
+    <ParamField body="rescheduleReason" type="string">
+      Reason, when rescheduling.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="rescheduleUid" type="string">
+  UID of the booking to move. Get it from List bookings.
+</ParamField>
+
+<ParamField body="language" default="en" type="string">
+  Language code.
+</ParamField>
+
+<ParamField body="metadata" default="{}" type="object">
+  String key-value pairs stored with the booking.
+</ParamField>
+
+<ParamField body="bookingUids" default="[]" type="array">
+  Send an empty array.
+</ParamField>
+
+<ParamField body="slots" default="[]" type="array">
+  Send an empty array.
+</ParamField>
+
+The response is the same one the LunaCal platform returns for this route.
 
 <RequestExample>
 
@@ -17,17 +87,27 @@ Creates a booking for the account that owns the API key. Call [Booking questions
 curl -X POST https://app.lunacal.ai/api/bookings/create \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{
+  "eventTypeId": 42,
+  "start": "2026-11-03T10:00:00+05:30",
+  "timeZone": "Asia/Kolkata",
+  "language": "en",
+  "metadata": {},
+  "responses": {
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "notes": "Looking forward to it"
+  },
+  "bookingUids": [],
+  "slots": []
+}'
 ```
 
 </RequestExample>
 
-<Warning>
-  The route and purpose are confirmed, but the request-body parameters and the response schema have not yet been documented. Replace `{}` with the body your integration needs.
-</Warning>
-
 ## Related
 
-- [Booking questions](/api/endpoints/booking-questions)
+- [Get availability](/api/endpoints/get-availability)
+- [Get event type](/api/endpoints/event-types-get)
 - [List bookings](/api/endpoints/bookings-list)
 - [Cancel booking](/api/endpoints/bookings-cancel)
