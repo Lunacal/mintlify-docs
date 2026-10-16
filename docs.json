@@ -156,8 +156,8 @@
       {
         "group": "API Documentation",
         "pages": [
-          "api/introduction",
           "api/authentication",
+          "api/introduction",
           "api/errors",
           {
             "group": "Users & availability",

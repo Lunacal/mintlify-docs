@@ -109,15 +109,6 @@ curl -X POST https://app.lunacal.ai/api/get-availability \
 ```
 
 ```bash By username and slug
-curl -X POST https://app.lunacal.ai/api/get-availability \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "usernameList": ["alice", "bob"],
-    "eventTypeSlug": "30min-call",
-    "startTime": "2026-10-10T00:00:00.000Z",
-    "endTime": "2026-10-17T00:00:00.000Z"
-  }'
 ```
 
 </RequestExample>
