@@ -169,17 +169,19 @@
             "pages": [
               "api/endpoints/bookings-list",
               "api/endpoints/bookings-create",
-              "api/endpoints/bookings-cancel"
+              "api/endpoints/bookings-cancel",
+              "api/endpoints/booking-questions"
             ]
           },
           {
             "group": "Event type endpoints",
             "pages": [
-              "api/endpoints/event-types-switch-published",
               "api/endpoints/event-types-list",
               "api/endpoints/event-types-get",
               "api/endpoints/event-types-create",
-              "api/endpoints/event-types-update"
+              "api/endpoints/event-types-update",
+              "api/endpoints/event-types-delete",
+              "api/endpoints/event-types-switch-published"
             ]
           },
           "api/introduction",
