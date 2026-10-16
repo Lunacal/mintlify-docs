@@ -157,21 +157,18 @@
         "group": "API Documentation",
         "pages": [
           "api/authentication",
-          "api/introduction",
-          "api/errors",
           {
             "group": "Users & availability",
             "pages": [
-              "api/endpoints/me",
               "api/endpoints/get-availability"
             ]
           },
           {
             "group": "Booking endpoints",
             "pages": [
+              "api/endpoints/bookings-cancel",
               "api/endpoints/bookings-list",
-              "api/endpoints/bookings-create",
-              "api/endpoints/bookings-cancel"
+              "api/endpoints/bookings-create"
             ]
           },
           {
@@ -184,7 +181,9 @@
               "api/endpoints/event-types-delete",
               "api/endpoints/event-types-switch-published"
             ]
-          }
+          },
+          "api/introduction",
+          "api/errors"
         ]
       },
       "mcp-server",
