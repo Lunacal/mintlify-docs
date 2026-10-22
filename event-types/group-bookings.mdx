@@ -1,81 +1,116 @@
 ---
-title: "Group Booking"
-description: "Learn how to enable group booking so multiple participants can book the same time slot."
+title: "Set Up Group Bookings and Limit Seats per Time Slot"
+description: "Let multiple attendees reserve the same session, set participant limits, and automatically reopen seats after cancellations in LunaCal."
 mode: "wide"
+sidebarTitle: "Group Booking"
 ---
 
-## Step 1
+## What is group booking?
 
-Go to [Event Types](https://app.lunacal.ai/event-types) on your dashboard.
+**Group booking** lets multiple participants book the same time slot, up to a capacity set by the organizer. It is useful for appointments where several people attend one session, such as classes, workshops, or group consultations.
 
-<Frame>
-  ![](/images/Group-booking/G1.webp)
-</Frame>
+In LunaCal’s appointment booking software, enable **Group Bookings** under **Event Setup** for the event you want to configure.
 
----
+## How do group booking limits work?
 
-## Step 2
+- Set a maximum of **1–30 participants per time slot**.
+- Each slot has its own capacity. A full slot is hidden from the booking page.
+- When a cancellation frees a seat, availability updates automatically and a previously full slot becomes bookable again.
 
-Select the event for which you want to enable group booking and click the settings ⚙️ icon on that event card.
+## How to set up group bookings in LunaCal
 
-<Frame>
-  ![](/images/Group-booking/G2.webp)
-</Frame>
+### Open Event Types
 
----
-
-## Step 3
-
-Choose "**Edit**" from the dropdown menu.
+Go to [Event Types](https://app.lunacal.ai/event-types) in your dashboard.
 
 <Frame>
-  ![](/images/Group-booking/G3.webp)
+  ![Open Event Types in LunaCal](/images/Group-booking/G1.webp)
 </Frame>
 
----
+### Select the event
 
-## Step 4
-
-In the "**Event Setup**" section, scroll down to find "**Group Bookings**".
+Find the event you want to use for group bookings and click the settings icon on its event card.
 
 <Frame>
-  ![](/images/Group-booking/G4.webp)
+  ![Open settings for the group event](/images/Group-booking/G2.webp)
 </Frame>
 
----
+### Edit the event
 
-## Step 5
-
-Toggle **ON** to allow multiple people to book the same time slot.
+Choose **Edit** from the dropdown menu.
 
 <Frame>
-  ![](/images/Group-booking/G5.webp)
+  ![Choose Edit from the event settings menu](/images/Group-booking/G3.webp)
 </Frame>
 
----
+### Find Group Bookings
 
-## Step 6
-
-Enter the maximum number of participants you want to allow per slot **(** **Enter a number between 1 and 30 )**
+In **Event Setup**, scroll down to **Group Bookings**.
 
 <Frame>
-  ![](/images/Group-booking/G6.webp)
+  ![Find Group Bookings in Event Setup](/images/Group-booking/G4.webp)
 </Frame>
 
----
+### Enable group bookings
 
-## Step 7
-
-Click "**Save**" to apply the changes.
+Turn **Group Bookings** on to allow multiple people to book the same time slot.
 
 <Frame>
-  ![](/images/Group-booking/G7.webp)
+  ![Enable multiple participants for the same time slot](/images/Group-booking/G5.webp)
 </Frame>
 
-| **What Attendees Will See**                                                                        | **How Capacity Works**                                                                   | **What Happens When Someone Cancels**                                                             |
-| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Attendees see all available time slots normally.                                                   | Each time slot has a fixed maximum capacity set by the organizer.                        | If a cancellation reduces capacity, the slot becomes available again automatically.               |
-| For group slots, they see the number of remaining seats (if enabled). Example: **“3 spots left”**. | Every new booking reduces the available seats for that particular time slot.             | Seat count automatically increases by one.                                                        |
-| Once a slot is fully booked, the attendee will **no longer see that time slot**.                   | When capacity reaches zero, the slot is marked as full and hidden from the booking page. | If the slot was hidden because it was full, it becomes _visible again_ with updated availability. |
-| They can only book up to the maximum number of seats allowed per booking (if you set a limit).     | The system prevents bookings beyond the per-slot capacity.                               | The slot instantly reopens without you doing anything manually.                                   |
-| If multiple slots have availability, attendees can choose any of them.                             | Capacity is managed individually per time slot, not globally across the event.           | Updated availability is shown in real time to the next attendee.                                  |
+### Set the participant limit
+
+Enter the maximum number of participants allowed per slot. Choose a number from **1 to 30**.
+
+**Example:** For a workshop with room for 10 people, set the limit to 10. Each workshop time slot then has its own 10-person capacity.
+
+<Frame>
+  ![Set the maximum participants per group time slot](/images/Group-booking/G6.webp)
+</Frame>
+
+### Save your settings
+
+Click **Save** to apply the changes.
+
+<Frame>
+  ![Save the group booking settings](/images/Group-booking/G7.webp)
+</Frame>
+
+## What happens as seats are booked or cancelled?
+
+| Situation | What attendees see | How LunaCal handles capacity |
+| --- | --- | --- |
+| A slot has available seats | The time slot is available to book. Remaining seats are shown if that display is enabled. **Example:** “3 spots left”. | Each new booking reduces the seats available for that slot. |
+| A slot reaches its capacity | The full time slot is hidden from the booking page. | Bookings cannot exceed the per-slot capacity. |
+| Someone cancels and frees a seat | The available seat count updates. A previously hidden full slot becomes visible again. | The seat count increases by one and the slot reopens automatically, with availability updated in real time. |
+| A per-booking seat limit is configured | Attendees can book only up to the maximum seats allowed per booking. | The per-booking limit applies alongside the slot’s overall capacity. |
+| Several slots still have seats | Attendees can choose any available time slot. | Capacity is managed separately for each slot, not globally across the event. |
+
+## Why use LunaCal for group session bookings?
+
+LunaCal’s scheduling tool manages capacity separately for every session, so a full workshop does not close other time slots that still have seats.
+
+Full slots disappear from the booking page, and cancellations automatically restore availability. You can also show remaining seats when that display is enabled, helping attendees see whether a session still has room.
+
+## Frequently asked questions
+
+### How do I let multiple people book the same time slot?
+
+Turn on **Group Bookings** in the event’s **Event Setup** section in LunaCal, set the maximum participants per slot, and click **Save**. Multiple attendees can then book that slot until its capacity is reached.
+
+### How many people can book a group session?
+
+LunaCal lets you set a participant limit from **1 to 30 per time slot**. The limit applies to each slot independently, rather than to all bookings across the event.
+
+### What happens when a group session is full?
+
+LunaCal hides a fully booked time slot from the booking page and prevents bookings beyond its capacity. Other time slots with available seats remain bookable.
+
+### Does a cancelled booking make the seat available again?
+
+Yes. When a cancellation frees a seat in LunaCal, the available seat count increases and the slot reopens automatically. If it was hidden because it was full, it becomes visible again with updated availability.
+
+### Can attendees see how many spots are left?
+
+Yes, when the remaining-seat display is enabled, attendees can see how many seats are left in a group time slot. Once the slot is full, LunaCal hides it from the booking page.

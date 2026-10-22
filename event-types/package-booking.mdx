@@ -1,128 +1,146 @@
 ---
-title: "Package Booking"
-description: "Allow attendees to book multiple time slots in a single booking using Package Booking. Learn how fixed and flexible slot packages work and when to use each."
+title: "Set Up Session Packages and Recurring Bookings"
+description: "Offer a fixed session bundle or a flexible booking range, let attendees choose recurring dates, and understand package restrictions in LunaCal."
 mode: "wide"
+sidebarTitle: "Package Booking"
 ---
 
-## What is Package Booking?
+## What is package booking?
 
-Package Booking lets hosts offer **multiple time slots as part of a single booking**.\
-Instead of booking one meeting at a time, attendees can select several slots in one flow.
+**Package booking** lets an attendee select multiple appointment time slots in one booking flow. A fixed package requires an exact number of sessions; a flexible package lets the attendee choose a number within a range you set.
 
-Package Booking can be enabled for:
+LunaCal’s appointment booking software supports packages for individual events and team events, except **Collective Scheduling** events.
 
-- **Individual (normal) events**
-- **Team events** (except **Collective Scheduling** events)
+## Which package option should I use?
 
-> **Note:**  Package Booking does **not** work with Collective Scheduling events
+- **Fixed Slot:** Require a specific number of sessions for a course or structured program.
+- **Flexible Range:** Let attendees choose how many sessions to book within your minimum and maximum.
+- **Recurring bookings:** Let attendees fill package slots using a repeating schedule, where supported.
 
-## Step 1
+> Package Booking does not work with Collective Scheduling events. Recurring bookings also cannot be used when **Seats** are enabled on the event.
 
-Navigate to [Event Types](https://app.lunacal.ai/event-types).
+## How to set up a session package in LunaCal
+
+### Open Event Types
+
+Go to [Event Types](https://app.lunacal.ai/event-types) in your dashboard.
 
 <Frame>
-  ![](/images/Group-booking/G1.webp)
+  ![Open Event Types to configure a session package](/images/Group-booking/G1.webp)
 </Frame>
 
-## Step 2
+### Select the event
 
-Select the event for which you want to enable package booking OR click the **settings icon** (⚙️) on that event card.
+Select the event you want to configure, or click the settings icon on its event card.
 
 <Frame>
-  ![](/images/Group-booking/G3.webp)
+  ![Select the event for package booking](/images/Group-booking/G3.webp)
 </Frame>
 
-## Step 3
+### Edit the event
 
-Choose "**Edit**" from the dropdown menu.
+Choose **Edit** from the dropdown menu.
 
 <Frame>
-  ![](/images/Group-booking/G3.webp)
+  ![Choose Edit for the selected event](/images/Group-booking/G3.webp)
 </Frame>
 
-## Step 4
+### Enable a multi-session package
 
-- In the "**Event Setup**" section, scroll down to find "**Create a Multi-Session Package**" & **Toggle ON**.
-- **Enter a number between 1 and 20.**
+In **Event Setup**, find **Create a Multi-Session Package** and turn it on. Enter a session count from **1 to 20**.
 
-![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/pb4.webp)
+![Enable a multi-session package and configure its session count](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/pb4.webp)
 
-| Feature | Fixed Slot | Flexible Range |
-| :-- | :-- | :-- |
-| Slot count | Host sets an **exact number** of slots | Host sets a **minimum and maximum range** |
-| Attendee choice | Must select **exactly the defined number** of slots | Can select **any number within the allowed range** |
-| Booking condition | Booking completes **only when all slots are selected** | Booking completes once selection is within the range |
-| Example setup | 4 slots | 2–6 slots |
-| Example attendee action | Must book **exactly 4 sessions** | Can book **2, 3, 4, 5, or 6 sessions** |
-| Flexibility for attendee | ❌ Low | ✅ High |
-| Best for | Fixed programs, paid bundles, structured courses | Coaching, mentoring, flexible engagement packages |
-| Pricing alignment | Easy to price per package | Useful when pricing depends on session count |
-| Risk of partial booking | None (strict requirement) | Possible if expectations aren’t clearly communicated |
+### Choose a fixed count or flexible range
 
-> For example In Flexible Range 2-6, I selected 6 sessions below.
+| Setting | Fixed Slot | Flexible Range |
+| --- | --- | --- |
+| Session count | You set an exact number. | You set a minimum and maximum. |
+| What attendees must select | Exactly the specified number of sessions. | Any number within the allowed range. |
+| When booking can be completed | After all required slots are selected. | Once the selection falls within the range. |
+| **Example:** Package size | 4 sessions. | 2–6 sessions. |
+| **Example:** Attendee selection | The attendee must select exactly 4 sessions. | The attendee can select 2, 3, 4, 5, or 6 sessions. |
+| Suitable uses | Fixed programs, paid bundles, and structured courses. | Coaching, mentoring, and flexible session packages. |
+| Pricing considerations | Suits a set package price. | Suits an offering where pricing depends on session count. |
+| Expectations to communicate | Every required session must be selected. | Attendees may choose fewer than the maximum; explain what each package includes. |
 
-![](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/pb5.webp)
+**Example:** With a flexible range of 2–6 sessions, an attendee can choose 6 sessions, as in the booking flow below.
 
-## Recurring Bookings (within a Package)
+![Select six sessions within a flexible package range of two to six](https://lunacalwebsite.blob.core.windows.net/website-assets/HelpDocs/pb5.webp)
 
-Once Package Booking is enabled, you can also allow attendees to fill their package slots using a **recurring pattern** — instead of picking each session date manually, they choose a frequency (e.g., every week) and the system generates the slots automatically.
+## How do recurring bookings work within a package?
 
-> **Note:** Recurring bookings require Package Booking to be enabled first. Recurring is **not** available for Collective Scheduling events, and it **cannot** be used when Seats are enabled on the event.
+Recurring bookings generate session dates from a repeating pattern, so attendees do not have to choose every date individually. **Package Booking must be enabled first.** Recurring bookings are unavailable for Collective Scheduling events and events with Seats enabled.
 
-### How to Enable Recurring Bookings
+### Enable recurring bookings
 
-After enabling Package Booking (Step 4 above), stay in the same settings area and look for the **"Allow Recurring Bookings"** toggle. Turn it on.
+In the package settings area, turn on **Allow Recurring Bookings**. Select one or more patterns for attendees to choose from.
 
-Once enabled, you can select which **recurrence patterns** attendees are allowed to choose from:
+| Pattern | Schedule |
+| --- | --- |
+| Daily | Every day. |
+| Weekly | The same day every week. |
+| Biweekly | The same day every 2 weeks. |
+| Every 3 weeks | The same day every 3 weeks. |
+| Every 4 weeks | The same day every 4 weeks. |
+| Monthly (same date) | The same date each month. **Example:** The 22nd. |
+| Monthly (same weekday) | The same weekday each month. **Example:** The fourth Wednesday. |
 
-| Pattern | What it means |
-| :-- | :-- |
-| Daily | Repeats every day |
-| Weekly | Same day every week (e.g., every Tuesday) |
-| Biweekly | Same day every 2 weeks |
-| Every 3 weeks | Same day every 3 weeks |
-| Every 4 weeks | Same day every 4 weeks |
-| Monthly (same date) | Same date each month (e.g., the 22nd) |
-| Monthly (same weekday) | Same weekday each month (e.g., the 4th Wednesday) |
+Attendees can choose only from the patterns you enable.
 
-You can enable one or more patterns — attendees will pick from whichever patterns you allow.
+### Add recurring sessions as an attendee
 
----
+When an attendee selects a time slot while building a package, they can choose:
 
-### How Attendees Use Recurring Bookings
+- **Add this slot to package** to add that date manually.
+- **Make this slot recurring** to open the recurring sessions dialog.
 
-When an attendee is building their package and clicks on a time slot, they see two options:
+In the dialog, the attendee selects an allowed pattern and the number of repetitions, up to the remaining slots in their package. They review the preview summary, then confirm to add all generated slots to the package at once.
 
-- **Add this slot to package** — adds just that one slot manually
-- **Make this slot recurring** — opens the recurring sessions dialog
+**Example:** The preview can describe a weekly Wednesday appointment starting June 11 for four sessions.
 
-In the recurring dialog, the attendee:
+Dates that are not available are marked **Unavailable**. The attendee must adjust those dates before completing the booking.
 
-1. Selects a recurrence pattern from the ones you've allowed (e.g., "Every Wednesday")
-2. Selects how many times it should repeat (up to the remaining slots in their package)
-3. Reviews a preview summary — e.g., _"Every Wednesday starting June 11 for 4 sessions"_
-4. Confirms — all generated slots are added to their package at once
+### Combine recurring and manually selected dates
 
-> If some generated dates are unavailable, those slots are flagged with an **"Unavailable"** badge. The attendee must adjust those before they can complete the booking.
+| Approach | How dates are selected | When it helps |
+| --- | --- | --- |
+| Manual selection | The attendee chooses each available date individually. | Irregular schedules or varying availability; more individual selections are needed. |
+| Recurring selection | The attendee chooses a pattern and dates are generated together. | Regular schedules, such as weekly coaching or monthly sessions; dates follow the selected pattern. |
 
----
+Attendees can use both methods in the same package: choose some slots manually and fill the rest with a recurring pattern.
 
-### Recurring vs. Manual Slot Selection — Which to Use?
+### Understand confirmations, calendars, and changes
 
-|  | Manual Selection | Recurring |
-| :-- | :-- | :-- |
-| How slots are chosen | Attendee picks each date individually | Attendee picks a pattern; dates are generated automatically |
-| Best for | Irregular schedules, attendees with varying availability | Regular cadences — weekly coaching, biweekly check-ins, monthly sessions |
-| Attendee effort | Higher (must find and click each slot) | Lower (one pattern fills all slots instantly) |
-| Flexibility | Maximum — any available slot | Limited to the selected recurrence pattern |
+- **Confirmation emails:** Only the first session in a recurring series triggers a confirmation email to you and the attendee. Subsequent sessions are booked without additional confirmation emails.
+- **Calendar sync:** Google Calendar and Outlook receive a single recurring calendar event using the recurrence rule, rather than separate events for every session.
+- **Removing a session:** Attendees can remove individual slots after adding a recurring series to their package. Removing a middle slot splits the series into two groups automatically.
+- **Rescheduling:** Recurring slot selection is unavailable when rescheduling an existing booking. Attendees must adjust slots manually.
 
-Both methods can be used together in a single package — an attendee can add some slots manually and fill the rest with a recurring pattern.
+## Why use LunaCal for multi-session appointments?
 
----
+LunaCal’s scheduling tool supports an exact session count for structured programs or a flexible range for clients who need different amounts of support.
 
-### What to Know
+Within supported packages, attendees can combine recurring and manually selected dates. That lets a regular schedule accommodate individual dates without requiring every session to be selected separately. Unavailable generated dates are flagged for correction before the booking can be completed.
 
-- **Only the first session** in a recurring series triggers a confirmation email to both you and your attendee. Subsequent sessions in the series are booked silently.
-- Recurring series integrate with external calendars (Google Calendar, Outlook) as a **single recurring calendar event** using the recurrence rule — not separate events.
-- Attendees can **remove individual slots** from a recurring series after it's been added to their package. Removing a slot from the middle of a series splits it into two separate groups automatically.
-- Recurring slot selection is **not available during rescheduling** — attendees must adjust slots manually if they are rescheduling an existing booking.
+## Frequently asked questions
+
+### Can I require clients to book a set number of sessions?
+
+Yes. Choose **Fixed Slot** in LunaCal’s Package Booking settings and set the required count, from 1 to 20. Attendees must select exactly that number of slots before completing the booking. Use **Flexible Range** if they should be able to choose within a minimum and maximum instead.
+
+### Why can’t I enable recurring bookings?
+
+Recurring bookings require **Package Booking** to be enabled in LunaCal. They are not available for Collective Scheduling events or events with **Seats** enabled. Recurring slot selection is also unavailable during rescheduling.
+
+### Can I mix recurring appointments with dates I choose myself?
+
+Yes. In one LunaCal package, attendees can add individual dates with **Add this slot to package** and use **Make this slot recurring** to fill other slots with an allowed repeating pattern.
+
+### What happens if a recurring appointment date is unavailable?
+
+LunaCal flags the generated slot with an **Unavailable** badge. The attendee must adjust unavailable dates before completing the package booking.
+
+### Will clients receive an email for every recurring session?
+
+No. Only the first session in a recurring series sends a confirmation email to the attendee and host. Later sessions in that series are booked without additional confirmation emails. Google Calendar and Outlook receive the series as one recurring calendar event.
