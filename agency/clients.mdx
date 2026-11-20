@@ -1,0 +1,64 @@
+---
+title: "Add and manage clients"
+sidebarTitle: "Clients"
+description: "Create a client workspace, finish their setup, and send them a login."
+---
+
+A client is a workspace you manage from the agency. Their booking pages and app use your [branding](/agency/white-label), [domain](/agency/custom-domain), and [email](/agency/email).
+
+Open [Clients](https://app.lunacal.ai/agency/clients). The page subtitle is "Create, manage, and switch into your clients' workspaces."
+
+## Create a client
+
+<Steps>
+  <Step title="Start from Clients">
+    Click **Create client**. Lunacal opens **Create a new client**.
+
+    If you have no clients yet, the empty state says "Create your first client to start managing their workspace from here" and offers the same button. The setup checklist item is **Add your first client**.
+  </Step>
+  <Step title="Finish the workspace wizard">
+    This is the same two-step workspace wizard Lunacal uses for a team, with client wording. Complete both steps. Lunacal returns you to that client's workspace.
+  </Step>
+  <Step title="Return to Clients">
+    The new client is listed on [Clients](https://app.lunacal.ai/agency/clients). Search by name. Sort by name, newest, most bookings in the last 30 days, or who needs attention.
+  </Step>
+</Steps>
+
+## Read a client's status
+
+Each client has a health label.
+
+| Label | When you see it |
+| --- | --- |
+| **Needs setup** | The client has no event types, no members, or no booking domain |
+| **Inactive** | Setup is done, and they have no upcoming bookings and none in the last 30 days |
+| **Healthy** | Setup is done and they have an upcoming booking or a booking in the last 30 days |
+
+A client can also be flagged when they have event types but nothing upcoming. Use **Needs attention** in the sort if you want those rows first.
+
+## Set the account up yourself
+
+When you are the one preparing the client's account, open the **⋯** menu on their row.
+
+<Steps>
+  <Step title="Set up client">
+    **Set up client** signs you into that client's onboarding so you can add their event types and profile. You are acting as the client until you leave that session.
+  </Step>
+  <Step title="Inform client">
+    **Inform client** is how you hand the account over. The dialog shows their login email and a **Temporary password**. Lunacal suggests a password. You can edit it before sending. Copy either value if you also want to share it yourself.
+
+    The dialog says they will be asked to verify their email and finish onboarding the first time they sign in.
+
+    Send it. Lunacal confirms **Credentials sent to the client**. The email includes the login email, the temporary password, and a sign-in link. That link uses your domain when your domain is live.
+  </Step>
+</Steps>
+
+**Inform client** is offered once, the first time you hand over the account. The clients list does not show a second send. The first sign-in asks the client to verify their email and complete their profile.
+
+You cannot invite another agency owner into a client workspace. Lunacal rejects that invite so two agencies are not set as each other's owner.
+
+## Related
+
+- [Brand the workspace](/agency/white-label)
+- [Use your own domain](/agency/custom-domain)
+- [Send email from your domain](/agency/email)

@@ -1,0 +1,82 @@
+---
+title: "Use your own domain"
+sidebarTitle: "Custom domain"
+description: "Add a subdomain, verify DNS, and make it the domain that serves your agency."
+---
+
+A custom domain lets the agency app open on a hostname you own, such as `app.youragency.com`. Booking pages on that hostname work after you set a booking redirect.
+
+You add the hostname in one of two places:
+
+- During [setup](/agency/set-up), in the **Agency Domain** section
+- Later, at [Settings → Custom Domain](https://app.lunacal.ai/agency/settings?tabName=custom-domain)
+
+The setup checklist calls this step **Custom domain**. Its description is "Run the whole app on your own domain — client workspaces and booking pages." The checklist marks it done when you have a live custom domain. Serving the agency app on that hostname is a second, one-time step: **Make agency domain**.
+
+## Add a subdomain
+
+<Steps>
+  <Step title="Enter the hostname">
+    In setup, the field is **Your custom domain**. The placeholder is `app.youragency.com`. Type the full hostname. Do not include `https://` or a path. Lunacal removes those if you paste them.
+
+    The note under the field says you need access to your DNS provider.
+  </Step>
+  <Step title="Create the domain">
+    Click **Set up domain**. Lunacal confirms: "Custom domain created. Add the DNS records below to verify it."
+
+    The hostname needs at least three parts (`app.youragency.com`). A root domain such as `youragency.com` is not created from this form.
+  </Step>
+  <Step title="Add the two DNS records">
+    Lunacal shows the records to copy. Each card has **Host / Name** and **Value / Target**.
+
+    | Type | Host / Name | What the card says |
+    | --- | --- | --- |
+    | CNAME | The subdomain you chose | "Points your subdomain to us" |
+    | TXT | `_dnsauth.` followed by that same host | "Verifies ownership" |
+
+    Copy both values from the page. They belong to this domain. The line under the hostname says "Add these records at your DNS provider, then verify."
+  </Step>
+  <Step title="Verify">
+    Click **Verify DNS**.
+
+    When the records are accepted and the routes are in place, Lunacal says: "Domain verified! You can activate it anytime from Settings."
+
+    If the records are not visible yet, Lunacal says verification is still in progress and that DNS can take up to an hour. The section status stays **In progress**. You can leave and come back. The note beside the button says CDN propagation can take up to an hour.
+  </Step>
+</Steps>
+
+When the domain is active, the setup section status is **Connected** and the page says "Your domain is live." If setup fails, the status is **Setup failed**.
+
+On **Settings → Custom Domain**, the same domain is in your domain list. Open its records there if you need the CNAME and TXT values again. **Verify DNS** is also in the domain setup dialog on that page.
+
+## Make it the agency domain
+
+A verified domain is not the agency domain until you say so. This is what the "activate it from Settings" message is pointing at.
+
+<Steps>
+  <Step title="Open the live domain">
+    Go to [Settings → Custom Domain](https://app.lunacal.ai/agency/settings?tabName=custom-domain). The domain has to be live. A domain that is still verifying, or one that failed, cannot be chosen.
+  </Step>
+  <Step title="Set a booking redirect, if you want booking pages on this host">
+    Open the domain menu and click **Set Redirect**. If you skip this, the next dialog warns you: booking pages will not work on this domain, and visitors will be redirected to your agency login page instead.
+  </Step>
+  <Step title="Confirm Make agency domain">
+    Open the domain menu and click **Make agency domain**.
+
+    The dialog says this is a one-time process and cannot be changed once set. It also says the hostname will become your agency domain and will serve your entire agency app. Removing the domain from the custom-domain redirect can take up to 10 minutes.
+
+    Tick **I understand this is a one-time action and cannot be changed.** Then confirm **Make agency domain**.
+  </Step>
+</Steps>
+
+You can do this once. If you already have an agency domain, Lunacal refuses a second one: "You already have an agency domain. This is a one-time setup and cannot be changed."
+
+## Use a root domain
+
+A hostname with only two parts, such as `youragency.com`, cannot be created in the form. Lunacal says root domains are set up by the team and asks you to email [support@lunacal.ai](mailto:support@lunacal.ai).
+
+The help icon next to **Agency Domain** says the same thing: email that address and the team will set up a root domain, such as `youragency.com` with no prefix.
+
+## Finish later
+
+You do not have to wait for DNS during the first setup. Click **Finish** or **Skip for now**, then return to **Settings → Custom Domain** when the records have propagated.

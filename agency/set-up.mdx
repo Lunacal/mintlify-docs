@@ -1,0 +1,67 @@
+---
+title: "Set up your agency"
+sidebarTitle: "Set up"
+description: "Walk through the two-step agency setup: your brand, then your domain and email."
+---
+
+The first time you launch the agency, Lunacal opens a short setup. You can leave it and come back. Anything you already saved is filled in again.
+
+Open [app.lunacal.ai/agency/setup](https://app.lunacal.ai/agency/setup). The close button in the corner takes you to the agency overview. You can finish domain and email later from Settings.
+
+## Step 1. Set up your agency
+
+The page title is **Set up your agency**. The description under it is "Your name and logo appear on your clients' booking pages."
+
+<Steps>
+  <Step title="Name the agency">
+    **Agency Name** is required. The placeholder is "Northwind". Use the name clients should see in the product. It can be up to 100 characters.
+  </Step>
+  <Step title="Add a logo and a favicon">
+    Both are required.
+
+    - **Logo** can be cropped to any shape.
+    - **Favicon** is cropped to a square.
+
+    Use an image file, up to 5 MB. Lunacal rejects other file types. After you pick a file, crop it, then confirm. **Change** replaces the image. You can remove it and upload again.
+  </Step>
+  <Step title="Add a support email">
+    **Support Email** is required. Use an address your clients can write to, such as `support@youragency.com`.
+  </Step>
+  <Step title="Add your legal links, if you have them">
+    **Privacy Policy URL** and **Terms of Use URL** are optional. Each one must start with `http://` or `https://` if you fill it in.
+
+    If either box is empty, the page warns you that clients and bookers will see Lunacal's page for the one you left blank.
+  </Step>
+  <Step title="Continue">
+    Save the step. Lunacal moves you to **Domain & email**.
+  </Step>
+</Steps>
+
+Brand color is not on this step. Lunacal stores a default color so the rest of the form can save. You cannot pick a color yet. See [Brand the workspace](/agency/white-label).
+
+## Step 2. Domain and email
+
+The page title is **Connect your domain & email**. Under it: "Add your custom domain and sending email so your clients see your brand everywhere."
+
+Two sections sit on the page. The steps along the top call this step **Domain & email**. Each section shows one of these statuses: **Not set up**, **In progress**, **Connected**, or **Setup failed**.
+
+| Section | What it is |
+| --- | --- |
+| **Agency Domain** | "Host your white-labeled app on your own domain." |
+| **Agency SMTP** | "Send booking emails from your own mailbox." |
+
+<Steps>
+  <Step title="Add the domain, if you have DNS access now">
+    Open **Agency Domain**, enter the hostname, and click **Set up domain**. The records and the **Verify DNS** button appear on the same page. Full steps are on [Use your own domain](/agency/custom-domain).
+  </Step>
+  <Step title="Add the mail server">
+    Open **Agency SMTP** and click **Save SMTP**. After it is saved, the button reads **Update SMTP**. Full steps are on [Send email from your domain](/agency/email).
+  </Step>
+  <Step title="Leave the setup">
+    Click **Finish** to open the agency workspace. **Skip for now** does the same thing if you want to add the domain or the mail server later.
+
+    DNS does not have to finish first. The page says CDN propagation can take up to an hour, and that you can continue and finish later.
+  </Step>
+</Steps>
+
+The same settings are under [Agency settings](https://app.lunacal.ai/agency/settings) after you leave this page. A domain you create here still has to be marked as the agency domain from **Settings → Custom Domain** before it serves the agency app. That step is on [Use your own domain](/agency/custom-domain).

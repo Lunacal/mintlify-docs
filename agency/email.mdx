@@ -1,0 +1,46 @@
+---
+title: "Send email from your domain"
+sidebarTitle: "Email"
+description: "Connect your mail server so agency and client email comes from your address."
+---
+
+Custom SMTP sends Lunacal email through your mail server. Clients who have not set up their own SMTP use yours. The From name and address are yours, and the message can carry your agency branding.
+
+The checklist calls this **Custom email sending**. The description is "Send all app emails from your own mail server."
+
+Add it during [setup](/agency/set-up), in the email section, or later at [Settings → Custom SMTP](https://app.lunacal.ai/agency/settings?tabName=custom-smtp).
+
+## Add the mail server
+
+<Steps>
+  <Step title="Open Custom SMTP">
+    The heading is **Custom SMTP**. The description says that clients who have not configured their own SMTP use this server instead of the default.
+  </Step>
+  <Step title="Fill in the server">
+    Every field is required.
+
+    | Field | Example | Notes |
+    | --- | --- | --- |
+    | **SMTP Host** | `smtp.yourdomain.com` | The server hostname |
+    | **Port** | `587` | This is filled in for you |
+    | **Username** | `user@yourdomain.com` | The mailbox login |
+    | **Password** |  | The mailbox password. It is masked. |
+    | **From Email** | `noreply@youragency.com` | The address recipients see |
+    | **From Name** | `My Agency` | The name next to that address |
+  </Step>
+  <Step title="Save">
+    Click **Save**. The button stays disabled until you change a field. After the server accepts the details, a green line says **SMTP is configured and verified**, and the button label changes to **Update**.
+  </Step>
+</Steps>
+
+If a required field is empty, or **From Email** has no `@`, Lunacal does not save the form.
+
+## Remove it
+
+**Delete** appears only after SMTP is configured. The dialog title is **Remove SMTP configuration?** Confirming removes your server. The warning on the dialog says that agency client email then goes through the default mail server.
+
+Clients who already have their own SMTP keep using that. Removing yours does not delete their settings.
+
+## What mail this affects
+
+Booking messages, workflow email, and the message you send when you [hand a client their login](/agency/clients) use this server when the client does not have one of their own. The login link in that message uses your agency domain when the domain is active, and Lunacal's app address when it is not.

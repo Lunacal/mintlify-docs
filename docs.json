@@ -69,6 +69,17 @@
         ]
       },
       {
+        "group": "Agency",
+        "pages": [
+          "agency/overview",
+          "agency/set-up",
+          "agency/white-label",
+          "agency/custom-domain",
+          "agency/email",
+          "agency/clients"
+        ]
+      },
+      {
         "group": "Bookings",
         "pages": [
           "manage-bookings"
