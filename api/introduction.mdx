@@ -1,50 +1,59 @@
 ---
-title: "API introduction"
-description: "Call Lunacal from your own apps with an API key."
+title: "Use the Lunacal API"
+sidebarTitle: "Introduction"
+description: "What the Lunacal API can do, what you need before the first call, and which routes are available."
 ---
 
-The Lunacal HTTP API is a small set of POST routes on `https://app.lunacal.ai`. Each route runs as the user who owns the API key. There is no separate OAuth flow for these routes, and a key does not have its own scopes.
+Use the Lunacal API when you want your own app, script, or automation to act on a Lunacal account: look up the user, read open times, and create or change bookings and event types.
 
-MCP clients do not use these keys. Assistants sign in with OAuth. See [MCP server](/mcp-server).
+Every call runs as the person who owns the API key. The key does not have separate permissions. If that person can do it in Lunacal, the key can do it through these routes.
 
-## Before you call anything
+AI assistants such as Claude do not use this key. They connect through [MCP](/mcp-server) and ask the user to sign in.
 
-You need a Lunacal account on Tier 4 or higher, or a manual grant of the API keys feature. Open [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer) and create a key. The steps, the plan lock, and what the settings page actually shows are on [API key authentication](/api/authentication).
+## Before you start
 
-Agency client accounts do not get the Developer tab.
+<Info>
+  API access is included on Tier 4 and above. On a lower plan, **Settings → Developer** stays locked until the plan is upgraded or Lunacal turns the feature on for that account. Agency client accounts do not see the Developer tab.
+</Info>
 
-## Request conventions
+1. Sign in to Lunacal.
+2. Open [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
+3. Create a key and store it somewhere only your server can read. The steps are on [Create and use an API key](/api/authentication).
+
+## How a request is shaped
 
 | | |
 | --- | --- |
 | Base URL | `https://app.lunacal.ai` |
-| Method | `POST` only. Any other method returns `405` and `{"message":"Method not allowed"}`. |
-| Header | `Authorization: Bearer lunacal_<key>` |
-| Body | JSON. Send `Content-Type: application/json`. |
-| Success | The route's JSON object, with no wrapper. |
-| Failure | `{"message":"..."}`. Status codes are listed on [Errors](/api/errors). |
+| Method | `POST` for every route on this page |
+| Header | `Authorization: Bearer lunacal_<your-key>` |
+| Body | JSON, with `Content-Type: application/json` |
 
-Store the key in an environment variable. The examples below use `$LUNACAL_API_KEY`.
+A successful call returns the result as JSON. A failed call returns JSON with a `message` field. The status codes are explained on [Errors](/api/errors).
 
-## Routes
+Keep the key in an environment variable named `LUNACAL_API_KEY`. The examples on these pages use that name.
 
-| Route | What it does |
+## What you can call
+
+| You want to | Route |
 | --- | --- |
-| [`/api/user/me`](/api/endpoints/me) | Profile of the key's owner |
-| [`/api/availability`](/api/endpoints/get-availability) | Open slots for an event type |
-| [`/api/bookings/list`](/api/endpoints/bookings-list) | Bookings for one status |
-| [`/api/bookings/create`](/api/endpoints/bookings-create) | Create or reschedule a booking |
-| [`/api/bookings/cancel`](/api/endpoints/bookings-cancel) | Cancel a booking |
-| [`/api/event-types/list`](/api/endpoints/event-types-list) | Event types on the account |
-| [`/api/event-types/get`](/api/endpoints/event-types-get) | One event type |
-| [`/api/event-types/create`](/api/endpoints/event-types-create) | Create an event type |
-| [`/api/event-types/update`](/api/endpoints/event-types-update) | Change an event type |
-| [`/api/event-types/delete`](/api/endpoints/event-types-delete) | Delete an event type |
-| [`/api/event-types/switch-published`](/api/endpoints/event-types-switch-published) | Show or hide an event type on the booking page |
+| See who the key belongs to | [`POST /api/user/me`](/api/endpoints/me) |
+| Find open times | [`POST /api/availability`](/api/endpoints/get-availability) |
+| List bookings | [`POST /api/bookings/list`](/api/endpoints/bookings-list) |
+| Book or reschedule | [`POST /api/bookings/create`](/api/endpoints/bookings-create) |
+| Cancel a booking | [`POST /api/bookings/cancel`](/api/endpoints/bookings-cancel) |
+| List event types | [`POST /api/event-types/list`](/api/endpoints/event-types-list) |
+| Read one event type | [`POST /api/event-types/get`](/api/endpoints/event-types-get) |
+| Create an event type | [`POST /api/event-types/create`](/api/endpoints/event-types-create) |
+| Update an event type | [`POST /api/event-types/update`](/api/endpoints/event-types-update) |
+| Delete an event type | [`POST /api/event-types/delete`](/api/endpoints/event-types-delete) |
+| Show or hide an event type | [`POST /api/event-types/switch-published`](/api/endpoints/event-types-switch-published) |
 
-Creating and cancelling a booking authenticate the key, but they do not re-check the plan. Every other route in this table returns `403` if the account no longer has API access. Details are on [Errors](/api/errors).
+If the account later drops below Tier 4, most of these routes answer `403`. Creating and cancelling a booking still accept a key that was valid when it was issued. See [Errors](/api/errors).
 
-## A first call
+## Try it
+
+This call returns the profile of the key's owner. You need `id`, `email`, `username`, and `timeZone` for almost every other call. The response also includes plan and branding fields that the Lunacal app uses. Rely on the four fields above.
 
 <CodeGroup>
 
@@ -76,4 +85,8 @@ console.log(me.id, me.email, me.timeZone);
 
 </CodeGroup>
 
-`me` is the same profile object the Lunacal app loads for the signed-in user. Use `id`, `email`, `username`, and `timeZone` from it. The rest of the object is account state (plan, feature flags, branding) and is not a stable public schema.
+## Next
+
+- [Create and use an API key](/api/authentication)
+- [Errors](/api/errors)
+- [Connect Claude with MCP](/mcp-server)

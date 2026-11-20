@@ -81,7 +81,7 @@ To reschedule, send the same body with `rescheduleUid` set to the booking `uid` 
   Send `[]` for a single slot. Package and recurring bookings put each slot here as `{ "start", "end" }`.
 </ParamField>
 
-The response is the same one the Lunacal platform returns for this route.
+A successful call returns the booking that was created or moved. If the slot was taken, look up availability again and choose another start time.
 
 <RequestExample>
 

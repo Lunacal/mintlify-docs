@@ -1,49 +1,60 @@
 ---
-title: "API key authentication"
-description: "Create a Lunacal API key and send it as a Bearer token."
+title: "Create and use an API key"
+sidebarTitle: "API keys"
+description: "Create a Lunacal API key in Developer settings, send it with each request, and revoke it when you are done."
 ---
 
-An API key authenticates as your user. Lunacal hashes the secret and stores only the hash, so the full key is shown once, in the dialog that appears right after you create it.
+An API key lets a server you control call Lunacal as you. Lunacal shows the full key once, when you create it, and stores only a hash after that.
 
-Keys have no scopes. A valid key can call every route in the [API introduction](/api/introduction).
+One key can call every route in the [API reference](/api/introduction). You cannot limit a key to read-only, or to a single route.
 
-## Who can create a key
+## Who can open Developer settings
 
-Open [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
+Go to [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
 
-- The Developer tab is hidden for agency client accounts.
-- On other accounts the tab is there, but the page is locked unless the account is Tier 4 or higher, or someone has turned the API keys feature on for that user. The lock says: "API keys & MCP access require a Tier 4 or higher plan."
-- Creating a key from the app fails with the same plan requirement if the lock is bypassed.
+| What you see | What it means |
+| --- | --- |
+| The Developer tab is missing | The account is an agency client. Clients use the agency's workspace and do not create their own keys. |
+| The page is locked | The account is below Tier 4, and nobody has turned API access on for it. The message on the lock is "API keys & MCP access require a Tier 4 or higher plan." |
+| The key list is visible | You can create, rename, and delete keys. |
 
 ## Create a key
 
 <Steps>
   <Step title="Open Developer settings">
-    Go to [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
+    In Lunacal, open [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
   </Step>
-  <Step title="Choose a name and an expiration">
+  <Step title="Name the key and choose when it expires">
     Click **Create an API key**.
 
-    **Name this key** is a label for you. It is not part of the secret. The placeholder is "E.g. Development".
+    **Name this key** is a label for your list, such as "Billing sync". It is not part of the secret. The field placeholder is "E.g. Development".
 
-    **Expiration date** is one of **7 days**, **30 days** (selected by default), **3 months**, or **1 year**. Turn on **Never expires** to leave `expiresAt` empty. You cannot change the expiration after the key is created. You can rename it.
+    **Expiration date** offers **7 days**, **30 days**, **3 months**, and **1 year**. **30 days** is selected when the dialog opens. Turn on **Never expires** if the key should stay valid until you delete it.
+
+    You can rename a key later. You cannot change its expiration after you save it.
   </Step>
-  <Step title="Copy the secret">
-    The next screen is titled **API key created successfully**. It tells you to save the key before closing the window. Use **Copy**. Closing the dialog is the last time Lunacal will show the secret.
+  <Step title="Copy the key before you close the dialog">
+    Lunacal shows **API key created successfully** and the text "Save this API key before closing this window." Click **Copy**.
+
+    When you close the dialog, the full key is gone. If you did not save it, delete that row and create a new key.
   </Step>
 </Steps>
 
-The secret looks like `lunacal_` followed by the random key. Send that whole string. Lunacal strips the `lunacal_` prefix and hashes the rest.
+The value you copy starts with `lunacal_`. Send the whole value, including that prefix.
 
 <Warning>
-  Treat the key like a password. Do not put it in frontend code, a public repo, or a screenshot. If it leaks, delete it and create another one. There is no way to display it again.
+  A key is a password for the account. Put it in a secret store or an environment variable on your server. Do not put it in a browser app, a public repository, or a screenshot. If it leaks, delete it and create a new one.
 </Warning>
 
-## Call the API
+## Send the key
+
+Add this header to every request:
 
 ```
-Authorization: Bearer lunacal_<key>
+Authorization: Bearer lunacal_<your-key>
 ```
+
+Also send `Content-Type: application/json`. Every route uses `POST`.
 
 <CodeGroup>
 
@@ -72,29 +83,25 @@ if (!response.ok) {
 
 </CodeGroup>
 
-A missing header, a key without the `lunacal_` prefix, a wrong secret, a deleted key, and an expired key all return the same response:
+A request with no key, a mistyped key, a deleted key, or an expired key is rejected with `401`. Lunacal uses the same message for all of those cases, so you cannot tell from the response which one it was. Check the key in Developer settings, then create a new one if you are unsure. The exact messages are on [Errors](/api/errors).
 
-```json
-{ "message": "Invalid  credentials" }
-```
+After a successful call, **Last used** on that row updates to a relative time such as "a few seconds ago". A failed call does not update it.
 
-The status is `401`. The message really does contain two spaces. `/api/bookings/create` and `/api/bookings/cancel` use a different message, `Invalid or missing credentials`. See [Errors](/api/errors).
+## Read the key list
 
-A successful key lookup updates **Last used** on the settings page. That update is best-effort. A failed request does not count as use.
+Each key is one row.
 
-## What the list shows
+- The title is the name you entered. A blank name shows as **Nameless API key**.
+- Under the name, a masked preview starts with `lunacal_` and then hides the rest. That preview is not the secret, and it is not the last characters of the secret. You cannot rebuild the key from it.
+- **Created**, **Last used**, and **Expires** sit on the same row. **Last used** says **Never** until the first successful call. **Expires** is a date, or **Never expires**.
+- A key past its date is marked **Expired**. A key that expires within 14 days is marked as expiring soon.
 
-Each row shows:
+Above the list, three counts show how many keys are active, how many are expired, and how many never expire. Search matches the name and the preview. The filter next to search is **All**, **active**, or **Expired**.
 
-- The name, or **Nameless API key** if you left it blank.
-- A masked preview. This is not the secret and not a suffix of the secret. You cannot reconstruct the key from it.
-- **Created**, **Last used** (or never), and **Expires** (a date, or **Never expires**).
-- **Expired** when `expiresAt` is in the past. A key that expires within 14 days is flagged as expiring soon.
+## Rename or delete a key
 
-Search matches the name and the preview. Filters are All, active, and Expired. The counts above the list are active keys, expired keys, and keys that never expire.
+**Edit** opens **Edit API key**. Change the name and save. The expiration stays as it was.
 
-**Edit** opens **Edit API key** and only saves a new name.
+**Delete** opens **Delete this API key permanently?** The explanation on that dialog is **Revoke this API key**. Confirming removes the key. Anything still sending it receives `401`.
 
-**Delete** asks **Delete this API key permanently?** and explains **Revoke this API key**. Confirming removes the key. Requests that still send it get `401`.
-
-There is no separate revoke action, and there is no permissions picker on the key.
+There is no second "revoke" button, and there is no way to turn a key off without deleting it.

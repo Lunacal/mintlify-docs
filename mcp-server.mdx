@@ -1,153 +1,119 @@
 ---
-title: "Lunacal MCP server"
+title: "Connect Lunacal to Claude"
 sidebarTitle: "MCP server"
-description: "Connect Claude to Lunacal to read availability and change bookings and event types."
+description: "Install the Lunacal plugin, sign in once, and ask Claude to check availability, book meetings, and manage event types."
 icon: "plug"
 ---
 
-The Lunacal MCP server lets an AI client call your Lunacal account over the [Model Context Protocol](https://modelcontextprotocol.io). The client never sees an API key. The first time a tool runs, you sign in to Lunacal and approve the consent screen. After that, the assistant acts as you.
+The Lunacal MCP server lets Claude work in your Lunacal account from a chat. You sign in once in the browser and choose **Allow**. After that, Claude can look up your calendar and, when you approve it, book or change meetings.
 
-You need Tier 4, or a manual grant of the MCP feature. Without it, the consent page sends you to settings instead of issuing a token. API keys on the Developer page are a separate feature and are not used here.
+You do not paste an API key into Claude. API keys are for your own server. This connection is a separate sign-in.
 
-## Server
+<Info>
+  You need Tier 4 or higher, or MCP access turned on for your account. If you do not have it, the sign-in page sends you back to Settings instead of connecting.
+</Info>
 
-```
-https://mcp.lunacal.ai/mcp
-```
+## What Claude can do
 
-This was read from the live server on 20 November 2026:
+Claude chooses the action. You describe the task in plain language. Actions that only read your account are safe to run. Actions that book, move, cancel, or edit an event type change real data and can email the other person. Approve those only after the name, time, and event type look right.
 
-| | |
+### Look something up
+
+| Ask Claude | What it uses |
 | --- | --- |
-| Transport | Streamable HTTP |
-| Resource | `https://mcp.lunacal.ai/mcp` |
-| Authorization | `https://mcp.lunacal.ai/authorize` |
-| Token | `https://mcp.lunacal.ai/token` |
-| Client registration | `https://mcp.lunacal.ai/register` |
-| Grants | `authorization_code`, `refresh_token` |
-| PKCE | `S256` |
-| Client auth at the token endpoint | `none` |
+| "Which Lunacal account is connected?" | Your name, email, username, and timezone |
+| "What event types do I have?" | Every event type on the account, including team event types |
+| "Show me the settings for my intro call." | One event type, including its questions and location |
+| "When am I free on Friday for a 30-minute intro call?" | Open times for that event type |
+| "What's on my calendar this week?" | Bookings in one of these states: upcoming, recurring, past, cancelled, or unconfirmed |
 
-How those tokens are stored, and what the consent screen is allowed to do, is on [MCP security and permissions](/mcp-security-and-permissions).
+### Change something
 
-## Tools
-
-Names below are the ones in the Lunacal Claude plugin (`Lunacal/lunacal-claude-plugin`, version 1.1.0). The assistant picks the tool. You do not call these names yourself unless you are building a client.
-
-Read tools do not change the account. Write tools do. `cancel_booking` cannot be undone.
-
-### Read
-
-| Tool | What it does |
+| Ask Claude | What happens |
 | --- | --- |
-| `get_my_profile` | Name, email, username, and timezone of the connected user. Call this first so later times use that timezone. |
-| `list_event_types` | Event types on the account, including team event types. Each entry has an id, title, slug, duration, and whether it is hidden. `teamIds` narrows the list. |
-| `get_event_type` | One event type by numeric id: locations, booking fields, and schedule id. |
-| `find_available_slots` | Open slots. Needs an event type id, or a slug plus `usernameList`, a start and end, and an IANA `timezone`. Datetimes are ISO 8601 with an offset. |
-| `list_bookings` | Bookings for one status: `upcoming`, `recurring`, `past`, `cancelled`, or `unconfirmed`. Paginate with `limit` and `cursor` (`nextCursor` from the previous result). Optional filters: `teamIds`, `eventTypeIds`, `search`, `startDate`, `endDate`, `attendeeEmail`. |
+| "Book a meeting with jane@example.com tomorrow at 2pm." | Claude checks open times first, then books one of them. Booking does not search for a free slot on its own. |
+| "Move my 3pm meeting to next Monday." | Claude finds the booking, checks the new time, then moves it. |
+| "Cancel my meeting with Alex on Thursday." | Cancels that booking. This cannot be undone. Say so in the chat before you approve it. If Lunacal asks for a reason, Claude needs one from you. |
+| "Create a 45-minute consultation." | Adds an event type with a title, a link slug, and a length in minutes. |
+| "Change my intro call to 45 minutes." | Updates that event type. Questions, locations, and extra settings are replaced as a whole, so Claude should read them before editing part of them. |
+| "Hide Office Hours from my booking page." | Publishes or unpublishes that event type. |
 
-### Write
-
-| Tool | What it does |
-| --- | --- |
-| `create_booking` | Books a slot. Does not check availability itself. Call `find_available_slots` first and pass a returned start. Requires `eventTypeId`, `start`, `timezone`, `name`, and `email`. Extra booking questions go in `additionalResponses`, keyed by each field's `name`. |
-| `reschedule_booking` | Moves a booking. Needs the booking `uid`, event type id, new start, timezone, and the attendee's name and email. Call `find_available_slots` with `rescheduleUid` first so the current booking is not treated as a conflict. |
-| `create_event_type` | Creates an event type. Requires `title`, `slug`, and `length` (minutes). The published plugin also documents `description`, `hidden`, `teamId`, `schedulingType` (`ROUND_ROBIN`, `COLLECTIVE`, or `MANAGED`), `locations`, `bookingFields`, and `metadata`. The HTTP create route ignores `bookingFields`. Whether the MCP server writes those questions itself was not checked against the MCP server source. |
-| `update_event_type` | Changes an event type. Send `id` and the fields to change. `metadata`, `locations`, and `bookingFields` replace the whole value. Read them with `get_event_type` first if you are editing part of one. |
-| `set_event_type_published` | Sets `isPublished`. Pass `eventId`, `isPublished`, and `teamId` when the event type belongs to a team. |
-
-### Destructive
-
-| Tool | What it does |
-| --- | --- |
-| `cancel_booking` | Cancels a booking by `uid`. Confirm with the user before the client runs it. Pass `cancellationReason` when Lunacal requires one. `allRemainingBookings: true` cancels the rest of a recurring series. |
-
-These tools call the same behavior as the [HTTP API](/api/introduction), but the argument names are not the same. The HTTP API uses `timeZone` and a `responses` object. The MCP tools use `timezone`, `name`, `email`, and `additionalResponses`. Weekly hours on an availability schedule cannot be edited through these tools. A `scheduleId` on an event type is only there so you can see which schedule it uses.
+Claude cannot edit your weekly working hours. It can see which availability schedule an event type uses, and that is all.
 
 <Warning>
-  `create_booking`, `reschedule_booking`, `cancel_booking`, `create_event_type`, `update_event_type`, and `set_event_type_published` change real data and can email attendees. Approve the tool call only after the name, time, and event type look right.
+  Booking, rescheduling, cancelling, and editing an event type can notify attendees. Read the details Claude shows you before you approve the action.
 </Warning>
 
-## Connect Claude
-
-The supported Claude install is the Lunacal plugin, which points Claude at `https://mcp.lunacal.ai/mcp`.
+## Install it in Claude
 
 <Tabs>
-  <Tab title="Claude apps">
-    In Claude.ai, Claude Desktop, or Cowork, open the plugin directory, find **Lunacal**, and install it.
-
-    The plugin's documented homepage is [lunacal.ai](https://lunacal.ai). Its docs URL is this page.
+  <Tab title="Claude.ai and Claude Desktop">
+    <Steps>
+      <Step title="Open the plugin directory">
+        In Claude.ai, Claude Desktop, or Cowork, open the plugin directory.
+      </Step>
+      <Step title="Install Lunacal">
+        Find **Lunacal** and install it. On a Claude Team or Enterprise organization, an owner may need to approve the plugin before you can install it.
+      </Step>
+      <Step title="Sign in">
+        The first time you ask Claude to use Lunacal, your browser opens a Lunacal page. Sign in if you are asked to, read the permissions, and click **Allow**.
+      </Step>
+    </Steps>
   </Tab>
   <Tab title="Claude Code">
-    From a checkout that has the marketplace available:
+    In Claude Code, install the plugin from the Lunacal marketplace:
 
     ```bash
     /plugin install lunacal --marketplace Lunacal/lunacal-claude-plugin
     ```
 
-    Or:
+    You can also run:
 
     ```bash
     claude plugin install lunacal
     ```
 
-    The plugin file is only this:
-
-    ```json
-    {
-      "mcpServers": {
-        "lunacal": {
-          "type": "http",
-          "url": "https://mcp.lunacal.ai/mcp"
-        }
-      }
-    }
-    ```
-
-    The first tool call opens a browser so you can sign in to Lunacal and choose **Allow**.
+    Restart the session, then ask Claude something that needs your calendar. The browser opens so you can sign in and click **Allow**.
   </Tab>
 </Tabs>
 
-<Note>
-  On a Claude Team or Enterprise organization, an owner may have to approve the plugin before members can install it. That is a Claude control, not a Lunacal setting.
-</Note>
+The plugin connects to this address. You only need it if you are adding Lunacal to a client yourself:
 
-## ChatGPT
+```
+https://mcp.lunacal.ai/mcp
+```
 
-Lunacal publishes a Claude plugin. A separate ChatGPT plugin package was not in the Lunacal GitHub org at the time of this update, and the ChatGPT connector screens were not re-checked from a logged-in ChatGPT account.
+## Try a few prompts
 
-What is verified, and what a ChatGPT custom connector needs if that product still accepts a remote MCP server:
+- "Which Lunacal account is connected?"
+- "What times are open for my 30-minute intro call on Friday?"
+- "Show my upcoming bookings."
+- "Book a meeting with jane@example.com tomorrow at 2pm."
+- "Move my 3pm meeting to next Monday."
+- "Cancel my meeting with Alex on Thursday."
+- "Create a 45-minute consultation event type."
+- "Unpublish Office Hours."
 
-- Server URL: `https://mcp.lunacal.ai/mcp`
-- Authentication: OAuth. Do not paste an API key.
-- The server advertises authorization-code with PKCE (`S256`) and a public client (`token_endpoint_auth_method` `none`).
+If a time looks wrong, name the timezone in the prompt, or ask Claude which timezone the account uses. Lunacal stores the moment in UTC and displays it in that timezone.
 
-If ChatGPT's current UI uses different labels than "Developer mode" or "Create connector", follow the labels in the product. The URL and the OAuth requirement do not change.
-
-## Other MCP clients
-
-Any client that can add a remote HTTP MCP server with OAuth can use `https://mcp.lunacal.ai/mcp`. Clients that only speak stdio are not covered by the published Lunacal plugin. Do not invent a local command for them. The server you want is the hosted one above.
-
-## Prompts that match the tools
-
-- "Which Lunacal account is connected?" (`get_my_profile`)
-- "What event types do I have?" (`list_event_types`)
-- "What times are open for my 30-minute intro call on Friday?" (`find_available_slots`)
-- "Show my upcoming bookings." (`list_bookings` with `upcoming`)
-- "Book a meeting with jane@example.com tomorrow at 2pm." (`find_available_slots`, then `create_booking`)
-- "Move my 3pm meeting to next Monday." (`list_bookings`, `find_available_slots` with `rescheduleUid`, then `reschedule_booking`)
-- "Cancel my meeting with Alex on Thursday." (`cancel_booking`, after you confirm)
-- "Create a 45-minute consultation event type." (`create_event_type`)
-- "Unpublish Office Hours." (`set_event_type_published`)
-
-## When a call fails
+## If something goes wrong
 
 | What you see | What to do |
 | --- | --- |
-| Sign-in or `401` | Disconnect Lunacal in the client and approve the consent screen again. Access tokens last one hour. The MCP server refreshes them. A rejected refresh means you have to sign in again. |
-| Tools missing in the chat | The plugin is installed but not enabled for that chat. In Claude Code, restart the session after installing. |
-| The browser never opens | Pop-ups for the client are blocked, or the URL is not exactly `https://mcp.lunacal.ai/mcp`. |
-| Slot taken | Do not retry the same start. Call `find_available_slots` again. |
-| Booking or event type not found | Take the id or `uid` from `list_bookings` or `list_event_types`. Do not guess one. |
-| Times look wrong | Ask using the timezone from `get_my_profile`, or name the timezone in the prompt. Stored instants are UTC. |
-| Sent back to settings during consent | The account does not have the MCP feature. Tier 4 or an override is required. |
+| Claude asks you to sign in again, or the call is unauthorized | In the client, disconnect Lunacal and connect it again. The sign-in lasts until you remove it. A short-lived access token is refreshed for you. If the refresh is rejected, sign in once more. |
+| Lunacal does not appear in the chat | The plugin is installed but not turned on for that conversation. In Claude Code, restart after installing. |
+| The sign-in window never opens | Allow pop-ups for the client. If you added the server yourself, the address must be exactly `https://mcp.lunacal.ai/mcp`. |
+| "That time is no longer free" | Ask Claude to look up open times again and pick another one. Do not retry the same time. |
+| Claude cannot find the booking or event type | Ask it to list your bookings or event types and use a result from that list. |
+| You land on Settings during sign-in | This account does not have MCP access. You need Tier 4, or the feature turned on for you. |
+
+## ChatGPT and other clients
+
+Lunacal publishes the connection as a Claude plugin. To add the same server in another client that supports a remote MCP connection with sign-in:
+
+- Server URL: `https://mcp.lunacal.ai/mcp`
+- Authentication: OAuth. Do not paste an API key.
+
+ChatGPT's menus change often, so follow the labels in your ChatGPT settings and use the URL above. Clients that can only run a local program are not covered by the Lunacal plugin. Use the hosted address.
+
+For what the sign-in grants, how long access lasts, and how to disconnect, see [MCP access and security](/mcp-security-and-permissions). The field-by-field HTTP reference is the [API introduction](/api/introduction). Claude's argument names differ slightly from those routes. You do not need the HTTP names to use the plugin.

@@ -1,59 +1,65 @@
 ---
-title: "Errors"
-description: "Status codes returned by the Lunacal API key routes."
+title: "Fix a failed API request"
+sidebarTitle: "Errors"
+description: "What each API error status means, and what to change in the request."
 ---
 
-Failed requests return JSON with a `message` string:
-
-```json
-{ "message": "Invalid  credentials" }
-```
-
-These responses were checked against a running Lunacal app.
-
-## 405 Method not allowed
-
-Every route in this section accepts `POST` only.
-
-```bash
-curl -i -X GET https://app.lunacal.ai/api/user/me
-```
+When a call fails, Lunacal responds with JSON and a `message` string:
 
 ```json
 { "message": "Method not allowed" }
 ```
 
-## 401 Unauthorized
+Match on the HTTP status first, then on `message` if you need to tell two failures apart.
 
-The `Authorization` header is missing, is not `Bearer`, or the token does not match a live key or access token.
+## The request used the wrong method
 
-| Routes | `message` |
+**Status:** `405`
+
+**Message:** `Method not allowed`
+
+Every route in this API accepts `POST` only. A browser opening the URL, or a client sending `GET`, produces this response. Change the method to `POST` and send a JSON body.
+
+## The key was not accepted
+
+**Status:** `401`
+
+Lunacal does not say whether the key is missing, mistyped, expired, or deleted. Check Developer settings, then issue a new key if you no longer have the original.
+
+| Routes | Message |
 | --- | --- |
-| All routes except the two below | `Invalid  credentials` (two spaces) |
-| `POST /api/bookings/create`, `POST /api/bookings/cancel` | `Invalid or missing credentials` |
+| Profile, availability, event types, and list bookings | `Invalid  credentials` |
+| Create booking and cancel booking | `Invalid or missing credentials` |
 
-Expired keys and deleted keys take the same path as a wrong key. There is no separate "expired" or "revoked" status.
+The first message has two spaces between the words. Copy it exactly if your code compares the string.
 
-An access token issued to the MCP server is accepted by the same header. Those tokens are for `mcp.lunacal.ai`, not for keys you create in Developer settings. A string that does not start with `lunacal_` is looked up as an access token and fails the same way if it is unknown.
+A value that does not start with `lunacal_` is treated as an access token from the MCP sign-in, not as an API key. An unknown token fails with the same `401`.
 
-## 403 Forbidden
+## The account cannot use the API
 
-On every route except create-booking and cancel-booking, a valid key whose user is below Tier 4 (and has no API-keys override) gets:
+**Status:** `403`
 
-```json
-{ "message": "API access requires a Tier 4 or higher plan. Please upgrade to use the API." }
-```
+**Message:** `API access requires a Tier 4 or higher plan. Please upgrade to use the API.`
 
-`POST /api/bookings/create` and `POST /api/bookings/cancel` check the key and then perform the action. They do not repeat this plan check.
+The key itself is valid, but the account is below Tier 4 and does not have API access turned on. Upgrade the plan, or ask Lunacal to enable API access for that user.
 
-## 400 Bad request
+Create booking and cancel booking do not return this status. They accept the key and continue. Every other route on the [introduction](/api/introduction) does return it.
 
-`POST /api/bookings/cancel` returns `400` with `{"message":"Booking not found"}` when the `uid` does not match a booking.
+## The body does not match the route
 
-Field validation that surfaces as a Zod error is also `400`. The `message` names the field, for example a missing `filters.status` on list bookings. Do not match on a single sentence for every invalid body. Some failures inside a procedure are returned as `500` with the underlying error message instead.
+**Status:** `400`
 
-## 500
+The `message` names the problem. Two cases you will see often:
 
-An unexpected exception, including a body that is not JSON (`SyntaxError`), becomes `500`. The message for a JSON parse failure is `Unexpected error, please reach out for our customer support.`
+- Cancel booking, unknown `uid`: `Booking not found`
+- A required field is missing or the wrong type: the message includes the field path, for example `filters.status` on list bookings
 
-If you retry a write after a `500`, list the resource first. The first attempt may have succeeded.
+Read the message, fix that field, and send the request again. Do not assume every invalid body uses the same sentence.
+
+## Lunacal could not finish the call
+
+**Status:** `500`
+
+The message for a body that is not valid JSON is `Unexpected error, please reach out for our customer support.` Other unexpected failures use the same status with their own message.
+
+If this happens on a call that creates or changes something, list the resource before you retry. The first attempt may have succeeded.

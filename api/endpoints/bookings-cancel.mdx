@@ -27,7 +27,7 @@ If the event type's cancellation question is required and the caller is not the 
   Also cancel the rest of a recurring series.
 </ParamField>
 
-The response is the same one the Lunacal platform returns for this route.
+A successful call cancels the booking. An unknown `uid` returns `400` with the message `Booking not found`.
 
 <RequestExample>
 
