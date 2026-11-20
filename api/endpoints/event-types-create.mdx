@@ -7,7 +7,9 @@ description: "Create a new event type."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Creates an event type owned by the user. Use [Switch published](/api/endpoints/event-types-switch-published) afterwards to publish or hide it.
+Creates an event type owned by the key's user. `title`, `slug`, and `length` are required. `bookingFields` is not part of this body. Add questions later with [Update event type](/api/endpoints/event-types-update). Unknown keys are dropped, so a `bookingFields` property here does nothing.
+
+`isPublished` defaults to the database default (`true`) when omitted. `hidden` defaults to false when omitted. To keep a new event type off the public page, send `isPublished: false` or follow up with [Switch published](/api/endpoints/event-types-switch-published).
 
 ## Body
 
@@ -36,22 +38,22 @@ Creates an event type owned by the user. Use [Switch published](/api/endpoints/e
 </ParamField>
 
 <ParamField body="schedulingType" type="string">
-  One of `ROUND_ROBIN`, `COLLECTIVE`, `MANAGED`.
+  Required when `teamId` is set. One of `ROUND_ROBIN`, `COLLECTIVE`, `MANAGED`.
 </ParamField>
 
 <ParamField body="locations" type="object[]">
-  Meeting locations.
+  Meeting locations. Optional on create.
 </ParamField>
 
-<ParamField body="bookingFields" type="object[]">
-  Custom booking questions.
+<ParamField body="isPublished" type="boolean">
+  Whether the event type is on the public booking page.
 </ParamField>
 
 <ParamField body="metadata" type="object">
-  Additional metadata.
+  Event type metadata. Optional.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+The response is the same one the Lunacal platform returns for this route.
 
 <RequestExample>
 

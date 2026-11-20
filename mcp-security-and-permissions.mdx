@@ -1,98 +1,89 @@
 ---
-title: "MCP security & permissions"
-description: "How AI assistants authenticate with the Lunacal MCP server, what each tool can read or change, and how errors are reported."
+title: "MCP security and permissions"
+description: "How Lunacal MCP OAuth works, what each tool can change, and how access is revoked."
 ---
 
-This page is for admins, reviewers and security teams evaluating the Lunacal MCP server (`https://mcp.lunacal.ai/mcp`) for use with Claude, Muse, ChatGPT and other MCP clients.
+This page is for someone reviewing `https://mcp.lunacal.ai/mcp` before they let an assistant use a Lunacal account. The user-facing setup is on [MCP server](/mcp-server).
 
-## How authentication works
+There are two hops. The assistant only talks to the first one.
 
-Authentication has **two layers**. AI assistants only ever deal with the first one.
+## Assistant to mcp.lunacal.ai
 
-### 1. AI assistant → `mcp.lunacal.ai` (OAuth 2.1, public client)
-
-MCP clients connect using the standard MCP authorization flow:
-
-- They discover the server through `/.well-known/oauth-protected-resource` and `/.well-known/oauth-authorization-server`.
-- They register themselves dynamically (`/register`, RFC 7591). No client ID or client secret is issued to them.
-- They use the authorization code grant with **PKCE (S256)**.
-- They send the resulting token as `Authorization: Bearer` to `https://mcp.lunacal.ai/mcp`.
+The live metadata document `https://mcp.lunacal.ai/.well-known/oauth-authorization-server` currently says:
 
 | Setting | Value |
 | --- | --- |
-| MCP endpoint | `https://mcp.lunacal.ai/mcp` (Streamable HTTP) |
+| Issuer | `https://mcp.lunacal.ai` |
 | Authorization endpoint | `https://mcp.lunacal.ai/authorize` |
 | Token endpoint | `https://mcp.lunacal.ai/token` |
 | Registration endpoint | `https://mcp.lunacal.ai/register` |
-| Grant type | `authorization_code` |
-| PKCE | `S256` |
-| Client authentication | `none` (public client) |
+| Grant types | `authorization_code`, `refresh_token` |
+| PKCE | `S256` only |
+| Token endpoint client authentication | `none` |
+| Protected resource | `https://mcp.lunacal.ai/mcp` |
+| Bearer | `Authorization` header |
 
-### 2. `mcp.lunacal.ai` → Lunacal (OAuth 2.0, confidential client)
+Clients register themselves. Lunacal does not hand you a client id for Claude or ChatGPT. You do not create an API key for this.
 
-Behind the scenes, the MCP server is a single pre-registered, server-side OAuth client of the Lunacal platform. Its client secret never leaves Lunacal's servers.
+## mcp.lunacal.ai to Lunacal
+
+The MCP server is one pre-registered OAuth client of the Lunacal app. Its client secret stays on Lunacal's servers. These routes are not for your integration. They are here so a review can see what the consent click actually does.
 
 <Steps>
+  <Step title="Sign in, if needed">
+    The browser opens `/auth/platform/authorize` with the MCP server's `redirect_uri`. If there is no Lunacal session, Lunacal sends the user through login and back to that URL.
+  </Step>
+  <Step title="Plan check">
+    The account must have the MCP feature (Tier 4, or a per-user override). Otherwise Lunacal redirects to `/new-settings?tabName=general&upgrade=mcp` and does not mint a code.
+  </Step>
   <Step title="Consent">
-    The user is sent to the Lunacal consent screen, which lists the read and write permissions being granted. If they aren't signed in, they log in first.
+    The page lists the permissions stored on that OAuth client. Each group is Event types, Bookings, Schedules, Apps, or Profile, marked Read, Write, or both. The page does not offer a per-tool picker. The user chooses **Allow** or **Go back**.
   </Step>
-  <Step title="Approval">
-    When the user clicks **Allow**, Lunacal verifies a CSRF token (HttpOnly, `SameSite=Strict` cookie, 10-minute expiry) and checks `redirect_uri` against the registered list. It then issues a one-time authorization code.
+  <Step title="Grant">
+    **Allow** POSTs to `/api/mcp/authorize` with `redirect_uri`, optional `state`, and a CSRF token. The token must match an `HttpOnly`, `SameSite=Strict` cookie set when the page rendered. The cookie lives for 10 minutes and is cleared when the grant is accepted. A missing or mismatched token returns `403` `Invalid or expired consent request`. `redirect_uri` must be on the client's registered list.
   </Step>
-  <Step title="Token exchange">
-    The MCP server exchanges the code and its client secret for tokens. The code is single-use and expires after 10 minutes.
-  </Step>
-  <Step title="Rotation">
-    Access tokens last **1 hour** and refresh tokens **365 days**. Every refresh rotates both tokens, and a used refresh token is rejected.
+  <Step title="Code and tokens">
+    Lunacal creates a one-time authorization code and redirects to the MCP server with `code` and `state`. The MCP server exchanges that code at `/api/mcp/token`. The code is deleted when it is used. A code older than 10 minutes is deleted and rejected as `Code expired`.
   </Step>
 </Steps>
 
-<Note>
-  The client secret, registered redirect URIs and the `/api/mcp/token` and `/api/mcp/refresh` endpoints in the [API documentation](/api/authentication) belong to layer 2. If you are connecting an AI assistant, you don't need any of them.
-</Note>
+Access tokens last **1 hour**. Refresh tokens last **365 days**. Refresh deletes the refresh token it just accepted and issues a new pair. Replaying a refresh token fails with `Invalid refresh token`. An expired refresh token is deleted and fails with `Refresh token expired`.
 
-## Access levels
+API keys from **Settings → Developer** are a different credential. They start with `lunacal_` and are documented under [API key authentication](/api/authentication). An assistant should not ask the user to paste one.
 
-<Warning>
-  Lunacal currently grants a single access level that includes both read and write tools. To limit an assistant to read-only use, turn off the write tools in your AI client's connector settings (where supported), or keep tool-call confirmation turned on. A read-only access option is on our roadmap.
-</Warning>
+## What the tools can do
 
-## Tools, permissions and side effects
+Every tool runs as the user who clicked **Allow**. There is no second, narrower key.
 
-All tools act only on the Lunacal account that approved the connection.
-
-| Tool | Type | Data accessed | Side effects |
-| --- | --- | --- | --- |
-| Get current user | Read | Name, email, timezone, booking page details | None |
-| Get availability | Read | Open time slots for an event type | None |
-| List bookings | Read | Booking times and status, **attendee names and emails** | None |
-| List event types | Read | Title, duration, slug, published status | None |
-| Get event type | Read | Full settings of one event type | None |
-| Create booking | **Write** | Event type, attendee details | Creates a booking on your calendar and may notify the attendee |
-| Cancel booking | **Write — destructive** | An existing booking | Cancels the booking and may notify the attendee. Can't be undone |
-| Create event type | **Write** | Event type settings | Adds a new event type to your account |
-| Update event type | **Write** | Event type settings | Changes apply immediately to future bookings |
-| Switch published | **Write** | An event type | Shows or hides the event type on your public booking page |
-
-<Tip>
-  Most AI clients ask you to confirm before running a write tool. Review the details — especially attendee, date and time — before approving.
-</Tip>
-
-## Expected responses
-
-Each tool returns JSON in the MCP result `content`. Fields match the corresponding endpoint in the [API documentation](/api/introduction). Timestamps are ISO 8601 in UTC, so clients should convert them to the user's timezone (returned by **Get current user**) before displaying them.
-
-## Failure handling
-
-| Situation | What the client sees | What to do |
+| Tool | Access | Side effect |
 | --- | --- | --- |
-| Missing or expired access token | HTTP `401` | The client re-runs the sign-in flow |
-| Invalid input (bad date, unknown event type) | A tool error with a message | Fix the input and retry |
-| Slot no longer available | A tool error | Fetch availability again and choose another slot |
-| Resource not found or not yours | A tool error | Check the ID |
-| Lunacal server error | `5xx` | Retry with exponential backoff. Before retrying a write, check whether the first attempt succeeded |
+| `get_my_profile` | Read | None |
+| `find_available_slots` | Read | None |
+| `list_bookings` | Read | None. Results include attendee names and emails. |
+| `list_event_types` | Read | None |
+| `get_event_type` | Read | None |
+| `create_booking` | Write | Creates a booking and can email the attendee |
+| `reschedule_booking` | Write | Moves a booking and can email the attendee |
+| `cancel_booking` | Write, destructive | Cancels a booking and can email the attendee. Not reversible |
+| `create_event_type` | Write | Adds an event type |
+| `update_event_type` | Write | Changes that event type for later bookings |
+| `set_event_type_published` | Write | Shows or hides the event type on the public booking page |
+
+Lunacal does not currently offer a read-only OAuth client for this server. To limit damage, leave tool confirmation on in the AI client, or disable the write tools there if the client allows it.
+
+## Errors the client should expect
+
+| Situation | Result |
+| --- | --- |
+| Missing or expired access token on a Lunacal API route | HTTP `401`. The MCP server should refresh or send the user through consent again. |
+| MCP feature missing at consent time | Redirect to settings. No code is issued. |
+| Bad CSRF or unregistered `redirect_uri` | `403` or `400`. No code is issued. |
+| Unknown booking or event type | Tool error. Look the id up again. |
+| Slot no longer free | Tool error. Fetch slots again. |
+| Lunacal `500` | Retry a read. Before retrying a write, list the resource. The first call may have landed. |
 
 ## Revoking access
 
-- Remove the Lunacal connector in your AI client to revoke its access.
-- Access tokens are short-lived and are only ever sent to `mcp.lunacal.ai`.
+Remove the Lunacal connector in the AI client. That stops the client from using its refresh token. Access tokens already issued keep working until they expire, which is at most one hour.
+
+Deleting an API key in Developer settings does not disconnect MCP. They are different records.

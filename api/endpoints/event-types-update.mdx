@@ -7,7 +7,11 @@ description: "Update an existing event type."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Updates an event type. `metadata`, `locations` and `bookingFields` replace the whole value, so read the event type with [Get event type](/api/endpoints/event-types-get) first when changing only part of them. Weekly hours cannot be edited with this endpoint.
+Updates an event type. Send `id` and only the fields you want to change.
+
+`metadata`, `locations`, and `bookingFields` replace the whole value. Read the event type first, change the copy, and send it back.
+
+`schedule` is the id of an availability schedule that already belongs to the user (or the team, for a team event type). This route does not edit the hours inside that schedule. A schedule id that is not theirs is rejected.
 
 ## Body
 
@@ -43,7 +47,7 @@ Updates an event type. `metadata`, `locations` and `bookingFields` replace the w
   Replaces all metadata.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+The response is the same one the Lunacal platform returns for this route.
 
 <RequestExample>
 

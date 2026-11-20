@@ -7,7 +7,7 @@ description: "Retrieve bookings for the account that owns the API key."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Lists the user's bookings. Use a booking `uid` from this list to reschedule or cancel. Results are paginated: pass the `nextCursor` from a previous response as `cursor` to get the next page.
+Lists bookings for the key's user. `filters.status` is required. Use a booking `uid` from `bookings` when you reschedule or cancel. Pagination is an offset: pass `nextCursor` back as `cursor`. `nextCursor` is `null` on the last page.
 
 ## Body
 
@@ -39,21 +39,35 @@ Lists the user's bookings. Use a booking `uid` from this list to reschedule or c
       Latest booking start. ISO 8601 date-time including a timezone offset.
     </ParamField>
 
+    <ParamField body="userIds" type="integer[]">
+      Only bookings for these user ids.
+    </ParamField>
+
     <ParamField body="attendeeEmail" type="string">
-      Only bookings with this attendee.
+      Only bookings whose attendee email matches. Must be a valid email address.
     </ParamField>
   </Expandable>
 </ParamField>
 
-<ParamField body="limit" default="20" type="integer">
-  Page size, from 1 to 100.
+<ParamField body="limit" type="integer" default="10">
+  Page size. Minimum 1, maximum 100. Omitted means 10.
 </ParamField>
 
 <ParamField body="cursor" type="integer">
   Offset taken from a previous response's `nextCursor`.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+## Response
+
+```json
+{
+  "bookings": [],
+  "recurringInfo": [],
+  "nextCursor": null
+}
+```
+
+`bookings` contains the rows for that status. Read `uid` from each row when you cancel or reschedule. `nextCursor` is the next `cursor`, or `null` when the page is the last one. The other fields on each booking are the ones the Lunacal bookings list uses internally. Do not treat undocumented fields as a contract.
 
 <RequestExample>
 

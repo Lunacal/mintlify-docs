@@ -1,27 +1,59 @@
 ---
 title: "Errors"
-description: "Common problems when calling LunaCal APIs with an API key."
+description: "Status codes returned by the Lunacal API key routes."
 ---
 
-## Wrong HTTP method
+Failed requests return JSON with a `message` string:
 
-All supported routes accept **POST only**. Any other method returns `405 Method Not Allowed`.
+```json
+{ "message": "Invalid  credentials" }
+```
 
-## Authentication problems
+These responses were checked against a running Lunacal app.
 
-If a request is rejected, check the following:
+## 405 Method not allowed
 
-- The header is `Authorization: Bearer lunacal_<your-key>` (note the word `Bearer`).
-- The key is valid and has not been revoked.
-- The key has not passed its expiry date. Create a new key in **Settings → Developer** if it has.
-- You copied the full key. It is shown only once when created, so create a new one if you did not save it.
+Every route in this section accepts `POST` only.
 
-<Warning>
-  Exact status codes and error bodies for invalid or expired keys have not yet been documented. Only the `405` response for non-POST requests is confirmed.
-</Warning>
+```bash
+curl -i -X GET https://app.lunacal.ai/api/user/me
+```
 
-## Developer tab missing
+```json
+{ "message": "Method not allowed" }
+```
 
-If you cannot see the Developer tab under **Settings**, contact [support@lunacal.ai](mailto:support@lunacal.ai).
+## 401 Unauthorized
 
-See also [API introduction](/api/introduction) and [API key authentication](/api/authentication).
+The `Authorization` header is missing, is not `Bearer`, or the token does not match a live key or access token.
+
+| Routes | `message` |
+| --- | --- |
+| All routes except the two below | `Invalid  credentials` (two spaces) |
+| `POST /api/bookings/create`, `POST /api/bookings/cancel` | `Invalid or missing credentials` |
+
+Expired keys and deleted keys take the same path as a wrong key. There is no separate "expired" or "revoked" status.
+
+An access token issued to the MCP server is accepted by the same header. Those tokens are for `mcp.lunacal.ai`, not for keys you create in Developer settings. A string that does not start with `lunacal_` is looked up as an access token and fails the same way if it is unknown.
+
+## 403 Forbidden
+
+On every route except create-booking and cancel-booking, a valid key whose user is below Tier 4 (and has no API-keys override) gets:
+
+```json
+{ "message": "API access requires a Tier 4 or higher plan. Please upgrade to use the API." }
+```
+
+`POST /api/bookings/create` and `POST /api/bookings/cancel` check the key and then perform the action. They do not repeat this plan check.
+
+## 400 Bad request
+
+`POST /api/bookings/cancel` returns `400` with `{"message":"Booking not found"}` when the `uid` does not match a booking.
+
+Field validation that surfaces as a Zod error is also `400`. The `message` names the field, for example a missing `filters.status` on list bookings. Do not match on a single sentence for every invalid body. Some failures inside a procedure are returned as `500` with the underlying error message instead.
+
+## 500
+
+An unexpected exception, including a body that is not JSON (`SyntaxError`), becomes `500`. The message for a JSON parse failure is `Unexpected error, please reach out for our customer support.`
+
+If you retry a write after a `500`, list the resource first. The first attempt may have succeeded.

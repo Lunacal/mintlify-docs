@@ -7,7 +7,11 @@ description: "Publish or unpublish an event type."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Sets whether an event type is published (bookable) or hidden from the public booking page.
+Sets `isPublished` on an event type. `true` shows it on the public booking page. `false` takes it off that page.
+
+`POST /api/bookings/create` does not reject an unpublished event type. The check that would return "This event has been unpublished by the owner" is not active.
+
+`teamId` is optional and is used for team event types. `schedulingType` is an optional string the app sends for some team events. Omit it for a personal event type.
 
 ## Body
 
@@ -23,7 +27,7 @@ Sets whether an event type is published (bookable) or hidden from the public boo
   Team ID, for team event types.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+The response is the same one the Lunacal platform returns for this route.
 
 <RequestExample>
 

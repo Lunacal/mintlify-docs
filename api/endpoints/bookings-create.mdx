@@ -7,9 +7,11 @@ description: "Create or reschedule a booking."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Books a slot on an event type. Call [Get availability](/api/endpoints/get-availability) first and pass one of the returned start times; this endpoint does not check availability itself. If the event type has required `bookingFields` (see [Get event type](/api/endpoints/event-types-get)), include the answers in `responses`, keyed by each field's name.
+Books a slot on an event type. Call [Get availability](/api/endpoints/get-availability) first and pass one of the returned start times. This route does not check that the slot is still free.
 
-To reschedule an existing booking, send the same request with its `rescheduleUid` and the new start time.
+This route checks the API key and then books. It does not return the Tier 4 `403` that the other routes return. A bad key is still `401`, with message `Invalid or missing credentials`.
+
+To reschedule, send the same body with `rescheduleUid` set to the booking `uid` and a new `start`. The MCP tool `reschedule_booking` is a separate name for this operation. The HTTP field is `rescheduleUid` on this route.
 
 ## Body
 
@@ -63,23 +65,23 @@ To reschedule an existing booking, send the same request with its `rescheduleUid
   UID of the booking to move. Get it from List bookings.
 </ParamField>
 
-<ParamField body="language" default="en" type="string">
-  Language code.
+<ParamField body="language" type="string" required>
+  Language code, for example `en`. There is no default. Omitting it fails validation.
 </ParamField>
 
-<ParamField body="metadata" default="{}" type="object">
-  String key-value pairs stored with the booking.
+<ParamField body="metadata" type="object" required>
+  String values only. Send `{}` when you have nothing to store.
 </ParamField>
 
-<ParamField body="bookingUids" default="[]" type="array">
-  Send an empty array.
+<ParamField body="bookingUids" type="string[]" required>
+  Send `[]` for a normal booking.
 </ParamField>
 
-<ParamField body="slots" default="[]" type="array">
-  Send an empty array.
+<ParamField body="slots" type="object[]" required>
+  Send `[]` for a single slot. Package and recurring bookings put each slot here as `{ "start", "end" }`.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+The response is the same one the Lunacal platform returns for this route.
 
 <RequestExample>
 
@@ -95,8 +97,7 @@ curl -X POST https://app.lunacal.ai/api/bookings/create \
   "metadata": {},
   "responses": {
     "name": "Jane Doe",
-    "email": "jane@example.com",
-    "notes": "Looking forward to it"
+    "email": "jane@example.com"
   },
   "bookingUids": [],
   "slots": []

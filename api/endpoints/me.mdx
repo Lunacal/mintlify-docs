@@ -1,24 +1,64 @@
 ---
 title: "Get current user"
-description: "Retrieve the authenticated LunaCal user's profile."
+description: "Return the profile of the user who owns the API key."
 ---
 
-Returns the profile of the account associated with your LunaCal API key.
+`POST /api/user/me` returns the profile Lunacal loads for the signed-in user. The body may be `{}`.
 
-<Note>Use `Authorization: Bearer $LUNACAL_API_KEY` and `Content-Type: application/json`. This endpoint accepts `POST` only.</Note>
+<Note>
+  `Authorization: Bearer $LUNACAL_API_KEY` and `Content-Type: application/json`. POST only. [Authentication](/api/authentication).
+</Note>
 
 ## Request
 
-```bash
+<CodeGroup>
+
+```bash cURL
 curl -X POST https://app.lunacal.ai/api/user/me \
-  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -H "Content-Type: application/json" \
   -d '{}'
 ```
 
-## Optional fields
+```javascript JavaScript
+const response = await fetch("https://app.lunacal.ai/api/user/me", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${process.env.LUNACAL_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: "{}",
+});
+const me = await response.json();
+```
 
-- `includePasswordAdded` (boolean, default `false`): Include whether the user has a password.
-- `includeSubscription` (boolean, default `false`): Include account subscription details.
+</CodeGroup>
 
-Returns the usual user profile response, including `id`, `name`, `email`, `username`, `timeZone`, `locale` and additional profile fields.
+## Body
+
+<ParamField body="includePasswordAdded" type="boolean">
+  When `true`, and the account's identity provider is not Lunacal, the response includes `passwordAdded`. Omitted otherwise. Most integrations can ignore this.
+</ParamField>
+
+`includeSubscription` is accepted and ignored. Subscription data is returned either way.
+
+## Response
+
+The JSON object is large. The fields you usually need:
+
+| Field | Meaning |
+| --- | --- |
+| `id` | Numeric user id |
+| `name` | Display name |
+| `email` | Account email |
+| `username` | Booking-page username |
+| `timeZone` | IANA timezone from the profile |
+| `locale` | Locale |
+| `bio` | Profile bio |
+| `avatarUrl` | Avatar URL, when one is set |
+
+The same object also includes plan, feature flags, branding, and onboarding fields used by the Lunacal UI. Do not depend on those names staying still. The response does not include the password hash.
+
+## Errors
+
+Missing or bad key: `401` `{"message":"Invalid  credentials"}`. Account without API access: `403`. See [Errors](/api/errors).

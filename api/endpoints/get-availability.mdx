@@ -7,43 +7,43 @@ description: "Retrieve open booking slots for an event type."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Finds open booking slots for an event type between `startTime` and `endTime`. Call this before creating or rescheduling a booking. Identify the event type with `eventTypeId`, or with `eventTypeSlug` plus `usernameList`.
+Returns open slots for an event type between `startTime` and `endTime`. Call this before [Create booking](/api/endpoints/bookings-create). Pass `eventTypeId`, or pass both `eventTypeSlug` and `usernameList`. Sending neither fails validation.
 
 ## Body
 
 <ParamField body="startTime" type="string" required>
-  Start of the range. ISO 8601 date-time including a timezone offset.
+  Start of the range. ISO 8601 date-time with an offset, for example `2026-11-02T00:00:00+05:30`.
 </ParamField>
 
 <ParamField body="endTime" type="string" required>
-  End of the range. ISO 8601 date-time including a timezone offset.
-</ParamField>
-
-<ParamField body="timeZone" type="string" required>
-  IANA timezone, for example `Asia/Kolkata`.
+  End of the range. Same format as `startTime`.
 </ParamField>
 
 <ParamField body="eventTypeId" type="integer">
-  ID of the event type.
+  Event type id. A numeric string is accepted. Required unless you send `eventTypeSlug` and `usernameList`.
 </ParamField>
 
 <ParamField body="eventTypeSlug" type="string">
-  Event type slug. Requires `usernameList` when used instead of `eventTypeId`.
+  Event type slug. Must be sent together with `usernameList`.
 </ParamField>
 
 <ParamField body="usernameList" type="string[]">
-  Host username(s). Pairs with `eventTypeSlug`.
+  Host usernames. Must be sent together with `eventTypeSlug`.
 </ParamField>
 
-<ParamField body="duration" type="integer">
-  Duration in minutes, for event types that offer more than one.
+<ParamField body="timeZone" type="string">
+  IANA timezone used when presenting slots, for example `Asia/Kolkata`. Optional. Send it. Slot times are stored in UTC, and this is how you ask for a local view.
+</ParamField>
+
+<ParamField body="duration" type="string">
+  Length in minutes for event types that offer more than one duration. Send a string, such as `"30"`. A JSON number does not match the schema.
 </ParamField>
 
 <ParamField body="rescheduleUid" type="string">
-  UID of the booking being rescheduled, so it is excluded from conflicts.
+  Booking uid being moved. That booking is left out of the conflict check.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+The response is the same one the Lunacal platform returns for this route.
 
 <RequestExample>
 

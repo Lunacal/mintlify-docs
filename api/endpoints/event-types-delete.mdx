@@ -7,7 +7,9 @@ description: "Delete an event type while keeping its booking history."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Deletes an event type. It is removed from listings and can no longer be booked. Existing booking history is preserved.
+Deletes the event type row. Bookings are not deleted with it. `Booking.eventTypeId` is optional and the relation does not cascade, so existing bookings stay and their event type link is cleared.
+
+After this, the id cannot be used with get, update, or availability.
 
 ## Body
 

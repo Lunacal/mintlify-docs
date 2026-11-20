@@ -1,54 +1,100 @@
 ---
 title: "API key authentication"
-description: "Create and use LunaCal API keys to authenticate requests to supported endpoints."
+description: "Create a Lunacal API key and send it as a Bearer token."
 ---
 
-## API key authentication
+An API key authenticates as your user. Lunacal hashes the secret and stores only the hash, so the full key is shown once, in the dialog that appears right after you create it.
 
-LunaCal API keys let you call supported APIs from your own applications, scripts, and external services on behalf of your LunaCal account. Just send a valid API key in the `Authorization` header; LunaCal handles authentication and uses the same API behavior and response data as requests made through the platform.
+Keys have no scopes. A valid key can call every route in the [API introduction](/api/introduction).
 
-## Create an API key
+## Who can create a key
+
+Open [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
+
+- The Developer tab is hidden for agency client accounts.
+- On other accounts the tab is there, but the page is locked unless the account is Tier 4 or higher, or someone has turned the API keys feature on for that user. The lock says: "API keys & MCP access require a Tier 4 or higher plan."
+- Creating a key from the app fails with the same plan requirement if the lock is bypassed.
+
+## Create a key
 
 <Steps>
   <Step title="Open Developer settings">
-    Sign in to [LunaCal](https://app.lunacal.ai) and go to **Settings → Developer**. If you cannot see the Developer tab, contact [support@lunacal.ai](mailto:support@lunacal.ai).
+    Go to [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer).
   </Step>
-  <Step title="Create your key">
-    Click **Create API key**, enter a recognizable name (for example, "Production integration"), and choose an expiration period or enable **Never expires**.
+  <Step title="Choose a name and an expiration">
+    Click **Create an API key**.
+
+    **Name this key** is a label for you. It is not part of the secret. The placeholder is "E.g. Development".
+
+    **Expiration date** is one of **7 days**, **30 days** (selected by default), **3 months**, or **1 year**. Turn on **Never expires** to leave `expiresAt` empty. You cannot change the expiration after the key is created. You can rename it.
   </Step>
-  <Step title="Copy the key">
-    Save the new API key somewhere secure immediately. **The full key is displayed only once** and cannot be retrieved later.
-  </Step>
-  <Step title="Call an API">
-    Add your key to the HTTP request header as `Authorization: Bearer <YOUR_API_KEY>`.
+  <Step title="Copy the secret">
+    The next screen is titled **API key created successfully**. It tells you to save the key before closing the window. Use **Copy**. Closing the dialog is the last time Lunacal will show the secret.
   </Step>
 </Steps>
 
-## Make your first request
+The secret looks like `lunacal_` followed by the random key. Send that whole string. Lunacal strips the `lunacal_` prefix and hashes the rest.
 
-The example below calls the current-user endpoint. Replace `$LUNACAL_API_KEY` with your own key stored in an environment variable.
+<Warning>
+  Treat the key like a password. Do not put it in frontend code, a public repo, or a screenshot. If it leaks, delete it and create another one. There is no way to display it again.
+</Warning>
 
-```bash
+## Call the API
+
+```
+Authorization: Bearer lunacal_<key>
+```
+
+<CodeGroup>
+
+```bash cURL
 curl -X POST https://app.lunacal.ai/api/user/me \
-  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -H "Content-Type: application/json" \
   -d '{}'
 ```
 
-The endpoint returns the same user data it ordinarily returns in LunaCal. You do not need to provide a separate login session when using a valid API key.
+```javascript Node.js
+const response = await fetch("https://app.lunacal.ai/api/user/me", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${process.env.LUNACAL_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: "{}",
+});
 
-## Manage keys
+const body = await response.json();
+if (!response.ok) {
+  throw new Error(body.message);
+}
+```
 
-Return to **Settings → Developer** to view your keys, their status, last usage, and expiration dates. Choose an appropriate expiration when creating keys, and revoke keys you no longer need.
+</CodeGroup>
 
-<Warning>
-  Treat API keys as passwords. Do not share them publicly, commit them to source control, or embed them in browser-side code. If a key is exposed, revoke it and generate a replacement.
-</Warning>
+A missing header, a key without the `lunacal_` prefix, a wrong secret, a deleted key, and an expired key all return the same response:
 
-## Common issues
+```json
+{ "message": "Invalid  credentials" }
+```
 
-- **Developer tab not visible:** Email [support@lunacal.ai](mailto:support@lunacal.ai).
-- **Authentication fails:** Check that the header uses `Bearer`, the API key is valid and active, and it has not expired.
-- **Cannot view the key again:** Its full value is only shown once. Create a new key if you did not save it.
+The status is `401`. The message really does contain two spaces. `/api/bookings/create` and `/api/bookings/cancel` use a different message, `Invalid or missing credentials`. See [Errors](/api/errors).
 
-See the [API introduction](/api/introduction) and the endpoint reference for available operations.
+A successful key lookup updates **Last used** on the settings page. That update is best-effort. A failed request does not count as use.
+
+## What the list shows
+
+Each row shows:
+
+- The name, or **Nameless API key** if you left it blank.
+- A masked preview. This is not the secret and not a suffix of the secret. You cannot reconstruct the key from it.
+- **Created**, **Last used** (or never), and **Expires** (a date, or **Never expires**).
+- **Expired** when `expiresAt` is in the past. A key that expires within 14 days is flagged as expiring soon.
+
+Search matches the name and the preview. Filters are All, active, and Expired. The counts above the list are active keys, expired keys, and keys that never expire.
+
+**Edit** opens **Edit API key** and only saves a new name.
+
+**Delete** asks **Delete this API key permanently?** and explains **Revoke this API key**. Confirming removes the key. Requests that still send it get `401`.
+
+There is no separate revoke action, and there is no permissions picker on the key.

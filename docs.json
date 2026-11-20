@@ -150,22 +150,20 @@
         ]
       },
       {
-        "group": "Untitled Group",
-        "pages": []
-      },
-      {
-        "group": "API Documentation",
+        "group": "API",
         "pages": [
+          "api/introduction",
           "api/authentication",
+          "api/errors",
           {
-            "group": "Users & availability",
+            "group": "Users and availability",
             "pages": [
               "api/endpoints/me",
               "api/endpoints/get-availability"
             ]
           },
           {
-            "group": "Booking endpoints",
+            "group": "Bookings",
             "pages": [
               "api/endpoints/bookings-list",
               "api/endpoints/bookings-create",
@@ -173,7 +171,7 @@
             ]
           },
           {
-            "group": "Event type endpoints",
+            "group": "Event types",
             "pages": [
               "api/endpoints/event-types-list",
               "api/endpoints/event-types-get",
@@ -182,13 +180,16 @@
               "api/endpoints/event-types-delete",
               "api/endpoints/event-types-switch-published"
             ]
-          },
-          "api/introduction",
-          "api/errors"
+          }
         ]
       },
-      "mcp-server",
-      "mcp-security-and-permissions"
+      {
+        "group": "MCP",
+        "pages": [
+          "mcp-server",
+          "mcp-security-and-permissions"
+        ]
+      }
     ]
   },
   "logo": {

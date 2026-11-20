@@ -1,55 +1,79 @@
 ---
 title: "API introduction"
-description: "Call LunaCal from your own apps and scripts using an API key."
+description: "Call Lunacal from your own apps with an API key."
 ---
 
-LunaCal API keys let you call supported LunaCal APIs from anywhere on behalf of your account. Create a key, add it to the request header, and LunaCal handles the rest. Responses match what the same API returns inside the LunaCal platform.
+The Lunacal HTTP API is a small set of POST routes on `https://app.lunacal.ai`. Each route runs as the user who owns the API key. There is no separate OAuth flow for these routes, and a key does not have its own scopes.
 
-## How it works
+MCP clients do not use these keys. Assistants sign in with OAuth. See [MCP server](/mcp-server).
 
-1. Go to **Settings → Developer** and create an API key. If you do not see the Developer tab, contact [support@lunacal.ai](mailto:support@lunacal.ai).
-2. Give the key a name, set an expiry, and copy it. The key is shown only once.
-3. Send the key in the `Authorization` header as a Bearer token with each request.
+## Before you call anything
 
-See [API key authentication](/api/authentication) for the full walkthrough.
+You need a Lunacal account on Tier 4 or higher, or a manual grant of the API keys feature. Open [Settings → Developer](https://app.lunacal.ai/new-settings?tabName=developer) and create a key. The steps, the plan lock, and what the settings page actually shows are on [API key authentication](/api/authentication).
 
-## Quick example
-
-```bash
-curl -X POST https://app.lunacal.ai/api/user/me \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $LUNACAL_API_KEY" \
-  -d '{}'
-```
-
-This returns the same data the platform returns for the signed-in user. You only need to provide a valid API key.
+Agency client accounts do not get the Developer tab.
 
 ## Request conventions
 
-- **Base URL:** `https://app.lunacal.ai`
-- **Auth:** `Authorization: Bearer lunacal_<your-key>`
-- **Method:** POST only. Any other method returns `405`.
-- **Body:** JSON, with `Content-Type: application/json`.
+| | |
+| --- | --- |
+| Base URL | `https://app.lunacal.ai` |
+| Method | `POST` only. Any other method returns `405` and `{"message":"Method not allowed"}`. |
+| Header | `Authorization: Bearer lunacal_<key>` |
+| Body | JSON. Send `Content-Type: application/json`. |
+| Success | The route's JSON object, with no wrapper. |
+| Failure | `{"message":"..."}`. Status codes are listed on [Errors](/api/errors). |
 
-## Supported APIs
+Store the key in an environment variable. The examples below use `$LUNACAL_API_KEY`.
 
-These are the web-app routes that accept an API key from **Settings → Developer**.
+## Routes
 
 | Route | What it does |
 | --- | --- |
-| [`/api/user/me`](/api/endpoints/me) | Current user |
-| [`/api/event-types/list`](/api/endpoints/event-types-list) | List event types |
-| [`/api/event-types/get`](/api/endpoints/event-types-get) | Get one event type |
-| [`/api/event-types/create`](/api/endpoints/event-types-create) | Create an event type |
-| [`/api/event-types/update`](/api/endpoints/event-types-update) | Update an event type |
-| [`/api/event-types/delete`](/api/endpoints/event-types-delete) | Delete an event type |
-| [`/api/event-types/switch-published`](/api/endpoints/event-types-switch-published) | Publish or unpublish |
-| [`/api/availability`](/api/endpoints/get-availability) | Availability and slots |
-| [`/api/bookings/list`](/api/endpoints/bookings-list) | List bookings |
-| [`/api/bookings/create`](/api/endpoints/bookings-create) | Create a booking |
+| [`/api/user/me`](/api/endpoints/me) | Profile of the key's owner |
+| [`/api/availability`](/api/endpoints/get-availability) | Open slots for an event type |
+| [`/api/bookings/list`](/api/endpoints/bookings-list) | Bookings for one status |
+| [`/api/bookings/create`](/api/endpoints/bookings-create) | Create or reschedule a booking |
 | [`/api/bookings/cancel`](/api/endpoints/bookings-cancel) | Cancel a booking |
+| [`/api/event-types/list`](/api/endpoints/event-types-list) | Event types on the account |
+| [`/api/event-types/get`](/api/endpoints/event-types-get) | One event type |
+| [`/api/event-types/create`](/api/endpoints/event-types-create) | Create an event type |
+| [`/api/event-types/update`](/api/endpoints/event-types-update) | Change an event type |
+| [`/api/event-types/delete`](/api/endpoints/event-types-delete) | Delete an event type |
+| [`/api/event-types/switch-published`](/api/endpoints/event-types-switch-published) | Show or hide an event type on the booking page |
 
-## Next steps
+Creating and cancelling a booking authenticate the key, but they do not re-check the plan. Every other route in this table returns `403` if the account no longer has API access. Details are on [Errors](/api/errors).
 
-- [API key authentication](/api/authentication)
-- [Errors](/api/errors)
+## A first call
+
+<CodeGroup>
+
+```bash cURL
+curl -X POST https://app.lunacal.ai/api/user/me \
+  -H "Authorization: Bearer $LUNACAL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+```javascript JavaScript
+const response = await fetch("https://app.lunacal.ai/api/user/me", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${process.env.LUNACAL_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({}),
+});
+
+if (!response.ok) {
+  const error = await response.json();
+  throw new Error(`${response.status} ${error.message}`);
+}
+
+const me = await response.json();
+console.log(me.id, me.email, me.timeZone);
+```
+
+</CodeGroup>
+
+`me` is the same profile object the Lunacal app loads for the signed-in user. Use `id`, `email`, `username`, and `timeZone` from it. The rest of the object is account state (plan, feature flags, branding) and is not a stable public schema.

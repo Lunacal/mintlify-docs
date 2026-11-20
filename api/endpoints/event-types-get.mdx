@@ -7,7 +7,7 @@ description: "Retrieve a single event type."
   Authenticate with `Authorization: Bearer $LUNACAL_API_KEY` and send JSON using POST. [API key setup](/api/authentication).
 </Note>
 
-Returns one event type by numeric id, including its locations and `bookingFields`. Required booking questions must be answered in [Create booking](/api/endpoints/bookings-create) under `responses`, keyed by field name.
+Returns one event type by numeric `id`, including `locations` and `bookingFields`. On [Create booking](/api/endpoints/bookings-create), put answers in `responses` using each field's `name`. A standard event type requires `responses.name` and `responses.email`.
 
 ## Body
 
@@ -15,7 +15,7 @@ Returns one event type by numeric id, including its locations and `bookingFields
   ID of the event type.
 </ParamField>
 
-The response is the same one the LunaCal platform returns for this route.
+The response is the same one the Lunacal platform returns for this route.
 
 <RequestExample>
 
