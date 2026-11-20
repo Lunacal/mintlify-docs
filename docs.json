@@ -76,7 +76,9 @@
           "agency/white-label",
           "agency/custom-domain",
           "agency/email",
-          "agency/clients"
+          "agency/clients",
+          "agency/licenses",
+          "agency/insights"
         ]
       },
       {

@@ -1,46 +1,50 @@
 ---
 title: "Brand the workspace"
 sidebarTitle: "White label"
-description: "Set the agency name, logo, favicon, support email, and legal links your clients and their bookers see."
+description: "Set the agency name, logo, favicon, support email, and legal links that clients and bookers see."
 ---
 
-White label is the branding clients and bookers see in place of Lunacal. Change it any time after setup.
+White label is the branding clients and the people who book with them see in place of Lunacal. Change it any time after setup.
 
-Open [Settings → Agency Whitelabel](https://app.lunacal.ai/agency/settings?tabName=agency-whitelabel).
+Open **Settings** in the agency sidebar, then **Agency Whitelabel**: [app.lunacal.ai/agency/settings?tabName=agency-whitelabel](https://app.lunacal.ai/agency/settings?tabName=agency-whitelabel).
 
-The heading is **Agency Whitelabel Branding**. The line under it is "Control the branding your clients and their bookers see."
+Settings opens on **Custom Domain** if you do not pick a tab. The other tabs are **Agency Whitelabel**, **Custom SMTP**, and **Billing**. The page heading is **Back**, and that control returns you to Overview.
 
-**Save** stays disabled until you change something. After a successful save, Lunacal confirms that settings were updated.
+The card heading is **Agency Whitelabel Branding**. The line under it is "Control the branding your clients and their bookers see."
 
-## What each field does
+**Save** stays disabled until you change something. A successful save says "Settings updated successfully". A failed save says something went wrong.
 
-| Field | Required | What clients see |
+## Fields
+
+| Field | Required | What you enter |
 | --- | --- | --- |
-| **Agency Name** | Yes | The product name. Up to 100 characters. The placeholder is "My Agency". |
-| **Logo** | Yes | The logo in the app. Crop it to any shape. |
-| **Favicon** | Yes | The browser icon. Crop it to a square. |
-| **Brand Color** | Shown, not editable | Marked **Coming Soon**. The swatches are Indigo, Ocean, Emerald, and Sunset, and they cannot be selected yet. |
-| **Support Email** | Yes | The address clients use to reach you. The placeholder is `support@youragency.com`. |
-| **Privacy Policy URL** | No | Replaces Lunacal's privacy link when it is a full `http://` or `https://` URL. |
-| **Terms of Use URL** | No | Replaces Lunacal's terms link on the same rule. |
+| **Agency Name** | Yes | Placeholder "My Agency". Up to 100 characters. Empty is rejected with "Agency name is required". |
+| **Logo** | Yes | Any crop. Image files only, up to 5 MB. Empty is rejected with "Logo is required". |
+| **Favicon** | Yes | Square crop. Same file rules. Empty is rejected with "Favicon is required". |
+| **Brand Color** | Shown, not editable | Marked **Coming Soon**. The picker and the presets under "Or pick a preset" are dimmed and cannot be clicked. |
+| **Support Email** | Yes | Placeholder `support@youragency.com`. Must be a valid email. |
+| **Privacy Policy URL** | No | Placeholder `https://youragency.com/privacy`. |
+| **Terms of Use URL** | No | Placeholder `https://youragency.com/terms`. |
 
-Images must be image files of 5 MB or less. If the upload fails, Lunacal shows an error and does not save that image.
+A file that is not an image shows "Please upload a valid image file (e.g., JPG, PNG, GIF)." A file over 5 MB shows "The image is too large. Maximum allowed size is 5MB." After a successful crop, **Change** replaces the image and **Remove** clears it.
+
+**Brand Color** lists Indigo, Ocean, Emerald, and Sunset. None of them can be selected while the badge says **Coming Soon**. Saving keeps the color already stored. Setup stores Lunacal's default color because this step does not show the picker.
 
 ## Legal links
 
-Above the two URL fields, Lunacal explains that these links are shown instead of the default Terms of Use and Privacy Policy.
-
-If either URL is empty, a warning stays on the page:
+If either URL is empty, a warning stays on the card:
 
 - Title: **Legal links incomplete**
-- Message: any link you leave blank shows clients and bookers the default Terms of Use or Privacy Policy instead of yours.
+- Message: "Your Privacy Policy and Terms of Use links aren't fully set. Any link you leave blank will show your clients and their bookers the default Terms of Use and Privacy Policy instead of your own."
 
-A value that is not an `http://` or `https://` URL is rejected with a prompt to enter a valid URL. Clearing a URL and saving removes your link and restores the default for that one page. The other link is unchanged.
+Above the fields: "Shown to your clients and their bookers instead of the default Terms of Use and Privacy Policy."
 
-## Where this branding is used
+A filled-in URL must start with `http://` or `https://`. Anything else shows "Enter a valid URL starting with http:// or https://". Clearing a URL and saving removes your link for that page only. The other link is unchanged. A missing link points at Lunacal's terms or privacy page.
 
-Saved branding applies to your own agency view and to client workspaces that belong to you. That includes the shell of the app, booking pages, and the legal links in those experiences.
+## Where it shows up
 
-Email uses this branding together with [your SMTP settings](/agency/email). If you have not added SMTP, mail still goes out, but through Lunacal's mail server.
+Saved branding is used for your own agency view and for every client that belongs to you. That includes the app name, the logo and favicon (served as the product logo), the support email, and the Terms and Privacy links.
 
-The checklist item **Branding** is complete when the agency name and logo are saved. The description on the checklist is "App name and logo".
+The checklist item **Branding** is **Configured** when the agency name and the logo are both saved. Favicon, support email, and the legal links are still required or warned about on this form, but they do not flip that checklist item by themselves.
+
+Email uses this branding together with [your mail server](/agency/email).

@@ -12,32 +12,31 @@ Add it during [setup](/agency/set-up), in the email section, or later at [Settin
 
 ## Add the mail server
 
-<Steps>
-  <Step title="Open Custom SMTP">
-    The heading is **Custom SMTP**. The description says that clients who have not configured their own SMTP use this server instead of the default.
-  </Step>
-  <Step title="Fill in the server">
-    Every field is required.
+The fields are the same in setup and in Settings. Every one is required.
 
-    | Field | Example | Notes |
-    | --- | --- | --- |
-    | **SMTP Host** | `smtp.yourdomain.com` | The server hostname |
-    | **Port** | `587` | This is filled in for you |
-    | **Username** | `user@yourdomain.com` | The mailbox login |
-    | **Password** |  | The mailbox password. It is masked. |
-    | **From Email** | `noreply@youragency.com` | The address recipients see |
-    | **From Name** | `My Agency` | The name next to that address |
+| Field | Placeholder | Notes |
+| --- | --- | --- |
+| **SMTP Host** | `smtp.yourdomain.com` | The server hostname |
+| **Port** | `587` | Starts at 587 |
+| **Username** | `user@yourdomain.com` | The mailbox login |
+| **Password** | Masked | The mailbox password |
+| **From Email** | `noreply@youragency.com` | The address recipients see. It must contain `@`. |
+| **From Name** | `My Agency` on Settings, `Your Agency` during setup | The name next to that address |
+
+<Steps>
+  <Step title="During setup">
+    Open **Agency SMTP** and click **Save SMTP**. If a field is empty, or **From Email** has no `@`, Lunacal says "Fill in every SMTP field, or skip this step." A successful save says "Custom SMTP saved." The button then reads **Update SMTP**.
   </Step>
-  <Step title="Save">
-    Click **Save**. The button stays disabled until you change a field. After the server accepts the details, a green line says **SMTP is configured and verified**, and the button label changes to **Update**.
+  <Step title="From Settings">
+    Open **Custom SMTP**. The description is "Send emails from your own mail server. Your clients who haven't configured their own SMTP will use this instead of the default."
+
+    **Save** stays disabled until you change a field. After a successful save it says "Settings updated successfully", a green line says **SMTP is configured and verified**, and the button label changes to **Update**.
   </Step>
 </Steps>
 
-If a required field is empty, or **From Email** has no `@`, Lunacal does not save the form.
-
 ## Remove it
 
-**Delete** appears only after SMTP is configured. The dialog title is **Remove SMTP configuration?** Confirming removes your server. The warning on the dialog says that agency client email then goes through the default mail server.
+**Delete** is on **Settings → Custom SMTP**, and only after SMTP is configured. The dialog title is **Remove SMTP configuration?** The warning says that removing it means your agency clients' emails will go through the default mail server. Confirm with **Yes, disconnect**. Lunacal then says "Custom SMTP removed".
 
 Clients who already have their own SMTP keep using that. Removing yours does not delete their settings.
 

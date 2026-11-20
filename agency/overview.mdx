@@ -1,49 +1,94 @@
 ---
-title: "Agency workspace"
+title: "Open the agency workspace"
 sidebarTitle: "Overview"
-description: "What the agency workspace is, who can open it, and the four things to set up before you hand it to a client."
+description: "How to open the agency workspace, what each sidebar item does, and what the Overview page shows."
 ---
 
-The agency workspace is where you run Lunacal under your own brand for the clients you manage. Your name, logo, domain, and email replace Lunacal's on the workspaces and booking pages those clients use.
+The agency workspace is where you run Lunacal for the clients you manage. Your name, logo, domain, and email replace Lunacal's on those clients' workspaces and booking pages.
 
-Open it at [app.lunacal.ai/agency](https://app.lunacal.ai/agency).
+It is included on AppSumo tier 5 and tier 6. A client of an agency cannot open it. Opening any `/agency` page without that plan, or while signed in as a client, sends you to your event types.
 
-## Who can use it
+## Open it
 
-Agency is included with AppSumo tier 5 and tier 6. If your account does not include it, Lunacal sends you back to your event types when you open `/agency`.
+<Steps>
+  <Step title="From Event types, if you have not set the agency up">
+    On **Event types**, a banner says "You're on an agency plan" and offers **Enable Agency Mode**. Click it. Lunacal opens the workspace switcher and highlights **Setup Agency**.
 
-A client of an agency cannot open this workspace, even if they can use the features you share with them. Clients stay in their own workspace. You manage them from yours.
+    Dismiss the banner with the **X** if you want to set the agency up later. The banner stays hidden after that.
+  </Step>
+  <Step title="From the workspace switcher">
+    Open the switcher at the top of the sidebar. On an agency plan it has three groups:
 
-## What you set up
+    | Group | What you pick |
+    | --- | --- |
+    | **Agency Workspace** | **Setup Agency** before you have saved a name and logo. After that, the row uses your agency name and favicon, and opens the workspace. |
+    | **Personal Workspace** | Your own account |
+    | **Team/Client Workspace** | Your teams and client workspaces, plus **Create Team** |
 
-The overview includes a **Setup checklist**. It is finished when all four items say **Configured**.
+    **Setup Agency** opens [the setup flow](/agency/set-up). The agency name opens [Overview](https://app.lunacal.ai/agency).
+  </Step>
+</Steps>
 
-| Step | Where it lives | What it does |
+## Sidebar
+
+Inside the workspace the sidebar is:
+
+| Item | Page |
+| --- | --- |
+| **Overview** | [app.lunacal.ai/agency](https://app.lunacal.ai/agency) |
+| **Clients** | [Clients](/agency/clients) |
+| **Licenses** | [Licenses](/agency/licenses) |
+| **Insights** | [Insights](/agency/insights) |
+| **Settings** | [Branding](/agency/white-label), [domain](/agency/custom-domain), [email](/agency/email), and billing |
+
+**Overview** shows a badge when clients are waiting for you to approve an invite.
+
+## What Overview shows
+
+The page heading is **Overview**. The subtitle is "Your agency at a glance."
+
+The top of the page greets you by your first name (**Good morning**, **Good afternoon**, or **Good evening**) and lists what needs you, when something does:
+
+- **Finish setup (done/4)** scrolls to the checklist
+- A chip for clients that need attention
+- A chip for invites waiting on your approval
+
+When nothing is waiting, the page says you are all clear.
+
+### Pending invite approvals
+
+This card appears only when a client has asked to add someone. The subtitle is "Your clients want to add these people to their teams. Nothing is sent until you approve."
+
+Each row shows the email, the role, and "Requested by {name} for {client}". **Approve** sends the invitation. Lunacal confirms "Invite approved and sent to {email}". **Reject** drops it and confirms "Invite for {email} rejected".
+
+### At a glance
+
+The section description is "Your agency's key numbers. Click a tile to dig in."
+
+| Tile | Opens |
+| --- | --- |
+| **Clients** | [Clients](/agency/clients). The hint is **Healthy**, or how many need attention. With none yet, it says you have no clients yet. |
+| **Licenses used** | [Licenses](/agency/licenses). Shows used / total, and how many are still available. |
+| **Bookings (last 30 days)** | Scrolls to the bookings trend, with the change versus the previous 30 days. |
+| **Upcoming (next 7 days)** | How many bookings are coming up, and about how many that is per day. |
+
+### Growth and setup
+
+**Growth & setup** puts the bookings trend next to the **Setup checklist**. The checklist subtitle is "Make the platform look and feel like your own brand."
+
+The checklist has four steps. The next unfinished step has a filled **Set up** button. A finished step says **Configured**.
+
+| Step | Set up goes to | Finished when |
 | --- | --- | --- |
-| [Add your first client](/agency/clients) | **Clients**, or **Create client** | Gives you a client workspace to manage |
-| [Branding](/agency/white-label) | **Settings → Agency Whitelabel** | Name, logo, favicon, support email, and legal links |
-| [Custom domain](/agency/custom-domain) | **Settings → Custom Domain** | Serves the app and booking pages on your domain |
-| [Custom email sending](/agency/email) | **Settings → Custom SMTP** | Sends mail from your own server |
+| **Add your first client** | Create a client | You have at least one client workspace |
+| **Branding** | Agency Whitelabel | An agency name and a logo are saved |
+| **Custom domain** | Custom Domain | You have a live custom domain |
+| **Custom email sending** | Custom SMTP | SMTP is saved and still valid |
 
-You can do these in any order. The checklist highlights the next one that is still open and offers **Set up**.
+The title next to the progress ring is **Let's make it yours** before you start, **Almost there** while steps remain, and **You're all set** when all four are done. The finished description is "Branding, domain and email are configured. Your clients see only your brand."
 
-Settings also has a **Billing** tab for the agency account. Workflow credits are not shown there.
+A live custom domain marks **Custom domain** done. Serving the agency app on that hostname is a separate step, [Make agency domain](/agency/custom-domain).
 
-## Where your brand shows up
+### Clients and activity
 
-After you save branding, clients and the people who book with them see your agency instead of Lunacal:
-
-- The app name and logo
-- The favicon
-- The support email
-- The Terms of Use and Privacy Policy links, when you have set them
-
-A link you leave blank still points at Lunacal's own terms or privacy page. A warning on the branding page stays up until both links are filled in.
-
-Brand color is on the form, but it is marked **Coming soon** and cannot be changed yet.
-
-## Related
-
-- [Set up your agency](/agency/set-up)
-- [Brand the workspace](/agency/white-label)
-- [Add a client](/agency/clients)
+**Clients & activity** lists who needs a hand, who is booking the most, and recent activity. Each attention row links through to [Clients](/agency/clients).

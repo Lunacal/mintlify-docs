@@ -1,64 +1,86 @@
 ---
 title: "Add and manage clients"
 sidebarTitle: "Clients"
-description: "Create a client workspace, finish their setup, and send them a login."
+description: "Create a client workspace, read their status, set the account up, and hand them a login."
 ---
 
-A client is a workspace you manage from the agency. Their booking pages and app use your [branding](/agency/white-label), [domain](/agency/custom-domain), and [email](/agency/email).
+A client is a workspace you manage from the agency. Their app and booking pages use your [branding](/agency/white-label), [domain](/agency/custom-domain), and [email](/agency/email).
 
-Open [Clients](https://app.lunacal.ai/agency/clients). The page subtitle is "Create, manage, and switch into your clients' workspaces."
+Open **Clients** in the agency sidebar, or go to [app.lunacal.ai/agency/clients](https://app.lunacal.ai/agency/clients).
+
+The heading is **Clients**. The subtitle is "Create, manage, and switch into your clients' workspaces." **Create client** is in the page header.
 
 ## Create a client
 
 <Steps>
-  <Step title="Start from Clients">
+  <Step title="Create client">
     Click **Create client**. Lunacal opens **Create a new client**.
 
-    If you have no clients yet, the empty state says "Create your first client to start managing their workspace from here" and offers the same button. The setup checklist item is **Add your first client**.
+    With no clients yet, the empty state heading is **No clients yet**. The line under it is "Create your first client to start managing their workspace from here." It offers **Create client** as well. The setup checklist uses the same link, under **Add your first client**.
   </Step>
-  <Step title="Finish the workspace wizard">
-    This is the same two-step workspace wizard Lunacal uses for a team, with client wording. Complete both steps. Lunacal returns you to that client's workspace.
-  </Step>
-  <Step title="Return to Clients">
-    The new client is listed on [Clients](https://app.lunacal.ai/agency/clients). Search by name. Sort by name, newest, most bookings in the last 30 days, or who needs attention.
+  <Step title="Finish the two-step wizard">
+    This is the workspace wizard, with client wording. Complete both steps. Lunacal opens that client's workspace.
   </Step>
 </Steps>
-
-## Read a client's status
-
-Each client has a health label.
-
-| Label | When you see it |
-| --- | --- |
-| **Needs setup** | The client has no event types, no members, or no booking domain |
-| **Inactive** | Setup is done, and they have no upcoming bookings and none in the last 30 days |
-| **Healthy** | Setup is done and they have an upcoming booking or a booking in the last 30 days |
-
-A client can also be flagged when they have event types but nothing upcoming. Use **Needs attention** in the sort if you want those rows first.
-
-## Set the account up yourself
-
-When you are the one preparing the client's account, open the **⋯** menu on their row.
-
-<Steps>
-  <Step title="Set up client">
-    **Set up client** signs you into that client's onboarding so you can add their event types and profile. You are acting as the client until you leave that session.
-  </Step>
-  <Step title="Inform client">
-    **Inform client** is how you hand the account over. The dialog shows their login email and a **Temporary password**. Lunacal suggests a password. You can edit it before sending. Copy either value if you also want to share it yourself.
-
-    The dialog says they will be asked to verify their email and finish onboarding the first time they sign in.
-
-    Send it. Lunacal confirms **Credentials sent to the client**. The email includes the login email, the temporary password, and a sign-in link. That link uses your domain when your domain is live.
-  </Step>
-</Steps>
-
-**Inform client** is offered once, the first time you hand over the account. The clients list does not show a second send. The first sign-in asks the client to verify their email and complete their profile.
 
 You cannot invite another agency owner into a client workspace. Lunacal rejects that invite so two agencies are not set as each other's owner.
 
-## Related
+## Find a client
 
-- [Brand the workspace](/agency/white-label)
-- [Use your own domain](/agency/custom-domain)
-- [Send email from your domain](/agency/email)
+**Search clients** matches the client name and the booking slug. The sort menu is **Name** (the default), **Most bookings**, **Newest**, and **Needs attention**.
+
+**All** and **Needs attention** sit beside the sort. Each shows a count. **Needs attention** keeps clients that have one of these notes under their name:
+
+| Note | Why it is there |
+| --- | --- |
+| **No event types setup** | The client has no event types |
+| **No members** | The client has no members |
+| **No booking domain** | The client has no booking domain |
+| **No upcoming bookings** | They have event types, and nothing is upcoming |
+
+If the search or the filter hides everyone, the page says no clients match and offers **Clear filters**.
+
+## Read a row
+
+Click the name to open that client's workspace. Under the name you see their booking hostname, or `/their-slug`, or **No booking domain**. A shield marks a live custom domain. When they have a booking link, the copy button is **Copy booking link**.
+
+| Column | What it shows |
+| --- | --- |
+| **Client** | Name, booking address, and attention notes |
+| **Status** | **Healthy**, **Needs setup**, or **Inactive** |
+| **Members** | How many, plus a pending count when invites are open |
+| **Event types** | How many event types |
+| **Bookings (30d)** | Bookings in the last 30 days, with the change versus the previous 30 days |
+| **Upcoming** | Upcoming bookings |
+| **Last booking** | How long ago the last booking was |
+
+The counts above the table use the same three status labels.
+
+| Status | When you see it |
+| --- | --- |
+| **Needs setup** | No event types, no members, or no booking domain |
+| **Inactive** | Setup is done, and they have no upcoming bookings and none in the last 30 days |
+| **Healthy** | Setup is done, and they have an upcoming booking or a booking in the last 30 days |
+
+## Row menu
+
+| Action | When it shows | What it does |
+| --- | --- | --- |
+| **Set up client** | You are setting the account up yourself, and they have not been handed the login yet | Signs you into their onboarding at **Getting started** so you can finish their profile and event types |
+| **Inform client** | Same, and only the first time | Opens the handoff dialog |
+| **Open workspace** | Always | Opens the client workspace |
+| **Members** | Always | Opens that client's members |
+| **View as client** | The primary member has a username | Asks you to confirm, then signs you in as them. The dialog says you can return to your agency account from the banner at the top. |
+| **Delete client** | Always | Permanently deletes the client |
+
+**Delete client** uses the confirm button **Yes, delete client**. The message is "This permanently deletes the client and removes all their members and event types. This can't be undone."
+
+## Hand the client their login
+
+**Inform client** is the handoff. The description is "Set a password and email the client their login details. They'll be asked to verify their email and finish onboarding the first time they sign in."
+
+The dialog shows **Login email** (you can copy it) and **Temporary password**. Lunacal fills in a password each time you open the dialog. Edit it, or use **Generate a new password** to replace it. The hint under the field is "Share this password with your client. They can change it after signing in." **Send credentials** stays disabled until the password is at least 8 characters. **Cancel** closes the dialog without sending.
+
+**Send credentials** confirms **Credentials sent to the client**. The email subject is "Your {workspace} account is ready." It includes the login email, the temporary password, and a **Sign in** link. The link uses your agency domain when that domain is live, and Lunacal's app address when it is not.
+
+The first sign-in asks them to verify their email and finish their profile. **Inform client** is not offered again from this menu after that first send.
