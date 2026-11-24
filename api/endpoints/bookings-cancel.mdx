@@ -9,7 +9,7 @@ description: "Cancel an existing booking."
 
 Cancels a booking. `uid` is required. `id` is accepted and optional; if you have both, `uid` is what the lookup uses when it is present. This cannot be undone.
 
-A bad key returns `401` with `Invalid or missing credentials`. An unknown booking returns `400` with `Booking not found`. This route does not apply the Tier 4 plan check used by the other API routes.
+A bad key returns `401` with `Invalid or missing credentials`. An unknown booking returns `400` with `Booking not found`.
 
 If the event type's cancellation question is required and the caller is not the organizer, `cancellationReason` has to be a non-empty string. Organizer calls can omit it.
 

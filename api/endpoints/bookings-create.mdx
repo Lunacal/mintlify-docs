@@ -9,7 +9,7 @@ description: "Create or reschedule a booking."
 
 Books a slot on an event type. Call [Get availability](/api/endpoints/get-availability) first and pass one of the returned start times. This route does not check that the slot is still free.
 
-This route checks the API key and then books. It does not return the Tier 4 `403` that the other routes return. A bad key is still `401`, with message `Invalid or missing credentials`.
+A bad API key returns `401`, with message `Invalid or missing credentials`.
 
 To reschedule, send the same body with `rescheduleUid` set to the booking `uid` and a new `start`. The MCP tool `reschedule_booking` is a separate name for this operation. The HTTP field is `rescheduleUid` on this route.
 

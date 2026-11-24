@@ -13,7 +13,7 @@ AI assistants such as Claude do not use this key. They connect through [MCP](/mc
 ## Before you start
 
 <Info>
-  API access is included on Tier 4 and above. On a lower plan, **Settings → Developer** stays locked until the plan is upgraded or Lunacal turns the feature on for that account. Agency client accounts do not see the Developer tab.
+  Agency client accounts do not see the Developer tab.
 </Info>
 
 1. Sign in to Lunacal.
@@ -48,8 +48,6 @@ Keep the key in an environment variable named `LUNACAL_API_KEY`. The examples on
 | Update an event type | [`POST /api/event-types/update`](/api/endpoints/event-types-update) |
 | Delete an event type | [`POST /api/event-types/delete`](/api/endpoints/event-types-delete) |
 | Show or hide an event type | [`POST /api/event-types/switch-published`](/api/endpoints/event-types-switch-published) |
-
-If the account later drops below Tier 4, most of these routes answer `403`. Creating and cancelling a booking still accept a key that was valid when it was issued. See [Errors](/api/errors).
 
 ## Try it
 

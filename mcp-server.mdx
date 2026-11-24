@@ -9,10 +9,6 @@ The Lunacal MCP server lets Claude work in your Lunacal account from a chat. You
 
 You do not paste an API key into Claude. API keys are for your own server. This connection is a separate sign-in.
 
-<Info>
-  You need Tier 4 or higher, or MCP access turned on for your account. If you do not have it, the sign-in page sends you back to Settings instead of connecting.
-</Info>
-
 ## What Claude can do
 
 Claude chooses the action. You describe the task in plain language. Actions that only read your account are safe to run. Actions that book, move, cancel, or edit an event type change real data and can email the other person. Approve those only after the name, time, and event type look right.
@@ -105,7 +101,6 @@ If a time looks wrong, name the timezone in the prompt, or ask Claude which time
 | The sign-in window never opens | Allow pop-ups for the client. If you added the server yourself, the address must be exactly `https://mcp.lunacal.ai/mcp`. |
 | "That time is no longer free" | Ask Claude to look up open times again and pick another one. Do not retry the same time. |
 | Claude cannot find the booking or event type | Ask it to list your bookings or event types and use a result from that list. |
-| You land on Settings during sign-in | This account does not have MCP access. You need Tier 4, or the feature turned on for you. |
 
 ## ChatGPT and other clients
 

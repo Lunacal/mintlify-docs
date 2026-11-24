@@ -35,16 +35,6 @@ The first message has two spaces between the words. Copy it exactly if your code
 
 A value that does not start with `lunacal_` is treated as an access token from the MCP sign-in, not as an API key. An unknown token fails with the same `401`.
 
-## The account cannot use the API
-
-**Status:** `403`
-
-**Message:** `API access requires a Tier 4 or higher plan. Please upgrade to use the API.`
-
-The key itself is valid, but the account is below Tier 4 and does not have API access turned on. Upgrade the plan, or ask Lunacal to enable API access for that user.
-
-Create booking and cancel booking do not return this status. They accept the key and continue. Every other route on the [introduction](/api/introduction) does return it.
-
 ## The body does not match the route
 
 **Status:** `400`
