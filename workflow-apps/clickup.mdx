@@ -1,0 +1,62 @@
+---
+title: "Find a ClickUp list ID"
+sidebarTitle: "ClickUp"
+description: "Copy the number after /li/ in a ClickUp list link. That number is the List ID a Lunacal workflow uses to create the task."
+keywords:
+  - "clickup"
+  - "list id"
+  - "workflow"
+  - "task"
+---
+
+A ClickUp step creates one task in a list. The list ID is the number after `/li/` in the list link. The first number in the link is the workspace, and `pr=` is not the list.
+
+Home, Inbox, and My Tasks are views. They do not have a list ID. Open **Spaces**, open a list, and copy that list's link.
+
+<ClickUpListId />
+
+<Steps>
+  <Step title="Open a list">
+    In ClickUp, open **Spaces** and open the list that should receive booking tasks.
+  </Step>
+  <Step title="Copy the list link">
+    Copy the link from the address bar. It looks like `https://app.clickup.com/100/v/l/li/200`.
+  </Step>
+  <Step title="Paste only the list number">
+    In Lunacal, paste the number after `/li/` into **List ID**. In the example above, that number is `200`.
+  </Step>
+</Steps>
+
+Lunacal also sends the meeting start, the meeting end, the task length, the attendee, the attendee email, and the meeting link. You do not type those in.
+
+If the booking is cancelled, Lunacal renames that same task so the name starts with `Cancelled`. ClickUp status names are different on every list, so the status itself is left as the list defined it. If the booking is rescheduled, the task start and due time move. A second task is not created.
+
+<Note>
+The link in the checker below is an example, so you can see which number is the list ID. Paste your own list link to check it.
+</Note>
+
+export const ClickUpListId = () => {
+  const [value, setValue] = useState("https://app.clickup.com/100/v/l/li/200?pr=300");
+  const list = value.match(/\/li\/(\d+)/);
+  const workspace = value.match(/clickup\.com\/(\d+)/);
+  const box = { border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, padding: 16, display: "grid", gap: 12 };
+  return (
+    <div className="not-prose" style={box}>
+      <label style={{ display: "grid", gap: 6, fontSize: 14 }}>
+        List link
+        <input
+          aria-label="ClickUp list link"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          style={{ width: "100%", font: "inherit", padding: 8, borderRadius: 8, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit" }}
+        />
+      </label>
+      <div style={{ fontSize: 14 }}>
+        {list ? `Paste this List ID: ${list[1]}` : "This link has no /li/ number. Open a list, not Home or My Tasks."}
+      </div>
+      <div style={{ fontSize: 13, opacity: 0.75 }}>
+        {workspace ? `The first number, ${workspace[1]}, is the workspace. Do not paste it as the list.` : "No workspace number found."}
+      </div>
+    </div>
+  );
+};

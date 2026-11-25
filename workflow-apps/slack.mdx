@@ -1,0 +1,28 @@
+---
+title: "Send booking messages to Slack"
+sidebarTitle: "Slack"
+description: "Paste a Slack channel name or channel ID, with no # sign, so each Lunacal booking message is posted in the channel you pick."
+keywords:
+  - "slack"
+  - "channel"
+  - "workflow"
+  - "booking message"
+---
+
+A Slack step posts one message in the channel you name. Paste the channel name, or its ID, with no `#` in front.
+
+<Steps>
+  <Step title="Open the channel">
+    In Slack, open the channel that should receive booking messages.
+  </Step>
+  <Step title="Copy the name or the ID">
+    Use the channel name without `#`. For a channel shown as `#general`, paste `general`.
+
+    To use the ID instead, click the channel name at the top of Slack and copy the channel ID.
+  </Step>
+  <Step title="Paste it into the workflow">
+    In Lunacal, open the workflow, choose Slack, and paste the value into **Channel**.
+  </Step>
+</Steps>
+
+The message includes the event name, the attendee, the attendee email, the meeting time, and the meeting link when the booking has one.

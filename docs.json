@@ -96,7 +96,18 @@
           "adding-calendars",
           "hubspot-integration",
           "pipedrive-integration",
-          "google-tag-manager-integration"
+          "google-tag-manager-integration",
+          {
+            "group": "Workflow apps",
+            "icon": "puzzle",
+            "pages": [
+              "workflow-apps",
+              "workflow-apps/slack",
+              "workflow-apps/discord",
+              "workflow-apps/telegram",
+              "workflow-apps/clickup"
+            ]
+          }
         ]
       },
       {
