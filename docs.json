@@ -101,7 +101,11 @@
             "group": "Workflow apps",
             "icon": "puzzle",
             "pages": [
-              "workflow-apps"
+              "workflow-apps",
+              "workflow-apps/slack",
+              "workflow-apps/discord",
+              "workflow-apps/telegram",
+              "workflow-apps/clickup"
             ]
           }
         ]

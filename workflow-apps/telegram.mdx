@@ -1,0 +1,33 @@
+---
+title: "Send booking messages on Telegram"
+sidebarTitle: "Telegram"
+description: "Create a Telegram bot, press Start, and paste the numeric chat ID from @userinfobot. A username cannot receive the booking message."
+keywords:
+  - "telegram"
+  - "chat id"
+  - "bot token"
+  - "userinfobot"
+---
+
+A Telegram step sends the booking as a message from your bot. The bot can message only a chat that has already pressed **Start**. A username, including the bot's own username, is not a chat ID.
+
+<Steps>
+  <Step title="Create the bot">
+    In Telegram, open `@BotFather` and send `/newbot`. Copy the token it gives you into the Lunacal connect screen.
+
+    Keep that token private. If it shows up in a log or a chat, open `@BotFather`, send `/revoke`, and connect again with the new token. Do not paste the new token into a chat.
+  </Step>
+  <Step title="Start your bot">
+    Open the bot you just created and press **Start**. Until you do that, Telegram returns "chat not found".
+  </Step>
+  <Step title="Copy your numeric ID">
+    Search for `@userinfobot`. Open the result named **User Info • Get ID • idbot**. Press **Start** and copy the **Id**. It is only digits.
+
+    Skip other bots with similar names.
+  </Step>
+  <Step title="Paste the ID">
+    In the Lunacal workflow, paste that number into **Chat ID**. Do not paste `@yourname` or the bot username.
+  </Step>
+</Steps>
+
+The message arrives from your bot, in the chat where you pressed **Start**. It includes the event name, the attendee, the attendee email, the meeting time, and the meeting link when the booking has one.

@@ -23,42 +23,44 @@ Pick the app below and copy the value it names. Lunacal fills the meeting time, 
 
 A cancellation updates the record from the original booking. It does not create a second task, page, ticket, or subscriber.
 
-<Card title="Slack" icon="hash" href="/workflow-apps/slack">
-  Channel name or channel ID, without a #.
-</Card>
+<Columns cols={2}>
+  <Card title="Slack" icon="hash" href="/workflow-apps/slack">
+    Channel name or channel ID, without a #.
+  </Card>
 
-<Card title="Discord" icon="hash" href="/workflow-apps/discord">
-  Numeric channel ID from the channel you want.
-</Card>
+  <Card title="Discord" icon="hash" href="/workflow-apps/discord">
+    Numeric channel ID from the channel you want.
+  </Card>
 
-<Card title="Telegram" icon="send" href="/workflow-apps/telegram">
-  Numeric chat ID. A username does not work.
-</Card>
+  <Card title="Telegram" icon="send" href="/workflow-apps/telegram">
+    Numeric chat ID. A username does not work.
+  </Card>
 
-<Card title="ClickUp" icon="list" href="/workflow-apps/clickup">
-  Numeric list ID, the number after /li/ in the list link.
-</Card>
+  <Card title="ClickUp" icon="list" href="/workflow-apps/clickup">
+    Numeric list ID, the number after /li/ in the list link.
+  </Card>
 
-<Card title="Mailchimp" icon="mail" href="/workflow-apps/mailchimp">
-  Audience ID from the audience settings.
-</Card>
+  <Card title="Mailchimp" icon="mail" href="/workflow-apps/mailchimp">
+    Audience ID from the audience settings.
+  </Card>
 
-<Card title="Notion" icon="file-text" href="/workflow-apps/notion">
-  Parent page ID, and the page must be shared with the connection.
-</Card>
+  <Card title="Notion" icon="file-text" href="/workflow-apps/notion">
+    Parent page ID. Share that page with the connection.
+  </Card>
 
-<Card title="Jira" icon="square-kanban" href="/workflow-apps/jira">
-  Project key, such as SUP in SUP-123.
-</Card>
+  <Card title="Jira" icon="square-kanban" href="/workflow-apps/jira">
+    Project key, such as SUP in SUP-123.
+  </Card>
 
-<Card title="Todoist" icon="list-checks" href="/workflow-apps/todoist">
-  Project ID after the last hyphen, or blank for the Inbox.
-</Card>
+  <Card title="Todoist" icon="list-checks" href="/workflow-apps/todoist">
+    Project ID after the last hyphen, or blank for the Inbox.
+  </Card>
 
-<Card title="Kit" icon="user-plus" href="/workflow-apps/kit">
-  No ID. The booker's email and first name are enough.
-</Card>
+  <Card title="Kit" icon="user-plus" href="/workflow-apps/kit">
+    No ID. The booker's email and first name are enough.
+  </Card>
 
-<Card title="Zendesk" icon="ticket" href="/workflow-apps/zendesk">
-  No ID. A booking opens one ticket, and a cancellation solves that ticket.
-</Card>
+  <Card title="Zendesk" icon="ticket" href="/workflow-apps/zendesk">
+    No ID. A booking opens one ticket. A cancellation solves it.
+  </Card>
+</Columns>
