@@ -100,7 +100,9 @@
           {
             "group": "Workflow apps",
             "icon": "puzzle",
-            "pages": []
+            "pages": [
+              "workflow-apps"
+            ]
           }
         ]
       },
