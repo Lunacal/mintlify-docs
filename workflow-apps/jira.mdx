@@ -1,0 +1,25 @@
+---
+title: "Find a Jira project key"
+sidebarTitle: "Jira"
+description: "Copy the Jira project key, the short code in an issue key such as SUP in SUP-123, so a booking opens one issue in that project."
+keywords:
+  - "jira"
+  - "project key"
+  - "issue"
+  - "workflow"
+---
+
+A Jira step opens one issue in the project whose key you paste. The project key is the short code at the start of an issue key. In `SUP-123`, the project key is `SUP`.
+
+<Steps>
+  <Step title="Find the key">
+    Open any issue in the project, or open the project's settings. Copy the letters before the hyphen in the issue key.
+  </Step>
+  <Step title="Paste the key">
+    In Lunacal, paste that code into **Project key**. Leave **Issue type** as `Task` unless this project uses a different type name.
+  </Step>
+</Steps>
+
+The issue summary and description include the attendee, the meeting time, and the meeting link. The due date is the day of the meeting, in your timezone.
+
+A cancellation does not open a second issue. Jira's close action depends on the names in that project's workflow, which are not the same everywhere, so Lunacal leaves the original issue open.

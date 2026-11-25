@@ -105,7 +105,13 @@
               "workflow-apps/slack",
               "workflow-apps/discord",
               "workflow-apps/telegram",
-              "workflow-apps/clickup"
+              "workflow-apps/clickup",
+              "workflow-apps/mailchimp",
+              "workflow-apps/notion",
+              "workflow-apps/jira",
+              "workflow-apps/todoist",
+              "workflow-apps/kit",
+              "workflow-apps/zendesk"
             ]
           }
         ]

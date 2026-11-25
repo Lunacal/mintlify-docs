@@ -1,0 +1,28 @@
+---
+title: "Find a Mailchimp audience ID"
+sidebarTitle: "Mailchimp"
+description: "Copy the Mailchimp Audience ID from audience settings, and save the booker's email, first name, and last name on that audience."
+keywords:
+  - "mailchimp"
+  - "audience id"
+  - "subscriber"
+  - "first name"
+---
+
+A Mailchimp step adds the person who booked to one audience. The Audience ID is on that audience's settings page. It is not the audience name.
+
+<Steps>
+  <Step title="Open the audience">
+    In Mailchimp, open **Audience**.
+  </Step>
+  <Step title="Open the settings">
+    Choose **Manage Audience**, then **Settings**.
+  </Step>
+  <Step title="Copy the Audience ID">
+    On **Audience name and defaults**, copy **Audience ID**. Paste that value into **Audience ID** in the Lunacal workflow.
+  </Step>
+</Steps>
+
+**Email** must be one address. It starts as the attendee's email. If you insert another variable beside it, Lunacal keeps the address and drops the extra text. Put the name in **First name** and **Last name** instead. Those are saved on the subscriber.
+
+**Status when booked** is `Subscribed` unless you choose **Pending confirmation**. If the booking is later cancelled, Lunacal sets that same person to unsubscribed. It does not add a second subscriber.

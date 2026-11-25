@@ -1,0 +1,57 @@
+---
+title: "Find a Notion parent page ID"
+sidebarTitle: "Notion"
+description: "Copy the 32-character parent page ID from a Notion link, then share that page with the connection so the booking page can be created."
+keywords:
+  - "notion"
+  - "parent page"
+  - "page id"
+  - "workflow"
+---
+
+A Notion step creates a page under a parent page you choose. Connecting Notion picks the workspace. It does not pick the parent page, and Notion hides a page the connection cannot see by returning "not found".
+
+The parent ID is the 32-character id at the end of the page link. Dashes in the id are optional.
+
+<NotionPageId />
+
+<Steps>
+  <Step title="Copy the page link">
+    Open the page that should contain booking pages. Choose **Share**, then **Copy link**.
+  </Step>
+  <Step title="Paste the ID">
+    In Lunacal, paste the id from the end of that link into **Parent page ID**.
+  </Step>
+  <Step title="Share the page with the connection">
+    On the same page, open the `...` menu, then **Connections**, and add the connection you used in Lunacal. Without that share, creating a page returns not found.
+  </Step>
+</Steps>
+
+The new page title and content include the attendee, the meeting time, and the meeting link. If the booking is cancelled, Lunacal archives that page. It does not create a second page.
+
+<Note>
+The link in the checker is an example. Paste your own Notion page link to read its id.
+</Note>
+
+export const NotionPageId = () => {
+  const [value, setValue] = useState("https://www.notion.so/Notes-598337872cf94fdf8782e53db20768a5");
+  const compact = value.replace(/-/g, "");
+  const match = compact.match(/([0-9a-fA-F]{32})(?![0-9a-fA-F])/);
+  const box = { border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, padding: 16, display: "grid", gap: 12 };
+  return (
+    <div className="not-prose" style={box}>
+      <label style={{ display: "grid", gap: 6, fontSize: 14 }}>
+        Page link
+        <input
+          aria-label="Notion page link"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          style={{ width: "100%", font: "inherit", padding: 8, borderRadius: 8, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit" }}
+        />
+      </label>
+      <div style={{ fontSize: 14, wordBreak: "break-all" }}>
+        {match ? `Paste this Parent page ID: ${match[1]}` : "No 32-character page id found in this link."}
+      </div>
+    </div>
+  );
+};

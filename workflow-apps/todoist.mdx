@@ -1,0 +1,60 @@
+---
+title: "Find a Todoist project ID"
+sidebarTitle: "Todoist"
+description: "Paste only the Todoist project ID after the last hyphen in the project link, or leave Project ID blank to use the Inbox."
+keywords:
+  - "todoist"
+  - "project id"
+  - "inbox"
+  - "due time"
+---
+
+A Todoist step creates one task. Leave **Project ID** blank to use the Inbox. If you want another project, paste only the id after the last hyphen in the project link. The words before that hyphen are the project name, and Todoist rejects them as an id.
+
+<TodoistProjectId />
+
+<Steps>
+  <Step title="Open the project">
+    In Todoist, open the project and copy its link. It looks like `https://app.todoist.com/app/project/launch-6CFG8HJKMNPQRSTV`.
+  </Step>
+  <Step title="Paste only the id">
+    In the example, the project ID is `6CFG8HJKMNPQRSTV`. Do not paste `launch-6CFG8HJKMNPQRSTV`.
+  </Step>
+  <Step title="Or use the Inbox">
+    Clear **Project ID** and save. The task is created in the Inbox.
+  </Step>
+</Steps>
+
+The task due time is the meeting start, and the task length matches the meeting. The name and description still include the attendee and the meeting link.
+
+If the booking is cancelled, Lunacal completes that same task. If it is rescheduled, the due time moves. A second task is not created.
+
+<Note>
+The link in the checker is an example. Paste your own project link. A blank field still means the Inbox.
+</Note>
+
+export const TodoistProjectId = () => {
+  const [value, setValue] = useState("https://app.todoist.com/app/project/launch-6CFG8HJKMNPQRSTV");
+  const slug = (value.split("?")[0] || "").split("/").filter(Boolean).pop() || "";
+  const hyphen = slug.lastIndexOf("-");
+  const id = hyphen >= 0 ? slug.slice(hyphen + 1) : "";
+  const name = hyphen >= 0 ? slug.slice(0, hyphen) : slug;
+  const box = { border: "1px solid rgba(127,127,127,.25)", borderRadius: 12, padding: 16, display: "grid", gap: 12 };
+  return (
+    <div className="not-prose" style={box}>
+      <label style={{ display: "grid", gap: 6, fontSize: 14 }}>
+        Project link
+        <input
+          aria-label="Todoist project link"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          style={{ width: "100%", font: "inherit", padding: 8, borderRadius: 8, border: "1px solid rgba(127,127,127,.35)", background: "transparent", color: "inherit" }}
+        />
+      </label>
+      <div style={{ fontSize: 14, wordBreak: "break-all" }}>
+        {id ? `Paste this Project ID: ${id}` : "No id after a hyphen. Leave Project ID blank to use the Inbox."}
+      </div>
+      {name ? <div style={{ fontSize: 13, opacity: 0.75 }}>{`Do not include the project name "${name}".`}</div> : null}
+    </div>
+  );
+};
